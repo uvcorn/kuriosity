@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuriosity/Auth/ui/screens/secend_onbording_screen.dart';
-import 'package:kuriosity/Auth/ui/widgets/action_button.dart';
-import 'package:kuriosity/Auth/ui/widgets/coustom_appbar.dart';
+import 'package:kuriosity/features/onboarding/ui/screens/secend_onbording_screen.dart';
+import 'package:kuriosity/shared/widgets/action_button.dart';
+import 'package:kuriosity/shared/widgets/coustom_appbar.dart';
 
 class FirstOnbordingScreen extends StatefulWidget {
   const FirstOnbordingScreen({super.key});
@@ -14,7 +14,7 @@ class FirstOnbordingScreen extends StatefulWidget {
 class _FirstOnbordingScreenState extends State<FirstOnbordingScreen> {
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
@@ -28,7 +28,7 @@ class _FirstOnbordingScreenState extends State<FirstOnbordingScreen> {
             Spacer(),
             Text(
               'Become an \neco-influencer \nfor each other',
-              style: textStyle.titleLarge,
+              style: textTheme.titleLarge,
             ),
             Spacer(),
             Text(
@@ -37,7 +37,7 @@ class _FirstOnbordingScreenState extends State<FirstOnbordingScreen> {
             Spacer(),
             ActionButton(
               title: 'Start',
-              onPressed: () => Get.off(SecendOnbordingScreen()),
+              onPressed: () => Get.off(() => SecendOnbordingScreen()),
             ),
           ],
         ),

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static const Color primaryColor = Color(0xFF233BEF);
+  static const Color textColor = Colors.black;
 
   static ThemeData get lightThemeData {
     return ThemeData(
       textTheme: _textTheme,
-      iconTheme: IconThemeData(color: primaryColor), // Primary color for icons
+      iconTheme: IconThemeData(color: primaryColor),
     );
   }
 
@@ -14,8 +15,9 @@ class AppTheme {
     return TextTheme(
       titleLarge: TextStyle(
         fontSize: 32,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w900,
         letterSpacing: 0.4,
+        color: textColor,
       ),
       titleMedium: TextStyle(
         fontSize: 24,

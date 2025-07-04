@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuriosity/Auth/ui/screens/first_onbording_screen.dart';
 import 'package:kuriosity/app/app_theme.dart';
+import 'package:kuriosity/features/onboarding/ui/screens/first_onbording_screen.dart';
 
 class SplashScreens extends StatefulWidget {
   const SplashScreens({super.key});

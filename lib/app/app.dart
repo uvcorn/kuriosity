@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuriosity/Auth/ui/screens/splash_screens.dart';
 import 'package:kuriosity/app/app_theme.dart';
+import 'package:kuriosity/features/splash/ui/screens/splash_screens.dart';
 
 class WildCurosity extends StatefulWidget {
   const WildCurosity({super.key});

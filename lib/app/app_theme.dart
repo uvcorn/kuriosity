@@ -15,12 +15,8 @@ class AppTheme {
   static TextTheme get _textTheme {
     return TextTheme(
       headlineLarge: GoogleFonts.tiltWarp(fontSize: 48, color: Colors.black),
-      titleLarge: TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.w900,
-        letterSpacing: 0.4,
-        color: textColor,
-      ),
+      headlineMedium: GoogleFonts.tiltWarp(fontSize: 24, color: Colors.black),
+      titleLarge: GoogleFonts.tiltWarp(fontSize: 32, color: textColor),
       titleMedium: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.w600,

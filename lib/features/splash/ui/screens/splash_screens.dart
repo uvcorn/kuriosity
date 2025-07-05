@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kuriosity/app/app_theme.dart';
 import 'package:kuriosity/features/onboarding/ui/screens/first_onbording_screen.dart';
+import 'package:kuriosity/utils/app_images/app_images.dart';
 
 class SplashScreens extends StatefulWidget {
   const SplashScreens({super.key});
@@ -24,16 +25,15 @@ class _SplashScreensState extends State<SplashScreens> {
 
   @override
   Widget build(BuildContext context) {
-    final iconColor = AppTheme.primaryColor;
-    final textStyle = Theme.of(context).textTheme.titleLarge;
+    final textTheme = Theme.of(context).textTheme.titleLarge;
 
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.favorite, color: iconColor, size: 60),
-            Text('Wild Curisity', style: textStyle),
+            SvgPicture.asset(AppImages.logo),
+            Text('Wild Curisity', style: textTheme),
           ],
         ),
       ),

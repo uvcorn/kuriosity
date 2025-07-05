@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kuriosity/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:kuriosity/shared/widgets/action_button.dart';
+import 'package:kuriosity/utils/app_icons/app_icons.dart';
 
 class CountryAndPhoneNumberInputScreen extends StatefulWidget {
   const CountryAndPhoneNumberInputScreen({super.key});
@@ -22,12 +23,13 @@ class _CountryAndPhoneNumberInputScreenState
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 64),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 106),
             Text('Welcome to \nWild Curiosity', style: textTheme.titleLarge),
-            SizedBox(height: 32),
+            SizedBox(height: 28),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
@@ -117,7 +119,7 @@ class _CountryAndPhoneNumberInputScreenState
                 ),
               ),
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 23),
             Center(
               child: Text(
                 'We’ll call or text you to confirm your number. \nStandard message and data rates apply.',
@@ -125,12 +127,12 @@ class _CountryAndPhoneNumberInputScreenState
               ),
             ),
 
-            Spacer(),
+            SizedBox(height: 34),
             ActionButton(
               title: 'Continue',
               onPressed: () => Get.off(SignUpScreen()),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 59),
             Row(
               children: [
                 const Expanded(
@@ -142,12 +144,11 @@ class _CountryAndPhoneNumberInputScreenState
                 ),
               ],
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 43),
             ActionButton(
               title: 'Continue with Apple',
               onPressed: () {},
-              iconOnLeft: true,
-              icon: Icons.apple,
+              icon: AppIcons.apple,
               backgroundColor: Colors.white,
               textColor: Colors.black,
             ),
@@ -155,8 +156,7 @@ class _CountryAndPhoneNumberInputScreenState
             ActionButton(
               title: 'Continue with Facebook',
               onPressed: () {},
-              iconOnLeft: true,
-              icon: Icons.facebook,
+              icon: AppIcons.facebook,
               backgroundColor: Colors.white,
               textColor: Colors.black,
             ),
@@ -164,8 +164,7 @@ class _CountryAndPhoneNumberInputScreenState
             ActionButton(
               title: 'Continue with Google',
               onPressed: () {},
-              iconOnLeft: true,
-              icon: Icons.g_mobiledata,
+              icon: AppIcons.google,
               backgroundColor: Colors.white,
               textColor: Colors.black,
             ),

@@ -23,14 +23,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
-            SizedBox(height: 90),
+            SizedBox(height: 106),
             Text('Forget your Password', style: textTheme.titleLarge),
-            SizedBox(height: 16),
+            SizedBox(height: 26),
             Text(
               'Enter your email address to reset your password.',
               style: TextStyle(fontSize: 14),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 40),
             InputCardContainer(
               children: [
                 CustomTextField(
@@ -39,7 +39,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 ),
               ],
             ),
-            SizedBox(height: 397),
+            SizedBox(height: 360),
             ActionButton(
               title: 'Get Verification Code',
               onPressed: () => Get.off(OtpVerifyScreen()),

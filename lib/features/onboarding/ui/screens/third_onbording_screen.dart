@@ -62,14 +62,15 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: Size.fromHeight(40),
         child: CustomAppbar(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          children: [
-            Expanded(
+      body: Column(
+        children: [
+          SizedBox(height: 45),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: _pages.length,
@@ -79,35 +80,34 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                 itemBuilder: (context, index) {
                   final page = _pages[index];
                   return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
                         height: 550,
-                        width: double.infinity,
+                        width: 328,
                         decoration: BoxDecoration(
                           color: Colors.grey.shade400,
                           borderRadius: BorderRadius.circular(20),
                         ),
 
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          padding: const EdgeInsets.symmetric(horizontal: 33),
                           child: Column(
                             children: [
-                              const SizedBox(height: 350),
+                              const SizedBox(height: 311),
                               Text(
                                 page.title,
                                 style: textTheme.titleLarge!.copyWith(
                                   color: Colors.white,
                                 ),
                               ),
-                              const SizedBox(height: 24),
+                              const SizedBox(height: 35),
                               Text(
                                 page.body,
                                 style: textTheme.bodyMedium!.copyWith(
                                   color: Colors.white,
                                 ),
                               ),
-                              const Spacer(flex: 2),
                             ],
                           ),
                         ),
@@ -117,58 +117,60 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                 },
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(_pages.length, (index) {
-                      return AnimatedContainer(
-                        duration: Duration(milliseconds: 300),
-                        margin: EdgeInsets.symmetric(horizontal: 4),
-                        height: 4,
-                        width: _currentPage == index ? 100 : 100,
-                        decoration: BoxDecoration(
-                          color: _currentPage == index
-                              ? AppTheme.primaryColor
-                              : Colors.grey[300],
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                      );
-                    }),
-                  ),
-                  const SizedBox(height: 24),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ActionButton(
-                          title: 'Back',
-                          onPressed: _prevPage,
-                          type: ActionButtonType.text,
-                        ),
+          ),
+          SizedBox(height: 34),
+          SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(_pages.length, (index) {
+                    return AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      margin: EdgeInsets.symmetric(horizontal: 4),
+                      height: 4,
+                      width: 121,
+                      decoration: BoxDecoration(
+                        color: _currentPage == index
+                            ? AppTheme.primaryColor
+                            : Colors.grey[300],
+                        borderRadius: BorderRadius.circular(2),
                       ),
-                      const Spacer(),
-                      Expanded(
-                        child: ActionButton(
-                          title: _currentPage == _pages.length - 1
-                              ? 'Finish'
-                              : 'Next',
-                          onPressed: _currentPage == _pages.length - 1
-                              ? () {
-                                  Get.off(CountryAndPhoneNumberInputScreen());
-                                }
-                              : _nextPage,
-                          type: ActionButtonType.filled,
-                        ),
+                    );
+                  }),
+                ),
+                const SizedBox(height: 34),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ActionButton(
+                        title: 'Back',
+                        onPressed: _prevPage,
+                        type: ActionButtonType.text,
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                    Spacer(),
+                    Expanded(
+                      child: ActionButton(
+                        title: _currentPage == _pages.length - 1
+                            ? 'Finish'
+                            : 'Next',
+                        onPressed: _currentPage == _pages.length - 1
+                            ? () {
+                                Get.off(CountryAndPhoneNumberInputScreen());
+                              }
+                            : _nextPage,
+                        type: ActionButtonType.filled,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

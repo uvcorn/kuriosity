@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:kuriosity/app/app_theme.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kuriosity/utils/app_images/app_images.dart';
 
 class CustomAppbar extends StatelessWidget {
   const CustomAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return AppBar(
-      // titleSpacing: 0,
       title: Row(
         children: [
-          Icon(Icons.favorite, size: 36, color: AppTheme.primaryColor),
-          const SizedBox(width: 8),
-          const Text('WIld Curiosity'),
+          SvgPicture.asset(AppImages.logo, height: 23, width: 26),
+          const SizedBox(width: 5),
+          Text('Wild Curiosity', style: textTheme.headlineMedium),
         ],
       ),
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
     );
   }
 }

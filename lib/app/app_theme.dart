@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static const Color primaryColor = Color(0xFF233BEF);
@@ -13,6 +14,7 @@ class AppTheme {
 
   static TextTheme get _textTheme {
     return TextTheme(
+      headlineLarge: GoogleFonts.tiltWarp(fontSize: 48, color: Colors.black),
       titleLarge: TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.w900,

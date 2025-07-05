@@ -4,6 +4,7 @@ import 'package:kuriosity/app/app_theme.dart';
 import 'package:kuriosity/features/auth/ui/screens/sign_in_screen.dart';
 import 'package:kuriosity/features/auth/ui/widgets/custom_checkbox_with_richtext.dart';
 import 'package:kuriosity/features/auth/ui/widgets/custom_textfield.dart';
+import 'package:kuriosity/features/auth/ui/widgets/input_card_container.dart';
 import 'package:kuriosity/shared/widgets/action_button.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -52,65 +53,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16),
-                  child: Column(
+                  child: InputCardContainer(
                     children: [
                       CustomTextField(
                         controller: _firstNameTEController,
                         labelText: 'First Name',
                       ),
-                      Divider(
-                        height: 0,
-                        thickness: 1,
-                        color: Colors.grey[300],
-                        indent: 16,
-                        endIndent: 16,
-                      ),
                       CustomTextField(
                         controller: _lastNameTEController,
                         labelText: 'Last Name',
-                      ),
-                      Divider(
-                        height: 0,
-                        thickness: 1,
-                        color: Colors.grey[300],
-                        indent: 16,
-                        endIndent: 16,
                       ),
                       CustomTextField(
                         controller: _emailTEController,
                         labelText: 'Email',
                         keyboardType: TextInputType.emailAddress,
                       ),
-                      Divider(
-                        height: 0,
-                        thickness: 1,
-                        color: Colors.grey[300],
-                        indent: 16,
-                        endIndent: 16,
-                      ),
                       CustomTextField(
                         controller: _passwordTEController,
                         labelText: 'Password',
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: _isPasswordObscure,
+                        enableValidation: true,
                         onToggleObscureText: () {
                           setState(() {
                             _isPasswordObscure = !_isPasswordObscure;
                           });
                         },
                       ),
-                      Divider(
-                        height: 0,
-                        thickness: 1,
-                        color: Colors.grey[300],
-                        indent: 16,
-                        endIndent: 16,
-                      ),
                       CustomTextField(
                         controller: _confirmPassTEController,
                         labelText: 'Confirm Password',
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: _isPasswordObscure,
+                        enableValidation: true,
+                        confirmPasswordController: _confirmPassTEController,
                         onToggleObscureText: () {
                           setState(() {
                             _isPasswordObscure = !_isPasswordObscure;

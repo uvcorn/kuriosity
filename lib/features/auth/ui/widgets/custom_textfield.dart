@@ -6,6 +6,9 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
   final VoidCallback? onToggleObscureText;
+  final bool enableValidation; // For password validation
+  final TextEditingController?
+  confirmPasswordController; // For confirm password
 
   const CustomTextField({
     super.key,
@@ -14,14 +17,17 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType,
     this.obscureText = false,
     this.onToggleObscureText,
+    this.enableValidation = false,
+    this.confirmPasswordController,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
+      validator: enableValidation ? _passwordValidator : null,
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(fontSize: 12),
@@ -37,5 +43,22 @@ class CustomTextField extends StatelessWidget {
             : null,
       ),
     );
+  }
+
+  /// Password Validator (6-8 chars) & Confirm Password Validator
+  String? _passwordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    } else if (value.length < 6 || value.length > 8) {
+      return 'Password must be 6-8 characters';
+    }
+
+    if (confirmPasswordController != null) {
+      if (value != confirmPasswordController!.text) {
+        return 'Passwords do not match';
+      }
+    }
+
+    return null;
   }
 }

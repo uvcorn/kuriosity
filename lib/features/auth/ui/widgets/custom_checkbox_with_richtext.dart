@@ -11,6 +11,7 @@ class CustomCheckboxWithRichText extends StatelessWidget {
   final TextStyle? clickableTextStyle;
   final VoidCallback onLinkTap;
   final bool useSpaceBetweenAlignment;
+  final bool centerAlignment;
 
   const CustomCheckboxWithRichText({
     super.key,
@@ -23,6 +24,7 @@ class CustomCheckboxWithRichText extends StatelessWidget {
     this.clickableTextStyle,
     required this.onLinkTap,
     this.useSpaceBetweenAlignment = false,
+    this.centerAlignment = false,
   });
 
   @override
@@ -30,7 +32,9 @@ class CustomCheckboxWithRichText extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final MainAxisAlignment mainRowAlignment = useSpaceBetweenAlignment
         ? MainAxisAlignment.spaceBetween
-        : MainAxisAlignment.start;
+        : (centerAlignment
+              ? MainAxisAlignment.center
+              : MainAxisAlignment.start);
 
     final bool shouldShowCheckbox =
         showCheckbox == true && value != null && onChanged != null;

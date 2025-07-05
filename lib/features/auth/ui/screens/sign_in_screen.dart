@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:kuriosity/features/auth/ui/screens/forget_password.dart';
 import 'package:kuriosity/features/auth/ui/widgets/custom_checkbox_with_richtext.dart';
 import 'package:kuriosity/features/auth/ui/widgets/custom_textfield.dart';
+import 'package:kuriosity/features/auth/ui/widgets/input_card_container.dart';
 import 'package:kuriosity/shared/widgets/action_button.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -40,35 +41,26 @@ class _SignInScreenState extends State<SignInScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 16),
-                  child: Column(
-                    children: [
-                      CustomTextField(
-                        controller: _emailTEController,
-                        labelText: 'Email',
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      Divider(
-                        height: 0,
-                        thickness: 1,
-                        color: Colors.grey[300],
-                        indent: 5,
-                        endIndent: 5,
-                      ),
-                      CustomTextField(
-                        controller: _passwordTEController,
-                        labelText: 'Password',
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: _isPasswordObscure,
-                        onToggleObscureText: () {
-                          setState(() {
-                            _isPasswordObscure = !_isPasswordObscure;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
+                child: InputCardContainer(
+                  children: [
+                    CustomTextField(
+                      controller: _emailTEController,
+                      labelText: 'Email',
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                    CustomTextField(
+                      controller: _passwordTEController,
+                      labelText: 'Password',
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: _isPasswordObscure,
+                      enableValidation: true,
+                      onToggleObscureText: () {
+                        setState(() {
+                          _isPasswordObscure = !_isPasswordObscure;
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -1,4 +1,3 @@
-// lib/shared/widgets/input_card_container.dart
 import 'package:flutter/material.dart';
 
 class InputCardContainer extends StatelessWidget {
@@ -7,28 +6,23 @@ class InputCardContainer extends StatelessWidget {
   final Color backgroundColor;
   final double elevation;
   final Color shadowColor;
-  final EdgeInsetsGeometry padding; // Allow custom padding inside the container
+  final EdgeInsetsGeometry padding;
 
   const InputCardContainer({
     super.key,
     required this.children,
     this.borderRadius = 12,
     this.backgroundColor = Colors.white,
-    this.elevation = 4, // Default subtle elevation
-    this.shadowColor =
-        Colors.black, // Default shadow color, will be adjusted with opacity
-    this.padding = const EdgeInsets.only(
-      left: 16,
-    ), // Default padding as in your original code
+    this.elevation = 4,
+    this.shadowColor = Colors.black,
+    this.padding = const EdgeInsets.only(left: 16),
   });
 
   @override
   Widget build(BuildContext context) {
     return Material(
       elevation: elevation,
-      shadowColor: shadowColor.withOpacity(
-        0.05,
-      ), // Apply subtle opacity for a softer shadow
+      shadowColor: shadowColor.withOpacity(0.05),
       borderRadius: BorderRadius.circular(borderRadius),
       child: Container(
         decoration: BoxDecoration(
@@ -36,14 +30,35 @@ class InputCardContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: Padding(
-          padding: padding, // Use the provided padding
+          padding: padding,
           child: Column(
-            mainAxisSize:
-                MainAxisSize.min, // Ensure column only takes up needed space
-            children: children, // Display the passed children
+            mainAxisSize: MainAxisSize.min,
+            children: _withDividers(children),
           ),
         ),
       ),
     );
+  }
+
+  /// Helper to automatically insert dividers between children.
+  List<Widget> _withDividers(List<Widget> widgets) {
+    if (widgets.length <= 1) return widgets;
+
+    final List<Widget> separated = [];
+    for (int i = 0; i < widgets.length; i++) {
+      separated.add(widgets[i]);
+      if (i != widgets.length - 1) {
+        separated.add(
+          Divider(
+            height: 0,
+            thickness: 1,
+            color: Colors.grey[300],
+            indent: 5,
+            endIndent: 5,
+          ),
+        );
+      }
+    }
+    return separated;
   }
 }

@@ -24,29 +24,33 @@ class _FirstOnbordingScreenState extends State<FirstOnbordingScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 82),
-              Text(
-                AppStrings.ecoInfluencerMessage,
-                style: textTheme.titleLarge,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 82),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppStrings.ecoInfluencerMessage,
+                    style: textTheme.titleLarge,
+                  ),
+                  // SizedBox(height: 270),
+                  Text(
+                    AppStrings.selfActualizationMessage,
+                    style: textTheme.bodyMedium,
+                  ),
+                ],
               ),
-              SizedBox(height: 270),
-              Text(
-                AppStrings.selfActualizationMessage,
-                style: textTheme.bodyMedium,
-              ),
-              SizedBox(height: 82),
-              ActionButton(
-                title: AppStrings.startButton,
-                onPressed: () =>
-                    Get.offAllNamed(AppRoutes.secendOnbordingScreen),
-              ),
-              SizedBox(height: 57),
-            ],
-          ),
+            ),
+            SizedBox(height: 70),
+            ActionButton(
+              title: AppStrings.startButton,
+              onPressed: () => Get.offAllNamed(AppRoutes.secendOnbordingScreen),
+            ),
+            SizedBox(height: 57),
+          ],
         ),
       ),
     );

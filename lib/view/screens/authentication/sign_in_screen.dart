@@ -88,9 +88,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 onLinkTap: () =>
                     Get.offAllNamed(AppRoutes.forgotPasswordScreen),
               ),
-              SizedBox(height: 62),
+              SizedBox(height: 50),
               ActionButton(title: AppStrings.continueButton, onPressed: () {}),
-              const SizedBox(height: 60),
+              const SizedBox(height: 50),
               Row(
                 children: [
                   const Expanded(

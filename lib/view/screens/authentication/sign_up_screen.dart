@@ -123,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 title: AppStrings.signUpButton,
                 onPressed: () => Get.offAllNamed(AppRoutes.signInScreen),
               ),
-              SizedBox(height: 140),
+              SizedBox(height: 110),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

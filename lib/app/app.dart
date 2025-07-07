@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kuriosity/app/app_theme.dart';
-import 'package:kuriosity/features/splash/ui/screens/splash_screens.dart';
+import 'package:kuriosity/core/app_routes/app_routes.dart';
+import 'package:kuriosity/view/screens/splash_screen/splash_screens.dart';
 
 class WildCurosity extends StatefulWidget {
   const WildCurosity({super.key});
@@ -16,7 +17,8 @@ class _WildCurosityState extends State<WildCurosity> {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightThemeData,
-      home: SplashScreens(),
+      home: SplashScreen(),
+      getPages: AppRoutes.routes,
     );
   }
 }

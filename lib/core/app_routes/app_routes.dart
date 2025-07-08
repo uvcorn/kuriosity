@@ -8,6 +8,7 @@ import '../../view/screens/authentication/phone_input_screen.dart';
 import '../../view/screens/authentication/reset_password_screen.dart';
 import '../../view/screens/authentication/sign_in_screen.dart';
 import '../../view/screens/authentication/sign_up_screen.dart';
+import '../../view/screens/home/home_screen.dart';
 import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
 import '../../view/screens/onboarding/third_onbording_screen.dart';
@@ -28,9 +29,11 @@ class AppRoutes {
   static const String resetPasswordScreen = "/ResetPasswordScreen";
   static const String phoneInputScreen = "/PhoneInputScreen";
 
+  ///===========================Home==========================
+  static const String homeScreen = "/HomeScreen";
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
-    GetPage(name: splashScreen, page: () => const SplashScreen()),
+    GetPage(name: splashScreen, page: () => SplashScreen()),
     GetPage(name: firstOnbordingScreen, page: () => FirstOnbordingScreen()),
     GetPage(name: secendOnbordingScreen, page: () => SecendOnbordingScreen()),
     GetPage(name: thirdOnbordingScreen, page: () => ThirdOnbordingScreen()),
@@ -42,5 +45,8 @@ class AppRoutes {
     GetPage(name: resetPasswordScreen, page: () => ResetPasswordScreen()),
     GetPage(name: signUpScreen, page: () => SignUpScreen()),
     GetPage(name: phoneInputScreen, page: () => PhoneInputScreen()),
+
+    ///===========================Home==========================
+    GetPage(name: homeScreen, page: () => HomeScreen()),
   ];
 }

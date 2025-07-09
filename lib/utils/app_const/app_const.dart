@@ -1,0 +1,38 @@
+class AppConstants {
+  static String bearerToken = "BearerToken";
+  static String refreshToken = "RefreshToken";
+  static String userId = "UserId";
+
+  static String onBoard = "Onboard";
+
+  /// <====================== All Response Message Static==============================>
+
+  static String successfull = "Request Successfull";
+  static String error = "Oops, something went wrong";
+  static String profileID = "profileID";
+  static String userStatus = "userStatus";
+  static String rememberMe = "rememberMe";
+  static var chatId = "chatID";
+  static String isRememberMe = "isRememberMe";
+  static String userNtr =
+      'https://www.india.com/wp-content/uploads/2022/03/Jr-NTR-On-RRR-Massive-Success.jpg';
+  static String map = 'https://i.sstatic.net/HILmr.png';
+  static String truck =
+      'https://t4.ftcdn.net/jpg/00/26/80/01/360_F_26800115_YlmErNLIVZeNZXPzUc3z4GAD1gGkVABu.jpg';
+
+  static const String vegatable =
+      'https://images.unsplash.com/photo-1532509774891-141d37f25ae9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+
+  static const String countyPoliticalMove =
+      'https://images.unsplash.com/photo-1712876896746-aac070e47d33?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHBvbGl0aWNhbCUyMHN0YXRlbWVudCUyMGtlbnlhfGVufDB8fDB8fHww';
+
+  static const String politicalMove =
+      'https://images.unsplash.com/photo-1569000971870-7605f9bd8734?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHBvbGl0aWNhbCUyMHN0YXRlbWVudHxlbnwwfHwwfHx8MA%3D%3D';
+
+  static String profileImage =
+      'https://images.unsplash.com/photo-1570158268183-d296b2892211?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1lbiUyMHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D';
+}
+
+enum Status { loading, error, completed, internetError }
+
+enum UserType { myProfile, anotherProfile }

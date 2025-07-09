@@ -16,10 +16,11 @@ class AppTheme {
         color: AppColors.black,
       ),
       titleLarge: GoogleFonts.tiltWarp(fontSize: 32, color: AppColors.black),
-      titleMedium: GoogleFonts.tiltWarp(fontSize: 24),
-      titleSmall: GoogleFonts.tiltWarp(fontSize: 22),
-      bodyLarge: GoogleFonts.roboto(fontSize: 18),
+      titleMedium: GoogleFonts.tiltWarp(fontSize: 24, color: AppColors.black),
+      titleSmall: GoogleFonts.tiltWarp(fontSize: 22, color: AppColors.black),
+      bodyLarge: GoogleFonts.roboto(fontSize: 18, color: AppColors.black),
       bodyMedium: GoogleFonts.roboto(fontSize: 16, color: AppColors.black),
+
       bodySmall: GoogleFonts.roboto(fontSize: 14, color: AppColors.mediumGray),
       labelSmall: GoogleFonts.roboto(fontSize: 12, color: AppColors.mediumGray),
     );

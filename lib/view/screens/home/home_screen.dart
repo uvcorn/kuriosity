@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:kuriosity/view/screens/home/widgets/comment_section/comment_draggable_sheet.dart';
 
 import '../../../utils/app_colors/app_colors.dart';
+import '../../../utils/app_const/app_const.dart';
 import '../../../utils/app_icons/app_icons.dart';
-import '../../../utils/app_images/app_images.dart';
 import '../../components/custom_appbar/coustom_appbar.dart';
 
-import 'widgets/post_card.dart';
+import 'widgets/comon_post_action_sheet.dart';
+import 'widgets/post_section/post_card.dart';
 import 'widgets/bottom_nav_bar.dart';
-import 'widgets/post_model.dart';
+import 'widgets/post_section/post_model.dart';
 import 'widgets/search_bar_delegater.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,8 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
     postData.addAll([
       Post(
         username: 'Wendy Suzuki',
-        userImage: AppImages.profile,
-        postImage: AppImages.post,
+        userImage: AppConstants.profileImage, // Changed here
+        postImage: AppConstants.vegatable,
         userSubtitle: 'Self-taught sewist',
         postOverlayText: 'Self-taught sewist\n& Upcycler',
         caption:
@@ -47,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       Post(
         username: 'Daniel Maier',
-        userImage: AppImages.profile,
+        userImage: AppConstants.profileImage, // Changed here
         videoUrl:
             'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
         userSubtitle: 'Food prep & workout',
@@ -62,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       Post(
         username: 'Daniel Maier',
-        userImage: AppImages.profile,
-        postImage: AppImages.post,
+        userImage: AppConstants.profileImage, // Changed here
+        postImage: AppConstants.vegatable,
         userSubtitle: 'Food prep & workout',
         postOverlayText: 'Joining "Grow veg and herbs at home"',
         caption: 'So proud of our little garden this year! ...',
@@ -75,8 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       Post(
         username: 'Amy Hyman',
-        userImage: AppImages.profile,
-        // postImage: AppImages.post,
+        userImage: AppConstants.profileImage, // Changed here
+        // without image post
         userSubtitle: 'Happy homemaker',
         postOverlayText: 'Happy thoughts!',
         caption:
@@ -88,8 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       Post(
         username: 'Tony Lane',
-        userImage: AppImages.profile,
-        postImage: AppImages.post,
+        userImage: AppConstants.profileImage, // Changed here
+        postImage: AppConstants.vegatable,
         userSubtitle: 'Wine enthusiast',
         postOverlayText: 'Good wine, good times',
         caption: 'I\'ve got some left red wine in my fridge...',
@@ -133,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
               flexibleSpace: FlexibleSpaceBar(
                 background: CustomAppbar(
                   iconPath: AppIcons.chat,
+                  onIconTap: () {},
                   backgroundColor: AppColors.backgroundLightGray,
                 ),
               ),

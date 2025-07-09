@@ -52,10 +52,7 @@ class CustomCheckbox extends StatelessWidget {
                 activeColor: Colors.grey,
                 checkColor: Colors.white,
               ),
-            Text(
-              leadingText,
-              style: leadingTextStyle ?? TextStyle(fontSize: 14),
-            ),
+            Text(leadingText, style: leadingTextStyle ?? textTheme.bodySmall),
           ],
         ),
 

@@ -16,6 +16,7 @@ class ReactionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Row(
       children: [
         CustomImage(
@@ -24,7 +25,7 @@ class ReactionButton extends StatelessWidget {
           imageColor: color ?? AppColors.mediumGray,
         ),
         const SizedBox(width: 4),
-        Text(count, style: TextStyle(color: Colors.grey[800], fontSize: 13)),
+        Text(count, style: textTheme.labelSmall),
       ],
     );
   }

@@ -35,7 +35,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               SizedBox(height: 26),
               Text(
                 AppStrings.forgotPasswordDescription,
-                style: TextStyle(fontSize: 14),
+                style: textTheme.bodySmall?.copyWith(color: AppColors.black),
               ),
               SizedBox(height: 40),
               InputCardContainer(

@@ -41,7 +41,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 SizedBox(height: 10),
                 Text(
                   AppStrings.passwordRequirement,
-                  style: TextStyle(fontSize: 14),
+                  style: textTheme.bodySmall?.copyWith(color: AppColors.black),
                 ),
                 SizedBox(height: 30),
                 InputCardContainer(

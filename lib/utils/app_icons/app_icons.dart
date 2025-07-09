@@ -13,4 +13,7 @@ class AppIcons {
   static const String share = "$basePath/share.svg";
   static const String clap = "$basePath/clap.svg";
   static const String globe = "$basePath/globe.svg";
+  static const String remove = "$basePath/remove.svg";
+  static const String hide = "$basePath/hide.svg";
+  static const String save = "$basePath/save.svg";
 }

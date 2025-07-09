@@ -23,6 +23,9 @@ dependencies:
   linkify: ^5.0.0
   flutter_linkify: ^6.0.0
   any_link_preview: ^3.0.3
+  shimmer: ^3.0.0
+  cached_network_image: ^3.4.1
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -36,3 +39,4 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/video/

@@ -25,6 +25,7 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
@@ -32,7 +33,7 @@ class CustomTextField extends StatelessWidget {
       validator: enableValidation ? _passwordValidator : null,
       decoration: InputDecoration(
         labelText: labelText,
-        labelStyle: const TextStyle(fontSize: 12),
+        labelStyle: textTheme.labelSmall,
         border: InputBorder.none,
         suffixIcon: onToggleObscureText != null
             ? IconButton(

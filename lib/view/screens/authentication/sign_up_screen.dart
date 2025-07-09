@@ -113,7 +113,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   });
                 },
                 leadingText: AppStrings.agreeWith,
-                leadingTextStyle: TextStyle(color: AppColors.black),
+                leadingTextStyle: textTheme.bodySmall?.copyWith(
+                  color: AppColors.black,
+                ),
                 clickableText: AppStrings.termsAndConditions,
                 onLinkTap: () {},
               ),
@@ -131,9 +133,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     leadingText: AppStrings.alreadyHaveAccount,
                     clickableText: AppStrings.signInButton,
                     onLinkTap: () {},
-                    clickableTextStyle: TextStyle(
+                    clickableTextStyle: textTheme.bodySmall?.copyWith(
                       color: AppColors.primary,
-                      fontSize: 14,
                     ),
                   ),
                 ],

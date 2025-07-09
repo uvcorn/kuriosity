@@ -1,19 +1,28 @@
-// post_card.dart
+// ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:video_player/video_player.dart';
+
+// NEW imports for linkify & preview
+import 'package:linkify/linkify.dart';
+import 'package:any_link_preview/any_link_preview.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
 import '../../../components/custom_image/custom_image.dart';
 
+import 'comment_draggable_sheet.dart';
 import 'post_model.dart';
 import 'reaction_button.dart';
 import 'reusable_video_player.dart';
 
 class PostCard extends StatefulWidget {
   final Post item;
+  final bool? followButtom;
 
-  const PostCard({super.key, required this.item});
+  const PostCard({super.key, required this.item, required this.followButtom});
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -90,6 +99,7 @@ class _PostCardState extends State<PostCard> {
           controller: _videoController, // <--- Add this line
           aspectRatio: 16 / 9,
           width: double.infinity,
+
           showControls: true,
           enableTapToPlayPause: true,
           enableVolumeControl: true,
@@ -98,7 +108,6 @@ class _PostCardState extends State<PostCard> {
     } else if (widget.item.postImage != null &&
         widget.item.postImage!.isNotEmpty) {
       return ClipRRect(
-        borderRadius: BorderRadius.circular(8),
         child: CustomImage(
           imageSrc: widget.item.postImage!,
           fit: BoxFit.cover,
@@ -111,8 +120,68 @@ class _PostCardState extends State<PostCard> {
     }
   }
 
+  Widget _buildCaptionWithLinkPreview(String caption) {
+    // Extract links using linkify
+    final linkElements = linkify(
+      caption,
+    ).whereType<LinkableElement>().cast<LinkableElement>().toList();
+
+    // Extract first URL if exists
+    final firstUrl = linkElements.isNotEmpty ? linkElements.first.url : null;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Caption with clickable links
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Linkify(
+            text: caption,
+            onOpen: (link) async {
+              final url = Uri.parse(link.url);
+              if (await canLaunchUrl(url)) {
+                await launchUrl(url);
+              } else {
+                // Could not launch URL
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Could not open the link')),
+                );
+              }
+            },
+            style: const TextStyle(fontSize: 14, height: 1.5),
+            linkStyle: const TextStyle(color: Colors.blue),
+          ),
+        ),
+
+        // Show preview if URL exists
+        if (firstUrl != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: AnyLinkPreview(
+              link: firstUrl,
+              cache: const Duration(hours: 1),
+              displayDirection: UIDirection.uiDirectionHorizontal,
+              showMultimedia: true,
+              bodyMaxLines: 3,
+              bodyTextOverflow: TextOverflow.ellipsis,
+              errorBody: 'Could not load preview',
+              errorTitle: 'Invalid URL',
+              errorWidget: Container(
+                color: Colors.grey[300],
+                padding: const EdgeInsets.all(8),
+                child: const Text('Failed to load link preview'),
+              ),
+              borderRadius: 12,
+              removeElevation: true,
+            ),
+          ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -129,8 +198,6 @@ class _PostCardState extends State<PostCard> {
                   children: [
                     CircleAvatar(
                       radius: 30,
-                      // backgroundColor: Colors
-                      //     .grey[200],
                       child: ClipOval(
                         child: CustomImage(
                           imageSrc: widget.item.userImage,
@@ -154,30 +221,25 @@ class _PostCardState extends State<PostCard> {
                           Text(
                             widget.item.userSubtitle,
                             style: TextStyle(
-                              color: Colors.grey[600],
+                              color: AppColors.black,
                               fontSize: 13,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.backgroundLightGray,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Text(
-                        'Follow',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
+                    if (widget.followButtom!)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
                         ),
+                        decoration: BoxDecoration(
+                          color: AppColors.backgroundLightGray,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text('Follow', style: textTheme.bodyMedium),
                       ),
-                    ),
                     const SizedBox(width: 8),
                     const Icon(Icons.more_horiz),
                   ],
@@ -187,19 +249,13 @@ class _PostCardState extends State<PostCard> {
               // Media (Video or Image)
               _buildMediaContent(),
 
-              // Caption
+              // UPDATED: Caption with link preview
               if (widget.item.caption.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    widget.item.caption,
-                    style: const TextStyle(fontSize: 14, height: 1.5),
-                  ),
-                ),
+                _buildCaptionWithLinkPreview(widget.item.caption),
 
               // Action Buttons
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -211,9 +267,12 @@ class _PostCardState extends State<PostCard> {
                         color: AppColors.primary,
                       ),
                     ),
-                    ReactionButton(
-                      iconPath: AppIcons.chats,
-                      count: widget.item.comments,
+                    GestureDetector(
+                      onTap: () => _showCommentsBottomSheet(context),
+                      child: ReactionButton(
+                        iconPath: AppIcons.chats,
+                        count: widget.item.comments,
+                      ),
                     ),
                     ReactionButton(
                       iconPath: AppIcons.eco,
@@ -263,6 +322,16 @@ class _PostCardState extends State<PostCard> {
             ),
         ],
       ),
+    );
+  }
+
+  void _showCommentsBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+
+      backgroundColor: Colors.transparent, // Optional: to blend background
+      builder: (_) => const CommentDraggableSheet(comments: []),
     );
   }
 }

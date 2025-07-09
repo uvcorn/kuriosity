@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/app_theme/app_theme.dart';
 import '../../../core/app_routes/app_routes.dart';
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_strings.dart/app_strings.dart';
@@ -133,7 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     clickableText: AppStrings.signInButton,
                     onLinkTap: () {},
                     clickableTextStyle: TextStyle(
-                      color: AppTheme.primaryColor,
+                      color: AppColors.primary,
                       fontSize: 14,
                     ),
                   ),

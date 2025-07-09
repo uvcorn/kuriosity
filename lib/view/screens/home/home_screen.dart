@@ -21,18 +21,16 @@ class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _showSearchBar = false;
 
-  final List<Post> postData = []; // Will be populated in initState
+  final List<Post> postData = [];
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
-    _populatePostsWithLinkPreviews(); // Call this to generate posts
+    _populatePostsWithLinkPreviews();
   }
 
   void _populatePostsWithLinkPreviews() {
-    // This is where you would typically fetch real post data from an API.
-    // For this example, we'll hardcode and simulate link preview fetching.
     postData.addAll([
       Post(
         username: 'Wendy Suzuki',
@@ -55,10 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
         userSubtitle: 'Food prep & workout',
         postOverlayText: 'Joining "Grow veg and herbs at home"',
         caption:
-            'So proud of our little garden this year! With all the rain and all of the bugs 🐛 that have been flying around the past few weeks, check this out: https://www.example.com', // Added a link
+            'So proud of our little garden this year! With all the rain and all of the bugs 🐛 that have been flying around the past few weeks.', // Added a link
         likes: '10',
         comments: '20',
         seeds: '3',
+        followButton: true,
         shares: '15',
       ),
       Post(
@@ -72,11 +71,12 @@ class _HomeScreenState extends State<HomeScreen> {
         comments: '20',
         seeds: '3',
         shares: '15',
+        followButton: true,
       ),
       Post(
         username: 'Amy Hyman',
         userImage: AppImages.profile,
-        postImage: AppImages.post,
+        // postImage: AppImages.post,
         userSubtitle: 'Happy homemaker',
         postOverlayText: 'Happy thoughts!',
         caption:
@@ -97,8 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
         comments: '25',
         seeds: '5',
         shares: '18',
+        followButton: true,
       ),
-      // Add more posts as needed
     ]);
   }
 
@@ -129,9 +129,12 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverAppBar(
               pinned: false,
               floating: false,
-              expandedHeight: 40,
+              expandedHeight: 50,
               flexibleSpace: FlexibleSpaceBar(
-                background: CustomAppbar(iconPath: AppIcons.chat),
+                background: CustomAppbar(
+                  iconPath: AppIcons.chat,
+                  backgroundColor: AppColors.backgroundLightGray,
+                ),
               ),
             ),
             if (_showSearchBar)
@@ -141,7 +144,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context, index) => PostCard(item: postData[index]),
+                (context, index) => PostCard(
+                  item: postData[index],
+                  followButtom: postData[index].followButton,
+                ),
                 childCount: postData.length,
               ),
             ),

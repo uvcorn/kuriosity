@@ -40,7 +40,7 @@ class ReusableVideoPlayerState extends State<ReusableVideoPlayer> {
 
   bool _isMuted = false;
   bool _showPlayPauseOverlay = true;
-  Duration? _overlayHideTimerDuration; // Track current overlay hide duration
+  // Track current overlay hide duration
   Future<void>?
   _initializeVideoPlayerFuture; // To hold the initialization future
 
@@ -254,6 +254,10 @@ class ReusableVideoPlayerState extends State<ReusableVideoPlayer> {
 
     return Container(
       width: widget.width,
+      constraints: const BoxConstraints(
+        minHeight:
+            200, // 👈 Minimum height for video container (adjust as needed)
+      ),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
       child: AspectRatio(
         aspectRatio: widget.aspectRatio,

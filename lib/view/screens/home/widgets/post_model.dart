@@ -1,3 +1,6 @@
+// lib/screens/home/widgets/post_model.dart
+// import 'link_metadata.dart'; // Import the new LinkMetadata class
+
 class Post {
   final String username;
   final String userImage;
@@ -10,6 +13,7 @@ class Post {
   final String comments;
   final String seeds;
   final String shares;
+  // final LinkMetadata? linkPreview; // NEW: Nullable link preview data
 
   Post({
     required this.username,
@@ -23,5 +27,6 @@ class Post {
     required this.comments,
     required this.seeds,
     required this.shares,
+    // this.linkPreview, // NEW: Add to constructor
   });
 }

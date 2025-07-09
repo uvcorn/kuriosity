@@ -38,6 +38,7 @@ class CustomImage extends StatelessWidget {
             color: imageColor,
             width: width,
             height: height,
+            fit: fit ?? BoxFit.contain,
           )
         : Image.asset(
             imageSrc,

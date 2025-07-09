@@ -1,5 +1,7 @@
+// post_card.dart
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+
 import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
 import '../../../components/custom_image/custom_image.dart';
@@ -20,35 +22,29 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   bool _showReactionOptions = false;
   late String _selectedReactionIconPath;
-  late VideoPlayerController? _videoController;
-  bool _isVideoInitialized = false;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _selectedReactionIconPath = AppIcons.handshake;
-  // }
+  VideoPlayerController? _videoController; // Declare the controller
+
   @override
   void initState() {
     super.initState();
     _selectedReactionIconPath = AppIcons.handshake;
 
+    // Initialize video controller if a video URL exists
     if (widget.item.videoUrl != null && widget.item.videoUrl!.isNotEmpty) {
-      _videoController = VideoPlayerController.network(widget.item.videoUrl!)
-        ..initialize().then((_) {
-          if (mounted) {
-            setState(() {
-              _isVideoInitialized = true;
+      _videoController =
+          VideoPlayerController.networkUrl(Uri.parse(widget.item.videoUrl!))
+            ..initialize().then((_) {
+              // Ensure the first frame is shown and play automatically (optional)
+              if (mounted) {
+                setState(() {});
+              }
             });
-          }
-        });
-    } else {
-      _videoController = null;
     }
   }
 
   @override
   void dispose() {
-    _videoController?.dispose();
+    _videoController?.dispose(); // Dispose the controller
     super.dispose();
   }
 
@@ -81,9 +77,17 @@ class _PostCardState extends State<PostCard> {
 
   Widget _buildMediaContent() {
     if (widget.item.videoUrl != null && widget.item.videoUrl!.isNotEmpty) {
+      if (_videoController == null || !_videoController!.value.isInitialized) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Colors.blue,
+          ), // Show loading indicator
+        );
+      }
       return ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: ReusableVideoPlayer(
+          controller: _videoController, // <--- Add this line
           aspectRatio: 16 / 9,
           width: double.infinity,
           showControls: true,
@@ -107,34 +111,6 @@ class _PostCardState extends State<PostCard> {
     }
   }
 
-  // Widget _buildMediaContent() {
-  //     if (_videoController != null && _isVideoInitialized) {
-  //       return ClipRRect(
-  //         borderRadius: BorderRadius.circular(8),
-  //         child: ReusableVideoPlayer(
-  //           controller: _videoController!,
-  //           aspectRatio: 16 / 9,
-  //           width: double.infinity,
-  //           showControls: true,
-  //           enableTapToPlayPause: true,
-  //           enableVolumeControl: true,
-  //         ),
-  //       );
-  //     } else if (widget.item.postImage != null &&
-  //         widget.item.postImage!.isNotEmpty) {
-  //       return ClipRRect(
-  //         borderRadius: BorderRadius.circular(8),
-  //         child: CustomImage(
-  //           imageSrc: widget.item.postImage!,
-  //           fit: BoxFit.cover,
-  //           sizeWidth: double.infinity,
-  //           sizeHeight: 250,
-  //         ),
-  //       );
-  //     } else {
-  //       return const SizedBox.shrink();
-  //     }
-  //   }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -152,8 +128,16 @@ class _PostCardState extends State<PostCard> {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      radius: 20,
-                      child: CustomImage(imageSrc: widget.item.userImage),
+                      radius: 30,
+                      // backgroundColor: Colors
+                      //     .grey[200],
+                      child: ClipOval(
+                        child: CustomImage(
+                          imageSrc: widget.item.userImage,
+                          fit: BoxFit.cover,
+                          size: 60,
+                        ),
+                      ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(

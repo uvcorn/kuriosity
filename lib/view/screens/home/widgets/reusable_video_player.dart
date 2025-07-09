@@ -4,144 +4,178 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class ReusableVideoPlayer extends StatefulWidget {
-  final VideoPlayerController? controller;
+  final String? videoUrl; // Now optional
+  final VideoPlayerController? controller; // New: Optional external controller
   final double? width;
   final double aspectRatio;
   final bool showControls;
   final bool enableTapToPlayPause;
   final bool enableVolumeControl;
+  final bool autoPlay; // New: Added autoplay option
 
   const ReusableVideoPlayer({
     super.key,
+    this.videoUrl,
     this.controller,
     this.width,
     this.aspectRatio = 16 / 9,
     this.showControls = true,
     this.enableTapToPlayPause = true,
     this.enableVolumeControl = false,
-  }) : assert(controller != null, 'Controller must be provided.');
+    this.autoPlay = false, // Default to false
+  }) : assert(
+         videoUrl != null || controller != null,
+         'Either videoUrl or controller must be provided.',
+       );
 
   @override
-  State<ReusableVideoPlayer> createState() => _ReusableVideoPlayerState();
+  State<ReusableVideoPlayer> createState() => ReusableVideoPlayerState();
 }
 
-class _ReusableVideoPlayerState extends State<ReusableVideoPlayer>
-    with WidgetsBindingObserver {
+class ReusableVideoPlayerState extends State<ReusableVideoPlayer> {
+  late VideoPlayerController _internalController;
+  // This flag indicates if the controller used is internal (managed by this widget)
+  // or external (passed via widget.controller).
+  bool _isInternalController = false;
+
   bool _isMuted = false;
   bool _showPlayPauseOverlay = true;
-  bool _wasPlayingBeforeSeek = false;
-  bool _wasPlayingBeforePauseDueToScroll = false;
+  Duration? _overlayHideTimerDuration; // Track current overlay hide duration
+  Future<void>?
+  _initializeVideoPlayerFuture; // To hold the initialization future
 
-  final GlobalKey _containerKey = GlobalKey();
-
-  VideoPlayerController get _controller => widget.controller!;
+  VideoPlayerController get _effectiveController {
+    // If an external controller is provided, use it. Otherwise, use the internal one.
+    return widget.controller ?? _internalController;
+  }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    _initializeController();
+    _isMuted = _effectiveController.value.volume == 0;
 
-    _controller.addListener(_videoListener);
-    _isMuted = _controller.value.volume == 0;
-
+    // Show overlay initially if not playing or if autoplay is off
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted && !_controller.value.isPlaying) {
+      if (mounted && !widget.autoPlay) {
         setState(() {
           _showPlayPauseOverlay = true;
         });
       }
-      _checkIfWidgetIsVisible();
     });
+  }
+
+  void _initializeController() {
+    if (widget.controller == null) {
+      // Create and manage an internal controller
+      _isInternalController = true;
+      _internalController = VideoPlayerController.network(widget.videoUrl!);
+    } else {
+      // Use the provided external controller
+      _isInternalController = false;
+    }
+
+    _effectiveController.removeListener(
+      _videoListener,
+    ); // Remove any old listener
+    _effectiveController.addListener(_videoListener);
+
+    // Initialize the controller
+    _initializeVideoPlayerFuture = _effectiveController
+        .initialize()
+        .then((_) {
+          if (mounted) {
+            // If autoplay is true, start playing once initialized
+            if (widget.autoPlay && !_effectiveController.value.isPlaying) {
+              _effectiveController.play();
+              // _hidePlayPauseOverlayAfterDelay();
+            } else {
+              setState(() {
+                _showPlayPauseOverlay = !_effectiveController.value.isPlaying;
+              });
+            }
+          }
+        })
+        .catchError((error) {
+          if (mounted) {
+            // Update UI to reflect error, e.g., show a broken icon or message
+            setState(() {
+              // You might want a specific error state or message here
+              _showPlayPauseOverlay = true; // Keep controls visible on error
+            });
+            debugPrint('Video player initialization error: $error');
+          }
+        });
   }
 
   void _videoListener() {
     if (!mounted) return;
 
-    if (_controller.value.position >= _controller.value.duration &&
-        _controller.value.duration > Duration.zero) {
-      _controller.seekTo(Duration.zero);
-      _controller.pause();
+    // If video ends, loop it or reset and show play button
+    if (_effectiveController.value.position >=
+            _effectiveController.value.duration &&
+        _effectiveController.value.duration > Duration.zero) {
+      _effectiveController.seekTo(Duration.zero);
+      _effectiveController.pause();
       setState(() {
         _showPlayPauseOverlay = true;
       });
     }
 
-    if (_controller.value.isPlaying && _showPlayPauseOverlay) {
-      // Optionally hide overlay after delay
-    } else if (!_controller.value.isPlaying && !_showPlayPauseOverlay) {
-      setState(() {
-        _showPlayPauseOverlay = true;
-      });
-    }
-
-    setState(() {});
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
-      if (_controller.value.isPlaying) {
-        _controller.pause();
+    // Logic to show/hide overlay based on playing state
+    if (_effectiveController.value.isPlaying) {
+      // If playing, hide overlay unless it's explicitly shown by user interaction
+      if (_showPlayPauseOverlay) {
+        // _hidePlayPauseOverlayAfterDelay();
+      }
+    } else {
+      // If paused or ended, always show overlay
+      if (!_showPlayPauseOverlay) {
         setState(() {
           _showPlayPauseOverlay = true;
         });
       }
     }
-  }
-
-  void _checkIfWidgetIsVisible() {
-    if (!mounted) return;
-
-    final RenderObject? renderObject = _containerKey.currentContext
-        ?.findRenderObject();
-    if (renderObject is RenderBox && renderObject.hasSize) {
-      final Offset offset = renderObject.localToGlobal(Offset.zero);
-      final double screenHeight = MediaQuery.of(context).size.height;
-
-      final double widgetTop = offset.dy;
-      final double widgetBottom = offset.dy + renderObject.size.height;
-
-      final bool isVisible = widgetBottom > 0 && widgetTop < screenHeight;
-
-      if (!isVisible && _controller.value.isPlaying) {
-        _wasPlayingBeforePauseDueToScroll = true;
-        _controller.pause();
-        setState(() {
-          _showPlayPauseOverlay = true;
-        });
-      } else if (isVisible && _wasPlayingBeforePauseDueToScroll) {
-        _controller.play();
-        _wasPlayingBeforePauseDueToScroll = false;
-        setState(() {
-          _showPlayPauseOverlay = false;
-        });
-      }
-    }
+    setState(() {}); // Trigger rebuild for progress updates
   }
 
   @override
   void didUpdateWidget(covariant ReusableVideoPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
 
+    // Check if the controller instance itself has changed
     if (widget.controller != oldWidget.controller) {
-      oldWidget.controller?.removeListener(_videoListener);
-      _controller.addListener(_videoListener);
-      _isMuted = _controller.value.volume == 0;
+      // Dispose old internal controller if it was managed by us
+      if (_isInternalController) {
+        _internalController.removeListener(_videoListener);
+        _internalController.dispose();
+      }
+      // Re-initialize the controller based on the new widget's properties
+      _initializeController();
+      _isMuted = _effectiveController.value.volume == 0; // Update mute state
+      setState(() {
+        _showPlayPauseOverlay = true; // Always show overlay on source change
+      });
+    } else if (widget.controller == null &&
+        widget.videoUrl != oldWidget.videoUrl) {
+      // If using internal controller and videoUrl changed
+      _internalController.removeListener(_videoListener);
+      _internalController.dispose();
+      _initializeController(); // Re-initialize with new URL
+      _isMuted = _internalController.value.volume == 0;
       setState(() {
         _showPlayPauseOverlay = true;
-      });
-
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _checkIfWidgetIsVisible();
       });
     }
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    _controller.removeListener(_videoListener);
+    _effectiveController.removeListener(_videoListener);
+    // Only dispose internal controller if it was created and managed by this widget
+    if (_isInternalController) {
+      _internalController.dispose();
+    }
     super.dispose();
   }
 
@@ -151,15 +185,17 @@ class _ReusableVideoPlayerState extends State<ReusableVideoPlayer>
   }
 
   void _togglePlayPause() {
-    if (!_controller.value.isInitialized) return;
+    if (!_effectiveController.value.isInitialized) {
+      return;
+    }
 
     setState(() {
-      if (_controller.value.isPlaying) {
-        _controller.pause();
-        _showPlayPauseOverlay = true;
+      if (_effectiveController.value.isPlaying) {
+        _effectiveController.pause();
+        _showPlayPauseOverlay = true; // Keep overlay visible when paused
       } else {
-        _controller.play();
-        _showPlayPauseOverlay = false;
+        _effectiveController.play();
+        // _hidePlayPauseOverlayAfterDelay();
       }
     });
   }
@@ -167,30 +203,87 @@ class _ReusableVideoPlayerState extends State<ReusableVideoPlayer>
   void _toggleMute() {
     setState(() {
       _isMuted = !_isMuted;
-      _controller.setVolume(_isMuted ? 0.0 : 1.0);
+      _effectiveController.setVolume(_isMuted ? 0.0 : 1.0);
     });
+  }
+
+  // void _hidePlayPauseOverlayAfterDelay() {
+  //   // Cancel any previous hide timer
+  //   _overlayHideTimerDuration = null;
+
+  //   // Set a new timer to hide the overlay after 3 seconds
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     if (mounted && _effectiveController.value.isPlaying) {
+  //       setState(() {
+  //         _showPlayPauseOverlay = false;
+  //       });
+  //     }
+  //   });
+  // }
+
+  /// Public method to programmatically play the video.
+  void playVideo() {
+    if (_effectiveController.value.isInitialized &&
+        !_effectiveController.value.isPlaying) {
+      _effectiveController.play();
+      // _hidePlayPauseOverlayAfterDelay();
+    }
+  }
+
+  /// Public method to programmatically pause the video.
+  void pauseVideo() {
+    if (_effectiveController.value.isPlaying) {
+      _effectiveController.pause();
+      setState(() {
+        _showPlayPauseOverlay = true;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final maxDuration = _controller.value.duration.inMilliseconds.toDouble();
-    final currentPosition = _controller.value.position.inMilliseconds
-        .toDouble();
+    final double maxDuration =
+        _effectiveController.value.isInitialized &&
+            _effectiveController.value.duration.inMilliseconds > 0
+        ? _effectiveController.value.duration.inMilliseconds.toDouble()
+        : 1.0;
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _checkIfWidgetIsVisible();
-    });
+    final double currentPosition = _effectiveController.value.isInitialized
+        ? _effectiveController.value.position.inMilliseconds.toDouble()
+        : 0.0;
 
     return Container(
-      key: _containerKey,
       width: widget.width,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
       child: AspectRatio(
         aspectRatio: widget.aspectRatio,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
-          child: _controller.value.isInitialized
-              ? GestureDetector(
+          child: FutureBuilder(
+            future: _initializeVideoPlayerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.error_outline,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Error loading video: ${snapshot.error}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                return GestureDetector(
                   onTap: () {
                     if (widget.enableTapToPlayPause) {
                       _togglePlayPause();
@@ -199,44 +292,44 @@ class _ReusableVideoPlayerState extends State<ReusableVideoPlayer>
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
+                      // Video Player
                       SizedBox.expand(
                         child: FittedBox(
                           fit: BoxFit.cover,
                           child: SizedBox(
-                            width: _controller.value.size.width,
-                            height: _controller.value.size.height,
-                            child: VideoPlayer(_controller),
+                            width: _effectiveController.value.size.width,
+                            height: _effectiveController.value.size.height,
+                            child: VideoPlayer(_effectiveController),
                           ),
                         ),
                       ),
-                      AnimatedOpacity(
-                        opacity:
-                            (_showPlayPauseOverlay ||
-                                _controller.value.isBuffering)
-                            ? 1.0
-                            : 0.0,
-                        duration: const Duration(milliseconds: 300),
-                        child: IgnorePointer(
-                          ignoring:
-                              !(_showPlayPauseOverlay ||
-                                  _controller.value.isBuffering),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: IconButton(
-                              icon: Icon(
-                                _controller.value.isPlaying &&
-                                        !_controller.value.isBuffering
-                                    ? Icons.pause_circle_outline
-                                    : Icons.play_circle_outline,
-                                color: Colors.white,
-                                size: 60,
-                              ),
-                              onPressed: _togglePlayPause,
-                            ),
-                          ),
+
+                      // Central Play/Pause Icon and Buffering Indicator
+                      if (_showPlayPauseOverlay ||
+                          _effectiveController.value.isBuffering)
+                        Center(
+                          child: _effectiveController.value.isBuffering
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : IconButton(
+                                  icon: Icon(
+                                    _effectiveController.value.isPlaying &&
+                                            !_effectiveController
+                                                .value
+                                                .isBuffering
+                                        ? Icons.pause_circle_outline
+                                        : Icons.play_circle_outline,
+                                    color: Colors.white,
+                                    size: 60,
+                                  ),
+                                  onPressed: _togglePlayPause,
+                                ),
                         ),
-                      ),
-                      if (widget.showControls)
+
+                      // Controls Bar (Volume, Progress, Duration)
+                      if (widget.showControls &&
+                          _effectiveController.value.isInitialized)
                         Positioned(
                           bottom: 0,
                           left: 0,
@@ -289,45 +382,35 @@ class _ReusableVideoPlayerState extends State<ReusableVideoPlayer>
                                     ),
                                     child: Slider(
                                       min: 0.0,
-                                      max: maxDuration > 0 ? maxDuration : 1.0,
+                                      max: maxDuration,
                                       value: currentPosition.clamp(
                                         0.0,
-                                        maxDuration > 0 ? maxDuration : 1.0,
+                                        maxDuration,
                                       ),
-                                      onChanged: (value) {
+                                      onChanged: (double value) {
                                         setState(() {
-                                          _controller.seekTo(
+                                          _effectiveController.seekTo(
                                             Duration(
                                               milliseconds: value.toInt(),
                                             ),
                                           );
                                         });
                                       },
-                                      onChangeStart: (value) {
-                                        _wasPlayingBeforeSeek =
-                                            _controller.value.isPlaying;
-                                        _controller.pause();
-                                        setState(() {
-                                          _showPlayPauseOverlay = true;
-                                        });
+                                      onChangeStart: (double value) {
+                                        // Pause on scrubbing start
+                                        pauseVideo();
                                       },
-                                      onChangeEnd: (value) {
-                                        if (_wasPlayingBeforeSeek) {
-                                          _controller.play();
-                                          setState(() {
-                                            _showPlayPauseOverlay = false;
-                                          });
-                                        } else {
-                                          setState(() {
-                                            _showPlayPauseOverlay = true;
-                                          });
-                                        }
+                                      onChangeEnd: (double value) {
+                                        // No specific action needed here as _togglePlayPause handles play/pause.
+                                        // If you want to resume playing after scrubbing, you might add:
+                                        // if (_wasPlayingBeforeScrubbing) _effectiveController.play();
+                                        // But this might conflict with tap-to-play-pause, so keeping it simple.
                                       },
                                     ),
                                   ),
                                 ),
                                 Text(
-                                  '${_formatDuration(_controller.value.position)} / ${_formatDuration(_controller.value.duration)}',
+                                  '${_formatDuration(_effectiveController.value.position)} / ${_formatDuration(_effectiveController.value.duration)}',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -340,10 +423,14 @@ class _ReusableVideoPlayerState extends State<ReusableVideoPlayer>
                         ),
                     ],
                   ),
-                )
-              : const Center(
+                );
+              } else {
+                return const Center(
                   child: CircularProgressIndicator(color: Colors.blue),
-                ),
+                );
+              }
+            },
+          ),
         ),
       ),
     );

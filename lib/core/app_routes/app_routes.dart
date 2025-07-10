@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
-
 import '../../view/screens/authentication/forget_password_screen.dart';
 import '../../view/screens/authentication/otp_verify_screen.dart';
 import '../../view/screens/authentication/phone_input_screen.dart';
 import '../../view/screens/authentication/reset_password_screen.dart';
 import '../../view/screens/authentication/sign_in_screen.dart';
 import '../../view/screens/authentication/sign_up_screen.dart';
+import '../../view/screens/home/widgets/chat_section/chats_list_screen.dart';
 import '../../view/screens/home/home_screen.dart';
 import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
@@ -31,6 +31,8 @@ class AppRoutes {
 
   ///===========================Home==========================
   static const String homeScreen = "/HomeScreen";
+  static const String chatsListScreen = "/ChatsListScreen";
+
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -48,5 +50,6 @@ class AppRoutes {
 
     ///===========================Home==========================
     GetPage(name: homeScreen, page: () => HomeScreen()),
+    GetPage(name: chatsListScreen, page: () => ChatsListScreen()),
   ];
 }

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kuriosity/view/screens/home/widgets/comment_section/comment_draggable_sheet.dart';
-
+import 'package:get/get.dart';
+import '../../../core/app_routes/app_routes.dart';
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_const/app_const.dart';
 import '../../../utils/app_icons/app_icons.dart';
 import '../../components/custom_appbar/coustom_appbar.dart';
 
-import 'widgets/comon_post_action_sheet.dart';
-import 'widgets/post_section/post_card.dart';
+import 'widgets/post_section/post_card/post_card.dart';
 import 'widgets/bottom_nav_bar.dart';
 import 'widgets/post_section/post_model.dart';
 import 'widgets/search_bar_delegater.dart';
@@ -135,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
               flexibleSpace: FlexibleSpaceBar(
                 background: CustomAppbar(
                   iconPath: AppIcons.chat,
-                  onIconTap: () {},
+                  onIconTap: () => Get.toNamed(AppRoutes.chatsListScreen),
                   backgroundColor: AppColors.backgroundLightGray,
                 ),
               ),

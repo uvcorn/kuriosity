@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'core/app_routes/app_routes.dart';
-import 'view/components/app_theme/app_theme.dart';
+import 'utils/app_theme/app_theme.dart';
 import 'view/screens/splash_screen/splash_screens.dart';
 
 class WildCurosity extends StatefulWidget {

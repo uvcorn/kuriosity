@@ -83,4 +83,34 @@ class AppStrings {
   static const String onboardingStep3Title = 'Share your knowledge';
   static const String onboardingStep3Body =
       'Become a power influencer by hosting your own workshops. The more you share valuable tips, the more eco-friendly future';
+
+  static const String unfollowButton = 'Unfollow';
+  static const String hideButton = 'Hide';
+  static const String clipButton = 'Clip';
+  static const String followButton = 'Follow';
+
+  //link preview
+  static const String notLoad = 'Could not load preview';
+  static const String invalidUrl = 'Invalid URL';
+  static const String failedLoad = 'Failed to load link preview';
+  //comment sheet
+  static const String title = 'Comments';
+  static const String commentButton = 'Comment';
+  static const String userName = 'Tony Lens';
+  static const String userTitle = 'Meal prep & workouts';
+  static const String commentTex =
+      'I\'ve got some left red wine in my fridge, does anyone know how to recycle it?';
+  static const String hintTex = 'Add Comment.....';
+  //Replanet
+  static const String rePlanet = 'Replant this post';
+  static const String pentext = 'Replant with your thoughts';
+  static const String typeSome = "Type something";
+  static const String replantThisPost = "Replant this post";
+  static const String replantSnackbar = 'You replanted this post';
+  //Share menu
+  static const String sharetitle = "Share to";
+  static const String linkedin = "Linkedin";
+  static const String twitter = "Twitter";
+  static const String facebook = "Facebook";
+  static const String whatsapp = "Whatsapp";
 }

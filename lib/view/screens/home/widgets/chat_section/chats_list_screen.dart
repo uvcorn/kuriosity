@@ -28,7 +28,7 @@ class _ChatsListScreenState extends State<ChatsListScreen> {
             SizedBox(height: 24),
             Row(
               children: [
-                Expanded(child: CSearchbar()),
+                Expanded(child: CSearchbar(hinttext: 'Search for message')),
                 CustomImage(imageSrc: AppIcons.addchat),
               ],
             ),

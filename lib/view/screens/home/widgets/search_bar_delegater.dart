@@ -8,7 +8,7 @@ class SearchBarDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    return CSearchbar();
+    return CSearchbar(hinttext: 'Search');
   }
 
   @override

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 
 class CSearchbar extends StatelessWidget {
-  const CSearchbar({super.key});
-
+  const CSearchbar({super.key, required this.hinttext});
+  final String hinttext;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -29,7 +29,7 @@ class CSearchbar extends StatelessWidget {
         ),
         child: TextField(
           decoration: InputDecoration(
-            hintText: 'Search',
+            hintText: hinttext,
             hintStyle: textTheme.bodySmall,
             prefixIcon: const Icon(
               Icons.search,

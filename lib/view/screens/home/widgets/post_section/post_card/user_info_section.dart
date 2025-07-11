@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import '../../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../../utils/app_strings.dart/app_strings.dart';
 import '../../../../../components/custom_netwrok_image/custom_network_image.dart';
-import '../more_menu.dart';
 
 class UserInfoSection extends StatelessWidget {
   final String username;
   final String subtitle;
   final String imageUrl;
-  final bool showFollowButton;
+  final bool? showFollowButton;
+  final VoidCallback onTap;
 
   const UserInfoSection({
     super.key,
     required this.username,
     required this.subtitle,
     required this.imageUrl,
-    required this.showFollowButton,
+    this.showFollowButton = false,
+    required this.onTap,
   });
 
   @override
@@ -48,7 +49,7 @@ class UserInfoSection extends StatelessWidget {
               ],
             ),
           ),
-          if (showFollowButton)
+          if (showFollowButton!)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
@@ -58,17 +59,7 @@ class UserInfoSection extends StatelessWidget {
               child: Text(AppStrings.followButton, style: textTheme.bodyMedium),
             ),
           const SizedBox(width: 8),
-          GestureDetector(
-            onTap: () {
-              showModalBottomSheet(
-                isScrollControlled: true,
-                context: context,
-                backgroundColor: Colors.transparent,
-                builder: (BuildContext context) => const MoreMenu(),
-              );
-            },
-            child: const Icon(Icons.more_horiz),
-          ),
+          GestureDetector(onTap: onTap, child: const Icon(Icons.more_horiz)),
         ],
       ),
     );

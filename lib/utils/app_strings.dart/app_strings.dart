@@ -113,4 +113,14 @@ class AppStrings {
   static const String twitter = "Twitter";
   static const String facebook = "Facebook";
   static const String whatsapp = "Whatsapp";
+  //Chat message
+  static const String message = "Message";
+  static const String searchforMessage = "Search for message";
+  static const String newMessage = "New message";
+  static const String to = "TO: ";
+  static const String searchHint = "Search...";
+  static const String suggested = "Suggested";
+  static const String chatButton = "Chat";
+  static const String groupChatButton = "Group Chat";
+  static const String blockUser = "Block User";
 }

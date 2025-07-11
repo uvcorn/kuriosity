@@ -25,4 +25,5 @@ class AppIcons {
   static const String linkdin = "$basePath/linkdin.svg";
   static const String twitter = "$basePath/twitter.svg";
   static const String whatsapp = "$basePath/whatsapp.svg";
+  static const String lock = "$basePath/lock.svg";
 }

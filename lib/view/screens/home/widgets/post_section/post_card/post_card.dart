@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kuriosity/view/screens/home/widgets/post_section/user_menu.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../utils/app_icons/app_icons.dart';
@@ -90,6 +91,14 @@ class _PostCardState extends State<PostCard> {
                 subtitle: item.userSubtitle,
                 imageUrl: item.userImage,
                 showFollowButton: followButton,
+                onTap: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    backgroundColor: Colors.transparent,
+                    builder: (BuildContext context) => const UserMenu(),
+                  );
+                },
               ),
               MediaContent(
                 videoController: _videoController,

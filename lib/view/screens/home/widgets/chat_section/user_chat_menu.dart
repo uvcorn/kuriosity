@@ -5,16 +5,16 @@ import '../../../../../utils/app_strings.dart/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
 import '../common_bottom_sheet.dart';
 
-class MoreMenu extends StatelessWidget {
-  const MoreMenu({super.key});
+class UserChatMenu extends StatelessWidget {
+  const UserChatMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return CommonBottomSheet(
-      initialChildSize: 0.25,
-      minChildSize: 0.25,
-      maxChildSize: 0.25,
+      initialChildSize: 0.18,
+      minChildSize: 0.18,
+      maxChildSize: 0.18,
       // Now using contentBuilder
       contentBuilder: (context, scrollController) {
         return Padding(
@@ -38,6 +38,7 @@ class MoreMenu extends StatelessWidget {
                   ],
                 ),
               ),
+
               SizedBox(height: 22),
               GestureDetector(
                 onTap: () {
@@ -45,28 +46,10 @@ class MoreMenu extends StatelessWidget {
                 },
                 child: Row(
                   children: [
-                    CustomImage(imageSrc: AppIcons.hide, size: 24),
+                    CustomImage(imageSrc: AppIcons.lock, size: 24),
                     SizedBox(width: 23),
                     Text(
-                      AppStrings.hideButton,
-                      style: textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 22),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  children: [
-                    CustomImage(imageSrc: AppIcons.save, size: 24),
-                    SizedBox(width: 23),
-                    Text(
-                      AppStrings.clipButton,
+                      AppStrings.blockUser,
                       style: textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w900,
                       ),

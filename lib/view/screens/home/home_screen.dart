@@ -7,7 +7,7 @@ import '../../../utils/app_icons/app_icons.dart';
 import '../../components/custom_appbar/coustom_appbar.dart';
 
 import 'widgets/post_section/post_card/post_card.dart';
-import 'widgets/bottom_nav_bar.dart';
+import '../../components/bottom_nav_bar/bottom_nav_bar.dart';
 import 'widgets/post_section/post_model.dart';
 import 'widgets/search_bar_delegater.dart';
 

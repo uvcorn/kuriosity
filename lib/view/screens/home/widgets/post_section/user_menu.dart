@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
 import '../../../../../utils/app_strings.dart/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
-import '../common_bottom_sheet.dart';
+import '../../../../components/common_bottom_shit/common_bottom_sheet.dart';
 
 class UserMenu extends StatelessWidget {
   const UserMenu({super.key});

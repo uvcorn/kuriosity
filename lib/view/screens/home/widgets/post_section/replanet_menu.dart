@@ -5,7 +5,7 @@ import '../../../../../utils/app_icons/app_icons.dart';
 import '../../../../../utils/app_strings.dart/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
 import 'add_thought_in_replant.dart';
-import '../common_bottom_sheet.dart';
+import '../../../../components/common_bottom_shit/common_bottom_sheet.dart';
 
 class ReplanetMenu extends StatelessWidget {
   const ReplanetMenu({super.key});

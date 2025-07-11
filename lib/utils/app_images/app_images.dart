@@ -4,4 +4,5 @@ class AppImages {
   ///====================== onboard =========================
 
   static const String logo = "$basePath/logo.svg";
+  static const String whitelogo = "$basePath/white_logo.svg";
 }

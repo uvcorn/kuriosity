@@ -1,10 +1,11 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
-import '../../../../../utils/app_colors/app_colors.dart';
-import '../../../../../utils/app_const/app_const.dart';
-import '../../../../../utils/app_strings.dart/app_strings.dart';
-import '../common_bottom_sheet.dart';
-import 'comment_item.dart';
+import 'package:kuriosity/utils/app_colors/app_colors.dart';
+import 'package:kuriosity/utils/app_const/app_const.dart';
+import 'package:kuriosity/utils/app_strings.dart/app_strings.dart';
+import 'package:kuriosity/view/screens/home/widgets/comment_section/comment_item.dart';
+import 'package:kuriosity/view/components/common_bottom_shit/common_bottom_sheet.dart';
+import 'package:kuriosity/view/components/input_bar/input_bar.dart';
 import 'comment_model.dart';
 
 class CommentDraggableSheet extends StatefulWidget {
@@ -46,7 +47,7 @@ class _CommentDraggableSheetState extends State<CommentDraggableSheet> {
     final textTheme = Theme.of(context).textTheme;
 
     final InputDecoration commonInputDecoration = InputDecoration(
-      hintText: AppStrings.hintTex,
+      hintText: AppStrings.addComment,
       hintStyle: textTheme.bodySmall,
       filled: true,
       fillColor: AppColors.backgroundLightGray,
@@ -93,69 +94,14 @@ class _CommentDraggableSheetState extends State<CommentDraggableSheet> {
                   ),
                 ],
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: TextField(
-                      minLines: 1,
-                      maxLines: 3,
-                      controller: _commentController,
-                      focusNode: _focusNode,
-                      decoration: commonInputDecoration,
-                      onTapOutside: (_) => FocusScope.of(context).unfocus(),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.sentiment_satisfied_alt_outlined,
-                      color: AppColors.gray,
-                    ),
-                    onPressed: () {
-                      // Handle emoji button press
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.image_outlined,
-                      color: AppColors.gray,
-                    ),
-                    onPressed: () {
-                      // Handle image button press
-                    },
-                  ),
-                  const SizedBox(width: 4),
-                  if (_hasText)
-                    GestureDetector(
-                      onTap: () {
-                        // Submit comment logic
-                        _commentController.clear();
-                        _focusNode.unfocus();
-                      },
-                      child: IconButton(
-                        icon: const Icon(Icons.send, color: AppColors.primary),
-                        onPressed: () {}, // Disabled when no text
-                      ),
-
-                      //  Container(
-                      //   height: 35,
-                      //   width: 86,
-                      //   decoration: BoxDecoration(
-                      //     color: AppColors.primary,
-                      //     borderRadius: BorderRadius.circular(15),
-                      //   ),
-                      //   child: Center(
-                      //     child: Text(
-                      //       AppStrings.commentButton,
-                      //       style: textTheme.bodySmall?.copyWith(
-                      //         color: AppColors.white,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                    ),
-                ],
+              child: InputBar(
+                textController: _commentController,
+                focusNode: _focusNode,
+                hasText: _hasText,
+                onEmojiPressed: () {},
+                onImagePressed: () {},
+                onSendPressed: () {},
+                decoration: commonInputDecoration,
               ),
             ),
           ],

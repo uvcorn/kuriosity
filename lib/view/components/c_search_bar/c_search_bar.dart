@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
+import '../../../utils/app_colors/app_colors.dart';
 
 class CSearchbar extends StatelessWidget {
   const CSearchbar({super.key, required this.hinttext});

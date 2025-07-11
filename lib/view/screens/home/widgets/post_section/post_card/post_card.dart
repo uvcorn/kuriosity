@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:kuriosity/view/screens/home/widgets/post_section/user_menu.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
-
+import '../../../../../../core/app_routes/app_routes.dart';
 import '../../../../../../utils/app_icons/app_icons.dart';
 import '../../comment_section/comment_draggable_sheet.dart';
 import '../replanet_menu.dart';
 import '../share_menu.dart';
 import '../post_model.dart';
+import '../user_menu.dart';
 import 'caption_with_link_preview.dart';
 import 'media_content.dart';
 import 'reaction_options_popup.dart';
@@ -89,8 +90,11 @@ class _PostCardState extends State<PostCard> {
               UserInfoSection(
                 username: item.username,
                 subtitle: item.userSubtitle,
-                imageUrl: item.userImage,
+                profileUrl: item.userImage,
                 showFollowButton: followButton,
+                onProfileTap: () {
+                  Get.toNamed(AppRoutes.profileScreen);
+                },
                 onTap: () {
                   showModalBottomSheet(
                     isScrollControlled: true,

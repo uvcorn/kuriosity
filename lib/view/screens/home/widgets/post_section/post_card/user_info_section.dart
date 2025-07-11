@@ -6,17 +6,19 @@ import '../../../../../components/custom_netwrok_image/custom_network_image.dart
 class UserInfoSection extends StatelessWidget {
   final String username;
   final String subtitle;
-  final String imageUrl;
+  final String profileUrl;
   final bool? showFollowButton;
   final VoidCallback onTap;
+  final VoidCallback? onProfileTap;
 
   const UserInfoSection({
     super.key,
     required this.username,
     required this.subtitle,
-    required this.imageUrl,
+    required this.profileUrl,
     this.showFollowButton = false,
     required this.onTap,
+    this.onProfileTap,
   });
 
   @override
@@ -26,13 +28,16 @@ class UserInfoSection extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 30,
-            child: ClipOval(
-              child: CustomNetworkImage(
-                imageUrl: imageUrl,
-                height: 60,
-                width: 60,
+          InkWell(
+            onTap: onProfileTap,
+            child: CircleAvatar(
+              radius: 30,
+              child: ClipOval(
+                child: CustomNetworkImage(
+                  imageUrl: profileUrl,
+                  height: 60,
+                  width: 60,
+                ),
               ),
             ),
           ),
@@ -41,7 +46,11 @@ class UserInfoSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(username, style: textTheme.bodyMedium),
+                InkWell(
+                  onTap: onProfileTap,
+
+                  child: Text(username, style: textTheme.bodyMedium),
+                ),
                 Text(
                   subtitle,
                   style: textTheme.labelSmall?.copyWith(color: AppColors.black),

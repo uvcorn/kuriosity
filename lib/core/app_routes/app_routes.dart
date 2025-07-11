@@ -7,12 +7,13 @@ import '../../view/screens/authentication/phone_input_screen.dart';
 import '../../view/screens/authentication/reset_password_screen.dart';
 import '../../view/screens/authentication/sign_in_screen.dart';
 import '../../view/screens/authentication/sign_up_screen.dart';
-import '../../view/screens/home/widgets/chat_section/chats_list_screen.dart';
+import '../../view/screens/chat/chats_list_screen.dart';
 import '../../view/screens/home/home_screen.dart';
-import '../../view/screens/home/widgets/chat_section/chats_screen.dart';
+import '../../view/screens/chat/chats_screen.dart';
 import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
 import '../../view/screens/onboarding/third_onbording_screen.dart';
+import '../../view/screens/profile/profile_screen.dart';
 import '../../view/screens/splash_screen/splash_screens.dart';
 
 class AppRoutes {
@@ -32,8 +33,13 @@ class AppRoutes {
 
   ///===========================Home==========================
   static const String homeScreen = "/HomeScreen";
+
+  ///===========================Chats==========================
   static const String chatsListScreen = "/ChatsListScreen";
   static const String chatsScreen = "/ChatsScreen";
+
+  ///===========================Profile==========================
+  static const String profileScreen = "/ProfileScreen";
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -55,5 +61,8 @@ class AppRoutes {
     ///===========================Chats==========================
     GetPage(name: chatsListScreen, page: () => ChatsListScreen()),
     GetPage(name: chatsScreen, page: () => ChatsScreen()),
+
+    ///===========================Profile==========================
+    GetPage(name: profileScreen, page: () => ProfileScreen()),
   ];
 }

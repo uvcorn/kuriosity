@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'c_search_bar.dart';
+import '../../../components/c_search_bar/c_search_bar.dart';
 
 class SearchBarDelegate extends SliverPersistentHeaderDelegate {
   @override

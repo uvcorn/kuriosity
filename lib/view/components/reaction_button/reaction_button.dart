@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../utils/app_colors/app_colors.dart';
-import '../../../components/custom_image/custom_image.dart';
+import '../../../utils/app_colors/app_colors.dart';
+import '../custom_image/custom_image.dart';
 
 class ReactionButton extends StatelessWidget {
   final String iconPath;

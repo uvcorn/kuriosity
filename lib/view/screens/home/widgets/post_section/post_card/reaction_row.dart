@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../../utils/app_icons/app_icons.dart';
-import '../../reaction_button.dart';
+import '../../../../../components/reaction_button/reaction_button.dart';
 
 class ReactionRow extends StatelessWidget {
   final String selectedReactionIconPath;

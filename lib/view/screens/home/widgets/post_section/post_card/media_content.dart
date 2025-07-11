@@ -4,7 +4,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../components/custom_netwrok_image/custom_network_image.dart';
-import '../../reusable_video_player.dart';
+import '../../../../../components/reusable_video_player/reusable_video_player.dart';
 
 class MediaContent extends StatelessWidget {
   final VideoPlayerController? videoController;

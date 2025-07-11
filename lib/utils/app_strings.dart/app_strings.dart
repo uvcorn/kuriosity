@@ -100,7 +100,7 @@ class AppStrings {
   static const String userTitle = 'Meal prep & workouts';
   static const String commentTex =
       'I\'ve got some left red wine in my fridge, does anyone know how to recycle it?';
-  static const String hintTex = 'Add Comment.....';
+  static const String addComment = 'Add Comment.....';
   //Replanet
   static const String rePlanet = 'Replant this post';
   static const String pentext = 'Replant with your thoughts';
@@ -123,4 +123,5 @@ class AppStrings {
   static const String chatButton = "Chat";
   static const String groupChatButton = "Group Chat";
   static const String blockUser = "Block User";
+  static const String typeYourMessage = "Type Your Message...";
 }

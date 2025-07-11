@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
+import '../../../utils/app_colors/app_colors.dart';
 
 class ReusableVideoPlayer extends StatefulWidget {
   final String? videoUrl; // Now optional

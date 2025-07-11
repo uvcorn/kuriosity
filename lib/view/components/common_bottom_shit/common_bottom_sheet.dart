@@ -1,7 +1,7 @@
 // common_bottom_sheet.dart
 import 'package:flutter/material.dart';
 // Assuming this path is correct for AppColors
-import '../../../../utils/app_colors/app_colors.dart';
+import '../../../utils/app_colors/app_colors.dart';
 
 typedef ScrollableWidgetBuilder =
     Widget Function(BuildContext context, ScrollController scrollController);

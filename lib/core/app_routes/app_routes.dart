@@ -13,7 +13,8 @@ import '../../view/screens/chat/screens/chats_screen.dart';
 import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
 import '../../view/screens/onboarding/third_onbording_screen.dart';
-import '../../view/screens/profile/profile_screen.dart';
+import '../../view/screens/profile/screens/followers_following_screen.dart';
+import '../../view/screens/profile/screens/profile_screen.dart';
 import '../../view/screens/splash_screen/splash_screens.dart';
 
 class AppRoutes {
@@ -40,6 +41,7 @@ class AppRoutes {
 
   ///===========================Profile==========================
   static const String profileScreen = "/ProfileScreen";
+  static const String followersFollowingScreen = "/FollowersFollowingScreen";
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -64,5 +66,9 @@ class AppRoutes {
 
     ///===========================Profile==========================
     GetPage(name: profileScreen, page: () => ProfileScreen()),
+    GetPage(
+      name: followersFollowingScreen,
+      page: () => FollowersFollowingScreen(),
+    ),
   ];
 }

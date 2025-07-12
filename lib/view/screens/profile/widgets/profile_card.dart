@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kuriosity/core/app_routes/app_routes.dart';
 
-import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_icons/app_icons.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
-import '../../components/custom_image/custom_image.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_icons/app_icons.dart';
+import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../components/custom_image/custom_image.dart';
 
 class ProfileCard extends StatelessWidget {
   final List<String> interests;
@@ -40,7 +42,14 @@ class ProfileCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _buildStat(textTheme, AppStrings.num, AppStrings.post),
-            _buildStat(textTheme, AppStrings.num, AppStrings.followers),
+            GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.followersFollowingScreen),
+              child: _buildStat(
+                textTheme,
+                AppStrings.num,
+                AppStrings.followers,
+              ),
+            ),
             _buildStat(textTheme, AppStrings.num, AppStrings.following),
           ],
         ),

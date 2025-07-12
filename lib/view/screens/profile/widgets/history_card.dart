@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_const/app_const.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
-import '../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_const/app_const.dart';
+import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../components/custom_netwrok_image/custom_network_image.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key});

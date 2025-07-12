@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_icons/app_icons.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
-import '../../components/custom_image/custom_image.dart';
-import 'history_card.dart';
-import 'host_card.dart';
-import 'profile_header.dart';
-import 'join_workshop_card.dart';
-import 'subscription_pannel.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_icons/app_icons.dart';
+import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../components/custom_image/custom_image.dart';
+import '../widgets/history_card.dart';
+import '../widgets/host_card.dart';
+import '../widgets/profile_header.dart';
+import '../widgets/join_workshop_card.dart';
+import '../widgets/subscription_pannel.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

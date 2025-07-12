@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/app_routes/app_routes.dart';
-import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_const/app_const.dart';
-import '../../../utils/app_icons/app_icons.dart';
-import '../../components/custom_appbar/coustom_appbar.dart';
+import '../../../../core/app_routes/app_routes.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_const/app_const.dart';
+import '../../../../utils/app_icons/app_icons.dart';
+import '../../../components/custom_appbar/coustom_appbar.dart';
 
-import 'widgets/post_section/post_card/post_card.dart';
-import '../../components/bottom_nav_bar/bottom_nav_bar.dart';
-import 'widgets/post_section/post_model.dart';
-import 'widgets/search_bar_delegater.dart';
+import '../widgets/post_section/post_card/post_card.dart';
+import '../../../components/bottom_nav_bar/bottom_nav_bar.dart';
+import '../models/post_model.dart';
+import '../delegates/search_bar_delegater.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

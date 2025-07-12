@@ -6,7 +6,7 @@ import 'package:kuriosity/utils/app_strings.dart/app_strings.dart';
 import 'package:kuriosity/view/screens/home/widgets/comment_section/comment_item.dart';
 import 'package:kuriosity/view/components/common_bottom_shit/common_bottom_sheet.dart';
 import 'package:kuriosity/view/components/input_bar/input_bar.dart';
-import 'comment_model.dart';
+import '../../models/comment_model.dart';
 
 class CommentDraggableSheet extends StatefulWidget {
   final List<Comment> comments;

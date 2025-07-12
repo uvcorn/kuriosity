@@ -26,8 +26,8 @@ class AppConstants {
   static const String countyPoliticalMove =
       'https://images.unsplash.com/photo-1712876896746-aac070e47d33?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHBvbGl0aWNhbCUyMHN0YXRlbWVudCUyMGtlbnlhfGVufDB8fDB8fHww';
 
-  static const String politicalMove =
-      'https://images.unsplash.com/photo-1569000971870-7605f9bd8734?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHBvbGl0aWNhbCUyMHN0YXRlbWVudHxlbnwwfHwwfHx8MA%3D%3D';
+  static const String flowerbutterfly =
+      'https://images.unsplash.com/photo-1578945095549-161e7e393ee4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
   static String profileImage =
       'https://images.unsplash.com/photo-1570158268183-d296b2892211?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1lbiUyMHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D';

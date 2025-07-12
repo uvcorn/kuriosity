@@ -36,7 +36,6 @@ class InputBar extends StatelessWidget {
             controller: textController,
             focusNode: focusNode,
             decoration: decoration,
-            onTapOutside: (_) => FocusScope.of(context).unfocus(),
           ),
         ),
         const SizedBox(width: 8),

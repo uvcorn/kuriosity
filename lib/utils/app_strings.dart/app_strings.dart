@@ -124,4 +124,27 @@ class AppStrings {
   static const String groupChatButton = "Group Chat";
   static const String blockUser = "Block User";
   static const String typeYourMessage = "Type Your Message...";
+  //Profile screen
+  static const String num = "45";
+  static const String post = "Post";
+  static const String followers = "Followers";
+  static const String following = "Following";
+  static const String userBio =
+      "Imperfect environmentalism, data-forward slow fashion, & upcycling \n📍 London \n♻️ @remadebymen \npartnerships - dianablog@gmail.com";
+  static const String goal = "Goal";
+  static const String userGoal = "Seriously making sustainability fun ";
+  static const String interest = "Interest";
+  static const String attendw = "Attended workshops";
+  static const String hostingTitle = "You are currently hosting";
+  static const String joiningTitle = "You are currently joining";
+  static const String basicUser = "Available to premium users";
+  static const String historyBarTitle = "Your climate history";
+  static const String viewall = "View all";
+  static const String open = "Open";
+  static const String time = "FRI, 23 May, 19:30 BST";
+  static const String timeduration = "6 May - 27 May";
+  static const String workshopTime = "4 week workshops";
+  static const String workshopTitle =
+      "Switch to a climate-healthy diet with a professional nutritionist";
+  static const String attendTitle = "Cut food waste with an environmentalist";
 }

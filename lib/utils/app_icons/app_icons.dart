@@ -28,4 +28,5 @@ class AppIcons {
   static const String lock = "$basePath/lock.svg";
   static const String emptychat = "$basePath/emptychat.svg";
   static const String bar = "$basePath/bar.svg";
+  static const String health = "$basePath/health.svg";
 }

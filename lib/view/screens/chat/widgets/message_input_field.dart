@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_strings.dart/app_strings.dart';
 
 class MessageInputField extends StatefulWidget {
   final TextEditingController controller;

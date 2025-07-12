@@ -6,7 +6,7 @@ import '../../../../../../utils/app_icons/app_icons.dart';
 import '../../comment_section/comment_draggable_sheet.dart';
 import '../replanet_menu.dart';
 import '../share_menu.dart';
-import '../post_model.dart';
+import '../../../models/post_model.dart';
 import '../user_menu.dart';
 import 'caption_with_link_preview.dart';
 import 'media_content.dart';

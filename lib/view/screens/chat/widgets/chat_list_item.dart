@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_colors/app_colors.dart';
-import '../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../components/custom_netwrok_image/custom_network_image.dart';
 
 class ChatListItem extends StatefulWidget {
   final String userImage;

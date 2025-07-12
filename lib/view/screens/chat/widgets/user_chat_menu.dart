@@ -1,9 +1,9 @@
 // comon_post_action_sheet.dart
 import 'package:flutter/material.dart';
-import '../../../utils/app_icons/app_icons.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
-import '../../components/custom_image/custom_image.dart';
-import '../../components/common_bottom_shit/common_bottom_sheet.dart';
+import '../../../../utils/app_icons/app_icons.dart';
+import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../components/custom_image/custom_image.dart';
+import '../../../components/common_bottom_shit/common_bottom_sheet.dart';
 
 class UserChatMenu extends StatelessWidget {
   const UserChatMenu({super.key});
@@ -12,9 +12,9 @@ class UserChatMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return CommonBottomSheet(
-      initialChildSize: 0.22,
-      minChildSize: 0.22,
-      maxChildSize: 0.22,
+      initialChildSize: 0.2,
+      minChildSize: 0.2,
+      maxChildSize: 0.2,
       // Now using contentBuilder
       contentBuilder: (context, scrollController) {
         return Padding(

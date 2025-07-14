@@ -12,6 +12,7 @@ class InputBar extends StatelessWidget {
   final VoidCallback onImagePressed;
   final VoidCallback? onAttachPressed; // nullable
   final VoidCallback onSendPressed;
+
   final InputDecoration? decoration;
   // final String? attachicon;
   // final String? imageicon;
@@ -60,7 +61,7 @@ class InputBar extends StatelessWidget {
 
         IconButton(
           icon: CustomImage(imageSrc: AppIcons.image),
-          onPressed: onAttachPressed,
+          onPressed: onImagePressed,
         ),
 
         const SizedBox(width: 4),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../../utils/app_colors/app_colors.dart';
@@ -15,32 +17,49 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final alignment = message.isMe
-        ? CrossAxisAlignment.end
-        : CrossAxisAlignment.start;
-    final bgColor = message.isMe
-        ? AppColors.primary
-        : AppColors.backgroundLightGray;
-    final textColor = message.isMe ? AppColors.white : AppColors.black;
-
+    final isMe = message.isMe;
+    final bubbleColor = isMe ? AppColors.primary : AppColors.lightGray;
+    final align = isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start;
+    final radius = isMe
+        ? const BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(0),
+            bottomLeft: Radius.circular(15),
+            bottomRight: Radius.circular(15),
+          )
+        : const BorderRadius.only(
+            topLeft: Radius.circular(0),
+            topRight: Radius.circular(15),
+            bottomLeft: Radius.circular(15),
+            bottomRight: Radius.circular(15),
+          );
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Column(
-        crossAxisAlignment: alignment,
+        crossAxisAlignment: align,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: BorderRadius.circular(12),
-            ),
             constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * 0.75,
+              maxWidth: MediaQuery.of(context).size.width * 0.7,
             ),
-            child: Text(
-              message.text,
-              style: textTheme.bodyMedium?.copyWith(color: textColor),
-            ),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(color: bubbleColor, borderRadius: radius),
+            child: message.image != null
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.file(
+                      File(message.image!.path),
+                      fit: BoxFit.cover,
+                      width: 200,
+                      height: 200,
+                    ),
+                  )
+                : Text(
+                    message.text ?? '',
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: isMe ? AppColors.white : AppColors.black,
+                    ),
+                  ),
           ),
           const SizedBox(height: 4),
           Text(

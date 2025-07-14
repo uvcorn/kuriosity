@@ -1,5 +1,5 @@
 class AppStrings {
-  static const String appTitle = "Wild Curisity";
+  static const String appTitle = "Wild Curiosity";
   static const String welcomeMessage = 'Welcome to \nWild Curiosity';
   //Authintication Strings
   static const String welcomeHere = 'Welcome here!';
@@ -96,6 +96,7 @@ class AppStrings {
   //comment sheet
   static const String title = 'Comments';
   static const String commentButton = 'Comment';
+  static const String replybutton = 'Reply';
   static const String userName = 'Tony Lens';
   static const String userTitle = 'Meal prep & workouts';
   static const String commentTex =

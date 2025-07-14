@@ -19,9 +19,21 @@ class ProfileCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          AppStrings.userName,
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                AppStrings.userName,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(width: 8),
+              CustomImage(imageSrc: AppIcons.hosttag),
+            ],
+          ),
         ),
         Text(AppStrings.userTitle),
         const SizedBox(height: 8),

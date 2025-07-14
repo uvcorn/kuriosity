@@ -1,12 +1,13 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
-import 'package:kuriosity/utils/app_colors/app_colors.dart';
-import 'package:kuriosity/utils/app_const/app_const.dart';
-import 'package:kuriosity/utils/app_strings.dart/app_strings.dart';
-import 'package:kuriosity/view/screens/home/widgets/comment_section/comment_item.dart';
-import 'package:kuriosity/view/components/common_bottom_shit/common_bottom_sheet.dart';
-import 'package:kuriosity/view/components/input_bar/input_bar.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../../../../../utils/app_const/app_const.dart';
+import '../../../../../utils/app_icons/app_icons.dart';
+import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../components/common_bottom_shit/common_bottom_sheet.dart';
+import '../../../../components/custom_image/custom_image.dart';
 import '../../models/comment_model.dart';
+import 'comment_item.dart';
 
 class CommentDraggableSheet extends StatefulWidget {
   final List<Comment> comments;
@@ -21,6 +22,7 @@ class _CommentDraggableSheetState extends State<CommentDraggableSheet> {
   final TextEditingController _commentController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   bool _hasText = false;
+  String? _replyingTo;
 
   @override
   void initState() {
@@ -42,21 +44,27 @@ class _CommentDraggableSheetState extends State<CommentDraggableSheet> {
     super.dispose();
   }
 
+  void _handleReplyTap(String username) {
+    setState(() {
+      _replyingTo = username;
+      FocusScope.of(context).requestFocus(_focusNode);
+    });
+  }
+
+  void _sendReply() {
+    final replyText = _commentController.text.trim();
+    if (replyText.isEmpty) return;
+
+    setState(() {
+      _replyingTo = null;
+      _commentController.clear();
+      FocusScope.of(context).unfocus();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-
-    final InputDecoration commonInputDecoration = InputDecoration(
-      hintText: AppStrings.addComment,
-      hintStyle: textTheme.bodySmall,
-      filled: true,
-      fillColor: AppColors.backgroundLightGray,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(25),
-        borderSide: BorderSide.none,
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-    );
 
     return CommonBottomSheet(
       title: AppStrings.title,
@@ -77,6 +85,7 @@ class _CommentDraggableSheetState extends State<CommentDraggableSheet> {
                     username: AppStrings.userName,
                     commentText: AppStrings.commentTex,
                     likes: 4,
+                    onReplyTapped: _handleReplyTap, // <- Use this!
                   );
                 },
               ),
@@ -94,14 +103,79 @@ class _CommentDraggableSheetState extends State<CommentDraggableSheet> {
                   ),
                 ],
               ),
-              child: InputBar(
-                textController: _commentController,
-                focusNode: _focusNode,
-                hasText: _hasText,
-                onEmojiPressed: () {},
-                onImagePressed: () {},
-                onSendPressed: () {},
-                decoration: commonInputDecoration,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (_replyingTo != null)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Replying to $_replyingTo',
+                          style: textTheme.bodySmall?.copyWith(
+                            color: AppColors.mediumGray,
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.close, size: 20),
+                          onPressed: () {
+                            setState(() {
+                              _replyingTo = null;
+                              _commentController.clear();
+                              FocusScope.of(context).unfocus();
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _commentController,
+                          focusNode: _focusNode,
+                          decoration: InputDecoration(
+                            hintText: _replyingTo != null
+                                ? "Reply to $_replyingTo..."
+                                : AppStrings.addComment,
+                            hintStyle: textTheme.bodySmall,
+                            filled: true,
+                            fillColor: AppColors.backgroundLightGray,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              borderSide: BorderSide.none,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      IconButton(
+                        icon: const Icon(
+                          Icons.sentiment_satisfied_alt_outlined,
+                          color: AppColors.gray,
+                        ),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: CustomImage(imageSrc: AppIcons.image),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        onPressed: _sendReply,
+                        icon: Icon(
+                          Icons.send,
+                          color: _hasText
+                              ? AppColors.primary
+                              : AppColors.mediumGray,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

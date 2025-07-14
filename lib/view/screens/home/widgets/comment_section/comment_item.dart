@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kuriosity/utils/app_colors/app_colors.dart';
 import 'package:kuriosity/utils/app_icons/app_icons.dart';
+import 'package:kuriosity/utils/app_strings.dart/app_strings.dart';
 import 'package:kuriosity/view/components/custom_image/custom_image.dart';
 import 'package:kuriosity/view/components/custom_netwrok_image/custom_network_image.dart';
 import 'package:kuriosity/view/components/reaction_button/reaction_button.dart';
@@ -10,12 +11,14 @@ class CommentItem extends StatefulWidget {
   final String username;
   final String commentText;
   final int likes;
+  final Function(String username) onReplyTapped;
   const CommentItem({
     super.key,
     required this.userImage,
     required this.username,
     required this.commentText,
     this.likes = 0,
+    required this.onReplyTapped,
   });
 
   @override
@@ -25,6 +28,7 @@ class CommentItem extends StatefulWidget {
 class _CommentItemState extends State<CommentItem> {
   bool _showReactionOptions = false;
   late String _selectedReactionIconPath;
+
   void _toggleReactionOptions() {
     setState(() {
       _showReactionOptions = !_showReactionOptions;
@@ -109,7 +113,13 @@ class _CommentItemState extends State<CommentItem> {
                           ),
                         ),
                         const SizedBox(width: 16),
-                        Text('Reply', style: textTheme.labelSmall),
+                        GestureDetector(
+                          onTap: () => widget.onReplyTapped(widget.username),
+                          child: Text(
+                            AppStrings.replybutton,
+                            style: textTheme.labelSmall,
+                          ),
+                        ),
                       ],
                     ),
                   ],

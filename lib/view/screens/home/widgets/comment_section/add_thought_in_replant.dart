@@ -15,9 +15,9 @@ class AddThoughtInReplant extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return CommonBottomSheet(
-      initialChildSize: 0.3,
-      minChildSize: 0.3,
-      maxChildSize: 0.3,
+      initialChildSize: 0.5,
+      minChildSize: 0.5,
+      maxChildSize: 0.5,
       // Now using contentBuilder
       contentBuilder: (context, scrollController) {
         return Padding(

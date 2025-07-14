@@ -66,7 +66,7 @@ class ProfileHeader extends StatelessWidget {
                   ),
                   Positioned(
                     top: -50,
-                    left: MediaQuery.of(context).size.width / 2 - 66,
+                    left: MediaQuery.of(context).size.width / 2 - 45,
                     child: CircleAvatar(
                       radius: 50,
                       child: ClipOval(

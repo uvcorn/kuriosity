@@ -29,4 +29,7 @@ class AppIcons {
   static const String emptychat = "$basePath/emptychat.svg";
   static const String bar = "$basePath/bar.svg";
   static const String health = "$basePath/health.svg";
+  static const String adddocument = "$basePath/add_document.svg";
+  static const String image = "$basePath/image.svg";
+  static const String hosttag = "$basePath/host.svg";
 }

@@ -58,6 +58,7 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40),
@@ -65,10 +66,10 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 45),
+          SizedBox(height: size.height * 0.05),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: _pages.length,
@@ -99,8 +100,8 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 24,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.05,
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,9 +114,7 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                                       color: AppColors.white,
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: containerHeight * 0.06,
-                                  ), // 6% spacing
+                                  SizedBox(height: containerHeight * 0.06),
                                   Text(
                                     page.body,
                                     textAlign: TextAlign.start,
@@ -135,7 +134,7 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
               ),
             ),
           ),
-          SizedBox(height: 34),
+          SizedBox(height: size.width * 0.04),
           SizedBox(
             width: double.infinity,
             child: Column(
@@ -145,9 +144,11 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                   children: List.generate(_pages.length, (index) {
                     return AnimatedContainer(
                       duration: Duration(milliseconds: 300),
-                      margin: EdgeInsets.symmetric(horizontal: 4),
-                      height: 4,
-                      width: 121,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.01,
+                      ),
+                      height: size.height * 0.005,
+                      width: size.width * 0.3,
                       decoration: BoxDecoration(
                         color: _currentPage == index
                             ? AppColors.primary
@@ -157,9 +158,9 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                     );
                   }),
                 ),
-                const SizedBox(height: 34),
+                SizedBox(height: size.height * 0.03),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
                   child: Row(
                     children: [
                       Expanded(
@@ -185,7 +186,7 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: size.height * 0.03),
               ],
             ),
           ),

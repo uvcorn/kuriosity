@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveTONextScreen() async {
     await Future.delayed(Duration(seconds: 2));
-    Get.offAllNamed(AppRoutes.homeScreen);
+    Get.offAllNamed(AppRoutes.firstOnbordingScreen);
   }
 
   @override

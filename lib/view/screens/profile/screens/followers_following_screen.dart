@@ -121,13 +121,31 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen> {
                         ],
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        AppStrings.followButton,
-                        style: TextStyle(fontSize: size.width * 0.032),
-                      ),
-                    ),
+                    isFollower
+                        ? ElevatedButton(
+                            onPressed: () {
+                              // Handle follow back
+                            },
+                            child: Text(
+                              AppStrings.followButton,
+                              style: TextStyle(fontSize: size.width * 0.032),
+                            ),
+                          )
+                        : OutlinedButton(
+                            onPressed: () {
+                              // Handle unfollow (optional)
+                            },
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(color: AppColors.black),
+                            ),
+                            child: Text(
+                              "Following",
+                              style: TextStyle(
+                                color: AppColors.black,
+                                fontSize: size.width * 0.032,
+                              ),
+                            ),
+                          ),
                   ],
                 ),
                 SizedBox(height: size.height * 0.015),

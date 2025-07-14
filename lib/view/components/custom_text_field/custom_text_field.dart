@@ -26,24 +26,27 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      validator: enableValidation ? _passwordValidator : null,
-      decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: textTheme.labelSmall,
-        border: InputBorder.none,
-        suffixIcon: onToggleObscureText != null
-            ? IconButton(
-                icon: Icon(
-                  obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.grey,
-                ),
-                onPressed: onToggleObscureText,
-              )
-            : null,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16),
+      child: TextFormField(
+        controller: controller,
+        keyboardType: keyboardType,
+        obscureText: obscureText,
+        validator: enableValidation ? _passwordValidator : null,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: textTheme.labelSmall,
+          border: InputBorder.none,
+          suffixIcon: onToggleObscureText != null
+              ? IconButton(
+                  icon: Icon(
+                    obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.grey,
+                  ),
+                  onPressed: onToggleObscureText,
+                )
+              : null,
+        ),
       ),
     );
   }

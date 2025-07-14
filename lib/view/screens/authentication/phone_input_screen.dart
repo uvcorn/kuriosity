@@ -16,27 +16,29 @@ class PhoneInputScreen extends StatefulWidget {
 }
 
 class _PhoneInputScreenState extends State<PhoneInputScreen> {
-  CountryCode? _selectedCountryCode; //
+  CountryCode? _selectedCountryCode;
   final TextEditingController _mobileTEController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 106),
-              Text(AppStrings.welcomeMessage, style: textTheme.titleLarge),
-              SizedBox(height: 28),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Container(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: size.height * 0.1),
+                Text(AppStrings.welcomeMessage, style: textTheme.titleLarge),
+                SizedBox(height: size.height * 0.03),
+
+                // Country & Phone Number Field
+                Container(
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     borderRadius: BorderRadius.circular(12),
@@ -52,7 +54,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                         alignLeft: true,
                         builder: (countryCode) {
                           return Container(
-                            height: 56,
+                            height: size.height * 0.07,
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.vertical(
@@ -61,27 +63,16 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                             ),
                             child: Row(
                               children: [
-                                if (_selectedCountryCode != null) ...[
-                                  Expanded(
-                                    child: Text(
-                                      _selectedCountryCode!.name ??
-                                          AppStrings.countryOrRegion,
-                                      style: textTheme.labelSmall?.copyWith(
-                                        color: Colors.black,
-                                        overflow: TextOverflow.fade,
-                                      ),
+                                Expanded(
+                                  child: Text(
+                                    _selectedCountryCode?.name ??
+                                        AppStrings.countryOrRegion,
+                                    style: textTheme.labelSmall?.copyWith(
+                                      // color: Colors.black,
+                                      overflow: TextOverflow.fade,
                                     ),
                                   ),
-                                ] else ...[
-                                  Text(
-                                    AppStrings.countryOrRegion,
-                                    style: textTheme.bodyLarge?.copyWith(
-                                      color: AppColors.mediumGray,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                                const Spacer(),
+                                ),
                                 Icon(
                                   Icons.keyboard_arrow_down,
                                   color: AppColors.mediumGray,
@@ -96,8 +87,6 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                         barrierColor: Colors.black.withAlpha(1),
                       ),
                       Divider(
-                        height: 0,
-                        thickness: 1,
                         color: AppColors.lightGray,
                         indent: 16,
                         endIndent: 16,
@@ -106,79 +95,87 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: TextField(
                           controller: _mobileTEController,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             labelText: AppStrings.phoneNumber,
                             labelStyle: textTheme.labelSmall,
                             border: InputBorder.none,
-                            prefixText: _selectedCountryCode != null
-                                ? '$_selectedCountryCode'
-                                : '',
+                            prefixText: _selectedCountryCode?.dialCode ?? '',
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 23),
-              Center(
-                child: Text(
+
+                SizedBox(height: size.height * 0.03),
+                Text(
                   AppStrings.verificationInfo,
                   style: textTheme.bodySmall,
+                  textAlign: TextAlign.start,
                 ),
-              ),
 
-              SizedBox(height: 34),
-              ActionButton(
-                title: AppStrings.continueButton,
-                onPressed: () => Get.offAllNamed(AppRoutes.signUpScreen),
-              ),
-              const SizedBox(height: 59),
-              Row(
-                children: [
-                  const Expanded(
-                    child: Divider(
-                      color: AppColors.lightGray,
-                      thickness: 1,
-                      height: 1,
+                SizedBox(height: size.height * 0.04),
+                ActionButton(
+                  title: AppStrings.continueButton,
+                  onPressed: () => Get.offAllNamed(AppRoutes.signUpScreen),
+                ),
+
+                SizedBox(height: size.height * 0.05),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Divider(
+                        color: AppColors.lightGray,
+                        thickness: 1,
+                        height: 1,
+                      ),
                     ),
-                  ),
-                  Text(AppStrings.orSeparator, style: textTheme.bodySmall),
-                  const Expanded(
-                    child: Divider(
-                      color: AppColors.lightGray,
-                      thickness: 1,
-                      height: 1,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        AppStrings.orSeparator,
+                        style: textTheme.bodySmall,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 43),
-              ActionButton(
-                title: AppStrings.continueWithApple,
-                onPressed: () {},
-                icon: AppIcons.apple,
-                backgroundColor: AppColors.white,
-                textColor: Colors.black,
-              ),
-              SizedBox(height: 12),
-              ActionButton(
-                title: AppStrings.continueWithFacebook,
-                onPressed: () {},
-                icon: AppIcons.facebook,
-                backgroundColor: AppColors.white,
-                textColor: AppColors.black,
-              ),
-              SizedBox(height: 12),
-              ActionButton(
-                title: AppStrings.continueWithGoogle,
-                onPressed: () {},
-                icon: AppIcons.google,
-                backgroundColor: AppColors.white,
-                textColor: AppColors.black,
-              ),
-              SizedBox(height: 12),
-            ],
+                    const Expanded(
+                      child: Divider(
+                        color: AppColors.lightGray,
+                        thickness: 1,
+                        height: 1,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: size.height * 0.04),
+
+                // Social Buttons
+                ActionButton(
+                  title: AppStrings.continueWithApple,
+                  onPressed: () {},
+                  icon: AppIcons.apple,
+                  backgroundColor: AppColors.white,
+                  textColor: Colors.black,
+                ),
+                SizedBox(height: size.height * 0.015),
+                ActionButton(
+                  title: AppStrings.continueWithFacebook,
+                  onPressed: () {},
+                  icon: AppIcons.facebook,
+                  backgroundColor: AppColors.white,
+                  textColor: AppColors.black,
+                ),
+                SizedBox(height: size.height * 0.015),
+                ActionButton(
+                  title: AppStrings.continueWithGoogle,
+                  onPressed: () {},
+                  icon: AppIcons.google,
+                  backgroundColor: AppColors.white,
+                  textColor: AppColors.black,
+                ),
+                SizedBox(height: size.height * 0.02),
+              ],
+            ),
           ),
         ),
       ),

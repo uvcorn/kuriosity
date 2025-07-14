@@ -23,118 +23,137 @@ class _SignInScreenState extends State<SignInScreen> {
 
   bool _isPasswordObscure = true;
   bool _rememberTerms = false;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 106),
-              Text(AppStrings.welcomeMessage, style: textTheme.titleLarge),
-              SizedBox(height: 28),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: InputCardContainer(
-                    children: [
-                      CustomTextField(
-                        controller: _emailTEController,
-                        labelText: AppStrings.email,
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      CustomTextField(
-                        controller: _passwordTEController,
-                        labelText: AppStrings.password,
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: _isPasswordObscure,
-                        enableValidation: true,
-                        onToggleObscureText: () {
-                          setState(() {
-                            _isPasswordObscure = !_isPasswordObscure;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 8),
-              CustomCheckbox(
-                showCheckbox: true,
-                value: _rememberTerms,
-                onChanged: (newValue) {
-                  setState(() {
-                    _rememberTerms = newValue ?? false;
-                  });
-                },
-                leadingText: AppStrings.rememberMe,
-                leadingTextStyle: textTheme.bodySmall!.copyWith(
-                  color: AppColors.black,
-                ),
-                clickableText: AppStrings.forgotPassword,
-                clickableTextStyle: textTheme.bodyMedium,
-                useSpaceBetweenAlignment: true,
-                onLinkTap: () =>
-                    Get.offAllNamed(AppRoutes.forgotPasswordScreen),
-              ),
-              SizedBox(height: 50),
-              ActionButton(title: AppStrings.continueButton, onPressed: () {}),
-              const SizedBox(height: 50),
-              Row(
-                children: [
-                  const Expanded(
-                    child: Divider(
-                      color: AppColors.lightBorder,
-                      thickness: 1,
-                      height: 1,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: size.height * 0.08),
+                Text(AppStrings.welcomeMessage, style: textTheme.titleLarge),
+                SizedBox(height: size.height * 0.03),
+
+                // Form Card
+                InputCardContainer(
+                  minHeight: 116,
+                  children: [
+                    CustomTextField(
+                      controller: _emailTEController,
+                      labelText: AppStrings.email,
+                      keyboardType: TextInputType.emailAddress,
                     ),
-                  ),
-                  Text(AppStrings.orSeparator, style: textTheme.bodySmall),
-                  const Expanded(
-                    child: Divider(
-                      color: AppColors.lightBorder,
-                      thickness: 1,
-                      height: 1,
+                    CustomTextField(
+                      controller: _passwordTEController,
+                      labelText: AppStrings.password,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: _isPasswordObscure,
+                      enableValidation: true,
+                      onToggleObscureText: () {
+                        setState(() {
+                          _isPasswordObscure = !_isPasswordObscure;
+                        });
+                      },
                     ),
+                  ],
+                ),
+
+                SizedBox(height: size.height * 0.015),
+
+                // Remember Me + Forgot Password
+                CustomCheckbox(
+                  showCheckbox: true,
+                  value: _rememberTerms,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _rememberTerms = newValue ?? false;
+                    });
+                  },
+                  leadingText: AppStrings.rememberMe,
+                  leadingTextStyle: textTheme.bodySmall?.copyWith(
+                    color: AppColors.black,
                   ),
-                ],
-              ),
-              const SizedBox(height: 32),
-              ActionButton(
-                title: AppStrings.continueWithApple,
-                onPressed: () {},
-                icon: AppIcons.apple,
-                backgroundColor: Colors.white,
-                textColor: Colors.black,
-              ),
-              SizedBox(height: 12),
-              ActionButton(
-                title: AppStrings.continueWithFacebook,
-                onPressed: () {},
-                icon: AppIcons.facebook,
-                backgroundColor: Colors.white,
-                textColor: Colors.black,
-              ),
-              SizedBox(height: 12),
-              ActionButton(
-                title: AppStrings.continueWithGoogle,
-                onPressed: () {},
-                icon: AppIcons.google,
-                backgroundColor: Colors.white,
-                textColor: Colors.black,
-              ),
-            ],
+                  clickableText: AppStrings.forgotPassword,
+                  clickableTextStyle: textTheme.bodyMedium,
+                  useSpaceBetweenAlignment: true,
+                  onLinkTap: () =>
+                      Get.offAllNamed(AppRoutes.forgotPasswordScreen),
+                ),
+
+                SizedBox(height: size.height * 0.06),
+
+                // Continue Button
+                ActionButton(
+                  title: AppStrings.continueButton,
+                  onPressed: () => Get.offAllNamed(AppRoutes.homeScreen),
+                ),
+
+                SizedBox(height: size.height * 0.06),
+
+                // OR Separator
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Divider(
+                        color: AppColors.lightBorder,
+                        thickness: 1,
+                        height: 1,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        AppStrings.orSeparator,
+                        style: textTheme.bodySmall,
+                      ),
+                    ),
+                    const Expanded(
+                      child: Divider(
+                        color: AppColors.lightBorder,
+                        thickness: 1,
+                        height: 1,
+                      ),
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: size.height * 0.04),
+
+                // Social Buttons
+                ActionButton(
+                  title: AppStrings.continueWithApple,
+                  onPressed: () {},
+                  icon: AppIcons.apple,
+                  backgroundColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+                SizedBox(height: 12),
+                ActionButton(
+                  title: AppStrings.continueWithFacebook,
+                  onPressed: () {},
+                  icon: AppIcons.facebook,
+                  backgroundColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+                SizedBox(height: 12),
+                ActionButton(
+                  title: AppStrings.continueWithGoogle,
+                  onPressed: () {},
+                  icon: AppIcons.google,
+                  backgroundColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+                SizedBox(height: size.height * 0.03),
+              ],
+            ),
           ),
         ),
       ),

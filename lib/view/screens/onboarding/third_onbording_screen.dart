@@ -80,35 +80,54 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 550,
-                        width: 328,
-                        decoration: BoxDecoration(
-                          color: AppColors.lightGray,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          final screenHeight = MediaQuery.of(
+                            context,
+                          ).size.height;
+                          final screenWidth = MediaQuery.of(context).size.width;
 
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 33),
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 311),
-                              Text(
-                                page.title,
-                                style: textTheme.titleLarge!.copyWith(
-                                  color: AppColors.white,
-                                ),
+                          final containerHeight = screenHeight * 0.7;
+                          final containerWidth = screenWidth * 0.8;
+                          final topSpacing = containerHeight * 0.55;
+
+                          return Container(
+                            height: containerHeight,
+                            width: containerWidth,
+                            decoration: BoxDecoration(
+                              color: AppColors.lightGray,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 24,
                               ),
-                              const SizedBox(height: 35),
-                              Text(
-                                page.body,
-                                style: textTheme.bodyMedium!.copyWith(
-                                  color: AppColors.white,
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: topSpacing),
+                                  Text(
+                                    page.title,
+                                    textAlign: TextAlign.start,
+                                    style: textTheme.titleLarge?.copyWith(
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: containerHeight * 0.06,
+                                  ), // 6% spacing
+                                  Text(
+                                    page.body,
+                                    textAlign: TextAlign.start,
+                                    style: textTheme.bodyMedium?.copyWith(
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   );

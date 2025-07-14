@@ -22,17 +22,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
     final bool isPremium = true;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
       body: SingleChildScrollView(
         child: Column(
           children: [
             ProfileHeader(interests: interests),
-            const SizedBox(height: 180),
+
+            // Use relative height instead of fixed 180
+            SizedBox(height: size.height * 0.22),
 
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -48,8 +52,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                           Container(
-                            height: 32,
-                            width: 100,
+                            height:
+                                size.height * 0.04, // ~32 on 800 height screen
+                            width:
+                                size.width * 0.26, // ~100 on 390 width screen
                             decoration: BoxDecoration(
                               color: AppColors.primary,
                               borderRadius: BorderRadius.circular(12),
@@ -59,12 +65,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               children: [
                                 CustomImage(
                                   imageSrc: AppIcons.health,
-                                  size: 24,
+                                  size: size.width * 0.06, // 24 at 400 width
                                 ),
+                                SizedBox(width: 6),
                                 Text(
                                   AppStrings.open,
                                   style: textTheme.bodyMedium?.copyWith(
                                     color: AppColors.white,
+                                    fontSize: size.width * 0.04,
                                   ),
                                 ),
                               ],
@@ -72,17 +80,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: size.height * 0.02),
                       HostCard(),
                     ],
                   ),
-                  SizedBox(height: 16),
+
+                  SizedBox(height: size.height * 0.02),
+
                   Column(
                     children: [
                       _buildCardBar(textTheme, AppStrings.joiningTitle),
-                      const SizedBox(height: 8),
+                      SizedBox(height: size.height * 0.01),
                       Container(
-                        height: 160,
+                        height: size.height * 0.2,
                         decoration: BoxDecoration(
                           color: AppColors.backgroundLightGray,
                           borderRadius: BorderRadius.circular(12),
@@ -91,15 +101,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           scrollDirection: Axis.horizontal,
                           itemCount: 4,
                           separatorBuilder: (context, index) =>
-                              const SizedBox(width: 12),
+                              SizedBox(width: size.width * 0.03),
                           itemBuilder: (context, index) => JoinWorkshopCard(),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+
+                  SizedBox(height: size.height * 0.02),
+
                   buildSubscriptionPannel(textTheme, isPremium),
-                  const SizedBox(height: 16),
+
+                  SizedBox(height: size.height * 0.02),
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -108,13 +122,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         AppStrings.historyBarTitle,
                         AppStrings.viewall,
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: size.height * 0.01),
                       ListView.separated(
                         shrinkWrap: true,
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: 2,
-                        separatorBuilder: (_, __) => const SizedBox(height: 8),
+                        separatorBuilder: (_, __) =>
+                            SizedBox(height: size.height * 0.01),
                         itemBuilder: (context, index) => HistoryCard(),
                       ),
                     ],

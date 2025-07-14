@@ -19,64 +19,70 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
   final TextEditingController _otpTEController = TextEditingController();
 
   @override
-  // void dispose() {
-  //   _otpTEController.dispose();
-  //   super.dispose();
-  // }
-  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 106),
-              Text(
-                AppStrings.enterVerificationCode,
-                style: textTheme.titleLarge,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: size.height - MediaQuery.of(context).padding.top,
               ),
-              SizedBox(height: 16),
-              Text(
-                AppStrings.enterVerificationCode,
-                style: textTheme.bodySmall?.copyWith(color: AppColors.black),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 16),
-              CustomPinCode(controller: _otpTEController),
-              SizedBox(height: 37),
-
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: CustomCheckbox(
-                      showCheckbox: false,
-                      leadingText: AppStrings.noCodeReceived,
-                      leadingTextStyle: textTheme.bodySmall?.copyWith(
+              child: IntrinsicHeight(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: size.height * 0.08),
+                    Text(
+                      AppStrings.enterVerificationCode,
+                      style: textTheme.titleLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: size.height * 0.02),
+                    Text(
+                      AppStrings.enterVerificationCode,
+                      style: textTheme.bodySmall?.copyWith(
                         color: AppColors.black,
                       ),
-                      clickableText: AppStrings.resendCode,
-                      centerAlignment: true,
-                      clickableTextStyle: textTheme.bodyMedium,
-                      useSpaceBetweenAlignment: false,
-                      onLinkTap: () {},
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-                  SizedBox(height: 41),
-                  ActionButton(
-                    title: AppStrings.verifyButton,
-                    onPressed: () =>
-                        Get.offAllNamed(AppRoutes.resetPasswordScreen),
-                  ),
-                ],
+                    SizedBox(height: size.height * 0.02),
+                    CustomPinCode(controller: _otpTEController),
+                    SizedBox(height: size.height * 0.045),
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CustomCheckbox(
+                          showCheckbox: false,
+                          leadingText: AppStrings.noCodeReceived,
+                          leadingTextStyle: textTheme.bodySmall?.copyWith(
+                            color: AppColors.black,
+                          ),
+                          clickableText: AppStrings.resendCode,
+                          centerAlignment: true,
+                          clickableTextStyle: textTheme.bodyMedium,
+                          useSpaceBetweenAlignment: false,
+                          onLinkTap: () {},
+                        ),
+                        SizedBox(height: size.height * 0.06),
+                        ActionButton(
+                          title: AppStrings.verifyButton,
+                          onPressed: () =>
+                              Get.offAllNamed(AppRoutes.resetPasswordScreen),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ],
+            ),
           ),
         ),
       ),

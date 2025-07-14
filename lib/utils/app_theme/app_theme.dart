@@ -5,7 +5,18 @@ import '../app_colors/app_colors.dart';
 
 class AppTheme {
   static ThemeData get lightThemeData {
-    return ThemeData(textTheme: _textTheme.apply());
+    return ThemeData(
+      textTheme: _textTheme.apply(),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          textStyle: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
   }
 
   static TextTheme get _textTheme {

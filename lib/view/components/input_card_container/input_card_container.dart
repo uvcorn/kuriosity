@@ -9,6 +9,7 @@ class InputCardContainer extends StatelessWidget {
   final double borderRadius;
   final Color backgroundColor;
   final double elevation;
+  final double minHeight;
   final Color shadowColor;
   final EdgeInsetsGeometry padding;
 
@@ -19,47 +20,52 @@ class InputCardContainer extends StatelessWidget {
     this.backgroundColor = AppColors.backgroundWhite,
     this.elevation = 4,
     this.shadowColor = AppColors.black,
-    this.padding = const EdgeInsets.only(left: 16),
+    this.padding = const EdgeInsets.only(left: 0),
+    required this.minHeight,
   });
 
   @override
   Widget build(BuildContext context) {
+    final double heightPerChild = minHeight / children.length;
     return Material(
       elevation: elevation,
       shadowColor: shadowColor.withOpacity(0.05),
       borderRadius: BorderRadius.circular(borderRadius),
-      child: Container(
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
-        child: Padding(
-          padding: padding,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: _withDividers(children),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: minHeight),
+        child: Container(
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+          child: Padding(
+            padding: padding,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: _withDividers(
+                children
+                    .map(
+                      (child) => SizedBox(height: heightPerChild, child: child),
+                    )
+                    .toList(),
+              ),
+            ),
           ),
         ),
       ),
     );
   }
 
-  /// Helper to automatically insert dividers between children.
   List<Widget> _withDividers(List<Widget> widgets) {
     if (widgets.length <= 1) return widgets;
 
     final List<Widget> separated = [];
     for (int i = 0; i < widgets.length; i++) {
-      separated.add(widgets[i]);
+      separated.add(Padding(padding: padding, child: widgets[i]));
+
       if (i != widgets.length - 1) {
         separated.add(
-          Divider(
-            height: 0,
-            thickness: 1,
-            color: AppColors.lightBorder,
-            indent: 5,
-            endIndent: 5,
-          ),
+          const Divider(color: AppColors.lightBorder, height: 1, thickness: 1),
         );
       }
     }

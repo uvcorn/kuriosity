@@ -5,13 +5,18 @@ import 'package:flutter/material.dart';
 import '../../../utils/app_colors/app_colors.dart';
 
 class CSearchbar extends StatelessWidget {
-  const CSearchbar({super.key, required this.hinttext});
+  const CSearchbar({
+    super.key,
+    required this.hinttext,
+    this.background = AppColors.backgroundLightGray,
+  });
   final String hinttext;
+  final Color background;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Container(
-      color: AppColors.backgroundLightGray,
+      // color: background,
       height: 50,
       padding: const EdgeInsets.fromLTRB(8, 0, 16, 12),
       child: Container(

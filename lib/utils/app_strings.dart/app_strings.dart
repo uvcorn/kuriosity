@@ -72,17 +72,17 @@ class AppStrings {
   static const String finishButton = 'Finish';
 
   // Onboarding (Third Screen) Steps
-  static const String onboardingStep1Title = 'Build dialog with people';
+  static const String onboardingStep1Title = 'Build dialog \nwith people';
   static const String onboardingStep1Body =
-      'Post your lifestyle, ask questions, and celebrate the small win toward a healthy planet';
+      'Post your lifestyle, ask questions, \nand celebrate the small win toward \na healthy planet';
 
-  static const String onboardingStep2Title = 'Join group activities';
+  static const String onboardingStep2Title = 'Join group \nactivities';
   static const String onboardingStep2Body =
-      'Want to learn how to eat healthy, drive eco-friendly, and grow a beautiful garden in your backyard? Let’s do it together';
+      'Want to learn how to eat healthy, \ndrive eco-friendly, and grow a \nbeautiful garden in your backyard? \nLet’s do it together';
 
-  static const String onboardingStep3Title = 'Share your knowledge';
+  static const String onboardingStep3Title = 'Share your \nknowledge';
   static const String onboardingStep3Body =
-      'Become a power influencer by hosting your own workshops. The more you share valuable tips, the more eco-friendly future';
+      'Become a power influencer by \nhosting your own workshops. The \nmore you share valuable tips, the \nhealthier future';
 
   static const String unfollowButton = 'Unfollow';
   static const String hideButton = 'Hide';
@@ -147,4 +147,7 @@ class AppStrings {
   static const String workshopTitle =
       "Switch to a climate-healthy diet with a professional nutritionist";
   static const String attendTitle = "Cut food waste with an environmentalist";
+  //followers / following screen
+  static const String followings72 = '72 Following';
+  static const String followers64 = '64 Followers';
 }

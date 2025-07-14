@@ -17,42 +17,71 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final TextEditingController _emailTEController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 106),
-              Text(
-                AppStrings.forgotPasswordHeader,
-                style: textTheme.titleLarge,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: size.height - MediaQuery.of(context).padding.top,
               ),
-              SizedBox(height: 26),
-              Text(
-                AppStrings.forgotPasswordDescription,
-                style: textTheme.bodySmall?.copyWith(color: AppColors.black),
+              child: IntrinsicHeight(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: size.height * 0.08),
+
+                    // Title
+                    Text(
+                      AppStrings.forgotPasswordHeader,
+                      style: textTheme.titleLarge,
+                    ),
+
+                    SizedBox(height: size.height * 0.025),
+
+                    // Description
+                    Text(
+                      AppStrings.forgotPasswordDescription,
+                      style: textTheme.bodySmall?.copyWith(
+                        color: AppColors.black,
+                      ),
+                    ),
+
+                    SizedBox(height: size.height * 0.05),
+
+                    // Email Input
+                    InputCardContainer(
+                      minHeight: 58,
+                      children: [
+                        CustomTextField(
+                          controller: _emailTEController,
+                          labelText: AppStrings.email,
+                        ),
+                      ],
+                    ),
+
+                    const Spacer(),
+
+                    // Continue Button
+                    ActionButton(
+                      title: AppStrings.getVerificationCode,
+                      onPressed: () =>
+                          Get.offAllNamed(AppRoutes.otpVerifyScreen),
+                    ),
+
+                    SizedBox(height: size.height * 0.1),
+                  ],
+                ),
               ),
-              SizedBox(height: 40),
-              InputCardContainer(
-                children: [
-                  CustomTextField(
-                    controller: _emailTEController,
-                    labelText: AppStrings.email,
-                  ),
-                ],
-              ),
-              SizedBox(height: 360),
-              ActionButton(
-                title: AppStrings.getVerificationCode,
-                onPressed: () => Get.offAllNamed(AppRoutes.otpVerifyScreen),
-              ),
-              SizedBox(height: 80),
-            ],
+            ),
           ),
         ),
       ),

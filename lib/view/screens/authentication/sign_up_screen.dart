@@ -25,123 +25,129 @@ class _SignUpScreenState extends State<SignUpScreen> {
       TextEditingController();
   bool _isPasswordObscure = true;
   bool _agreedToTerms = false;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 67),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(AppStrings.welcomeHere, style: textTheme.titleLarge),
-                  Text(AppStrings.createAccount, style: textTheme.titleLarge),
-                  SizedBox(height: 10),
-                  Text(AppStrings.fillInformation, style: textTheme.bodyLarge),
-                ],
-              ),
-              SizedBox(height: 34),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: InputCardContainer(
-                      children: [
-                        CustomTextField(
-                          controller: _firstNameTEController,
-                          labelText: AppStrings.firstName,
-                        ),
-                        CustomTextField(
-                          controller: _lastNameTEController,
-                          labelText: AppStrings.lastName,
-                        ),
-                        CustomTextField(
-                          controller: _emailTEController,
-                          labelText: AppStrings.lastName,
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        CustomTextField(
-                          controller: _passwordTEController,
-                          labelText: AppStrings.password,
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: _isPasswordObscure,
-                          enableValidation: true,
-                          onToggleObscureText: () {
-                            setState(() {
-                              _isPasswordObscure = !_isPasswordObscure;
-                            });
-                          },
-                        ),
-                        CustomTextField(
-                          controller: _confirmPassTEController,
-                          labelText: AppStrings.confirmPassword,
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: _isPasswordObscure,
-                          enableValidation: true,
-                          confirmPasswordController: _confirmPassTEController,
-                          onToggleObscureText: () {
-                            setState(() {
-                              _isPasswordObscure = !_isPasswordObscure;
-                            });
-                          },
-                        ),
-                      ],
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: size.height * 0.06),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(AppStrings.welcomeHere, style: textTheme.titleLarge),
+                    Text(AppStrings.createAccount, style: textTheme.titleLarge),
+                    SizedBox(height: size.height * 0.01),
+                    Text(
+                      AppStrings.fillInformation,
+                      style: textTheme.bodyLarge,
+                      textAlign: TextAlign.center,
                     ),
-                  ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 10),
-              CustomCheckbox(
-                showCheckbox: true,
-                value: _agreedToTerms,
-                onChanged: (newValue) {
-                  setState(() {
-                    _agreedToTerms = newValue ?? false;
-                  });
-                },
-                leadingText: AppStrings.agreeWith,
-                leadingTextStyle: textTheme.bodySmall?.copyWith(
-                  color: AppColors.black,
-                ),
-                clickableText: AppStrings.termsAndConditions,
-                onLinkTap: () {},
-              ),
-              SizedBox(height: 32),
-              ActionButton(
-                title: AppStrings.signUpButton,
-                onPressed: () => Get.offAllNamed(AppRoutes.signInScreen),
-              ),
-              SizedBox(height: 110),
+                SizedBox(height: size.height * 0.04),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomCheckbox(
-                    leadingText: AppStrings.alreadyHaveAccount,
-                    clickableText: AppStrings.signInButton,
-                    onLinkTap: () {},
-                    clickableTextStyle: textTheme.bodySmall?.copyWith(
-                      color: AppColors.primary,
+                // Input Form Container
+                InputCardContainer(
+                  minHeight: 290,
+                  children: [
+                    CustomTextField(
+                      controller: _firstNameTEController,
+                      labelText: AppStrings.firstName,
                     ),
-                  ),
-                ],
-              ),
+                    CustomTextField(
+                      controller: _lastNameTEController,
+                      labelText: AppStrings.lastName,
+                    ),
+                    CustomTextField(
+                      controller: _emailTEController,
+                      labelText: AppStrings.email,
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                    CustomTextField(
+                      controller: _passwordTEController,
+                      labelText: AppStrings.password,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: _isPasswordObscure,
+                      enableValidation: true,
+                      onToggleObscureText: () {
+                        setState(() {
+                          _isPasswordObscure = !_isPasswordObscure;
+                        });
+                      },
+                    ),
+                    CustomTextField(
+                      controller: _confirmPassTEController,
+                      labelText: AppStrings.confirmPassword,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: _isPasswordObscure,
+                      enableValidation: true,
+                      confirmPasswordController: _confirmPassTEController,
+                      onToggleObscureText: () {
+                        setState(() {
+                          _isPasswordObscure = !_isPasswordObscure;
+                        });
+                      },
+                    ),
+                  ],
+                ),
 
-              SizedBox(height: 26),
-            ],
+                SizedBox(height: size.height * 0.02),
+
+                // Terms Checkbox
+                CustomCheckbox(
+                  showCheckbox: true,
+                  value: _agreedToTerms,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _agreedToTerms = newValue ?? false;
+                    });
+                  },
+                  leadingText: AppStrings.agreeWith,
+                  leadingTextStyle: textTheme.bodySmall?.copyWith(
+                    color: AppColors.black,
+                  ),
+                  clickableText: AppStrings.termsAndConditions,
+                  onLinkTap: () {},
+                ),
+
+                SizedBox(height: size.height * 0.04),
+
+                // Sign Up Button
+                ActionButton(
+                  title: AppStrings.signUpButton,
+                  onPressed: () => Get.offAllNamed(AppRoutes.signInScreen),
+                ),
+
+                SizedBox(height: size.height * 0.25),
+
+                // Already Have Account
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomCheckbox(
+                      showCheckbox: false,
+                      leadingText: AppStrings.alreadyHaveAccount,
+                      clickableText: AppStrings.signInButton,
+                      onLinkTap: () => Get.toNamed(AppRoutes.signInScreen),
+                      clickableTextStyle: textTheme.bodySmall?.copyWith(
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: size.height * 0.03),
+              ],
+            ),
           ),
         ),
       ),

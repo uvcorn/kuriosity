@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
-import '../../view/screens/authentication/forget_password_screen.dart';
-import '../../view/screens/authentication/otp_verify_screen.dart';
-import '../../view/screens/authentication/phone_input_screen.dart';
-import '../../view/screens/authentication/reset_password_screen.dart';
-import '../../view/screens/authentication/sign_in_screen.dart';
-import '../../view/screens/authentication/sign_up_screen.dart';
+import 'package:kuriosity/view/components/bottom_nav_bar/bottom_nav_bar.dart';
+import '../../view/screens/auth/screens/forget_password_screen.dart';
+import '../../view/screens/auth/screens/otp_verify_screen.dart';
+import '../../view/screens/auth/screens/phone_input_screen.dart';
+import '../../view/screens/auth/screens/reset_password_screen.dart';
+import '../../view/screens/auth/screens/sign_in_screen.dart';
+import '../../view/screens/auth/screens/sign_up_screen.dart';
 import '../../view/screens/chat/screens/chats_list_screen.dart';
 import '../../view/screens/home/screens/home_screen.dart';
 import '../../view/screens/chat/screens/chats_screen.dart';
@@ -34,6 +35,7 @@ class AppRoutes {
 
   ///===========================Home==========================
   static const String homeScreen = "/HomeScreen";
+  static const String bottomNavBar = "/BottomNavBar";
 
   ///===========================Chats==========================
   static const String chatsListScreen = "/ChatsListScreen";
@@ -59,6 +61,7 @@ class AppRoutes {
 
     ///===========================Home==========================
     GetPage(name: homeScreen, page: () => HomeScreen()),
+    GetPage(name: bottomNavBar, page: () => BottomNavBar()),
 
     ///===========================Chats==========================
     GetPage(name: chatsListScreen, page: () => ChatsListScreen()),

@@ -1,26 +1,19 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_icons/app_icons.dart';
+import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../components/action_button/action_button.dart';
+import '../controllers/phone_input_controller.dart';
 
-import '../../../core/app_routes/app_routes.dart';
-import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_icons/app_icons.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
-import '../../components/action_button/action_button.dart';
-
-class PhoneInputScreen extends StatefulWidget {
+class PhoneInputScreen extends StatelessWidget {
   const PhoneInputScreen({super.key});
 
   @override
-  State<PhoneInputScreen> createState() => _PhoneInputScreenState();
-}
-
-class _PhoneInputScreenState extends State<PhoneInputScreen> {
-  CountryCode? _selectedCountryCode;
-  final TextEditingController _mobileTEController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+    final PhoneInputController controller = Get.put(PhoneInputController());
+
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
@@ -37,7 +30,6 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                 Text(AppStrings.welcomeMessage, style: textTheme.titleLarge),
                 SizedBox(height: size.height * 0.03),
 
-                // Country & Phone Number Field
                 Container(
                   decoration: BoxDecoration(
                     color: AppColors.white,
@@ -46,38 +38,40 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                   child: Column(
                     children: [
                       CountryCodePicker(
-                        onChanged: (countryCode) {
-                          setState(() {
-                            _selectedCountryCode = countryCode;
-                          });
-                        },
+                        onChanged: controller.onCountryCodeChanged,
                         alignLeft: true,
                         builder: (countryCode) {
-                          return Container(
-                            height: size.height * 0.07,
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(12),
+                          return Obx(
+                            () => Container(
+                              height: size.height * 0.07,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
                               ),
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    _selectedCountryCode?.name ??
-                                        AppStrings.countryOrRegion,
-                                    style: textTheme.labelSmall?.copyWith(
-                                      // color: Colors.black,
-                                      overflow: TextOverflow.fade,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(12),
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      controller
+                                              .selectedCountryCode
+                                              .value
+                                              ?.name ??
+                                          AppStrings.countryOrRegion,
+                                      style: textTheme.labelSmall?.copyWith(
+                                        overflow: TextOverflow.fade,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Icon(
-                                  Icons.keyboard_arrow_down,
-                                  color: AppColors.mediumGray,
-                                ),
-                              ],
+                                  const Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: AppColors.mediumGray,
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -86,7 +80,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                         dialogBackgroundColor: Colors.white,
                         barrierColor: Colors.black.withAlpha(1),
                       ),
-                      Divider(
+                      const Divider(
                         color: AppColors.lightGray,
                         indent: 16,
                         endIndent: 16,
@@ -94,13 +88,18 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: TextField(
-                          controller: _mobileTEController,
+                          controller: controller.mobileTEController,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             labelText: AppStrings.phoneNumber,
                             labelStyle: textTheme.labelSmall,
                             border: InputBorder.none,
-                            prefixText: _selectedCountryCode?.dialCode ?? '',
+                            prefixText:
+                                controller
+                                    .selectedCountryCode
+                                    .value
+                                    ?.dialCode ??
+                                '',
                           ),
                         ),
                       ),
@@ -118,7 +117,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                 SizedBox(height: size.height * 0.04),
                 ActionButton(
                   title: AppStrings.continueButton,
-                  onPressed: () => Get.offAllNamed(AppRoutes.signUpScreen),
+                  onPressed: controller.continueToSignUp,
                 ),
 
                 SizedBox(height: size.height * 0.05),
@@ -152,7 +151,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                 // Social Buttons
                 ActionButton(
                   title: AppStrings.continueWithApple,
-                  onPressed: () {},
+                  onPressed: controller.continueWithApple,
                   icon: AppIcons.apple,
                   backgroundColor: AppColors.white,
                   textColor: Colors.black,
@@ -160,7 +159,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                 SizedBox(height: size.height * 0.015),
                 ActionButton(
                   title: AppStrings.continueWithFacebook,
-                  onPressed: () {},
+                  onPressed: controller.continueWithFacebook,
                   icon: AppIcons.facebook,
                   backgroundColor: AppColors.white,
                   textColor: AppColors.black,
@@ -168,7 +167,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                 SizedBox(height: size.height * 0.015),
                 ActionButton(
                   title: AppStrings.continueWithGoogle,
-                  onPressed: () {},
+                  onPressed: controller.continueWithGoogle,
                   icon: AppIcons.google,
                   backgroundColor: AppColors.white,
                   textColor: AppColors.black,

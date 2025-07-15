@@ -1,96 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../core/app_routes/app_routes.dart';
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_strings.dart/app_strings.dart';
 import '../../components/action_button/action_button.dart';
 import '../../components/custom_appbar/coustom_appbar.dart';
+import 'controller/third_onboarding_controller.dart';
 
-class _OnboardPageData {
-  final String title;
-  final String body;
-
-  _OnboardPageData({required this.title, required this.body});
-}
-
-class ThirdOnbordingScreen extends StatefulWidget {
+class ThirdOnbordingScreen extends StatelessWidget {
   const ThirdOnbordingScreen({super.key});
 
   @override
-  State<ThirdOnbordingScreen> createState() => _ThirdOnbordingScreenState();
-}
-
-class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
-  final List<_OnboardPageData> _pages = [
-    _OnboardPageData(
-      title: AppStrings.onboardingStep1Title,
-      body: AppStrings.onboardingStep1Body,
-    ),
-    _OnboardPageData(
-      title: AppStrings.onboardingStep2Title,
-      body: AppStrings.onboardingStep2Body,
-    ),
-    _OnboardPageData(
-      title: AppStrings.onboardingStep3Title,
-      body: AppStrings.onboardingStep3Body,
-    ),
-  ];
-  void _nextPage() {
-    if (_currentPage < _pages.length - 1) {
-      _pageController.nextPage(
-        duration: Duration(milliseconds: 350),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  void _prevPage() {
-    if (_currentPage > 0) {
-      _pageController.previousPage(
-        duration: Duration(milliseconds: 350),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final ThirdOnboardingController controller = Get.put(
+      ThirdOnboardingController(),
+    );
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(40),
+        preferredSize: Size.fromHeight(size.height * 0.06),
         child: CustomAppbar(),
       ),
       body: Column(
         children: [
-          SizedBox(height: size.height * 0.05),
+          SizedBox(height: size.height * 0.03),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
               child: PageView.builder(
-                controller: _pageController,
-                itemCount: _pages.length,
-                onPageChanged: (index) {
-                  setState(() => _currentPage = index);
-                },
+                controller: controller.pageController,
+                itemCount: controller.pages.length,
+                onPageChanged: controller.onPageChanged,
                 itemBuilder: (context, index) {
-                  final page = _pages[index];
+                  final page = controller.pages[index];
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       LayoutBuilder(
                         builder: (context, constraints) {
-                          final screenHeight = MediaQuery.of(
-                            context,
-                          ).size.height;
-                          final screenWidth = MediaQuery.of(context).size.width;
-
-                          final containerHeight = screenHeight * 0.7;
-                          final containerWidth = screenWidth * 0.8;
-                          final topSpacing = containerHeight * 0.55;
+                          final containerHeight = size.height * 0.73;
+                          final containerWidth = size.width * 0.8;
 
                           return Container(
                             height: containerHeight,
@@ -106,7 +58,7 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: topSpacing),
+                                  Spacer(),
                                   Text(
                                     page.title,
                                     textAlign: TextAlign.start,
@@ -122,6 +74,7 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                                       color: AppColors.white,
                                     ),
                                   ),
+                                  SizedBox(height: size.width * 0.04),
                                 ],
                               ),
                             ),
@@ -134,29 +87,31 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
               ),
             ),
           ),
-          SizedBox(height: size.width * 0.04),
+          SizedBox(height: size.height * 0.02),
           SizedBox(
             width: double.infinity,
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(_pages.length, (index) {
-                    return AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
-                      margin: EdgeInsets.symmetric(
-                        horizontal: size.width * 0.01,
-                      ),
-                      height: size.height * 0.005,
-                      width: size.width * 0.3,
-                      decoration: BoxDecoration(
-                        color: _currentPage == index
-                            ? AppColors.primary
-                            : AppColors.backgroundLightGray,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    );
-                  }),
+                Obx(
+                  () => Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(controller.pages.length, (index) {
+                      return AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        margin: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.01,
+                        ),
+                        height: size.height * 0.005,
+                        width: size.width * 0.3,
+                        decoration: BoxDecoration(
+                          color: controller.currentPage == index
+                              ? AppColors.primary
+                              : AppColors.backgroundLightGray,
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      );
+                    }),
+                  ),
                 ),
                 SizedBox(height: size.height * 0.03),
                 Padding(
@@ -166,21 +121,28 @@ class _ThirdOnbordingScreenState extends State<ThirdOnbordingScreen> {
                       Expanded(
                         child: ActionButton(
                           title: AppStrings.backButton,
-                          onPressed: _prevPage,
+                          onPressed: controller.prevPage,
                           type: ActionButtonType.text,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Expanded(
-                        child: ActionButton(
-                          title: _currentPage == _pages.length - 1
-                              ? AppStrings.finishButton
-                              : AppStrings.nextButton,
-                          onPressed: _currentPage == _pages.length - 1
-                              ? () =>
-                                    Get.offAllNamed(AppRoutes.phoneInputScreen)
-                              : _nextPage,
-                          type: ActionButtonType.filled,
+                        child: Obx(
+                          () => ActionButton(
+                            title:
+                                controller.currentPage ==
+                                    controller.pages.length - 1
+                                ? AppStrings.finishButton
+                                : AppStrings.nextButton,
+                            onPressed:
+                                controller.currentPage ==
+                                    controller.pages.length - 1
+                                ? () => Get.offAllNamed(
+                                    AppRoutes.phoneInputScreen,
+                                  )
+                                : controller.nextPage,
+                            type: ActionButtonType.filled,
+                          ),
                         ),
                       ),
                     ],

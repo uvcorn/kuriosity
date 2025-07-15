@@ -15,6 +15,14 @@ class AppStrings {
   static const String agreeWith = 'Agree with ';
   static const String termsAndConditions = 'Terms and Conditions.';
 
+  static const String emailcantempty = 'Email cannot be empty';
+  static const String entervalidmail = 'Enter a valid email address';
+  static const String confirmpasswordrequird =
+      'Confirm password cannot be empty';
+  static const String agreementreq = 'Agreement Required';
+  static const String agreesignupterms =
+      'You must agree to the Terms and Conditions to sign up.';
+
   static const String signUpButton = 'Sign Up';
   static const String alreadyHaveAccount = 'Already have an account';
   static const String signInButton = ' Sign In';
@@ -151,4 +159,10 @@ class AppStrings {
   //followers / following screen
   static const String followings72 = '72 Following';
   static const String followers64 = '64 Followers';
+
+  //bottom nav
+  static const String home = 'Home';
+  static const String group = 'Group';
+  static const String notific = 'Noti';
+  static const String profile = 'Profile';
 }

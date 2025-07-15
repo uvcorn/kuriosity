@@ -17,39 +17,44 @@ class _FirstOnbordingScreenState extends State<FirstOnbordingScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(40),
+        preferredSize: Size.fromHeight(size.height * 0.06),
         child: CustomAppbar(),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 82),
+            SizedBox(height: size.height * 0.1),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     AppStrings.ecoInfluencerMessage,
-                    style: textTheme.titleLarge,
+                    style: textTheme.titleLarge?.copyWith(
+                      fontSize: size.width * 0.06,
+                    ),
                   ),
-                  // SizedBox(height: 270),
                   Text(
                     AppStrings.selfActualizationMessage,
-                    style: textTheme.bodyMedium,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontSize: size.width * 0.04,
+                    ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 70),
+            SizedBox(height: size.height * 0.0875),
             ActionButton(
               title: AppStrings.startButton,
               onPressed: () => Get.offAllNamed(AppRoutes.secendOnbordingScreen),
             ),
-            SizedBox(height: 57),
+            SizedBox(height: size.height * 0.04),
           ],
         ),
       ),

@@ -1,4 +1,3 @@
-// comon_post_action_sheet.dart
 import 'package:flutter/material.dart';
 import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_const/app_const.dart';
@@ -18,7 +17,6 @@ class AddThoughtInReplant extends StatelessWidget {
       initialChildSize: 0.5,
       minChildSize: 0.5,
       maxChildSize: 0.5,
-      // Now using contentBuilder
       contentBuilder: (context, scrollController) {
         return Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
@@ -68,7 +66,6 @@ class AddThoughtInReplant extends StatelessWidget {
                   const SizedBox(height: 16),
                   Expanded(
                     child: TextField(
-                      // expands: true,
                       minLines: 1,
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
@@ -86,7 +83,6 @@ class AddThoughtInReplant extends StatelessWidget {
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                     children: [
                       IconButton(
                         icon: const Icon(

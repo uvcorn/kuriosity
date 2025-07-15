@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_strings.dart/app_strings.dart';
 import '../../../components/c_search_bar/c_search_bar.dart';
 import '../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../controller/followers_following_controller.dart';
 
 class FollowersFollowingScreen extends StatefulWidget {
   const FollowersFollowingScreen({super.key});
@@ -14,20 +16,52 @@ class FollowersFollowingScreen extends StatefulWidget {
       _FollowersFollowingScreenState();
 }
 
-class _FollowersFollowingScreenState extends State<FollowersFollowingScreen> {
+class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
+    with TickerProviderStateMixin {
+  final FollowersFollowingController followController = Get.put(
+    FollowersFollowingController(),
+  );
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    int initialTab = Get.arguments?['initialTab'] ?? 0; // Default to first tab
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+      initialIndex: initialTab,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: AppColors.backgroundWhite,
-        appBar: AppBar(
+    return Scaffold(
+      backgroundColor: AppColors.backgroundWhite,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(110),
+        child: AppBar(
           backgroundColor: AppColors.backgroundWhite,
-          title: CSearchbar(hinttext: AppStrings.searchHint),
+          elevation: 0,
+          centerTitle: false,
+          titleSpacing: 0,
+          title: Padding(
+            padding: EdgeInsets.zero,
+            child: CSearchbar(hinttext: AppStrings.searchHint),
+          ),
           bottom: TabBar(
+            controller: _tabController,
             tabs: const [
               Tab(text: AppStrings.followers64),
               Tab(text: AppStrings.followings72),
@@ -44,32 +78,46 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen> {
             unselectedLabelColor: Colors.grey,
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: TabBarView(
-                children: [
-                  _buildUserList(textTheme, size, isFollower: true),
-                  _buildUserList(textTheme, size, isFollower: false),
-                ],
-              ),
-            ),
-          ],
-        ),
+      ),
+
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Obx(
+            () => followController.isLoading.value
+                ? Center(child: CircularProgressIndicator())
+                : _buildUserList(
+                    textTheme,
+                    size,
+                    followController.followers,
+                    true,
+                  ),
+          ),
+          Obx(
+            () => followController.isLoading.value
+                ? Center(child: CircularProgressIndicator())
+                : _buildUserList(
+                    textTheme,
+                    size,
+                    followController.following,
+                    false,
+                  ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildUserList(
     TextTheme textTheme,
-    Size size, {
-    required bool isFollower,
-  }) {
-    final itemCount = isFollower ? 6 : 7;
-
+    Size size,
+    RxList<User> users,
+    bool isFollower,
+  ) {
     return ListView.builder(
-      itemCount: itemCount,
+      itemCount: users.length,
       itemBuilder: (context, index) {
+        final user = users[index];
         return Container(
           margin: EdgeInsets.symmetric(
             horizontal: size.width * 0.04,
@@ -104,14 +152,14 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppStrings.userName,
+                            user.name,
                             style: textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w800,
                               fontSize: size.width * 0.04,
                             ),
                           ),
                           Text(
-                            AppStrings.userTitle,
+                            user.title,
                             style: textTheme.labelSmall?.copyWith(
                               fontWeight: FontWeight.w400,
                               color: AppColors.black,
@@ -121,31 +169,33 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen> {
                         ],
                       ),
                     ),
-                    isFollower
-                        ? ElevatedButton(
-                            onPressed: () {
-                              // Handle follow back
-                            },
-                            child: Text(
-                              AppStrings.followButton,
-                              style: TextStyle(fontSize: size.width * 0.032),
-                            ),
-                          )
-                        : OutlinedButton(
-                            onPressed: () {
-                              // Handle unfollow (optional)
-                            },
-                            style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: AppColors.black),
-                            ),
-                            child: Text(
-                              "Following",
-                              style: TextStyle(
-                                color: AppColors.black,
-                                fontSize: size.width * 0.032,
+                    Obx(
+                      () => user.isFollowing.value
+                          ? OutlinedButton(
+                              onPressed: () {
+                                followController.toggleFollow(user);
+                              },
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(color: AppColors.black),
+                              ),
+                              child: Text(
+                                AppStrings.following,
+                                style: TextStyle(
+                                  color: AppColors.black,
+                                  fontSize: size.width * 0.032,
+                                ),
+                              ),
+                            )
+                          : ElevatedButton(
+                              onPressed: () {
+                                followController.toggleFollow(user);
+                              },
+                              child: Text(
+                                AppStrings.followButton,
+                                style: TextStyle(fontSize: size.width * 0.032),
                               ),
                             ),
-                          ),
+                    ),
                   ],
                 ),
                 SizedBox(height: size.height * 0.015),

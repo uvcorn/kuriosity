@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/app_routes/app_routes.dart';
-import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_icons/app_icons.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
-import '../../components/action_button/action_button.dart';
-import '../../components/custom_checkbox/custom_checkbox.dart';
-import '../../components/custom_text_field/custom_text_field.dart';
-import '../../components/input_card_container/input_card_container.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_icons/app_icons.dart';
+import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../components/action_button/action_button.dart';
+import '../../../components/custom_checkbox/custom_checkbox.dart';
+import '../../../components/custom_text_field/custom_text_field.dart';
+import '../../../components/input_card_container/input_card_container.dart';
+import '../controllers/sign_in_controller.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
-}
-
-class _SignInScreenState extends State<SignInScreen> {
-  final TextEditingController _emailTEController = TextEditingController();
-  final TextEditingController _passwordTEController = TextEditingController();
-
-  bool _isPasswordObscure = true;
-  bool _rememberTerms = false;
-
-  @override
   Widget build(BuildContext context) {
+    final SignInController controller = Get.put(SignInController());
+
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
@@ -42,63 +33,54 @@ class _SignInScreenState extends State<SignInScreen> {
                 Text(AppStrings.welcomeMessage, style: textTheme.titleLarge),
                 SizedBox(height: size.height * 0.03),
 
-                // Form Card
                 InputCardContainer(
                   minHeight: 116,
                   children: [
                     CustomTextField(
-                      controller: _emailTEController,
+                      controller: controller.emailTEController,
                       labelText: AppStrings.email,
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    CustomTextField(
-                      controller: _passwordTEController,
-                      labelText: AppStrings.password,
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: _isPasswordObscure,
-                      enableValidation: true,
-                      onToggleObscureText: () {
-                        setState(() {
-                          _isPasswordObscure = !_isPasswordObscure;
-                        });
-                      },
+                    Obx(
+                      () => CustomTextField(
+                        controller: controller.passwordTEController,
+                        labelText: AppStrings.password,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: controller.isPasswordObscure.value,
+                        enableValidation: true,
+                        onToggleObscureText:
+                            controller.togglePasswordVisibility,
+                      ),
                     ),
                   ],
                 ),
 
                 SizedBox(height: size.height * 0.015),
 
-                // Remember Me + Forgot Password
-                CustomCheckbox(
-                  showCheckbox: true,
-                  value: _rememberTerms,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _rememberTerms = newValue ?? false;
-                    });
-                  },
-                  leadingText: AppStrings.rememberMe,
-                  leadingTextStyle: textTheme.bodySmall?.copyWith(
-                    color: AppColors.black,
+                Obx(
+                  () => CustomCheckbox(
+                    showCheckbox: true,
+                    value: controller.rememberTerms.value,
+                    onChanged: controller.toggleRememberMe,
+                    leadingText: AppStrings.rememberMe,
+                    leadingTextStyle: textTheme.bodySmall?.copyWith(
+                      color: AppColors.black,
+                    ),
+                    clickableText: AppStrings.forgotPassword,
+                    clickableTextStyle: textTheme.bodyMedium,
+                    useSpaceBetweenAlignment: true,
+                    onLinkTap: controller.goToForgotPassword,
                   ),
-                  clickableText: AppStrings.forgotPassword,
-                  clickableTextStyle: textTheme.bodyMedium,
-                  useSpaceBetweenAlignment: true,
-                  onLinkTap: () =>
-                      Get.offAllNamed(AppRoutes.forgotPasswordScreen),
                 ),
 
                 SizedBox(height: size.height * 0.06),
 
-                // Continue Button
                 ActionButton(
                   title: AppStrings.continueButton,
-                  onPressed: () => Get.offAllNamed(AppRoutes.homeScreen),
+                  onPressed: controller.signIn,
                 ),
 
                 SizedBox(height: size.height * 0.06),
-
-                // OR Separator
                 Row(
                   children: [
                     const Expanded(
@@ -127,26 +109,25 @@ class _SignInScreenState extends State<SignInScreen> {
 
                 SizedBox(height: size.height * 0.04),
 
-                // Social Buttons
                 ActionButton(
                   title: AppStrings.continueWithApple,
-                  onPressed: () {},
+                  onPressed: controller.continueWithApple,
                   icon: AppIcons.apple,
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 ActionButton(
                   title: AppStrings.continueWithFacebook,
-                  onPressed: () {},
+                  onPressed: controller.continueWithFacebook,
                   icon: AppIcons.facebook,
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 ActionButton(
                   title: AppStrings.continueWithGoogle,
-                  onPressed: () {},
+                  onPressed: controller.continueWithGoogle,
                   icon: AppIcons.google,
                   backgroundColor: Colors.white,
                   textColor: Colors.black,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../../data/models/workshop.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
 
 class AttendedWorkshopCard extends StatelessWidget {
-  const AttendedWorkshopCard({super.key});
+  final Workshop workshop;
+
+  const AttendedWorkshopCard({super.key, required this.workshop});
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +28,14 @@ class AttendedWorkshopCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            AppStrings.attendTitle,
+            workshop.title,
             style: textTheme.bodySmall?.copyWith(
               color: AppColors.black,
               fontWeight: FontWeight.w600,
             ),
           ),
           Text(
-            AppStrings.timeduration,
+            workshop.time,
             style: textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
           ),
         ],

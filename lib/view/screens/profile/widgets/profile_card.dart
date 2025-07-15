@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuriosity/core/app_routes/app_routes.dart';
 
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings.dart/app_strings.dart';
@@ -40,10 +40,21 @@ class ProfileCard extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            GestureDetector(onTap: () {}, child: Text(AppStrings.followButton)),
-            const SizedBox(width: 8),
             GestureDetector(
               onTap: () {},
+              child: Text(
+                AppStrings.followButton,
+                style: textTheme.labelSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.black,
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoutes.chatsScreen);
+              },
               child: CustomImage(imageSrc: AppIcons.chat),
             ),
           ],
@@ -62,7 +73,17 @@ class ProfileCard extends StatelessWidget {
                 AppStrings.followers,
               ),
             ),
-            _buildStat(textTheme, AppStrings.num, AppStrings.following),
+            GestureDetector(
+              onTap: () => Get.toNamed(
+                AppRoutes.followersFollowingScreen,
+                arguments: {'initialTab': 1},
+              ),
+              child: _buildStat(
+                textTheme,
+                AppStrings.num,
+                AppStrings.following,
+              ),
+            ),
           ],
         ),
         const Divider(color: AppColors.lightGray),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../../data/models/workshop.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
 
 class HostCard extends StatelessWidget {
-  const HostCard({super.key});
+  final Workshop workshop;
+  const HostCard({super.key, required this.workshop});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class HostCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              AppStrings.workshopTitle,
+              workshop.title,
               style: textTheme.bodySmall?.copyWith(
                 color: AppColors.black,
                 fontWeight: FontWeight.w600,
@@ -34,28 +35,31 @@ class HostCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              AppStrings.time,
+              workshop.time,
               style: textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: AppColors.black,
               ),
             ),
-            Container(
-              height: 30,
-              width: 135,
-              margin: const EdgeInsets.only(right: 8),
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-              decoration: BoxDecoration(
-                color: AppColors.lightBlueBackground,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  AppStrings.workshopTime,
-                  style: textTheme.bodySmall?.copyWith(color: AppColors.black),
+            if (workshop.workshopsTime != null)
+              Container(
+                height: 30,
+                width: 135,
+                margin: const EdgeInsets.only(right: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                decoration: BoxDecoration(
+                  color: AppColors.lightBlueBackground,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Text(
+                    workshop.workshopsTime!,
+                    style: textTheme.bodySmall?.copyWith(
+                      color: AppColors.black,
+                    ),
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

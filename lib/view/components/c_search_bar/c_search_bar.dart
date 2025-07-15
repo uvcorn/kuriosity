@@ -8,15 +8,17 @@ class CSearchbar extends StatelessWidget {
   const CSearchbar({
     super.key,
     required this.hinttext,
+    this.hasBackground = false,
     this.background = AppColors.backgroundLightGray,
   });
   final String hinttext;
   final Color background;
+  final bool hasBackground;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Container(
-      // color: background,
+      color: hasBackground ? AppColors.white : null,
       height: 50,
       padding: const EdgeInsets.fromLTRB(8, 0, 16, 12),
       child: Container(

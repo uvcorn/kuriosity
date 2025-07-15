@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'controller_binder.dart';
 import 'core/app_routes/app_routes.dart';
 import 'utils/app_theme/app_theme.dart';
 import 'view/screens/splash_screen/splash_screens.dart';
@@ -17,6 +17,7 @@ class _WildCurosityState extends State<WildCurosity> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      initialBinding: ControllerBinder(),
       theme: AppTheme.lightThemeData,
       home: SplashScreen(),
       getPages: AppRoutes.routes,

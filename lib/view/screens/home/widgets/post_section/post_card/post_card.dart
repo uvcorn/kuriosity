@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
-import '../../../../../../core/app_routes/app_routes.dart';
-import '../../../../../../utils/app_icons/app_icons.dart';
+import '../../../../../components/bottom_nav_bar/bottom_nav_controller.dart';
+import '../../../controllers/post_card_controller.dart';
 import '../../comment_section/comment_draggable_sheet.dart';
 import '../replanet_menu.dart';
 import '../share_menu.dart';
@@ -25,15 +25,18 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
-  bool _showReactionOptions = false;
-  late String _selectedReactionIconPath;
   VideoPlayerController? _videoController;
   bool _isImageLoading = true;
+
+  late final PostCardController _postCardController;
 
   @override
   void initState() {
     super.initState();
-    _selectedReactionIconPath = AppIcons.handshake;
+    _postCardController = Get.put(
+      PostCardController(),
+      tag: widget.item.username + widget.item.caption.hashCode.toString(),
+    ); // Use a unique tag
 
     if (widget.item.videoUrl != null && widget.item.videoUrl!.isNotEmpty) {
       _videoController =
@@ -57,20 +60,10 @@ class _PostCardState extends State<PostCard> {
   @override
   void dispose() {
     _videoController?.dispose();
+    Get.delete<PostCardController>(
+      tag: widget.item.username + widget.item.caption.hashCode.toString(),
+    ); // Dispose of the controller
     super.dispose();
-  }
-
-  void _toggleReactionOptions() {
-    setState(() {
-      _showReactionOptions = !_showReactionOptions;
-    });
-  }
-
-  void _selectReaction(String iconPath) {
-    setState(() {
-      _selectedReactionIconPath = iconPath;
-      _showReactionOptions = false;
-    });
   }
 
   @override
@@ -93,7 +86,7 @@ class _PostCardState extends State<PostCard> {
                 profileUrl: item.userImage,
                 showFollowButton: followButton,
                 onProfileTap: () {
-                  Get.toNamed(AppRoutes.profileScreen);
+                  Get.find<BottomNavController>().changeIndex(4);
                 },
                 onTap: () {
                   showModalBottomSheet(
@@ -113,44 +106,53 @@ class _PostCardState extends State<PostCard> {
                 CaptionWithLinkPreview(caption: item.caption),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                child: ReactionRow(
-                  selectedReactionIconPath: _selectedReactionIconPath,
-                  likes: item.likes,
-                  comments: item.comments,
-                  seeds: item.seeds,
-                  shares: item.shares,
-                  onReactionTap: _toggleReactionOptions,
-                  onCommentTap: () {
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      builder: (_) => const CommentDraggableSheet(comments: []),
-                    );
-                  },
-                  onReplanetTap: () {
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      builder: (BuildContext context) => const ReplanetMenu(),
-                    );
-                  },
-                  onShareTap: () {
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      builder: (BuildContext context) => const ShareMenu(),
-                    );
-                  },
+                child: Obx(
+                  () => ReactionRow(
+                    selectedReactionIconPath:
+                        _postCardController.selectedReactionIconPath.value,
+                    likes: item.likes,
+                    comments: item.comments,
+                    seeds: item.seeds,
+                    shares: item.shares,
+                    onReactionTap: _postCardController.toggleReactionOptions,
+                    onCommentTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (_) =>
+                            const CommentDraggableSheet(comments: []),
+                      );
+                    },
+                    onReplanetTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (BuildContext context) => const ReplanetMenu(),
+                      );
+                    },
+                    onShareTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (BuildContext context) => const ShareMenu(),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
           ),
 
-          if (_showReactionOptions)
-            ReactionOptionsPopup(onSelectReaction: _selectReaction),
+          Obx(
+            () => _postCardController.showReactionOptions.value
+                ? ReactionOptionsPopup(
+                    onSelectReaction: _postCardController.selectReaction,
+                  )
+                : const SizedBox.shrink(),
+          ),
         ],
       ),
     );

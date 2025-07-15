@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/app_routes/app_routes.dart';
+import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_strings.dart/app_strings.dart';
 import '../../components/action_button/action_button.dart';
 
@@ -16,40 +17,48 @@ class _SecendOnbordingScreenState extends State<SecendOnbordingScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       body: SafeArea(
         child: ConstrainedBox(
           constraints: BoxConstraints(
-            minHeight: screenHeight - MediaQuery.of(context).padding.top,
+            minHeight: size.height - MediaQuery.of(context).padding.top,
           ),
           child: IntrinsicHeight(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 40), // Better than hardcoded 94
+                  SizedBox(height: size.height * 0.05),
                   Text(
                     AppStrings.ecoInfluencerIntro,
                     style: textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: size.height * 0.03),
                   Text(AppStrings.step1Title, style: textTheme.bodyMedium),
-                  const SizedBox(height: 16),
+                  SizedBox(height: size.height * 0.02),
                   Text(AppStrings.step1Description, style: textTheme.bodySmall),
-                  const SizedBox(height: 24),
-                  Divider(color: Colors.grey[300], indent: 5, endIndent: 5),
-                  const SizedBox(height: 24),
+                  SizedBox(height: size.height * 0.03),
+                  Divider(
+                    color: AppColors.lightGray,
+                    indent: size.width * 0.012,
+                    endIndent: size.width * 0.012,
+                  ),
+                  SizedBox(height: size.height * 0.03),
                   Text(AppStrings.step2Title, style: textTheme.bodyMedium),
-                  const SizedBox(height: 16),
+                  SizedBox(height: size.height * 0.02),
                   Text(AppStrings.step2Description, style: textTheme.bodySmall),
-                  const SizedBox(height: 24),
-                  Divider(color: Colors.grey[300], indent: 5, endIndent: 5),
-                  const SizedBox(height: 24),
+                  SizedBox(height: size.height * 0.03),
+                  Divider(
+                    color: AppColors.lightGray,
+                    indent: size.width * 0.012,
+                    endIndent: size.width * 0.012,
+                  ),
+                  SizedBox(height: size.height * 0.03),
                   Text(AppStrings.step3Title, style: textTheme.bodyMedium),
-                  const SizedBox(height: 16),
+                  SizedBox(height: size.height * 0.02),
                   Text(AppStrings.step3Description, style: textTheme.bodySmall),
 
                   const Spacer(),
@@ -58,7 +67,7 @@ class _SecendOnbordingScreenState extends State<SecendOnbordingScreen> {
                     onPressed: () =>
                         Get.offAllNamed(AppRoutes.thirdOnbordingScreen),
                   ),
-                  const SizedBox(height: 57),
+                  SizedBox(height: size.height * 0.04),
                 ],
               ),
             ),

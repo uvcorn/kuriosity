@@ -32,4 +32,17 @@ class AppIcons {
   static const String adddocument = "$basePath/add_document.svg";
   static const String image = "$basePath/image.svg";
   static const String hosttag = "$basePath/host.svg";
+
+  ///====================== BottomNavBar =========================
+  static const String selectedaccount = "$basePath/selected_account.svg";
+  static const String selectedbell = "$basePath/selected_bell.svg";
+  static const String selectededit = "$basePath/selected_edit.svg";
+  static const String selectedhome = "$basePath/selected_home.svg";
+  static const String selectedsmile = "$basePath/selected_smile.svg";
+
+  static const String unselectedaccount = "$basePath/unselected_account.svg";
+  static const String unselectedbell = "$basePath/unselected_bell.svg";
+  static const String unselectededit = "$basePath/unselected_edit.svg";
+  static const String unselectedhome = "$basePath/unselected_home.svg";
+  static const String unselectedsmile = "$basePath/unselected_smile.svg";
 }

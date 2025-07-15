@@ -72,7 +72,6 @@ class _CommentItemState extends State<CommentItem> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Avatar and Comment Body
               CircleAvatar(
                 radius: 20,
                 child: ClipOval(
@@ -129,11 +128,10 @@ class _CommentItemState extends State<CommentItem> {
           ),
         ),
 
-        // Reaction options positioned at bottom left of comment bubble
         if (_showReactionOptions)
           Positioned(
             bottom: 0,
-            left: 72, // Adjust this depending on avatar + spacing width
+            left: 72,
             child: Material(
               elevation: 2,
               borderRadius: BorderRadius.circular(30),

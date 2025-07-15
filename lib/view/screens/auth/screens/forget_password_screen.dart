@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../components/action_button/action_button.dart';
+import '../../../components/custom_text_field/custom_text_field.dart';
+import '../../../components/input_card_container/input_card_container.dart';
+import '../controllers/forget_password_controller.dart';
 
-import '../../../core/app_routes/app_routes.dart';
-import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
-import '../../components/action_button/action_button.dart';
-import '../../components/custom_text_field/custom_text_field.dart';
-import '../../components/input_card_container/input_card_container.dart';
-
-class ForgotPasswordScreen extends StatefulWidget {
+class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
 
   @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
-}
-
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  final TextEditingController _emailTEController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+    final ForgotPasswordController controller = Get.put(
+      ForgotPasswordController(),
+    );
+
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
@@ -39,7 +35,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   children: [
                     SizedBox(height: size.height * 0.08),
 
-                    // Title
                     Text(
                       AppStrings.forgotPasswordHeader,
                       style: textTheme.titleLarge,
@@ -47,7 +42,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                     SizedBox(height: size.height * 0.025),
 
-                    // Description
                     Text(
                       AppStrings.forgotPasswordDescription,
                       style: textTheme.bodySmall?.copyWith(
@@ -57,12 +51,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                     SizedBox(height: size.height * 0.05),
 
-                    // Email Input
                     InputCardContainer(
                       minHeight: 58,
                       children: [
                         CustomTextField(
-                          controller: _emailTEController,
+                          controller: controller.emailTEController,
                           labelText: AppStrings.email,
                         ),
                       ],
@@ -70,11 +63,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                     const Spacer(),
 
-                    // Continue Button
                     ActionButton(
                       title: AppStrings.getVerificationCode,
-                      onPressed: () =>
-                          Get.offAllNamed(AppRoutes.otpVerifyScreen),
+                      onPressed: controller.getVerificationCode,
                     ),
 
                     SizedBox(height: size.height * 0.1),

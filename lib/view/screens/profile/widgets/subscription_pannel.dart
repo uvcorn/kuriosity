@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../controller/attended_workshop_controller.dart';
 import 'attended_workshop_card.dart';
 
 Widget buildSubscriptionPannel(TextTheme textTheme, bool isPremium) {
+  final AttendedWorkshopController attendedWorkshopController = Get.put(
+    AttendedWorkshopController(),
+  );
   return isPremium
       ? Column(
           children: [
@@ -15,11 +20,19 @@ Widget buildSubscriptionPannel(TextTheme textTheme, bool isPremium) {
                 color: AppColors.backgroundLightGray,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: 4,
-                separatorBuilder: (context, index) => const SizedBox(width: 12),
-                itemBuilder: (context, index) => const AttendedWorkshopCard(),
+              child: Obx(
+                () => ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount:
+                      attendedWorkshopController.attendedWorkshops.length,
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 12),
+                  itemBuilder: (context, index) {
+                    final workshop =
+                        attendedWorkshopController.attendedWorkshops[index];
+                    return AttendedWorkshopCard(workshop: workshop);
+                  },
+                ),
               ),
             ),
           ],

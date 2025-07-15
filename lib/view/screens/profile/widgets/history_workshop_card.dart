@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../../data/models/workshop.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_const/app_const.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
 import '../../../components/custom_netwrok_image/custom_network_image.dart';
 
-class HistoryCard extends StatelessWidget {
-  const HistoryCard({super.key});
+class HistoryWorkshopCard extends StatelessWidget {
+  final Workshop workshop;
+  const HistoryWorkshopCard({super.key, required this.workshop});
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,23 @@ class HistoryCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          ClipRRect(
-            child: CustomNetworkImage(
-              imageUrl: AppConstants.flowerbutterfly,
-              height: 100,
-              width: 140,
-              fit: BoxFit.cover,
-            ),
-          ),
+          workshop.imageUrl != null
+              ? ClipRRect(
+                  child: CustomNetworkImage(
+                    imageUrl: workshop.imageUrl!,
+                    height: 100,
+                    width: 140,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : SizedBox.shrink(),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  AppStrings.workshopTitle,
+                  workshop.title,
                   style: textTheme.bodySmall?.copyWith(
                     color: AppColors.black,
                     fontWeight: FontWeight.w600,
@@ -45,7 +47,7 @@ class HistoryCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  AppStrings.time,
+                  workshop.time,
                   style: textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),

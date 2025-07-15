@@ -28,7 +28,7 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
   void initState() {
     super.initState();
 
-    int initialTab = Get.arguments?['initialTab'] ?? 0; // Default to first tab
+    int initialTab = Get.arguments?['initialTab'] ?? 0;
     _tabController = TabController(
       length: 2,
       vsync: this,
@@ -155,7 +155,6 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
                             user.name,
                             style: textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w800,
-                              fontSize: size.width * 0.04,
                             ),
                           ),
                           Text(
@@ -163,7 +162,6 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
                             style: textTheme.labelSmall?.copyWith(
                               fontWeight: FontWeight.w400,
                               color: AppColors.black,
-                              fontSize: size.width * 0.03,
                             ),
                           ),
                         ],
@@ -180,9 +178,9 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
                               ),
                               child: Text(
                                 AppStrings.following,
-                                style: TextStyle(
+                                style: textTheme.bodySmall?.copyWith(
                                   color: AppColors.black,
-                                  fontSize: size.width * 0.032,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                             )
@@ -190,9 +188,15 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
                               onPressed: () {
                                 followController.toggleFollow(user);
                               },
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: Size(95, 32),
+                              ),
                               child: Text(
                                 AppStrings.followButton,
-                                style: TextStyle(fontSize: size.width * 0.032),
+                                style: textTheme.bodySmall?.copyWith(
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                             ),
                     ),

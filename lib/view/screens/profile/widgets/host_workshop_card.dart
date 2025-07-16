@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../data/models/workshop.dart';
+import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 
 class HostCard extends StatelessWidget {
-  final Workshop workshop;
+  final ProfileWorkshopModel workshop;
   const HostCard({super.key, required this.workshop});
 
   @override

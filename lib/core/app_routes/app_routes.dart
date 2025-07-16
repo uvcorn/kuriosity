@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
-import 'package:kuriosity/view/components/bottom_nav_bar/bottom_nav_bar.dart';
+import '../../view/components/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../view/screens/auth/screens/forget_password_screen.dart';
 import '../../view/screens/auth/screens/otp_verify_screen.dart';
 import '../../view/screens/auth/screens/phone_input_screen.dart';
@@ -9,6 +9,9 @@ import '../../view/screens/auth/screens/reset_password_screen.dart';
 import '../../view/screens/auth/screens/sign_in_screen.dart';
 import '../../view/screens/auth/screens/sign_up_screen.dart';
 import '../../view/screens/chat/screens/chats_list_screen.dart';
+import '../../view/screens/group/models/workshop.dart';
+import '../../view/screens/group/screens/group_screen.dart';
+import '../../view/screens/group/screens/workshop_details_screen.dart';
 import '../../view/screens/home/screens/home_screen.dart';
 import '../../view/screens/chat/screens/chats_screen.dart';
 import '../../view/screens/onboarding/first_onbording_screen.dart';
@@ -34,8 +37,10 @@ class AppRoutes {
   static const String phoneInputScreen = "/PhoneInputScreen";
 
   ///===========================Home==========================
-  static const String homeScreen = "/HomeScreen";
+
   static const String bottomNavBar = "/BottomNavBar";
+  static const String homeScreen = "/HomeScreen";
+  static const String groupScreen = "/GroupScreen";
 
   ///===========================Chats==========================
   static const String chatsListScreen = "/ChatsListScreen";
@@ -44,6 +49,10 @@ class AppRoutes {
   ///===========================Profile==========================
   static const String profileScreen = "/ProfileScreen";
   static const String followersFollowingScreen = "/FollowersFollowingScreen";
+
+  ///===========================Workshop==========================
+  static const String workshopDetailScreen = "/WorkshopDetailScreen";
+
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -60,8 +69,9 @@ class AppRoutes {
     GetPage(name: phoneInputScreen, page: () => PhoneInputScreen()),
 
     ///===========================Home==========================
-    GetPage(name: homeScreen, page: () => HomeScreen()),
     GetPage(name: bottomNavBar, page: () => BottomNavBar()),
+    GetPage(name: homeScreen, page: () => HomeScreen()),
+    GetPage(name: groupScreen, page: () => GroupScreen()),
 
     ///===========================Chats==========================
     GetPage(name: chatsListScreen, page: () => ChatsListScreen()),
@@ -72,6 +82,17 @@ class AppRoutes {
     GetPage(
       name: followersFollowingScreen,
       page: () => FollowersFollowingScreen(),
+    ),
+
+    ///===========================Workshop==========================
+    GetPage(
+      name: workshopDetailScreen,
+      page: () {
+        final workshop =
+            Get.arguments
+                as Workshop; // This line retrieves the 'workshop' instance
+        return WorkshopDetailScreen(workshop: workshop);
+      },
     ),
   ];
 }

@@ -158,7 +158,7 @@ class _NewMessageDialogState extends State<NewMessageDialog> {
                 onPressed: _selectedUsers.isEmpty
                     ? null
                     : () {
-                        Navigator.of(context).pop();
+                        Get.toNamed(AppRoutes.chatsScreen);
                       },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,

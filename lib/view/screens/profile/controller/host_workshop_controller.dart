@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
 
-import '../../../../data/models/workshop.dart';
+import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_strings.dart/app_strings.dart';
 
 class HostWorkshopController extends GetxController {
-  final RxList<Workshop> hostWorkshops = <Workshop>[].obs;
+  final RxList<ProfileWorkshopModel> hostWorkshops =
+      <ProfileWorkshopModel>[].obs;
   @override
   void onInit() {
     super.onInit();
     hostWorkshops.assignAll([
-      Workshop(
+      ProfileWorkshopModel(
         title: AppStrings.workshopTitle,
         time: AppStrings.time,
         workshopsTime: AppStrings.workshopTime,

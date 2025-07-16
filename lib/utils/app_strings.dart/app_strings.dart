@@ -165,4 +165,32 @@ class AppStrings {
   static const String group = 'Group';
   static const String notific = 'Noti';
   static const String profile = 'Profile';
+
+  //group
+  static const String searchWorkshophint = 'Search for workshops';
+  static const String noworkshop = 'No workshops in this category yet!';
+  static const String rating = '4.8';
+  static const String full = 'Full';
+  static const String regestration = 'Registration';
+  static const String workshopfinished = 'Workshop Finished';
+  static const String register = 'Register';
+  static const String workshopdescription = 'Workshop description';
+  static const String workshopdescriptiondetails =
+      "This workshop will guide you through the essentials of adopting a climate-healthy diet. Learn about sustainable food choices, meal planning, and how to reduce your carbon footprint through your daily nutrition. Our professional nutritionist will provide practical tips and answer all your questions.";
+
+  static const String whotitle = 'Who is this workshop for';
+  static const String whotitle1 = 'Switch to a climate-healthy diet';
+  static const String whotitle2 =
+      'Switch to a climate-healthy diet with a professional nutritionist';
+  static const String whotitle3 =
+      'Switch to a climate-healthy diet with a professional';
+  static const String basicres = 'Available for premium users';
+  static const String becomeprem = 'Become a premium user';
+
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
 }

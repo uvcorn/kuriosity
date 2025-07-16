@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_icons/app_icons.dart';
 import '../../../utils/app_strings.dart/app_strings.dart';
+import '../../screens/group/screens/group_screen.dart';
 import '../../screens/home/screens/home_screen.dart';
 import '../../screens/profile/screens/profile_screen.dart';
 import '../custom_image/custom_image.dart';
@@ -18,7 +19,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> _screens = [
     HomeScreen(),
-    HomeScreen(),
+    GroupScreen(),
     HomeScreen(),
     HomeScreen(),
     ProfileScreen(),

@@ -1,10 +1,10 @@
-class Workshop {
+class ProfileWorkshopModel {
   final String title;
   final String time;
   final String? imageUrl;
   final String? workshopsTime;
 
-  Workshop({
+  ProfileWorkshopModel({
     required this.title,
     required this.time,
     this.imageUrl,

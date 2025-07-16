@@ -45,4 +45,17 @@ class AppIcons {
   static const String unselectededit = "$basePath/unselected_edit.svg";
   static const String unselectedhome = "$basePath/unselected_home.svg";
   static const String unselectedsmile = "$basePath/unselected_smile.svg";
+
+  ///====================== Group =========================
+  static const String selectedallcate = "$basePath/selected_molecules.svg";
+  static const String selectedshopcate = "$basePath/selected_cart.svg";
+  static const String selectedfoodcate = "$basePath/selected_food.svg";
+  static const String selectedtreecate = "$basePath/selected_trees.svg";
+  static const String selecteddrivingcate = "$basePath/selected_car.svg";
+
+  static const String unselectedallcate = "$basePath/unselected_molecules.svg";
+  static const String unselectedshopcate = "$basePath/unselected_cart.svg";
+  static const String unselectedfoodcate = "$basePath/unselected_food.svg";
+  static const String unselectedtreecate = "$basePath/unselected_trees.svg";
+  static const String unselecteddrivingcate = "$basePath/unselected_car.svg";
 }

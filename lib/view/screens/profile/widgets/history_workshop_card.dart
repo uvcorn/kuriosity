@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../data/models/workshop.dart';
+import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../components/custom_netwrok_image/custom_network_image.dart';
 
 class HistoryWorkshopCard extends StatelessWidget {
-  final Workshop workshop;
+  final ProfileWorkshopModel workshop;
   const HistoryWorkshopCard({super.key, required this.workshop});
 
   @override

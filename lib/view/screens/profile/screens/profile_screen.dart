@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../data/models/workshop.dart';
+import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings.dart/app_strings.dart';
@@ -102,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(height: size.height * 0.02),
                         HostCard(
-                          workshop: Workshop(
+                          workshop: ProfileWorkshopModel(
                             title: AppStrings.workshopTitle,
                             time: AppStrings.time,
                             workshopsTime: AppStrings.workshopTime,

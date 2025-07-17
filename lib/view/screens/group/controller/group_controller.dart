@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings.dart/app_strings.dart';
-import '../models/workshop.dart';
+import '../models/workshop_model.dart';
 
 class GroupController extends GetxController {
   final _selectedTopCategoryIndex = 0.obs;
@@ -40,8 +40,8 @@ class GroupController extends GetxController {
     },
   ];
 
-  final List<Workshop> _allWorkshops = [
-    Workshop(
+  final List<WorkshopModel> _allWorkshops = [
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -53,7 +53,7 @@ class GroupController extends GetxController {
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
       category: WorkshopCategory.foodAndDiet,
     ),
-    Workshop(
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -65,7 +65,7 @@ class GroupController extends GetxController {
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
       category: WorkshopCategory.drivingAndCommuting,
     ),
-    Workshop(
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -78,7 +78,7 @@ class GroupController extends GetxController {
       isFinished: true,
       category: WorkshopCategory.foodAndDiet,
     ),
-    Workshop(
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -90,7 +90,7 @@ class GroupController extends GetxController {
       category: WorkshopCategory.shoppingAndBrands,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
     ),
-    Workshop(
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -102,7 +102,7 @@ class GroupController extends GetxController {
       category: WorkshopCategory.shoppingAndBrands,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
     ),
-    Workshop(
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -114,7 +114,7 @@ class GroupController extends GetxController {
       category: WorkshopCategory.shoppingAndBrands,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
     ),
-    Workshop(
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -126,7 +126,7 @@ class GroupController extends GetxController {
       category: WorkshopCategory.homeFarming,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
     ),
-    Workshop(
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -139,7 +139,7 @@ class GroupController extends GetxController {
       category: WorkshopCategory.homeFarming,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
     ),
-    Workshop(
+    WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.time,
@@ -153,7 +153,7 @@ class GroupController extends GetxController {
     ),
   ];
 
-  RxList<Workshop> get filteredWorkshops => _allWorkshops
+  RxList<WorkshopModel> get filteredWorkshops => _allWorkshops
       .where((workshop) {
         if (selectedTopCategoryIndex == 0) {
           return true;

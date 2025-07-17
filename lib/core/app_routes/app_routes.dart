@@ -9,7 +9,7 @@ import '../../view/screens/auth/screens/reset_password_screen.dart';
 import '../../view/screens/auth/screens/sign_in_screen.dart';
 import '../../view/screens/auth/screens/sign_up_screen.dart';
 import '../../view/screens/chat/screens/chats_list_screen.dart';
-import '../../view/screens/group/models/workshop.dart';
+import '../../view/screens/group/models/workshop_model.dart';
 import '../../view/screens/group/screens/group_screen.dart';
 import '../../view/screens/group/screens/workshop_details_screen.dart';
 import '../../view/screens/home/screens/home_screen.dart';
@@ -90,7 +90,7 @@ class AppRoutes {
       page: () {
         final workshop =
             Get.arguments
-                as Workshop; // This line retrieves the 'workshop' instance
+                as WorkshopModel; // This line retrieves the 'workshop' instance
         return WorkshopDetailScreen(workshop: workshop);
       },
     ),

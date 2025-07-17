@@ -6,7 +6,7 @@ enum WorkshopCategory {
   drivingAndCommuting,
 }
 
-class Workshop {
+class WorkshopModel {
   final String title;
   final String instructorName;
   final String date;
@@ -19,7 +19,7 @@ class Workshop {
   final bool isFinished;
   final WorkshopCategory category;
 
-  const Workshop({
+  const WorkshopModel({
     required this.title,
     required this.instructorName,
     required this.date,

@@ -187,10 +187,13 @@ class AppStrings {
   static const String basicres = 'Available for premium users';
   static const String becomeprem = 'Become a premium user';
 
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
+  static const String meetthehost = 'Meet the host';
+  static const String location = 'London';
+  static const String hostdescep =
+      'Registered Dietitian with a passion for developing a sustainable and healthy world…..one plate at a time 🍎🌍🌱';
+  static const String workshopreviewtitle = 'What other people saying';
+  static const String workshopreviewdescrip = '"What other people saying"';
+  static const String materialtitle = 'Lorem ipsum dolor sit amet, consec';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
 }

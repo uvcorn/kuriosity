@@ -6,8 +6,9 @@ import 'package:shimmer/shimmer.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String imageUrl;
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
+  final double? size;
   final Border? border;
   final BorderRadius? borderRadius;
   final BoxShape boxShape;
@@ -22,21 +23,24 @@ class CustomNetworkImage extends StatelessWidget {
     this.colorFilter,
     required this.imageUrl,
     this.backgroundColor,
-    required this.height,
-    required this.width,
+    this.height,
+    this.width,
     this.border,
     this.borderRadius,
     this.boxShape = BoxShape.rectangle,
-    this.fit, // Initialize fit
+    this.fit,
+    this.size, // Initialize fit
   });
 
   @override
   Widget build(BuildContext context) {
+    final double resolvedHeight = height ?? size ?? 100;
+    final double resolvedWidth = width ?? size ?? 100;
     return CachedNetworkImage(
       imageUrl: imageUrl,
       imageBuilder: (context, imageProvider) => Container(
-        height: height,
-        width: width,
+        height: resolvedHeight,
+        width: resolvedWidth,
         decoration: BoxDecoration(
           border: border,
           borderRadius: borderRadius,

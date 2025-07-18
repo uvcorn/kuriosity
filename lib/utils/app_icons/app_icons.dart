@@ -61,4 +61,6 @@ class AppIcons {
 
   ///====================== Workshop Details =========================
   static const String extarnalshare = "$basePath/extarnal_share.svg";
+  static const String rocket = "$basePath/rocket.svg";
+  static const String users = "$basePath/users.svg";
 }

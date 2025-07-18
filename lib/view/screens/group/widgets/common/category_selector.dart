@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../utils/app_colors/app_colors.dart';
-import '../../../components/custom_image/custom_image.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../../../../components/custom_image/custom_image.dart';
 
 class CategorySelector extends StatelessWidget {
   final List<Map<String, dynamic>> topCategories;

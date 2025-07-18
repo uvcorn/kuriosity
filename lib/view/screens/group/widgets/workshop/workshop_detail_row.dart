@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../../core/app_routes/app_routes.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../review_Section/star_display.dart';
 
 class WorkshopDetailsRow extends StatelessWidget {
   final String date;
@@ -62,42 +64,17 @@ class WorkshopDetailsRow extends StatelessWidget {
                       .toList(),
                 ),
                 SizedBox(height: 8),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star_rounded,
-                      color: AppColors.primary,
-                      size: Get.width * 0.045,
-                    ),
-                    Icon(
-                      Icons.star_rounded,
-                      color: AppColors.primary,
-                      size: Get.width * 0.045,
-                    ),
-                    Icon(
-                      Icons.star_rounded,
-                      color: AppColors.primary,
-                      size: Get.width * 0.045,
-                    ),
-                    Icon(
-                      Icons.star_rounded,
-                      color: AppColors.primary,
-                      size: Get.width * 0.045,
-                    ),
-                    Icon(
-                      Icons.star_half_rounded,
-                      color: AppColors.primary,
-                      size: Get.width * 0.045,
-                    ),
-                    SizedBox(width: Get.width * 0.01),
-                    Text(
-                      "4.8", // Display actual rating value
-                      style: textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.black,
-                      ),
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(AppRoutes.reviewScreen);
+                  },
+                  child: StarDisplay(
+                    rating: 4.8,
+                    iconSize: 20,
+                    color: AppColors.primary,
+                    showValue: true,
+                    useRoundedIcons: true,
+                  ),
                 ),
               ],
             ),

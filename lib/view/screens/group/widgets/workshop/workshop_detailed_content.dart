@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
-import '../../../components/custom_netwrok_image/custom_network_image.dart';
-import 'participant_avatar_stack.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../common/participant_avatar_stack.dart';
+import '../common/user_avatar_info_tile.dart';
 
 class WorkshopDetailedContent extends StatelessWidget {
   final String title;
@@ -45,26 +44,20 @@ class WorkshopDetailedContent extends StatelessWidget {
               ),
             ),
             SizedBox(height: Get.height * 0.01),
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: Get.width * 0.04,
-                  child: ClipOval(
-                    child: CustomNetworkImage(
-                      imageUrl: profileImageUrl,
-                      height: Get.width * 0.08,
-                      width: Get.width * 0.08,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                SizedBox(width: Get.width * 0.02),
+
+            UserAvatarInfoTile(
+              imageUrl: profileImageUrl,
+              avatarRadius: Get.width * 0.04,
+              infoTexts: [
                 Text(
                   instructorName,
-                  style: textTheme.bodySmall?.copyWith(color: AppColors.black),
+                  style: textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),
+            SizedBox(height: Get.height * 0.003),
             Text(
               date,
               style: textTheme.bodySmall?.copyWith(color: AppColors.black),

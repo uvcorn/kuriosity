@@ -18,6 +18,9 @@ class WorkshopModel {
   final List<String>? fullImageUrls;
   final bool isFinished;
   final WorkshopCategory category;
+  final bool isCurrentlyProgressing;
+  final bool isUpcoming;
+  final bool isHostedByUser;
 
   const WorkshopModel({
     required this.title,
@@ -31,5 +34,8 @@ class WorkshopModel {
     required this.profileImage2Url,
     this.isFinished = false,
     required this.category,
+    this.isCurrentlyProgressing = false,
+    this.isUpcoming = false,
+    this.isHostedByUser = false,
   });
 }

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
 import 'workshop_detailed_content.dart';
 import 'workshop_image_content.dart';
 import 'workshop_page_indicator.dart';

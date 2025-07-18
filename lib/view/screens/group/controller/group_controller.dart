@@ -52,6 +52,7 @@ class GroupController extends GetxController {
       profileImage2Url: AppConstants.profile2Image,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
       category: WorkshopCategory.foodAndDiet,
+      isCurrentlyProgressing: true,
     ),
     WorkshopModel(
       title: AppStrings.workshopTitle,
@@ -59,11 +60,12 @@ class GroupController extends GetxController {
       date: AppStrings.time,
       tags: ["Single workshop"],
       participants: 7,
-      spacesLeft: 0,
+      spacesLeft: 3,
       profileImageUrl: AppConstants.profileImage,
       profileImage2Url: AppConstants.profile2Image,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
       category: WorkshopCategory.drivingAndCommuting,
+      isUpcoming: true,
     ),
     WorkshopModel(
       title: AppStrings.workshopTitle,
@@ -75,8 +77,10 @@ class GroupController extends GetxController {
       profileImageUrl: AppConstants.profileImage,
       profileImage2Url: AppConstants.profile2Image,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
-      isFinished: true,
+      // isFinished: true,
       category: WorkshopCategory.foodAndDiet,
+      isHostedByUser: false,
+      isUpcoming: true,
     ),
     WorkshopModel(
       title: AppStrings.workshopTitle,
@@ -89,6 +93,7 @@ class GroupController extends GetxController {
       profileImage2Url: AppConstants.profile2Image,
       category: WorkshopCategory.shoppingAndBrands,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
+      isCurrentlyProgressing: true,
     ),
     WorkshopModel(
       title: AppStrings.workshopTitle,
@@ -101,6 +106,7 @@ class GroupController extends GetxController {
       profileImage2Url: AppConstants.profile2Image,
       category: WorkshopCategory.shoppingAndBrands,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
+      isUpcoming: true,
     ),
     WorkshopModel(
       title: AppStrings.workshopTitle,
@@ -113,6 +119,7 @@ class GroupController extends GetxController {
       profileImage2Url: AppConstants.profile2Image,
       category: WorkshopCategory.shoppingAndBrands,
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
+      isUpcoming: true,
     ),
     WorkshopModel(
       title: AppStrings.workshopTitle,
@@ -146,6 +153,7 @@ class GroupController extends GetxController {
       tags: ["Online seminar"],
       participants: 20,
       spacesLeft: 10,
+      isHostedByUser: true,
       profileImageUrl: AppConstants.profileImage,
       profileImage2Url: AppConstants.profile2Image,
       category: WorkshopCategory.drivingAndCommuting,
@@ -177,6 +185,18 @@ class GroupController extends GetxController {
         }
         return workshop.category == category;
       })
+      .toList()
+      .obs;
+  RxList<WorkshopModel> get currentlyProgressingWorkshops => _allWorkshops
+      .where((workshop) => workshop.isCurrentlyProgressing == true)
+      .toList()
+      .obs;
+  RxList<WorkshopModel> get upcomingWorkshops => _allWorkshops
+      .where((workshop) => workshop.isUpcoming == true)
+      .toList()
+      .obs;
+  RxList<WorkshopModel> get hostedWorkshops => _allWorkshops
+      .where((workshop) => workshop.isHostedByUser == true)
       .toList()
       .obs;
 }

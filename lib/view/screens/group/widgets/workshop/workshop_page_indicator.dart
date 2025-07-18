@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
 
 class WorkshopPageIndicator extends StatelessWidget {
   final int totalPages;

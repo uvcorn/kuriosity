@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
-import '../controller/auth_controller.dart';
-import '../models/workshop_model.dart';
-import 'register_button.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../controller/auth_controller.dart';
+import '../../models/workshop_model.dart';
+import '../common/register_button.dart';
 
 class PremiumBottomBar extends StatelessWidget {
   final WorkshopModel workshop;
@@ -60,7 +60,7 @@ class PremiumBottomBar extends StatelessWidget {
                         return Center(
                           child: Text(
                             textAlign: TextAlign.center,
-                            'You have successfully joined the workshop!',
+                            AppStrings.successfulljoin,
                             style: textTheme.bodyMedium?.copyWith(
                               color: AppColors.black,
                               fontWeight: FontWeight.bold,
@@ -73,9 +73,27 @@ class PremiumBottomBar extends StatelessWidget {
                           spacesLeft: workshop.spacesLeft,
                           workshopTitle: workshop.title,
                           buttonwidth: 150,
-                          buttonhight: 40,
+                          buttonhight: 50,
                           onPressed: () {
                             authController.register();
+                            Get.rawSnackbar(
+                              animationDuration: Duration(seconds: 1),
+                              messageText: Center(
+                                child: Text(
+                                  AppStrings.successfulljoin,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: AppColors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              backgroundColor: AppColors.lightBlueBackground,
+                              duration: const Duration(seconds: 2),
+                              snackPosition: SnackPosition.BOTTOM,
+                              margin: const EdgeInsets.all(12),
+                              borderRadius: 10,
+                            );
                           },
                         );
                       }

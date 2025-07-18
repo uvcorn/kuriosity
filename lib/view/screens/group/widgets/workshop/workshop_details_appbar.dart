@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_icons/app_icons.dart';
-import '../../../components/custom_image/custom_image.dart';
-import '../../home/widgets/post_section/share_menu.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../../../../../utils/app_icons/app_icons.dart';
+import '../../../../components/custom_image/custom_image.dart';
+import '../../../home/widgets/post_section/share_menu.dart';
 
 class WorkshopDetailAppBar extends StatelessWidget {
   const WorkshopDetailAppBar({super.key});

@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
-import '../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../../../../components/custom_netwrok_image/custom_network_image.dart';
 
 class WorkshopImageCarousel extends StatelessWidget {
   final PageController pageController;

@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kuriosity/utils/app_strings.dart/app_strings.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
-import '../models/course_model.dart';
+import '../../../../../core/app_routes/app_routes.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../../models/course_model.dart';
 
 class CourseExpansionTile extends StatefulWidget {
   final CourseModel course;
@@ -48,42 +50,43 @@ class _CourseExpansionTileState extends State<CourseExpansionTile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              Column(
                 children: [
-                  Icon(
-                    _isExpanded
-                        ? Icons.keyboard_arrow_down
-                        : Icons.keyboard_arrow_right,
-                    color: AppColors.primary,
-                  ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.course.title,
-                          overflow: TextOverflow.ellipsis,
-                          style: textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            _isExpanded
+                                ? Icons.keyboard_arrow_down
+                                : Icons.keyboard_arrow_right,
+                            color: AppColors.primary,
                           ),
-                        ),
-                        if (!_isExpanded)
-                          Text(
-                            widget.course.date,
-                            style: textTheme.bodySmall?.copyWith(
-                              color: AppColors.black,
+                          Expanded(
+                            child: Text(
+                              widget.course.title,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
-                      ],
-                    ),
+                        ],
+                      ),
+                    ],
                   ),
+                  if (!_isExpanded)
+                    Padding(
+                      padding: EdgeInsets.only(left: 24),
+                      child: _buildExpansionBottom(textTheme),
+                    ),
                 ],
               ),
               if (_isExpanded) ...[
                 SizedBox(height: Get.height * 0.015),
                 Padding(
-                  padding: const EdgeInsets.only(left: 32),
+                  padding: const EdgeInsets.only(left: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -94,12 +97,7 @@ class _CourseExpansionTileState extends State<CourseExpansionTile> {
                         ),
                       ),
                       SizedBox(height: Get.height * 0.01),
-                      Text(
-                        widget.course.date,
-                        style: textTheme.bodySmall?.copyWith(
-                          color: AppColors.black,
-                        ),
-                      ),
+                      _buildExpansionBottom(textTheme),
                     ],
                   ),
                 ),
@@ -108,6 +106,24 @@ class _CourseExpansionTileState extends State<CourseExpansionTile> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildExpansionBottom(TextTheme textTheme) {
+    return Row(
+      children: [
+        Text(
+          widget.course.date,
+          style: textTheme.bodySmall?.copyWith(color: AppColors.black),
+        ),
+        Spacer(),
+        ElevatedButton(
+          onPressed: () {
+            Get.toNamed(AppRoutes.workshopVideoConference);
+          },
+          child: Text(AppStrings.join),
+        ),
+      ],
     );
   }
 }

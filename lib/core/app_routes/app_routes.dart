@@ -11,7 +11,12 @@ import '../../view/screens/auth/screens/sign_up_screen.dart';
 import '../../view/screens/chat/screens/chats_list_screen.dart';
 import '../../view/screens/group/models/workshop_model.dart';
 import '../../view/screens/group/screens/group_screen.dart';
+import '../../view/screens/group/screens/review_screen.dart';
+import '../../view/screens/group/screens/submit_review_screen.dart';
 import '../../view/screens/group/screens/workshop_details_screen.dart';
+import '../../view/screens/group/screens/workshop_finish_screen.dart';
+import '../../view/screens/group/screens/workshop_list_screen.dart';
+import '../../view/screens/group/screens/workshop_video_conference.dart';
 import '../../view/screens/home/screens/home_screen.dart';
 import '../../view/screens/chat/screens/chats_screen.dart';
 import '../../view/screens/onboarding/first_onbording_screen.dart';
@@ -52,6 +57,11 @@ class AppRoutes {
 
   ///===========================Workshop==========================
   static const String workshopDetailScreen = "/WorkshopDetailScreen";
+  static const String reviewScreen = "/ReviewScreen";
+  static const String workshopFinishScreen = "/WorkshopFinishScreen";
+  static const String submitReviewScreen = "/SubmitReviewScreen";
+  static const String wrkshopListScreen = "/WorkshopListScreen";
+  static const String workshopVideoConference = "/WorkshopVideoConference";
 
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
@@ -88,11 +98,17 @@ class AppRoutes {
     GetPage(
       name: workshopDetailScreen,
       page: () {
-        final workshop =
-            Get.arguments
-                as WorkshopModel; // This line retrieves the 'workshop' instance
+        final workshop = Get.arguments as WorkshopModel;
         return WorkshopDetailScreen(workshop: workshop);
       },
+    ),
+    GetPage(name: reviewScreen, page: () => ReviewScreen()),
+    GetPage(name: workshopFinishScreen, page: () => WorkshopFinishScreen()),
+    GetPage(name: submitReviewScreen, page: () => SubmitReviewScreen()),
+    GetPage(name: wrkshopListScreen, page: () => WorkshopListScreen()),
+    GetPage(
+      name: workshopVideoConference,
+      page: () => WorkshopVideoConference(),
     ),
   ];
 }

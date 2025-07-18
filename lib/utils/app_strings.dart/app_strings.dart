@@ -190,10 +190,43 @@ class AppStrings {
   static const String meetthehost = 'Meet the host';
   static const String location = 'London';
   static const String hostdescep =
-      'Registered Dietitian with a passion for developing a sustainable and healthy world…..one plate at a time 🍎🌍🌱';
+      'Registered Dietitian with a passion for developing a sustainable and healthy world healthy world…..one plate at a time 🍎🌍🌱';
   static const String workshopreviewtitle = 'What other people saying';
   static const String workshopreviewdescrip = '"What other people saying"';
   static const String materialtitle = 'Lorem ipsum dolor sit amet, consec';
+  static const String successfulljoin =
+      'You have successfully joined the workshop!';
+  static const String alradyregister =
+      'You are currently registered for this workshop';
+  static const String leaveregister = 'Not interested in joining anymore';
+  static const String course = 'Courses';
+  static const String joingroupchat = 'Join a group chat';
+  static const String progressing = 'Progressing';
+  static const String join = 'Join';
+  static const String reviews = 'Reviews';
+  static const String reviewbardesc =
+      'Switch to a climate-healthy diet with a professional nutritionist';
+  static const String done = 'Done';
+  static const String gotoyourworkshop = 'Go to your workshops';
+
+  static const String conferencetitle = 'Switch to a climate-healthy';
+  static const String conferencelength = '5:20';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
 }

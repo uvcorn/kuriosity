@@ -5,14 +5,15 @@ import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings.dart/app_strings.dart';
 import '../../../components/c_search_bar/c_search_bar.dart';
 import '../controller/group_controller.dart';
-import '../widgets/category_selector.dart';
-import '../widgets/workshop_card.dart';
+import '../widgets/common/category_selector.dart';
+import '../widgets/workshop/workshop_card.dart';
 
 class GroupScreen extends StatelessWidget {
   const GroupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     final GroupController controller = Get.put(GroupController());
 
     return Scaffold(
@@ -74,6 +75,33 @@ class GroupScreen extends StatelessWidget {
                     },
                   );
                 }),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(
+                    AppRoutes.wrkshopListScreen,
+                    arguments: {'initialTab': 0},
+                  );
+                },
+                child: Container(
+                  width: 310,
+                  height: 45,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    AppStrings.gotoyourworkshop,
+                    style: textTheme.bodySmall?.copyWith(
+                      color: AppColors.white,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

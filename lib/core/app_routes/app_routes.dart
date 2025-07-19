@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:get/get.dart';
 import '../../view/components/bottom_nav_bar/bottom_nav_bar.dart';
+import '../../view/screens/Notification/notification_screen.dart';
 import '../../view/screens/auth/screens/forget_password_screen.dart';
 import '../../view/screens/auth/screens/otp_verify_screen.dart';
 import '../../view/screens/auth/screens/phone_input_screen.dart';
@@ -22,6 +22,7 @@ import '../../view/screens/chat/screens/chats_screen.dart';
 import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
 import '../../view/screens/onboarding/third_onbording_screen.dart';
+import '../../view/screens/post/views/post_screens.dart';
 import '../../view/screens/profile/screens/followers_following_screen.dart';
 import '../../view/screens/profile/screens/profile_screen.dart';
 import '../../view/screens/splash_screen/splash_screens.dart';
@@ -46,6 +47,8 @@ class AppRoutes {
   static const String bottomNavBar = "/BottomNavBar";
   static const String homeScreen = "/HomeScreen";
   static const String groupScreen = "/GroupScreen";
+  static const String postScreens = "/PostScreens";
+  static const String notificationScreen = "/NotificationScreen";
 
   ///===========================Chats==========================
   static const String chatsListScreen = "/ChatsListScreen";
@@ -82,6 +85,8 @@ class AppRoutes {
     GetPage(name: bottomNavBar, page: () => BottomNavBar()),
     GetPage(name: homeScreen, page: () => HomeScreen()),
     GetPage(name: groupScreen, page: () => GroupScreen()),
+    GetPage(name: postScreens, page: () => PostScreen()),
+    GetPage(name: notificationScreen, page: () => NotificationScreen()),
 
     ///===========================Chats==========================
     GetPage(name: chatsListScreen, page: () => ChatsListScreen()),

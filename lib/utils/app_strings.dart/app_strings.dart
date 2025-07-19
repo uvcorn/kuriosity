@@ -208,13 +208,12 @@ class AppStrings {
       'Switch to a climate-healthy diet with a professional nutritionist';
   static const String done = 'Done';
   static const String gotoyourworkshop = 'Go to your workshops';
-
   static const String conferencetitle = 'Switch to a climate-healthy';
   static const String conferencelength = '5:20';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
+  static const String posthint = 'What do you want to talk about?';
+  static const String notifications = 'Notifications';
+  static const String notificationsdetails = 'started following you';
+  static const String notifitime = '7m';
 
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

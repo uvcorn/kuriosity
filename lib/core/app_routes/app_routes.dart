@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:get/get.dart';
 import '../../view/components/bottom_nav_bar/bottom_nav_bar.dart';
-import '../../view/screens/Notification/notification_screen.dart';
+import '../../view/screens/notification/notification_screen.dart';
 import '../../view/screens/auth/screens/forget_password_screen.dart';
 import '../../view/screens/auth/screens/otp_verify_screen.dart';
 import '../../view/screens/auth/screens/phone_input_screen.dart';
@@ -25,6 +25,8 @@ import '../../view/screens/onboarding/third_onbording_screen.dart';
 import '../../view/screens/post/views/post_screens.dart';
 import '../../view/screens/profile/screens/followers_following_screen.dart';
 import '../../view/screens/profile/screens/profile_screen.dart';
+import '../../view/screens/settings/screen/edit_profile_screen.dart';
+import '../../view/screens/settings/screen/settings_screens.dart';
 import '../../view/screens/splash_screen/splash_screens.dart';
 
 class AppRoutes {
@@ -66,6 +68,9 @@ class AppRoutes {
   static const String wrkshopListScreen = "/WorkshopListScreen";
   static const String workshopVideoConference = "/WorkshopVideoConference";
 
+  ///===========================SettingsScreens==========================
+  static const String settingsScreens = "/SettingsScreens";
+  static const String editProfileScreen = "/EditProfileScreen";
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -115,5 +120,9 @@ class AppRoutes {
       name: workshopVideoConference,
       page: () => WorkshopVideoConference(),
     ),
+
+    ///===========================SettingsScreens==========================
+    GetPage(name: settingsScreens, page: () => SettingsScreens()),
+    GetPage(name: editProfileScreen, page: () => EditProfileScreen()),
   ];
 }

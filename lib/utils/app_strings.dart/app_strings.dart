@@ -215,9 +215,54 @@ class AppStrings {
   static const String notificationsdetails = 'started following you';
   static const String notifitime = '7m';
 
+  static const String settingandActivity = 'Setting & Activity';
+  static const String account = 'Account';
+  static const String profiledetails = 'Personal details';
+  static const String passwordandsecurity = 'Password and security';
+  static const String becomepremimum = 'Become a premium user';
+  static const String becomepower = 'Become a power user';
+  static const String activity = 'Activity';
+  static const String clippedPost = 'Clipped Post';
+  static const String savedWorkshop = 'Saved Workshop';
+  static const String blockedList = 'Blocked List';
+  static const String company = 'Company';
+  static const String introduction = 'Introduction';
+  static const String termandPolicy = 'Term and Policy';
+  static const String fAQ = 'FAQ';
+  static const String personaldetails = 'Personal details';
+  static const String personaldetailsDescription =
+      'You can update your personal details anytime in your profile settings. This includes your name, email, and profile picture. We use this information to personalize your experience and connect you with the community. Rest assured, your data is kept secure and private.';
+  static const String cancelPremiumUser = 'Cancel a premium service';
+  static const String passwordandsecurityDescep =
+      'To keep your account safe, choose a strong password and change it regularly. If you forget your password, you can reset it through the "Forgot Password" option on the login screen. We use encryption and security measures to protect your account information.';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
-
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

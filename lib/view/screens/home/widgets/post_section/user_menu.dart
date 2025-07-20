@@ -63,7 +63,7 @@ class UserMenu extends StatelessWidget {
                 },
                 child: Row(
                   children: [
-                    CustomImage(imageSrc: AppIcons.save, size: 24),
+                    CustomImage(imageSrc: AppIcons.clips, size: 24),
                     SizedBox(width: 23),
                     Text(
                       AppStrings.clipButton,

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_icons/app_icons.dart';
 import '../../../utils/app_strings.dart/app_strings.dart';
-import '../../screens/Notification/notification_screen.dart';
+import '../../screens/notification/notification_screen.dart';
 import '../../screens/group/screens/group_screen.dart';
 import '../../screens/home/screens/home_screen.dart';
 import '../../screens/post/views/post_screens.dart';

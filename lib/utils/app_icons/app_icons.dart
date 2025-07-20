@@ -18,7 +18,7 @@ class AppIcons {
   static const String globe = "$basePath/globe.svg";
   static const String remove = "$basePath/remove.svg";
   static const String hide = "$basePath/hide.svg";
-  static const String save = "$basePath/save.svg";
+  static const String clips = "$basePath/clips.svg";
   static const String pen = "$basePath/pen.svg";
   static const String ecob = "$basePath/ecob.svg";
   static const String facebookba = "$basePath/facebookba.svg";
@@ -63,4 +63,12 @@ class AppIcons {
   static const String extarnalshare = "$basePath/extarnal_share.svg";
   static const String rocket = "$basePath/rocket.svg";
   static const String users = "$basePath/users.svg";
+
+  ///====================== password screen =========================
+  static const String user = "$basePath/account.svg";
+  static const String padlock = "$basePath/padlock.svg";
+  static const String blackBell = "$basePath/blackBell.svg";
+  static const String power = "$basePath/power.svg";
+  static const String premium = "$basePath/premium.svg";
+  static const String save = "$basePath/save.svg";
 }

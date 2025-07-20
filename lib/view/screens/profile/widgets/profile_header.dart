@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_icons/app_icons.dart';
@@ -39,7 +41,12 @@ class ProfileHeader extends StatelessWidget {
                 style: textTheme.titleMedium?.copyWith(color: Colors.white),
               ),
               const Spacer(),
-              CustomImage(imageSrc: AppIcons.bar),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.settingsScreens);
+                },
+                child: CustomImage(imageSrc: AppIcons.bar),
+              ),
             ],
           ),
         ),

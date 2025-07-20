@@ -26,6 +26,7 @@ class AppTheme {
         fontSize: 24,
         color: AppColors.black,
       ),
+      headlineSmall: GoogleFonts.roboto(fontSize: 20, color: AppColors.black),
       titleLarge: GoogleFonts.tiltWarp(fontSize: 32, color: AppColors.black),
       titleMedium: GoogleFonts.tiltWarp(fontSize: 24, color: AppColors.black),
       titleSmall: GoogleFonts.tiltWarp(fontSize: 22, color: AppColors.black),

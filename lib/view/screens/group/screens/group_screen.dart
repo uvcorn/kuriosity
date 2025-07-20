@@ -76,36 +76,23 @@ class GroupScreen extends StatelessWidget {
                   );
                 }),
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed(
-                    AppRoutes.wrkshopListScreen,
-                    arguments: {'initialTab': 0},
-                  );
-                },
-                child: Container(
-                  width: 310,
-                  height: 45,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    AppStrings.gotoyourworkshop,
-                    style: textTheme.bodySmall?.copyWith(
-                      color: AppColors.white,
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Get.toNamed(
+            AppRoutes.wrkshopListScreen,
+            arguments: {'initialTab': 0},
+          );
+        },
+        label: Text(
+          AppStrings.gotoyourworkshop,
+          style: textTheme.bodySmall?.copyWith(color: AppColors.white),
+        ),
+        backgroundColor: AppColors.primary,
       ),
     );
   }

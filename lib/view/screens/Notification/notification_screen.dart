@@ -1,11 +1,15 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../core/app_routes/app_routes.dart';
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_const/app_const.dart';
+import '../../../utils/app_icons/app_icons.dart';
 import '../../../utils/app_strings.dart/app_strings.dart';
 import '../../components/c_search_bar/c_search_bar.dart';
+import '../../components/custom_appbar/coustom_appbar.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -17,24 +21,27 @@ class NotificationScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 30),
+          CustomAppbar(
+            iconPath: AppIcons.chat,
+            onIconTap: () => Get.toNamed(AppRoutes.chatsListScreen),
+            backgroundColor: AppColors.backgroundLightGray,
+          ),
           CSearchbar(hinttext: AppStrings.searchHint),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 8.0,
-            ),
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
             child: Text(
               AppStrings.notifications,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 color: Colors.black,
+                height: 1,
               ),
             ),
           ),
           Expanded(
             child: ListView.builder(
+              padding: const EdgeInsets.only(top: 16),
               itemCount: 8,
               itemBuilder: (context, index) {
                 return _buildNotificationItem(
@@ -44,6 +51,7 @@ class NotificationScreen extends StatelessWidget {
 
                   AppStrings.notifitime,
                   profileImageUrl: AppConstants.profile2Image,
+                  isNew: true,
                 );
               },
             ),
@@ -64,7 +72,7 @@ class NotificationScreen extends StatelessWidget {
   }) {
     return Container(
       color: isNew ? AppColors.primary.withOpacity(0.05) : Colors.transparent,
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

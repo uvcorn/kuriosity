@@ -20,6 +20,7 @@ class AppIcons {
   static const String hide = "$basePath/hide.svg";
   static const String clips = "$basePath/clips.svg";
   static const String pen = "$basePath/pen.svg";
+  static const String pencil = "$basePath/pencil.svg";
   static const String ecob = "$basePath/ecob.svg";
   static const String facebookba = "$basePath/facebookba.svg";
   static const String linkdin = "$basePath/linkdin.svg";

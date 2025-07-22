@@ -235,15 +235,17 @@ class AppStrings {
   static const String cancelPremiumUser = 'Cancel a premium service';
   static const String passwordandsecurityDescep =
       'To keep your account safe, choose a strong password and change it regularly. If you forget your password, you can reset it through the "Forgot Password" option on the login screen. We use encryption and security measures to protect your account information.';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
+  static const String bioLabel = "Bio";
+  static const String goalLabel = "Goal";
+  static const String nameString = 'Name';
+  static const String titleString = 'TItle';
+  static const String demoBio =
+      "I've got some left red wine in my fridge, does anyone know how to recycle it?";
+  static const String selectImageSource = 'Select Image Source';
+  static const String gallery = 'Gallery';
+  static const String camera = 'Camera';
+  static const String cancel = 'Cancel';
+  static const String save = 'Save';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

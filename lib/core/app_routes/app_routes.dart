@@ -25,7 +25,8 @@ import '../../view/screens/onboarding/third_onbording_screen.dart';
 import '../../view/screens/post/views/post_screens.dart';
 import '../../view/screens/profile/screens/followers_following_screen.dart';
 import '../../view/screens/profile/screens/profile_screen.dart';
-import '../../view/screens/settings/screen/edit_profile_screen.dart';
+import '../../view/screens/settings/edit_profile/edit_profile_screen.dart';
+import '../../view/screens/settings/screen/interest_screen.dart';
 import '../../view/screens/settings/screen/settings_screens.dart';
 import '../../view/screens/splash_screen/splash_screens.dart';
 
@@ -71,6 +72,8 @@ class AppRoutes {
   ///===========================SettingsScreens==========================
   static const String settingsScreens = "/SettingsScreens";
   static const String editProfileScreen = "/EditProfileScreen";
+  static const String interestScreen = "/InterestScreen";
+
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -124,5 +127,6 @@ class AppRoutes {
     ///===========================SettingsScreens==========================
     GetPage(name: settingsScreens, page: () => SettingsScreens()),
     GetPage(name: editProfileScreen, page: () => EditProfileScreen()),
+    GetPage(name: interestScreen, page: () => InterestScreen()),
   ];
 }

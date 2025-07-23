@@ -326,16 +326,23 @@ class AppStrings {
   static const String enterwebsiteURL = 'Enter website URL';
   static const String entersocialmediaURL = 'Enter social media URL';
   static const String describeyourworkshop = 'Describe your workshop...';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
+  static const String introductionDec1 =
+      'This app is your go-to platform for discovering, sharing, and embracing eco-friendly habits in everyday life. Whether you’re passionate about sustainable food, green products, or reducing waste, you’ll find a supportive community ready to inspire and connect with you. Share your own experiences through photos, videos, and posts, and join group sessions to learn and collaborate on sustainability projects.';
+  static const String introductionDec2 =
+      'Our goal is to make sustainable living easy, engaging, and social. Explore categorized topics, participate in workshops, and connect with like-minded people who care about making a positive impact on the planet.';
+  static const String keyFeaturestitle = 'Key Features:';
+  static const String keyFeatures1 =
+      'Share multimedia posts focused on sustainability.';
+  static const String keyFeatures2 =
+      'Comment, react, and chat with community members.';
+  static const String keyFeatures3 =
+      'Join group sessions and events to learn and collaborate.';
+  static const String keyFeatures4 =
+      'Browse categories like eco-friendly cooking, green fashion, and more.';
+  static const String keyFeatures5 =
+      'Track and celebrate your own sustainable lifestyle efforts.';
+  static const String thanks =
+      'Thank you for being part of this movement toward a greener future!';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

@@ -31,8 +31,12 @@ import '../../view/screens/premium_section/screens/premium_user_details_screen.d
 import '../../view/screens/premium_section/screens/price_and_payment_method_screen.dart';
 import '../../view/screens/profile/screens/followers_following_screen.dart';
 import '../../view/screens/profile/screens/profile_screen.dart';
+import '../../view/screens/settings/company_section/privacy_policy_screen.dart';
+import '../../view/screens/settings/company_section/terms_and_condition_screen.dart';
+import '../../view/screens/settings/company_section/terms_and_policy_screen.dart';
 import '../../view/screens/settings/edit_profile/edit_profile_screen.dart';
 import '../../view/screens/settings/password_and_security/screens/change_password_screen.dart';
+import '../../view/screens/settings/company_section/introduction_screen.dart';
 import '../../view/screens/settings/password_and_security/screens/linked_accounts_screen.dart';
 import '../../view/screens/settings/password_and_security/screens/password_and_security_screen.dart';
 import '../../view/screens/settings/screen/interest_screen.dart';
@@ -95,8 +99,10 @@ class AppRoutes {
       "/RegistrationPowerUserScreen";
   static const String successfullSubmitPowerUserScreen =
       "/SuccessfullSubmitPowerUserScreen";
-  // static const String linkedAccountsScreen = "/LinkedAccountsScreen";
-  // static const String changePasswordScreen = "/ChangePasswordScreen";
+  static const String introductionScreen = "/IntroductionScreen";
+  static const String privacyPolicyScreen = "/PrivacyPolicyScreen";
+  static const String termsAndConditionScreen = "/TermsAndConditionScreen";
+  static const String termsAndPolicyScreen = "/TermsAndPolicyScreen";
 
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
@@ -177,7 +183,12 @@ class AppRoutes {
       name: successfullSubmitPowerUserScreen,
       page: () => SuccessfullSubmitPowerUserScreen(),
     ),
-    // GetPage(name: linkedAccountsScreen, page: () => LinkedAccountsScreen()),
-    // GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
+    GetPage(name: introductionScreen, page: () => IntroductionScreen()),
+    GetPage(name: privacyPolicyScreen, page: () => PrivacyPolicyScreen()),
+    GetPage(
+      name: termsAndConditionScreen,
+      page: () => TermsAndConditionScreen(),
+    ),
+    GetPage(name: termsAndPolicyScreen, page: () => TermsAndPolicyScreen()),
   ];
 }

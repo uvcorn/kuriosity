@@ -117,13 +117,17 @@ class _SettingsScreensState extends State<SettingsScreens> {
                 title: AppStrings.company,
                 menuItems: [
                   AccountItem(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.introductionScreen);
+                    },
                     title: AppStrings.introduction,
                     iconPath: AppIcons.user,
                   ),
                   AccountItem(
-                    onTap: () {},
-                    title: AppStrings.savedWorkshop,
+                    onTap: () {
+                      Get.toNamed(AppRoutes.termsAndPolicyScreen);
+                    },
+                    title: AppStrings.termandPolicy,
                     iconPath: AppIcons.padlock,
                   ),
                 ],

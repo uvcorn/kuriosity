@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
-import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../../utils/app_strings/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
 import '../../../../components/common_bottom_shit/common_bottom_sheet.dart';
 

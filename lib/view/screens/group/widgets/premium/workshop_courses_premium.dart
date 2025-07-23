@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../../utils/app_strings/app_strings.dart';
 import '../../models/course_model.dart';
 import '../../models/workshop_model.dart';
 import 'course_expansion_tile.dart';

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
+import '../../../../utils/app_strings/app_strings.dart';
 import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_const/app_const.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
 
 class HistoryWorkshopController extends GetxController {
   final RxList<ProfileWorkshopModel> historyWorkshops =

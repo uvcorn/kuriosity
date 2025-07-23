@@ -3,7 +3,7 @@
 import 'package:get/get.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_icons/app_icons.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../models/workshop_model.dart';
 
 class GroupController extends GetxController {

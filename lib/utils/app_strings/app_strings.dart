@@ -299,16 +299,33 @@ class AppStrings {
   static const String fromsubmitsnakcbar = 'Form Submitted';
   static const String requiredField = 'Required field';
   static const String paymentReciveSnackbar = 'Payment Recive Successfully';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
+  static const String poweruserdec1 =
+      'As a power user, you have an authority to create workshops that premium users can join';
+  static const String poweruserdec2 =
+      'Bring your specialty to share your eco-friendly lifestyle with many around the world and create a healthier planet for our future';
+  static const String poweruserFeature2 =
+      'You can take any workshop hosted by other power users without paying premium charge';
+  static const String startRegistration = 'Start registration';
+  static const String registrationForm = "Registration Form";
+  static const String expertiseArea = "1. What is your area of expertise?";
+  static const String others = "Others";
+  static const String pleaseSpecify = "Please specify";
+  static const String introduceYourself =
+      "2. Introduce yourself on the topic of sustainability and environment";
+  static const String websiteShare = "3. Do you have any website to share?";
+  static const String socialMediaShare =
+      "4. Do you have any social media to share?";
+  static const String workshopProvide =
+      "5. What are you going to provide for a workshop?";
+  static const String submit = "Submit";
+  static const String formSubmittedSnackbar = "Form submitted successfully!";
+  static const String backtoHome = 'Back to Home';
+  static const String powerUserGradings =
+      'Thanks for submitting the form.\nWe will get in touch within a week.';
+  static const String writeaboutyourself = 'Write about yourself...';
+  static const String enterwebsiteURL = 'Enter website URL';
+  static const String entersocialmediaURL = 'Enter social media URL';
+  static const String describeyourworkshop = 'Describe your workshop...';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

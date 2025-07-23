@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
-import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../../utils/app_strings/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
 import '../widgets/delete_account_popup.dart';
 
@@ -19,6 +19,7 @@ class _LinkedAccountsScreenState extends State<LinkedAccountsScreen> {
     AppStrings.facebook: true,
     AppStrings.apple: false,
   };
+
   void _toggleLink(String account) async {
     final isLinked = _linkedAccounts[account] ?? false;
     final confirmed = await showDialog<bool>(
@@ -57,24 +58,25 @@ class _LinkedAccountsScreenState extends State<LinkedAccountsScreen> {
     }
   }
 
-  Widget _buildAccountRow(String icon, String accountKey) {
+  Widget _buildAccountRow(String icon, String accountKey, double width) {
     final textTheme = Theme.of(context).textTheme;
     final isLinked = _linkedAccounts[accountKey] ?? false;
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: EdgeInsets.only(bottom: width * 0.05),
       child: Row(
         children: [
-          const SizedBox(width: 8),
+          SizedBox(width: width * 0.02),
           CustomImage(imageSrc: icon),
-          const SizedBox(width: 16),
-          Text(
-            accountKey,
-            style: textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
+          SizedBox(width: width * 0.04),
+          Expanded(
+            child: Text(
+              accountKey,
+              style: textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-          const Spacer(),
           GestureDetector(
             onTap: () => _toggleLink(accountKey),
             child: Text(
@@ -93,90 +95,95 @@ class _LinkedAccountsScreenState extends State<LinkedAccountsScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(Icons.arrow_back_ios),
-              ),
-              Text(
-                AppStrings.linkedAccounts,
-                style: textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: height * 0.04),
+            Row(
               children: [
-                _buildAccountRow(AppIcons.google, AppStrings.google),
-                _buildAccountRow(AppIcons.facebook, AppStrings.facebook),
-                _buildAccountRow(AppIcons.apple, AppStrings.apple),
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios),
+                ),
+                Expanded(
+                  child: Text(
+                    AppStrings.linkedAccounts,
+                    style: textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
-          ),
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppStrings.accountDeletion,
-                  style: textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w900,
+            SizedBox(height: height * 0.01),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.01),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildAccountRow(AppIcons.google, AppStrings.google, width),
+                  _buildAccountRow(
+                    AppIcons.facebook,
+                    AppStrings.facebook,
+                    width,
                   ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  AppStrings.accountDeletiondescep,
-                  style: textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.black,
+                  _buildAccountRow(AppIcons.apple, AppStrings.apple, width),
+                  SizedBox(height: height * 0.03),
+                  Text(
+                    AppStrings.accountDeletion,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
-                ),
-                SizedBox(height: 16),
-                Center(
-                  child: SizedBox(
-                    height: 48,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: context,
-                          backgroundColor: Colors.transparent,
-                          builder: (BuildContext context) =>
-                              const DeleteAccountPopup(),
-                        );
-                      },
-                      child: Text(
-                        AppStrings.deleteAccount,
-                        style: textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.white,
+                  SizedBox(height: height * 0.01),
+                  Text(
+                    AppStrings.accountDeletiondescep,
+                    style: textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.black,
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+                  Center(
+                    child: SizedBox(
+                      height: height * 0.06,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (BuildContext context) =>
+                                const DeleteAccountPopup(),
+                          );
+                        },
+                        child: Text(
+                          AppStrings.deleteAccount,
+                          style: textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.white,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

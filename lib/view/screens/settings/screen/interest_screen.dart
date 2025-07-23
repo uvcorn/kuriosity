@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../controllers/interest_controller.dart';
 
 class InterestScreen extends StatelessWidget {
@@ -15,8 +15,8 @@ class InterestScreen extends StatelessWidget {
       InterestController(initialSelectedInterests),
     );
     final textTheme = Theme.of(context).textTheme;
-    final double chipHeight = 38.0;
-
+    final size = MediaQuery.of(context).size;
+    final chipHeight = size.height * 0.05;
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
       appBar: AppBar(
@@ -41,15 +41,15 @@ class InterestScreen extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Obx(
               () => controller.selectedInterests.isNotEmpty
                   ? Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
+                      spacing: size.width * 0.02,
+                      runSpacing: size.height * 0.01,
                       children: controller.selectedInterests.map((interest) {
                         return Chip(
                           label: Text(interest),
@@ -71,19 +71,19 @@ class InterestScreen extends StatelessWidget {
                     )
                   : const SizedBox(),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: size.height * 0.02),
             Obx(
               () => Text(
                 'Select up to (${controller.selectedInterests.length}/${controller.maxSelection})',
                 style: const TextStyle(color: AppColors.mediumGray),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: size.height * 0.03),
             Expanded(
               child: SingleChildScrollView(
                 child: Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
+                  spacing: size.width * 0.025,
+                  runSpacing: size.height * 0.015,
                   alignment: WrapAlignment.start,
                   children: controller.allInterests.map((interest) {
                     return SizedBox(

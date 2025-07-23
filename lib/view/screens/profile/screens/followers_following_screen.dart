@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/c_search_bar/c_search_bar.dart';
 import '../../../components/custom_netwrok_image/custom_network_image.dart';
 import '../controller/followers_following_controller.dart';

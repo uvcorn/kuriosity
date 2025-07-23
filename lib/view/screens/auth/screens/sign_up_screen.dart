@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/action_button/action_button.dart';
 import '../../../components/custom_checkbox/custom_checkbox.dart';
 import '../../../components/custom_text_field/custom_text_field.dart';

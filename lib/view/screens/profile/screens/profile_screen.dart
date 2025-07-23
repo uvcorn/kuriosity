@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../components/custom_image/custom_image.dart';
 import '../controller/history_workshop_controller.dart';

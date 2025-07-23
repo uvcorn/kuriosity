@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/c_search_bar/c_search_bar.dart';
 import '../controller/group_controller.dart';
 import '../widgets/common/category_selector.dart';

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 
 class FollowersFollowingController extends GetxController {
   final RxList<User> followers = <User>[].obs;

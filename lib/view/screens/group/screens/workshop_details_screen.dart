@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../home/widgets/post_section/post_card/media_content.dart';
 import '../controller/auth_controller.dart';
 import '../models/course_model.dart';

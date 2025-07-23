@@ -5,7 +5,9 @@ import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_images/app_images.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/bottom_nav_bar/bottom_nav_bar.dart';
+import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../components/custom_image/custom_image.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
 
@@ -15,49 +17,62 @@ class PriceAndPaymentMethodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
       body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.05,
+            vertical: screenHeight * 0.02,
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: screenHeight * 0.03),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Text(
-                        AppStrings.becomeprem,
-                        style: textTheme.bodyLarge?.copyWith(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      Flexible(
+                        child: Text(
+                          AppStrings.becomeprem,
+                          style: textTheme.bodyLarge?.copyWith(
+                            fontSize: screenWidth * 0.05,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      SizedBox(width: 8),
+                      SizedBox(width: screenWidth * 0.02),
                       CustomImage(imageSrc: AppIcons.premium),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: screenHeight * 0.03),
                   Text(
                     AppStrings.paymentprice,
                     style: textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.bold,
+                      fontSize: screenWidth * 0.04,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: screenHeight * 0.01),
                   Row(
                     children: [
-                      Text(
-                        AppStrings.individualmembership,
-                        style: textTheme.bodyMedium,
+                      Expanded(
+                        child: Text(
+                          AppStrings.individualmembership,
+                          style: textTheme.bodyMedium?.copyWith(),
+                        ),
                       ),
-                      Spacer(),
-                      Text(AppStrings.price, style: textTheme.bodyMedium),
+                      Text(
+                        AppStrings.price,
+                        style: textTheme.bodyMedium?.copyWith(),
+                      ),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  SizedBox(height: screenHeight * 0.03),
 
                   // Payment method
                   Text(
@@ -66,50 +81,55 @@ class PriceAndPaymentMethodScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: screenHeight * 0.03),
                   Center(
                     child: ClipRRect(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.02),
                       child: CustomImage(
                         imageSrc: AppImages.carditcard,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
+                  SizedBox(height: screenHeight * 0.02),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 16,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.03,
+                      vertical: screenHeight * 0.02,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(screenWidth * 0.03),
                     ),
                     child: Row(
                       children: [
-                        CustomImage(imageSrc: AppIcons.masterCard, size: 20),
-                        SizedBox(width: 12),
+                        CustomImage(
+                          imageSrc: AppIcons.masterCard,
+                          size: screenWidth * 0.05,
+                        ),
+                        SizedBox(width: screenWidth * 0.03),
                         Expanded(
                           child: Text(
                             AppStrings.cardno,
-                            style: textTheme.bodyMedium,
+                            style: textTheme.bodyMedium?.copyWith(),
                           ),
                         ),
-                        Icon(Icons.radio_button_checked),
+                        const Icon(Icons.radio_button_checked),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: screenHeight * 0.015),
                   // Add card
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 16,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.03,
+                        vertical: screenHeight * 0.02,
                       ),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(screenWidth * 0.03),
                       ),
                       child: GestureDetector(
                         onTap: () {
@@ -117,25 +137,32 @@ class PriceAndPaymentMethodScreen extends StatelessWidget {
                         },
                         child: Row(
                           children: [
-                            Text(
-                              AppStrings.addcardDetails,
-                              style: textTheme.bodyMedium,
+                            Expanded(
+                              child: Text(
+                                AppStrings.addcardDetails,
+                                style: textTheme.bodyMedium?.copyWith(),
+                              ),
                             ),
-
-                            Icon(Icons.arrow_forward_ios, size: 16),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: screenWidth * 0.035,
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 80),
+                  SizedBox(height: screenHeight * 0.08),
                   SizedBox(
                     width: double.infinity,
-                    height: 44,
+                    height: screenHeight * 0.06,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.back();
+                        final BottomNavController navcontroller =
+                            Get.find<BottomNavController>();
+                        navcontroller.changeIndex(0);
+                        Get.offAll(() => const BottomNavBar());
+
                         // if (_formKey.currentState!.validate()) {}
                         SnackbarHelper.show(
                           message: AppStrings.paymentReciveSnackbar,
@@ -146,14 +173,15 @@ class PriceAndPaymentMethodScreen extends StatelessWidget {
                         style: textTheme.bodyMedium?.copyWith(
                           color: AppColors.white,
                           fontWeight: FontWeight.w700,
+                          fontSize: screenWidth * 0.04,
                         ),
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

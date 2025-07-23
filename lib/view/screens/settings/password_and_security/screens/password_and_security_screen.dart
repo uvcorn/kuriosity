@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../../../core/app_routes/app_routes.dart';
 import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
-import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../../utils/app_strings/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
 import '../widgets/delete_account_popup.dart';
 
@@ -13,84 +13,87 @@ class PasswordAndSecurityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(Icons.arrow_back_ios),
-              ),
-              Text(
-                AppStrings.passwordandsecurity,
-                style: textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: height * 0.04),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 24),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
+                Expanded(
+                  child: Text(
+                    AppStrings.passwordandsecurity,
+                    style: textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: height * 0.03),
+            Column(
               children: [
                 GestureDetector(
                   onTap: () {
                     Get.toNamed(AppRoutes.linkedAccountsScreen);
                   },
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(width: 8),
+                      SizedBox(width: width * 0.02),
                       CustomImage(imageSrc: AppIcons.linkAccount),
-                      SizedBox(width: 16),
-                      Text(
-                        AppStrings.linkedAccounts,
-                        style: textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
+                      SizedBox(width: width * 0.04),
+                      Expanded(
+                        child: Text(
+                          AppStrings.linkedAccounts,
+                          style: textTheme.headlineSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      Spacer(),
-                      Icon(Icons.arrow_forward_ios),
+                      const Icon(Icons.arrow_forward_ios),
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: height * 0.025),
                 GestureDetector(
                   onTap: () {
                     Get.toNamed(AppRoutes.changePasswordScreen);
                   },
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(width: 8),
+                      SizedBox(width: width * 0.02),
                       CustomImage(imageSrc: AppIcons.padlock),
-                      SizedBox(width: 16),
-                      Text(
-                        AppStrings.changePassword,
-                        style: textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
+                      SizedBox(width: width * 0.04),
+                      Expanded(
+                        child: Text(
+                          AppStrings.changePassword,
+                          style: textTheme.headlineSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      Spacer(),
-                      Icon(Icons.arrow_forward_ios),
+                      const Icon(Icons.arrow_forward_ios),
                     ],
                   ),
                 ),
               ],
             ),
-          ),
-          SizedBox(height: 32),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
+            SizedBox(height: height * 0.04),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -99,7 +102,7 @@ class PasswordAndSecurityScreen extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                SizedBox(height: 14),
+                SizedBox(height: height * 0.018),
                 Text(
                   AppStrings.accountDeletiondescep,
                   style: textTheme.bodySmall?.copyWith(
@@ -107,10 +110,10 @@ class PasswordAndSecurityScreen extends StatelessWidget {
                     color: AppColors.black,
                   ),
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: height * 0.025),
                 Center(
                   child: SizedBox(
-                    height: 48,
+                    height: height * 0.06,
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
@@ -134,8 +137,8 @@ class PasswordAndSecurityScreen extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

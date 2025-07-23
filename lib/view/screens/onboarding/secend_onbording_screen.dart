@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../core/app_routes/app_routes.dart';
 import '../../../utils/app_colors/app_colors.dart';
-import '../../../utils/app_strings.dart/app_strings.dart';
+import '../../../utils/app_strings/app_strings.dart';
 import '../../components/action_button/action_button.dart';
 
 class SecendOnbordingScreen extends StatefulWidget {

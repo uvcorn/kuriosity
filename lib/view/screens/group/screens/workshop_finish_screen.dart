@@ -5,7 +5,7 @@ import 'package:kuriosity/view/components/custom_image/custom_image.dart';
 
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 
 class WorkshopFinishScreen extends StatelessWidget {
   const WorkshopFinishScreen({super.key});

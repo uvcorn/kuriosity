@@ -4,7 +4,7 @@ import 'package:any_link_preview/any_link_preview.dart';
 import 'package:linkify/linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../utils/app_colors/app_colors.dart';
-import '../../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../../../utils/app_strings/app_strings.dart';
 
 class CaptionWithLinkPreview extends StatelessWidget {
   final String caption;

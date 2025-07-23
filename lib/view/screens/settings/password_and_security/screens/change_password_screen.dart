@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../utils/app_colors/app_colors.dart';
-import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../../utils/app_strings/app_strings.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -30,33 +30,38 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
 
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.04),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 24),
+              SizedBox(height: height * 0.03),
               Row(
                 children: [
                   IconButton(
                     onPressed: () => Get.back(),
                     icon: const Icon(Icons.arrow_back_ios),
                   ),
-                  Text(
-                    AppStrings.changePassword,
-                    style: textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Text(
+                      AppStrings.changePassword,
+                      style: textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: height * 0.03),
 
-              // Current Password
               _buildPasswordField(
                 label: AppStrings.currentPassword,
                 controller: _currentPasswordController,
@@ -67,10 +72,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   });
                 },
               ),
+              SizedBox(height: height * 0.015),
 
-              const SizedBox(height: 12),
-
-              // New Password
               _buildPasswordField(
                 label: AppStrings.newPassword,
                 controller: _newPasswordController,
@@ -81,8 +84,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   });
                 },
               ),
-
-              const SizedBox(height: 12),
+              SizedBox(height: height * 0.015),
 
               _buildPasswordField(
                 label: AppStrings.confirmNewPassword,
@@ -94,12 +96,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   });
                 },
               ),
-
-              const SizedBox(height: 24),
+              SizedBox(height: height * 0.03),
 
               SizedBox(
                 width: double.infinity,
-                height: 48,
+                height: height * 0.065,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
@@ -140,8 +141,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         ),
         filled: true,
         fillColor: AppColors.white,
-
-        // border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 14,

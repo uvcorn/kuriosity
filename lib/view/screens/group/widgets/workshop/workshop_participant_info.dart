@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../utils/app_colors/app_colors.dart';
-import '../../../../../utils/app_strings.dart/app_strings.dart';
+import '../../../../../utils/app_strings/app_strings.dart';
 import '../common/participant_avatar_stack.dart';
 
 class WorkshopParticipationInfo extends StatelessWidget {

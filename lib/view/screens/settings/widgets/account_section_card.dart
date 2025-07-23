@@ -1,4 +1,3 @@
-// lib/widgets/account_section_card.dart
 import 'package:flutter/material.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../components/custom_image/custom_image.dart';
@@ -15,9 +14,12 @@ class AccountSectionCard extends StatelessWidget {
 
   static const double _rowHeight = 24.0;
   static const double _dividerTotalHeight = 16.0;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final horizontalPadding = screenWidth * 0.04; // 4% of screen width
 
     double calculatedHeight = 0;
     if (menuItems.isNotEmpty) {
@@ -34,36 +36,42 @@ class AccountSectionCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 8),
-        Text(
-          title,
-          style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          child: Text(
+            title,
+            style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+          ),
         ),
         const SizedBox(height: 8),
-        Container(
-          height: calculatedHeight,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: AppColors.backgroundWhite,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: List.generate(menuItems.length * 2 - 1, (index) {
-                if (index.isEven) {
-                  final itemIndex = index ~/ 2;
-                  final item = menuItems[itemIndex];
-                  return _buildBarRow(
-                    textTheme,
-                    item.title,
-                    item.iconPath,
-                    item.onTap,
-                  );
-                } else {
-                  return const Divider(color: AppColors.lightGray);
-                }
-              }),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
+          child: Container(
+            height: calculatedHeight,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: AppColors.backgroundWhite,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(6),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: List.generate(menuItems.length * 2 - 1, (index) {
+                  if (index.isEven) {
+                    final itemIndex = index ~/ 2;
+                    final item = menuItems[itemIndex];
+                    return _buildBarRow(
+                      textTheme,
+                      item.title,
+                      item.iconPath,
+                      item.onTap,
+                    );
+                  } else {
+                    return const Divider(color: AppColors.lightGray);
+                  }
+                }),
+              ),
             ),
           ),
         ),

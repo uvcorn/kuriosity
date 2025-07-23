@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
+import '../../../../utils/app_strings/app_strings.dart';
 import '../models/profile_workshop_model.dart';
-import '../../../../utils/app_strings.dart/app_strings.dart';
 
 class AttendedWorkshopController extends GetxController {
   final RxList<ProfileWorkshopModel> attendedWorkshops =

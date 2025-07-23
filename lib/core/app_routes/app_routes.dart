@@ -23,6 +23,9 @@ import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
 import '../../view/screens/onboarding/third_onbording_screen.dart';
 import '../../view/screens/post/views/post_screens.dart';
+import '../../view/screens/power_section/screens/power_user_details_screen.dart';
+import '../../view/screens/power_section/screens/registration_power_user_screen.dart';
+import '../../view/screens/power_section/screens/successfull_submit_power_user_screen.dart';
 import '../../view/screens/premium_section/screens/add_card_details_screen.dart';
 import '../../view/screens/premium_section/screens/premium_user_details_screen.dart';
 import '../../view/screens/premium_section/screens/price_and_payment_method_screen.dart';
@@ -87,9 +90,11 @@ class AppRoutes {
   static const String priceAndPaymentMethodScreen =
       "/PriceAndPaymentMethodScreen";
   static const String addCardDetailsScreen = "/AddCardDetailsScreen";
-  // static const String changePasswordScreen = "/ChangePasswordScreen";
-  // static const String interestScreen = "/InterestScreen";
-  // static const String passwordAndSecurityScreen = "/PasswordAndSecurityScreen";
+  static const String powerUserDetailsScreen = "/PowerUserDetailsScreen";
+  static const String registrationPowerUserScreen =
+      "/RegistrationPowerUserScreen";
+  static const String successfullSubmitPowerUserScreen =
+      "/SuccessfullSubmitPowerUserScreen";
   // static const String linkedAccountsScreen = "/LinkedAccountsScreen";
   // static const String changePasswordScreen = "/ChangePasswordScreen";
 
@@ -163,9 +168,15 @@ class AppRoutes {
       page: () => PriceAndPaymentMethodScreen(),
     ),
     GetPage(name: addCardDetailsScreen, page: () => AddCardDetailsScreen()),
-    // GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
-    // GetPage(name: linkedAccountsScreen, page: () => LinkedAccountsScreen()),
-    // GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
+    GetPage(name: powerUserDetailsScreen, page: () => PowerUserDetailsScreen()),
+    GetPage(
+      name: registrationPowerUserScreen,
+      page: () => RegistrationPowerUserScreen(),
+    ),
+    GetPage(
+      name: successfullSubmitPowerUserScreen,
+      page: () => SuccessfullSubmitPowerUserScreen(),
+    ),
     // GetPage(name: linkedAccountsScreen, page: () => LinkedAccountsScreen()),
     // GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
   ];

@@ -72,4 +72,8 @@ class AppIcons {
   static const String power = "$basePath/power.svg";
   static const String premium = "$basePath/premium.svg";
   static const String save = "$basePath/save.svg";
+  static const String linkAccount = "$basePath/link_account.svg";
+
+  ///====================== payment =========================
+  static const String masterCard = "$basePath/master_card.svg";
 }

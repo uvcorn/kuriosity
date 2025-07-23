@@ -41,14 +41,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _titleController.text = AppStrings.userTitle;
     _bioController.text = AppStrings.demoBio;
     _goalController.text = AppStrings.demoBio;
-    // Initialize with some demo interests if needed
-    userInterests = [
-      "Technology",
-      "Travel",
-      "Reading",
-      "Photography",
-      "Cooking",
-    ];
+    userInterests = [];
   }
 
   @override

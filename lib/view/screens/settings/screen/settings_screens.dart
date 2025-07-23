@@ -59,12 +59,16 @@ class _SettingsScreensState extends State<SettingsScreens> {
                     iconPath: AppIcons.user,
                   ),
                   AccountItem(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.passwordAndSecurityScreen);
+                    },
                     title: AppStrings.passwordandsecurity,
                     iconPath: AppIcons.padlock,
                   ),
                   AccountItem(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.premiumUserDetailsScreen);
+                    },
                     title: AppStrings.becomepremimum,
                     iconPath: AppIcons.premium,
                   ),

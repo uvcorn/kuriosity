@@ -246,6 +246,62 @@ class AppStrings {
   static const String camera = 'Camera';
   static const String cancel = 'Cancel';
   static const String save = 'Save';
+  static const String linkedAccounts = 'Linked Accounts';
+  static const String changePassword = 'Change Password';
+  static const String accountDeletion = 'Account Deletion';
+  static const String accountDeletiondescep =
+      'Once you delete your account, all your data will be permanently removed.';
+  static const String deleteAccount = 'Delete Account';
+  static const String deleteProfilePopupTitle =
+      'Do you really wants to delete your Account?';
+  static const String deleteProfiledata1 =
+      '• Your profile will be permanently deleted.';
+  static const String deleteProfiledata2 =
+      '•  Your account will no longer be accessible.';
+  static const String deleteProfiledata3 =
+      '• All your matches will be removed.';
+  static const String deleteProfiledata4 = '• All your messages will be erased';
+  static const String yesConfirm = 'Yes, Confirm';
+  static const String deleteSuccessfully = 'Delete Successfully!';
+  static const String deleteCancel = 'Delete Cancel!';
+  static const String google = 'Google';
+  static const String apple = 'Apple';
+  static const String unlinkAccount = 'Unlink Account';
+  static const String linkAccount = 'Link Account';
+  static const String dialogtitle =
+      'Are you sure you want to remove this account?';
+  static const String dialogopositetitle = 'Do you want to link this account?';
+  static const String confirm = 'Confirm';
+  static const String remove = 'Remove';
+  static const String link = 'Link';
+  static const String currentPassword = 'Current Password';
+  static const String premiumuserdec1 =
+      'With a premium service, you can join any group workshops that knowledgable influencers are hosting';
+  static const String premiumuserdec2 =
+      'Enjoy activities full of practical tips and vivid experiences that will make your sustainable journey more engaging';
+  static const String premiumFeatureTitle1 = 'Workshop will cover:';
+  static const String premiumFeature1 =
+      'How to keep a sustainable living in everyday life with various topics ';
+  static const String premiumFeatureTitle2 = 'Benefit includes:';
+  static const String premiumFeature2 = 'You can join any group workshops';
+  static const String gotopay = 'Go to pay';
+  static const String paymentprice = 'Payment price';
+  static const String individualmembership = 'Individual membership:';
+  static const String price = '£5.99/mo';
+  static const String paymentmethod = 'Payment method';
+  static const String cardno = 'Debit 1774';
+  static const String addcardDetails = 'Add card details';
+  static const String confirmandpay = 'Confirm and pay';
+  static const String cardnumberHint = 'Card number';
+  static const String expiryHint = 'MM/YY';
+  static const String cvvHint = 'CVV';
+  static const String postalCodeHint = 'Postalcode';
+  static const String fromsubmitsnakcbar = 'Form Submitted';
+  static const String requiredField = 'Required field';
+  static const String paymentReciveSnackbar = 'Payment Recive Successfully';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

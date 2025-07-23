@@ -23,9 +23,15 @@ import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
 import '../../view/screens/onboarding/third_onbording_screen.dart';
 import '../../view/screens/post/views/post_screens.dart';
+import '../../view/screens/premium_section/screens/add_card_details_screen.dart';
+import '../../view/screens/premium_section/screens/premium_user_details_screen.dart';
+import '../../view/screens/premium_section/screens/price_and_payment_method_screen.dart';
 import '../../view/screens/profile/screens/followers_following_screen.dart';
 import '../../view/screens/profile/screens/profile_screen.dart';
 import '../../view/screens/settings/edit_profile/edit_profile_screen.dart';
+import '../../view/screens/settings/password_and_security/screens/change_password_screen.dart';
+import '../../view/screens/settings/password_and_security/screens/linked_accounts_screen.dart';
+import '../../view/screens/settings/password_and_security/screens/password_and_security_screen.dart';
 import '../../view/screens/settings/screen/interest_screen.dart';
 import '../../view/screens/settings/screen/settings_screens.dart';
 import '../../view/screens/splash_screen/splash_screens.dart';
@@ -73,6 +79,19 @@ class AppRoutes {
   static const String settingsScreens = "/SettingsScreens";
   static const String editProfileScreen = "/EditProfileScreen";
   static const String interestScreen = "/InterestScreen";
+  static const String passwordAndSecurityScreen = "/PasswordAndSecurityScreen";
+  static const String linkedAccountsScreen = "/LinkedAccountsScreen";
+  static const String changePasswordScreen = "/ChangePasswordScreen";
+
+  static const String premiumUserDetailsScreen = "/PremiumUserDetailsScreen";
+  static const String priceAndPaymentMethodScreen =
+      "/PriceAndPaymentMethodScreen";
+  static const String addCardDetailsScreen = "/AddCardDetailsScreen";
+  // static const String changePasswordScreen = "/ChangePasswordScreen";
+  // static const String interestScreen = "/InterestScreen";
+  // static const String passwordAndSecurityScreen = "/PasswordAndSecurityScreen";
+  // static const String linkedAccountsScreen = "/LinkedAccountsScreen";
+  // static const String changePasswordScreen = "/ChangePasswordScreen";
 
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
@@ -128,5 +147,26 @@ class AppRoutes {
     GetPage(name: settingsScreens, page: () => SettingsScreens()),
     GetPage(name: editProfileScreen, page: () => EditProfileScreen()),
     GetPage(name: interestScreen, page: () => InterestScreen()),
+    GetPage(
+      name: passwordAndSecurityScreen,
+      page: () => PasswordAndSecurityScreen(),
+    ),
+    GetPage(name: linkedAccountsScreen, page: () => LinkedAccountsScreen()),
+    GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
+    GetPage(
+      name: premiumUserDetailsScreen,
+      page: () => PremiumUserDetailsScreen(),
+    ),
+
+    GetPage(
+      name: priceAndPaymentMethodScreen,
+      page: () => PriceAndPaymentMethodScreen(),
+    ),
+    GetPage(name: addCardDetailsScreen, page: () => AddCardDetailsScreen()),
+    // GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
+    // GetPage(name: linkedAccountsScreen, page: () => LinkedAccountsScreen()),
+    // GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
+    // GetPage(name: linkedAccountsScreen, page: () => LinkedAccountsScreen()),
+    // GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
   ];
 }

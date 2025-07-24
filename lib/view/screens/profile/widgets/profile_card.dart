@@ -31,7 +31,7 @@ class ProfileCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 8),
-              CustomImage(imageSrc: AppIcons.hosttag),
+              CustomImage(imageSrc: AppIcons.power),
             ],
           ),
         ),

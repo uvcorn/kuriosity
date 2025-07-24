@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_colors/app_colors.dart';
@@ -62,54 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppStrings.hostingTitle,
-                              style: textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                            Container(
-                              height: size.height * 0.04,
-                              width: size.width * 0.26,
-                              decoration: BoxDecoration(
-                                color: AppColors.primary,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CustomImage(
-                                    imageSrc: AppIcons.health,
-                                    size: size.width * 0.06,
-                                  ),
-                                  SizedBox(width: 6),
-                                  Text(
-                                    AppStrings.open,
-                                    style: textTheme.bodyMedium?.copyWith(
-                                      color: AppColors.white,
-                                      fontSize: size.width * 0.04,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: size.height * 0.02),
-                        HostCard(
-                          workshop: ProfileWorkshopModel(
-                            title: AppStrings.workshopTitle,
-                            time: AppStrings.time,
-                            workshopsTime: AppStrings.workshopTime,
-                          ),
-                        ),
-                      ],
-                    ),
+                    buildHostSection(textTheme, size),
 
                     SizedBox(height: size.height * 0.02),
 
@@ -188,6 +142,62 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildHostSection(TextTheme textTheme, Size size) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppStrings.hostingTitle,
+              style: textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoutes.openNewWorkshopScreen);
+              },
+              child: Container(
+                height: size.height * 0.04,
+                width: size.width * 0.26,
+                decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomImage(
+                      imageSrc: AppIcons.health,
+                      size: size.width * 0.06,
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      AppStrings.open,
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: AppColors.white,
+                        fontSize: size.width * 0.04,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: size.height * 0.02),
+        HostCard(
+          workshop: ProfileWorkshopModel(
+            title: AppStrings.workshopTitle,
+            time: AppStrings.time,
+            workshopsTime: AppStrings.workshopTime,
+          ),
+        ),
+      ],
     );
   }
 

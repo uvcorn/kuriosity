@@ -23,7 +23,7 @@ class ProfileHeader extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         CustomNetworkImage(
-          imageUrl: AppConstants.flowerbutterfly,
+          imageUrl: AppConstants.vegatable,
           height: 240,
           width: double.infinity,
           fit: BoxFit.cover,
@@ -54,6 +54,24 @@ class ProfileHeader extends StatelessWidget {
           offset: const Offset(0, 160),
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 30.0, bottom: 8),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.personalDetailsEditScreen);
+                    },
+                    child: Text(
+                      AppStrings.editProfile,
+                      style: textTheme.bodySmall?.copyWith(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Stack(
                 clipBehavior: Clip.none,
                 children: [

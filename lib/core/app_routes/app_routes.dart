@@ -22,6 +22,7 @@ import '../../view/screens/chat/screens/chats_screen.dart';
 import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
 import '../../view/screens/onboarding/third_onbording_screen.dart';
+import '../../view/screens/open_new_workshop/open_new_workshop_screen.dart';
 import '../../view/screens/post/views/post_screens.dart';
 import '../../view/screens/power_section/screens/power_user_details_screen.dart';
 import '../../view/screens/power_section/screens/registration_power_user_screen.dart';
@@ -85,6 +86,7 @@ class AppRoutes {
   static const String submitReviewScreen = "/SubmitReviewScreen";
   static const String wrkshopListScreen = "/WorkshopListScreen";
   static const String workshopVideoConference = "/WorkshopVideoConference";
+  static const String openNewWorkshopScreen = "/OpenNewWorkshopScreen";
 
   ///===========================SettingsScreens==========================
   static const String settingsScreens = "/SettingsScreens";
@@ -161,6 +163,7 @@ class AppRoutes {
       name: workshopVideoConference,
       page: () => WorkshopVideoConference(),
     ),
+    GetPage(name: openNewWorkshopScreen, page: () => OpenNewWorkshopScreen()),
 
     ///===========================SettingsScreens==========================
     GetPage(name: settingsScreens, page: () => SettingsScreens()),

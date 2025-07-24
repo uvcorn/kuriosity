@@ -102,7 +102,7 @@ class AppStrings {
   static const String invalidUrl = 'Invalid URL';
   static const String failedLoad = 'Failed to load link preview';
   //comment sheet
-  static const String title = 'Comments';
+  static const String comments = 'Comments';
   static const String commentButton = 'Comment';
   static const String replybutton = 'Reply';
   static const String userName = 'Tony Lens';
@@ -413,7 +413,53 @@ Thanks for helping us build a greener community!
 
   static const String blankClippedPosts = 'No clipped posts yet!';
   static const String finishPosting = 'Finish posting!';
-  //   static const String profile = 'Profile';
+  static const String editProfile = 'Edit Profile';
+  static const String openaNewWorkshop = 'Open a new workshop';
+  static const String workshoptitlehint = 'What’s the title of the workshop?';
+  static const String image = 'Image';
+  static const String oneLineOfExpla = 'One line of explanation';
+  static const String oneLineOfExplaHint =
+      'What will you and participants do? What should people know before start?';
+  static const String description = 'Description';
+  static const String descriptionHint =
+      'What will you and participants do? What should people know before start?';
+  static const String targatedPeople =
+      'Who is this workshop for (Tell us three)';
+  static const String targatedPeopleHint =
+      'Who do you think this workshop is suitable for?';
+  static const String groupCapacity = 'Group capacity';
+  static const String participants = 'participants';
+  static const String courses = 'Courses';
+  static const String addmore = 'Add more';
+  static const String addVideo = 'Add Video (optional)';
+  static const String coursematerial = 'Course material (optional)';
+  static const String coursematerialHint = 'Add any material you want to share';
+  static const String introduceyourselfOpt = 'Introduce yourself (optional)';
+  static const String introduceyourselfOptHint =
+      'What will you and participants do? What should people know before start?';
+  static const String upload = 'Upload';
+  static const String module1 = 'Module 1';
+  static const String moduleTitleHint = 'What’s the title of the module?';
+  static const String shortdescription = 'Short description';
+  static const String shortdescriptionHint = 'What would you deal with?';
+  static const String date = 'Date';
+  static const String dateHint = 'What would you deal with?';
+  static const String timeHInt = 'What would you deal with?';
+  static const String title = 'Title';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
+  // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

@@ -21,6 +21,7 @@ class WorkshopModel {
   final bool isCurrentlyProgressing;
   final bool isUpcoming;
   final bool isHostedByUser;
+  final bool isSaved;
 
   const WorkshopModel({
     required this.title,
@@ -37,5 +38,6 @@ class WorkshopModel {
     this.isCurrentlyProgressing = false,
     this.isUpcoming = false,
     this.isHostedByUser = false,
+    this.isSaved = false,
   });
 }

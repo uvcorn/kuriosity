@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../controllers/post_controller.dart';
+import '../controllers/create_post_controller.dart';
 
 class WorkshopSelector extends StatefulWidget {
-  final PostController controller;
+  final CreatePostController controller;
 
   const WorkshopSelector({super.key, required this.controller});
 

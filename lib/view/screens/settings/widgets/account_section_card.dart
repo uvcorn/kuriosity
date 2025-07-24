@@ -19,7 +19,7 @@ class AccountSectionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final screenWidth = MediaQuery.of(context).size.width;
-    final horizontalPadding = screenWidth * 0.04; // 4% of screen width
+    final horizontalPadding = screenWidth * 0.02; // 4% of screen width
 
     double calculatedHeight = 0;
     if (menuItems.isNotEmpty) {

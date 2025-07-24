@@ -34,7 +34,7 @@ class TermsAndPolicyScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    AppStrings.passwordandsecurity,
+                    AppStrings.termandPolicy,
                     style: textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -53,11 +53,11 @@ class TermsAndPolicyScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       SizedBox(width: width * 0.02),
-                      CustomImage(imageSrc: AppIcons.linkAccount),
+                      CustomImage(imageSrc: AppIcons.prootection),
                       SizedBox(width: width * 0.04),
                       Expanded(
                         child: Text(
-                          'Privacy Policy',
+                          AppStrings.privacyPolicy,
                           style: textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -75,11 +75,11 @@ class TermsAndPolicyScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       SizedBox(width: width * 0.02),
-                      CustomImage(imageSrc: AppIcons.padlock),
+                      CustomImage(imageSrc: AppIcons.document),
                       SizedBox(width: width * 0.04),
                       Expanded(
                         child: Text(
-                          'Terms & Conditions',
+                          AppStrings.termsAndConditions2,
                           style: textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),

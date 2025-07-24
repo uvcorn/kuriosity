@@ -5,7 +5,7 @@ import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../components/custom_netwrok_image/custom_network_image.dart';
-import '../controllers/post_controller.dart';
+import '../controllers/create_post_controller.dart';
 import '../widgets/image_preview_grid.dart';
 import '../widgets/workshop_selector.dart';
 import '../widgets/post_input_field.dart';
@@ -15,7 +15,7 @@ class PostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<PostController>();
+    final controller = Get.find<CreatePostController>();
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
@@ -43,7 +43,7 @@ class PostScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAppBar(BuildContext context, PostController controller) {
+  Widget _buildAppBar(BuildContext context, CreatePostController controller) {
     final textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -97,7 +97,7 @@ class PostScreen extends StatelessWidget {
                       Icon(Icons.check_circle_outline_rounded),
                       SizedBox(width: 8),
                       Text(
-                        'Finish posting!',
+                        AppStrings.finishPosting,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColors.black,
@@ -114,14 +114,14 @@ class PostScreen extends StatelessWidget {
                 borderRadius: 10,
               );
             },
-            child: const Text("Post"),
+            child: const Text(AppStrings.post),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildMediaButtons(PostController controller) {
+  Widget _buildMediaButtons(CreatePostController controller) {
     return Row(
       children: [
         IconButton(

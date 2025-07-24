@@ -40,7 +40,7 @@ class GroupController extends GetxController {
     },
   ];
 
-  final List<WorkshopModel> _allWorkshops = [
+  final RxList<WorkshopModel> _allWorkshops = <WorkshopModel>[
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
@@ -53,6 +53,7 @@ class GroupController extends GetxController {
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
       category: WorkshopCategory.foodAndDiet,
       isCurrentlyProgressing: true,
+      isSaved: true,
     ),
     WorkshopModel(
       title: AppStrings.workshopTitle,
@@ -66,6 +67,7 @@ class GroupController extends GetxController {
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
       category: WorkshopCategory.drivingAndCommuting,
       isUpcoming: true,
+      isSaved: true,
     ),
     WorkshopModel(
       title: AppStrings.workshopTitle,
@@ -159,7 +161,7 @@ class GroupController extends GetxController {
       category: WorkshopCategory.drivingAndCommuting,
       fullImageUrls: [AppConstants.flowerbutterfly],
     ),
-  ];
+  ].obs;
 
   RxList<WorkshopModel> get filteredWorkshops => _allWorkshops
       .where((workshop) {
@@ -199,4 +201,6 @@ class GroupController extends GetxController {
       .where((workshop) => workshop.isHostedByUser == true)
       .toList()
       .obs;
+  RxList<WorkshopModel> get savedWorkshops =>
+      _allWorkshops.where((workshop) => workshop.isSaved == true).toList().obs;
 }

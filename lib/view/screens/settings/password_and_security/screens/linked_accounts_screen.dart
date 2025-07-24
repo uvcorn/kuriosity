@@ -72,7 +72,7 @@ class _LinkedAccountsScreenState extends State<LinkedAccountsScreen> {
           Expanded(
             child: Text(
               accountKey,
-              style: textTheme.headlineSmall?.copyWith(
+              style: textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),

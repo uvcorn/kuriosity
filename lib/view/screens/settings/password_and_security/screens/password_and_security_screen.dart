@@ -36,7 +36,7 @@ class PasswordAndSecurityScreen extends StatelessWidget {
                 Expanded(
                   child: Text(
                     AppStrings.passwordandsecurity,
-                    style: textTheme.headlineSmall?.copyWith(
+                    style: textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -59,7 +59,7 @@ class PasswordAndSecurityScreen extends StatelessWidget {
                       Expanded(
                         child: Text(
                           AppStrings.linkedAccounts,
-                          style: textTheme.headlineSmall?.copyWith(
+                          style: textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -81,7 +81,7 @@ class PasswordAndSecurityScreen extends StatelessWidget {
                       Expanded(
                         child: Text(
                           AppStrings.changePassword,
-                          style: textTheme.headlineSmall?.copyWith(
+                          style: textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),

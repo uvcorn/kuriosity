@@ -19,7 +19,7 @@ class IntroductionScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: screenWidth * 0.06,
+              horizontal: screenWidth * 0.03,
               vertical: screenHeight * 0.025,
             ),
             child: Column(
@@ -43,43 +43,18 @@ class IntroductionScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(AppStrings.introductionDec1, style: textTheme.bodyMedium),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+                  child: Text(
+                    AppStrings.appDescription,
+                    style: textTheme.bodyMedium,
+                  ),
+                ),
                 SizedBox(height: 16),
-                Text(AppStrings.introductionDec2, style: textTheme.bodyMedium),
-                SizedBox(height: 24),
-                Text(AppStrings.keyFeaturestitle, style: textTheme.bodyMedium),
-                SizedBox(height: 12),
-                _BulletPoint(text: AppStrings.keyFeatures1),
-                _BulletPoint(text: AppStrings.keyFeatures2),
-                _BulletPoint(text: AppStrings.keyFeatures3),
-                _BulletPoint(text: AppStrings.keyFeatures4),
-                _BulletPoint(text: AppStrings.keyFeatures5),
-                SizedBox(height: 24),
-                Text(AppStrings.thanks, style: textTheme.bodyMedium),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _BulletPoint extends StatelessWidget {
-  final String text;
-  const _BulletPoint({required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text("• ", style: TextStyle(fontSize: 14)),
-          Expanded(child: Text(text, style: textTheme.bodyMedium)),
-        ],
       ),
     );
   }

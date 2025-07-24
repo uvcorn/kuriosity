@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
+import '../../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../controllers/post_card_controller.dart';
 import '../../comment_section/comment_draggable_sheet.dart';
@@ -72,6 +73,7 @@ class _PostCardState extends State<PostCard> {
     final followButton = widget.followButtom ?? false;
 
     return Card(
+      color: AppColors.white,
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 2,

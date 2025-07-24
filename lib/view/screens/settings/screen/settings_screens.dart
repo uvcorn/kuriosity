@@ -6,6 +6,9 @@ import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/bottom_nav_bar/bottom_nav_bar.dart';
+import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
+import '../../../components/snackbar_helper/snackbar_helper.dart';
 import '../widgets/account_section_card.dart';
 import '../widgets/faq_expansion.dart';
 
@@ -17,6 +20,48 @@ class SettingsScreens extends StatefulWidget {
 }
 
 class _SettingsScreensState extends State<SettingsScreens> {
+  bool isPremiumActive = true;
+
+  Future<void> _confirmCancelPremium() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.backgroundWhite,
+        title: Text(AppStrings.cancelPremiumUser),
+        content: Text(
+          "Are you sure you want to cancel your premium subscription?",
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.back(); // Close dialog
+            },
+            child: Text(
+              AppStrings.cancel,
+              style: TextStyle(color: AppColors.black),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              final BottomNavController navcontroller =
+                  Get.find<BottomNavController>();
+              navcontroller.changeIndex(0);
+              Get.offAll(() => const BottomNavBar());
+              SnackbarHelper.show(message: "Premium subscription cancelled.");
+            },
+            child: Text("Yes, Cancel", style: TextStyle(color: Colors.black)),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      setState(() {
+        isPremiumActive = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -28,7 +73,7 @@ class _SettingsScreensState extends State<SettingsScreens> {
       backgroundColor: AppColors.backgroundLightGray,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.03),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -58,7 +103,7 @@ class _SettingsScreensState extends State<SettingsScreens> {
                 menuItems: [
                   AccountItem(
                     onTap: () {
-                      Get.toNamed(AppRoutes.editProfileScreen);
+                      Get.toNamed(AppRoutes.personalDetailsEditScreen);
                     },
                     title: AppStrings.personaldetails,
                     iconPath: AppIcons.user,
@@ -91,22 +136,30 @@ class _SettingsScreensState extends State<SettingsScreens> {
                 title: AppStrings.activity,
                 menuItems: [
                   AccountItem(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.clippedPostScreen);
+                    },
                     title: AppStrings.clippedPost,
                     iconPath: AppIcons.clips,
                   ),
                   AccountItem(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.savedWorkshopScreen);
+                    },
                     title: AppStrings.savedWorkshop,
                     iconPath: AppIcons.save,
                   ),
                   AccountItem(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.ntificationSettingsScreen);
+                    },
                     title: AppStrings.notifications,
                     iconPath: AppIcons.blackBell,
                   ),
                   AccountItem(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.blockedListScreen);
+                    },
                     title: AppStrings.blockedList,
                     iconPath: AppIcons.lock,
                   ),
@@ -133,10 +186,13 @@ class _SettingsScreensState extends State<SettingsScreens> {
                 ],
               ),
               SizedBox(height: height * 0.01),
-              Text(
-                AppStrings.fAQ,
-                style: textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  AppStrings.fAQ,
+                  style: textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               SizedBox(height: height * 0.01),
@@ -177,11 +233,16 @@ class _SettingsScreensState extends State<SettingsScreens> {
               ),
               SizedBox(height: height * 0.04),
               Center(
-                child: Text(
-                  AppStrings.cancelPremiumUser,
-                  textAlign: TextAlign.center,
-                  style: textTheme.bodyMedium?.copyWith(
-                    decoration: TextDecoration.underline,
+                child: GestureDetector(
+                  onTap: () {
+                    _confirmCancelPremium();
+                  },
+                  child: Text(
+                    AppStrings.cancelPremiumUser,
+                    textAlign: TextAlign.center,
+                    style: textTheme.bodyMedium?.copyWith(
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ),

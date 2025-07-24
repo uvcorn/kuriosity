@@ -5,7 +5,7 @@ import 'package:linkify/linkify.dart';
 
 import '../../../../utils/app_colors/app_colors.dart';
 
-class PostController extends GetxController {
+class CreatePostController extends GetxController {
   final textController = TextEditingController();
   final ImagePicker imagePicker = ImagePicker();
 

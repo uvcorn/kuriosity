@@ -14,14 +14,15 @@ import 'widgets/editing_info_row.dart';
 import 'widgets/image_select_menu.dart';
 import 'widgets/interestchip.dart'; // Assuming this widget can handle File as well
 
-class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
+class PersonalDetailsEditScreen extends StatefulWidget {
+  const PersonalDetailsEditScreen({super.key});
 
   @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
+  State<PersonalDetailsEditScreen> createState() =>
+      _PersonalDetailsEditScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
+class _PersonalDetailsEditScreenState extends State<PersonalDetailsEditScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
@@ -90,7 +91,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     if (file != null) {
       return ClipRRect(
         borderRadius: borderRadius,
-        child: Image.file(file, height: height, width: width, fit: fit),
+        child: Image.file(
+          file,
+          height: height,
+          width: width,
+          fit: BoxFit.cover,
+        ),
       );
     } else {
       return ClipRRect(
@@ -99,7 +105,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           imageUrl: networkImageUrl,
           height: height,
           width: width,
-          fit: fit,
+          fit: BoxFit.cover,
         ),
       );
     }
@@ -130,7 +136,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   // Background Image
                   _buildImageWidget(
-                    networkImageUrl: AppConstants.flowerbutterfly,
+                    networkImageUrl: AppConstants.vegatable,
                     file: _backgroundImageFile,
                     height: coverImageHeight,
                     width: double.infinity,

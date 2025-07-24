@@ -31,10 +31,14 @@ import '../../view/screens/premium_section/screens/premium_user_details_screen.d
 import '../../view/screens/premium_section/screens/price_and_payment_method_screen.dart';
 import '../../view/screens/profile/screens/followers_following_screen.dart';
 import '../../view/screens/profile/screens/profile_screen.dart';
+import '../../view/screens/settings/activity_section/blocked_list_screen.dart';
+import '../../view/screens/settings/activity_section/clipped_post_screen.dart';
+import '../../view/screens/settings/activity_section/notification_settings_screen.dart';
+import '../../view/screens/settings/activity_section/saved_workshop_screen.dart';
 import '../../view/screens/settings/company_section/privacy_policy_screen.dart';
 import '../../view/screens/settings/company_section/terms_and_condition_screen.dart';
 import '../../view/screens/settings/company_section/terms_and_policy_screen.dart';
-import '../../view/screens/settings/edit_profile/edit_profile_screen.dart';
+import '../../view/screens/settings/personal_details_edit/personal_details_edit_screen.dart';
 import '../../view/screens/settings/password_and_security/screens/change_password_screen.dart';
 import '../../view/screens/settings/company_section/introduction_screen.dart';
 import '../../view/screens/settings/password_and_security/screens/linked_accounts_screen.dart';
@@ -84,7 +88,7 @@ class AppRoutes {
 
   ///===========================SettingsScreens==========================
   static const String settingsScreens = "/SettingsScreens";
-  static const String editProfileScreen = "/EditProfileScreen";
+  static const String personalDetailsEditScreen = "/PersonalDetailsEditScreen";
   static const String interestScreen = "/InterestScreen";
   static const String passwordAndSecurityScreen = "/PasswordAndSecurityScreen";
   static const String linkedAccountsScreen = "/LinkedAccountsScreen";
@@ -103,6 +107,10 @@ class AppRoutes {
   static const String privacyPolicyScreen = "/PrivacyPolicyScreen";
   static const String termsAndConditionScreen = "/TermsAndConditionScreen";
   static const String termsAndPolicyScreen = "/TermsAndPolicyScreen";
+  static const String blockedListScreen = "/BlockedListScreen";
+  static const String ntificationSettingsScreen = "/NotificationSettingsScreen";
+  static const String savedWorkshopScreen = "/SavedWorkshopScreen";
+  static const String clippedPostScreen = "/ClippedPostScreen";
 
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
@@ -156,7 +164,10 @@ class AppRoutes {
 
     ///===========================SettingsScreens==========================
     GetPage(name: settingsScreens, page: () => SettingsScreens()),
-    GetPage(name: editProfileScreen, page: () => EditProfileScreen()),
+    GetPage(
+      name: personalDetailsEditScreen,
+      page: () => PersonalDetailsEditScreen(),
+    ),
     GetPage(name: interestScreen, page: () => InterestScreen()),
     GetPage(
       name: passwordAndSecurityScreen,
@@ -190,5 +201,13 @@ class AppRoutes {
       page: () => TermsAndConditionScreen(),
     ),
     GetPage(name: termsAndPolicyScreen, page: () => TermsAndPolicyScreen()),
+
+    GetPage(name: blockedListScreen, page: () => BlockedListScreen()),
+    GetPage(
+      name: ntificationSettingsScreen,
+      page: () => NotificationSettingsScreen(),
+    ),
+    GetPage(name: savedWorkshopScreen, page: () => SavedWorkshopScreen()),
+    GetPage(name: clippedPostScreen, page: () => ClippedPostScreen()),
   ];
 }

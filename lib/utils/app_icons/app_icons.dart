@@ -76,4 +76,8 @@ class AppIcons {
 
   ///====================== payment =========================
   static const String masterCard = "$basePath/master_card.svg";
+
+  ///====================== payment =========================
+  static const String document = "$basePath/document.svg";
+  static const String prootection = "$basePath/prootection.svg";
 }

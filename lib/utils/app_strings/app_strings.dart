@@ -328,27 +328,92 @@ class AppStrings {
   static const String describeyourworkshop = 'Describe your workshop...';
   static const String introductionDec1 =
       'This app is your go-to platform for discovering, sharing, and embracing eco-friendly habits in everyday life. Whether you’re passionate about sustainable food, green products, or reducing waste, you’ll find a supportive community ready to inspire and connect with you. Share your own experiences through photos, videos, and posts, and join group sessions to learn and collaborate on sustainability projects.';
-  static const String introductionDec2 =
-      'Our goal is to make sustainable living easy, engaging, and social. Explore categorized topics, participate in workshops, and connect with like-minded people who care about making a positive impact on the planet.';
-  static const String keyFeaturestitle = 'Key Features:';
-  static const String keyFeatures1 =
-      'Share multimedia posts focused on sustainability.';
-  static const String keyFeatures2 =
-      'Comment, react, and chat with community members.';
-  static const String keyFeatures3 =
-      'Join group sessions and events to learn and collaborate.';
-  static const String keyFeatures4 =
-      'Browse categories like eco-friendly cooking, green fashion, and more.';
-  static const String keyFeatures5 =
-      'Track and celebrate your own sustainable lifestyle efforts.';
-  static const String thanks =
-      'Thank you for being part of this movement toward a greener future!';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
-  // static const String profile = 'Profile';
+
+  static const String privacyPolicy = 'Privacy Policy';
+  static const String termsAndConditions2 = 'Terms & Conditions';
+  static const String appDescription = '''
+This app is your go-to platform for discovering, sharing, and embracing eco-friendly habits in everyday life. Whether you’re passionate about sustainable food, green products, or reducing waste, you’ll find a supportive community ready to inspire and connect with you. Share your own experiences through photos, videos, and posts, and join group sessions to learn and collaborate on sustainability projects.
+
+Our goal is to make sustainable living easy, engaging, and social. Explore categorized topics, participate in workshops, and connect with like-minded people who care about making a positive impact on the planet.
+
+Key Features:
+• Share multimedia posts focused on sustainability.
+• Comment, react, and chat with community members.
+• Join group sessions and events to learn and collaborate.
+• Browse categories like eco-friendly cooking, green fashion, and more.
+• Track and celebrate your own sustainable lifestyle efforts.
+
+Thank you for being part of this movement toward a greener future!
+''';
+  static const String privacyPolicydesc = '''
+We value your privacy and are committed to protecting your personal information while you use Wild Curiosity. This policy explains what data we collect, how we use it, and your rights.
+
+When you create an account, we collect basic information such as your name, email address, and any profile details you provide. We also collect content you share, including posts, photos, and videos. To improve your experience, we may gather usage data like app activity and device information.
+
+Your information is used to personalize the app, facilitate social interactions, and manage events and workshops. We do not sell or rent your personal data to third parties. However, we may share necessary data with trusted service providers who help us operate the app, always under strict confidentiality.
+
+We implement industry-standard security measures to protect your data, but no system is completely secure. You are responsible for keeping your login credentials confidential.
+
+You have the right to access, update, or delete your personal information. You can also control what content you share publicly within the app.
+
+By using our app, you agree to this Privacy Policy. We may update it occasionally, and your continued use means acceptance of those changes.
+
+Key Points:
+• We collect personal info you provide and data from your app usage.
+• Data is used to improve your experience and enable social features.
+• We do not sell your personal information.
+• Trusted partners may have limited access to data for app operations.
+• Security measures protect your data, but no guarantee of absolute security.
+• You control your profile and content sharing settings.
+• You can request access to or deletion of your personal data.
+• Continued use after updates means you accept the updated policy.
+
+Thank you for trusting us with your information as we build a sustainable community together.
+''';
+  static const String termsAndConditionsdesc = '''
+Welcome to Wild Curiosity! By using this app, you agree to follow these terms and conditions. Please read them carefully.
+
+Our app encourages sharing eco-friendly habits through posts, photos, and videos. You are responsible for the content you share, which should be respectful, lawful, and promote sustainability. We do not allow offensive, harmful, or illegal content.
+
+You must be at least 13 years old to use the app. By creating an account, you agree to our collection and use of your data as described in our Privacy Policy. While we aim to protect your information, you use the app at your own risk.
+
+You keep ownership of your content but grant us permission to display it within the app. We may remove content or suspend users who violate these terms. The app is provided “as is” without guarantees of uninterrupted access or content accuracy.
+
+We may update these terms from time to time; continued use means you accept any changes.
+
+Key Points:
+• Respect others and share positive, sustainable content.
+• No spamming, harassment, or illegal activities.
+• We are not responsible for external links or user-generated content.
+• Participation in workshops and events requires following all guidelines.
+• Use the app at your own risk; no warranties are provided.
+
+Thanks for helping us build a greener community!
+''';
+
+  static const String blockedUsers = 'Blocked Users';
+  static const String unblockUser = 'Unblock User';
+  static const String unblockSurety =
+      'Are you sure you want to unblock this user?';
+  static const String unblock = 'Unblock';
+  static const String unblockSuccessfully = 'Unblock Successfully';
+  static const String noblockedusers = 'No blocked users.';
+  static const String generalNotifications = 'General Notifications';
+  static const String generalNotificationsSub =
+      'Enable notifications for app updates, system alerts, and other important notifications.';
+  static const String workshopNotifications = 'Workshop Notifications';
+  static const String workshopNotificationsSub =
+      'Get all the workshop related notifications.';
+  static const String followNotifications = 'Follow Notifications';
+  static const String followNotificationsSub =
+      'Get notified when someone follows you.';
+  static const String messageNotifications = 'Message Notifications';
+  static const String messageNotificationsSub =
+      'Get notified when you receive new messages in the chat.';
+
+  static const String blankClippedPosts = 'No clipped posts yet!';
+  static const String finishPosting = 'Finish posting!';
+  //   static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

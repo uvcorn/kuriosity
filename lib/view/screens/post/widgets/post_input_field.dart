@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../components/custom_link_preview/custom_link_preview.dart';
-import '../controllers/post_controller.dart';
+import '../controllers/create_post_controller.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 
 class PostInputField extends StatelessWidget {
-  final PostController controller;
+  final CreatePostController controller;
 
   const PostInputField({super.key, required this.controller});
 

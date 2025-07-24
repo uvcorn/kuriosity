@@ -11,8 +11,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  get: ^4.7.2
-  country_code_picker: ^3.3.0
+  get: ^4.7.2 
   pin_code_fields: ^8.0.1
   google_fonts: ^6.2.1
   flutter_svg: ^2.2.0

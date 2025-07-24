@@ -1,4 +1,4 @@
-import 'package:country_code_picker/country_code_picker.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors/app_colors.dart';
@@ -37,54 +37,56 @@ class PhoneInputScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      CountryCodePicker(
-                        onChanged: controller.onCountryCodeChanged,
-                        alignLeft: true,
-                        builder: (countryCode) {
-                          return Obx(
-                            () => Container(
-                              height: size.height * 0.07,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                              ),
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(12),
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      controller
-                                              .selectedCountryCode
-                                              .value
-                                              ?.name ??
-                                          AppStrings.countryOrRegion,
-                                      style: textTheme.labelSmall?.copyWith(
-                                        overflow: TextOverflow.fade,
-                                      ),
+                      Obx(() {
+                        final country = controller.selectedCountry.value;
+                        return ListTile(
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          title: Text(
+                            country != null
+                                ? '${country.flagEmoji}  ${country.name} (+${country.phoneCode})'
+                                : AppStrings.countryOrRegion,
+                            style: textTheme.bodyMedium,
+                          ),
+                          trailing: const Icon(
+                            Icons.keyboard_arrow_down,
+                            color: AppColors.mediumGray,
+                          ),
+                          onTap: () {
+                            showCountryPicker(
+                              context: context,
+                              showPhoneCode: true,
+                              favorite: ['US', 'BD'], // optional
+                              countryListTheme: CountryListThemeData(
+                                flagSize: 24,
+                                backgroundColor: Colors.white,
+                                textStyle: textTheme.bodyLarge,
+                                inputDecoration: InputDecoration(
+                                  labelText: 'Search country',
+                                  prefixIcon: const Icon(Icons.search),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.grey.shade300,
                                     ),
                                   ),
-                                  const Icon(
-                                    Icons.keyboard_arrow_down,
-                                    color: AppColors.mediumGray,
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        dialogTextStyle: textTheme.bodyLarge,
-                        searchStyle: textTheme.bodyMedium,
-                        dialogBackgroundColor: Colors.white,
-                        barrierColor: Colors.black.withAlpha(1),
-                      ),
+                              onSelect: (Country c) {
+                                controller.onCountryChanged(c);
+                              },
+                            );
+                          },
+                        );
+                      }),
+
                       const Divider(
                         color: AppColors.lightGray,
                         indent: 16,
                         endIndent: 16,
                       ),
+
+                      // Phone input field
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: TextField(
@@ -94,12 +96,9 @@ class PhoneInputScreen extends StatelessWidget {
                             labelText: AppStrings.phoneNumber,
                             labelStyle: textTheme.labelSmall,
                             border: InputBorder.none,
-                            prefixText:
-                                controller
-                                    .selectedCountryCode
-                                    .value
-                                    ?.dialCode ??
-                                '',
+                            prefixText: controller.selectedCountry.value != null
+                                ? '+${controller.selectedCountry.value!.phoneCode} '
+                                : '',
                           ),
                         ),
                       ),

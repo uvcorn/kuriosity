@@ -105,7 +105,7 @@ class DialogHelper {
                                 child: InputDecorator(
                                   decoration: InputDecoration(
                                     filled: true,
-                                    fillColor: AppColors.backgroundLightGray,
+                                    fillColor: AppColors.backgroundWhite,
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),
@@ -152,7 +152,7 @@ class DialogHelper {
                                             backgroundColor:
                                                 AppColors.backgroundWhite,
                                             dialBackgroundColor:
-                                                AppColors.backgroundLightGray,
+                                                AppColors.backgroundWhite,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(16),
@@ -180,7 +180,7 @@ class DialogHelper {
                                 child: InputDecorator(
                                   decoration: InputDecoration(
                                     filled: true,
-                                    fillColor: AppColors.backgroundLightGray,
+                                    fillColor: AppColors.backgroundWhite,
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),

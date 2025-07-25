@@ -10,8 +10,7 @@ class OpenWorkshopController extends GetxController {
   final TextEditingController targetedPeopleController =
       TextEditingController();
   final TextEditingController groupCapacityController = TextEditingController();
-  final TextEditingController courseMaterialController =
-      TextEditingController();
+
   final TextEditingController introduceYourselfController =
       TextEditingController();
 
@@ -26,6 +25,17 @@ class OpenWorkshopController extends GetxController {
     courses[index] = course;
   }
 
+  void reset() {
+    workshopTitleController.clear();
+    oneLineExplanationController.clear();
+    descriptionController.clear();
+    targetedPeopleController.clear();
+    groupCapacityController.clear();
+    introduceYourselfController.clear();
+    courses.clear();
+    selectedExpertise.clear();
+  }
+
   void deleteCourse(int index) {
     courses.removeAt(index);
   }
@@ -38,28 +48,6 @@ class OpenWorkshopController extends GetxController {
     }
   }
 
-  void submitForm() {
-    // Implement your form submission logic here
-    // You can access all controller values and the courses list
-    debugPrint('Workshop Title: ${workshopTitleController.text}');
-    debugPrint('One Line Explanation: ${oneLineExplanationController.text}');
-    debugPrint('Description: ${descriptionController.text}');
-    debugPrint('Targeted People: ${targetedPeopleController.text}');
-    debugPrint('Group Capacity: ${groupCapacityController.text}');
-    debugPrint('Course Material: ${courseMaterialController.text}');
-    debugPrint('Introduce Yourself: ${introduceYourselfController.text}');
-    debugPrint('Courses: ${courses.length}');
-    debugPrint('Selected Expertise: $selectedExpertise');
-
-    Get.snackbar(
-      'Form Submitted',
-      'Workshop details logged to console!',
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.green,
-      colorText: Colors.white,
-    );
-  }
-
   @override
   void onClose() {
     workshopTitleController.dispose();
@@ -67,7 +55,6 @@ class OpenWorkshopController extends GetxController {
     descriptionController.dispose();
     targetedPeopleController.dispose();
     groupCapacityController.dispose();
-    courseMaterialController.dispose();
     introduceYourselfController.dispose();
     super.onClose();
   }

@@ -11,7 +11,8 @@ class Post {
   final String seeds;
   final String shares;
   final bool? followButton;
-  final bool isClipedpost;
+  final bool? isClipedpost;
+  final bool? isClimatehistory;
 
   Post({
     required this.username,
@@ -27,5 +28,6 @@ class Post {
     required this.shares,
     this.followButton = false,
     this.isClipedpost = false,
+    this.isClimatehistory = false,
   });
 }

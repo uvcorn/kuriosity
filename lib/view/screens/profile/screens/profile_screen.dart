@@ -69,7 +69,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                     Column(
                       children: [
-                        _buildCardBar(textTheme, AppStrings.joiningTitle),
+                        CardBar(
+                          textTheme: textTheme,
+                          title: AppStrings.joiningTitle,
+                        ),
                         SizedBox(height: size.height * 0.01),
                         Container(
                           height: size.height * 0.2,
@@ -110,10 +113,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildCardBar(
-                          textTheme,
-                          AppStrings.historyBarTitle,
-                          AppStrings.viewall,
+                        CardBar(
+                          textTheme: textTheme,
+                          title: AppStrings.historyBarTitle,
+                          subtitle: AppStrings.viewall,
+                          vieallTap: () {
+                            Get.toNamed(AppRoutes.yourClimateHistoryscreen);
+                          },
                         ),
                         SizedBox(height: size.height * 0.01),
                         Obx(
@@ -200,8 +206,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
     );
   }
+}
 
-  Widget _buildCardBar(TextTheme textTheme, String title, [String? subtitle]) {
+class CardBar extends StatelessWidget {
+  final TextTheme textTheme;
+  final String title;
+  final String? subtitle;
+  final VoidCallback? vieallTap;
+  const CardBar({
+    super.key,
+    required this.textTheme,
+    required this.title,
+    this.subtitle,
+    this.vieallTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -209,8 +230,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title,
           style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w900),
         ),
-        if (subtitle != null && subtitle.isNotEmpty)
-          Text(subtitle, style: textTheme.bodySmall),
+        if (subtitle != null && subtitle!.isNotEmpty)
+          GestureDetector(
+            onTap: vieallTap,
+            child: Text(subtitle!, style: textTheme.bodySmall),
+          ),
       ],
     );
   }

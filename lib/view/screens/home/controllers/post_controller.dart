@@ -41,7 +41,7 @@ class PostController extends GetxController {
         seeds: '3',
         followButton: true,
         shares: '15',
-        isClipedpost: false,
+        isClimatehistory: true,
       ),
       Post(
         username: 'Daniel Maier',
@@ -68,6 +68,7 @@ class PostController extends GetxController {
         comments: '10',
         seeds: '1',
         shares: '5',
+        isClimatehistory: true,
       ),
       Post(
         username: 'Tony Lane',

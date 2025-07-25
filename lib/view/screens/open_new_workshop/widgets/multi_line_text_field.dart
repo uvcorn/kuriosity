@@ -34,7 +34,7 @@ class MultiLineTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         maxLines: isMultiline ? null : 1,
-        textInputAction: textInputAction,
+        textInputAction: isMultiline ? null : textInputAction,
         expands: isMultiline,
         textAlignVertical: TextAlignVertical.top,
         decoration: InputDecoration(

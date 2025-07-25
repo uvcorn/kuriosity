@@ -35,7 +35,8 @@ class _GroupCapacityDesignState extends State<GroupCapacityDesign> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            SizedBox(
+            Container(
+              color: AppColors.backgroundWhite,
               width: 120,
               child: TextField(
                 controller: _controller,
@@ -70,15 +71,12 @@ class _GroupCapacityDesignState extends State<GroupCapacityDesign> {
                     _controller.text = '0';
                   }
                 },
-                style: TextStyle(fontSize: 18),
+                style: textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: 4),
-            Text(
-              AppStrings.participants,
-              style: TextStyle(color: AppColors.black, fontSize: 16),
-            ),
+            Text(AppStrings.participants, style: textTheme.bodySmall),
           ],
         ),
       ],

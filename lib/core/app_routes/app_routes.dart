@@ -32,6 +32,7 @@ import '../../view/screens/premium_section/screens/premium_user_details_screen.d
 import '../../view/screens/premium_section/screens/price_and_payment_method_screen.dart';
 import '../../view/screens/profile/screens/followers_following_screen.dart';
 import '../../view/screens/profile/screens/profile_screen.dart';
+import '../../view/screens/profile/screens/your_climate_historyscreen.dart';
 import '../../view/screens/settings/activity_section/blocked_list_screen.dart';
 import '../../view/screens/settings/activity_section/clipped_post_screen.dart';
 import '../../view/screens/settings/activity_section/notification_settings_screen.dart';
@@ -78,7 +79,8 @@ class AppRoutes {
   ///===========================Profile==========================
   static const String profileScreen = "/ProfileScreen";
   static const String followersFollowingScreen = "/FollowersFollowingScreen";
-
+  static const String yourClimateHistoryscreen = "/YourClimateHistoryscreen";
+  // static const String followersFollowingScreen = "/FollowersFollowingScreen";
   ///===========================Workshop==========================
   static const String workshopDetailScreen = "/WorkshopDetailScreen";
   static const String reviewScreen = "/ReviewScreen";
@@ -146,6 +148,11 @@ class AppRoutes {
       name: followersFollowingScreen,
       page: () => FollowersFollowingScreen(),
     ),
+    GetPage(
+      name: yourClimateHistoryscreen,
+      page: () => YourClimateHistoryscreen(),
+    ),
+    // GetPage(name: profileScreen, page: () => ProfileScreen()),
 
     ///===========================Workshop==========================
     GetPage(

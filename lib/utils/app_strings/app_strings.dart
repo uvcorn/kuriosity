@@ -223,6 +223,7 @@ class AppStrings {
   static const String becomepower = 'Become a power user';
   static const String activity = 'Activity';
   static const String clippedPost = 'Clipped Post';
+  static const String yourClimateHistory = 'Your Climate History';
   static const String savedWorkshop = 'Saved Workshop';
   static const String blockedList = 'Blocked List';
   static const String company = 'Company';
@@ -436,7 +437,7 @@ Thanks for helping us build a greener community!
   static const String coursematerialHint = 'Add any material you want to share';
   static const String introduceyourselfOpt = 'Introduce yourself (optional)';
   static const String introduceyourselfOptHint =
-      'What will you and participants do? What should people know before start?';
+      'Tell participants about yourself and your expertise';
   static const String upload = 'Upload';
   static const String module1 = 'Module 1';
   static const String moduleTitleHint = 'What’s the title of the module?';
@@ -457,6 +458,7 @@ Thanks for helping us build a greener community!
       'No courses added yet. Click Add Course to get started.';
   static const String noMaterial = 'Add any material you want to share';
   static const String editCourse = 'Edit Course';
+  static const String workshopOpenSuccessfully = 'Workshop Open Successfully';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

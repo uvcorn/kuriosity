@@ -8,7 +8,8 @@ class MultiLineTextField extends StatelessWidget {
   final double screenWidth;
   final double screenHeight;
   final TextTheme textTheme;
-  final bool isMultiline; // New parameter
+  final bool isMultiline;
+  final TextInputAction textInputAction;
 
   const MultiLineTextField({
     super.key,
@@ -17,7 +18,8 @@ class MultiLineTextField extends StatelessWidget {
     required this.screenWidth,
     required this.screenHeight,
     required this.textTheme,
-    this.isMultiline = true, // Default: multiline
+    this.isMultiline = true,
+    this.textInputAction = TextInputAction.next,
   });
 
   @override
@@ -32,6 +34,7 @@ class MultiLineTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         maxLines: isMultiline ? null : 1,
+        textInputAction: textInputAction,
         expands: isMultiline,
         textAlignVertical: TextAlignVertical.top,
         decoration: InputDecoration(

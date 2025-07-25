@@ -1,89 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import 'controller/open_new_workshop_controller.dart';
+import 'widgets/dialog_helper.dart';
+import 'widgets/empty_file_state.dart';
+import 'widgets/group_capacity_design.dart';
 import 'widgets/multi_line_text_field.dart';
-import 'widgets/title_discription_pair.dart';
-import 'widgets/url_field.dart';
 
-class OpenNewWorkshopScreen extends StatefulWidget {
+class OpenNewWorkshopScreen extends StatelessWidget {
   const OpenNewWorkshopScreen({super.key});
 
   @override
-  State<OpenNewWorkshopScreen> createState() => _OpenNewWorkshopScreenState();
-}
-
-class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
-  final List<TitleDescriptionPair> titleDescriptionPairs = [
-    TitleDescriptionPair(),
-  ];
-
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController oneLineController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController audienceController = TextEditingController();
-  final TextEditingController groupCapacityController = TextEditingController();
-  final TextEditingController courseMaterialController =
-      TextEditingController();
-  final TextEditingController introController = TextEditingController();
-  // //
-  final TextEditingController othersExpertiseController =
-      TextEditingController();
-  final TextEditingController introduceYourselfController =
-      TextEditingController();
-  final TextEditingController workshopController = TextEditingController();
-
-  final List<TextEditingController> websiteControllers = [
-    TextEditingController(),
-  ];
-  final List<TextEditingController> socialMediaControllers = [
-    TextEditingController(),
-  ];
-
-  final Set<String> selectedExpertise = {};
-
-  void toggleExpertise(String value) {
-    setState(() {
-      if (selectedExpertise.contains(value)) {
-        selectedExpertise.remove(value);
-      } else {
-        selectedExpertise.add(value);
-      }
-    });
-  }
-
-  void addWebsiteField() {
-    setState(() {
-      websiteControllers.add(TextEditingController());
-    });
-  }
-
-  void removeWebsiteField(int index) {
-    setState(() {
-      websiteControllers.removeAt(index);
-    });
-  }
-
-  void addSocialMediaField() {
-    setState(() {
-      socialMediaControllers.add(TextEditingController());
-    });
-  }
-
-  void removeSocialMediaField(int index) {
-    setState(() {
-      socialMediaControllers.removeAt(index);
-    });
-  }
-
-  void submitForm() {
-    // Handle form submission
-    // You can collect all values here
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final OpenWorkshopController controller = Get.put(OpenWorkshopController());
+
     final textTheme = Theme.of(context).textTheme;
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
@@ -91,7 +22,7 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
     double fontSize(double size) => size * screenWidth / 375;
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundWhite,
+      backgroundColor: AppColors.lightGray,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
@@ -130,18 +61,13 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
                 ),
               ),
               SizedBox(height: screenHeight * 0.015),
-              ...List.generate(
-                websiteControllers.length,
-                (index) => UrlField(
-                  controller: websiteControllers[index],
-                  hint: AppStrings.workshoptitlehint,
-                  onAdd: addWebsiteField,
-                  onRemove: () => removeWebsiteField(index),
-                  isLast: index == websiteControllers.length - 1,
-                  screenWidth: screenWidth,
-                  screenHeight: screenHeight,
-                  textTheme: textTheme,
-                ),
+              MultiLineTextField(
+                controller: controller.workshopTitleController,
+                hint: AppStrings.workshoptitlehint,
+                screenWidth: screenWidth,
+                screenHeight: screenHeight,
+                textTheme: textTheme,
+                isMultiline: false,
               ),
               SizedBox(height: screenHeight * 0.02),
 
@@ -150,7 +76,6 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
                 style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.black,
-                  fontSize: fontSize(16),
                 ),
               ),
               SizedBox(height: 8),
@@ -196,11 +121,12 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
               ),
               SizedBox(height: screenHeight * 0.015),
               MultiLineTextField(
-                controller: workshopController,
+                controller: controller.oneLineExplanationController,
                 hint: AppStrings.oneLineOfExplaHint,
                 screenWidth: screenWidth,
                 screenHeight: screenHeight,
                 textTheme: textTheme,
+                isMultiline: false,
               ),
 
               SizedBox(height: screenHeight * 0.03),
@@ -214,7 +140,7 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
               ),
               SizedBox(height: screenHeight * 0.015),
               MultiLineTextField(
-                controller: workshopController,
+                controller: controller.descriptionController,
                 hint: AppStrings.descriptionHint,
                 screenWidth: screenWidth,
                 screenHeight: screenHeight,
@@ -232,7 +158,7 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
               ),
               SizedBox(height: screenHeight * 0.015),
               MultiLineTextField(
-                controller: workshopController,
+                controller: controller.targetedPeopleController,
                 hint: AppStrings.targatedPeopleHint,
                 screenWidth: screenWidth,
                 screenHeight: screenHeight,
@@ -241,48 +167,124 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
 
               // Social Media
               SizedBox(height: screenHeight * 0.02),
-              Text(AppStrings.groupCapacity),
-              MultiLineTextField(
-                controller: workshopController,
-                hint: AppStrings.participants,
-                screenWidth: screenWidth,
-                screenHeight: screenHeight,
-                textTheme: textTheme,
-                isMultiline: false,
-              ),
-              SizedBox(height: screenHeight * 0.02),
-              Text(
-                AppStrings.course,
-                style: textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+
+              GroupCapacityDesign(),
+              SizedBox(height: screenHeight * 0.005),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        AppStrings.course,
+                        style: textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Spacer(),
+                      ElevatedButton(
+                        onPressed: () {
+                          DialogHelper.showAddCourseDialog(
+                            onSubmit: controller.addCourse,
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.add_circle_outline,
+                              color: AppColors.white,
+                            ),
+                            Text(AppStrings.addcourse),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Obx(
+                    () => controller.courses.isEmpty
+                        ? EmptyFileState(
+                            icon: Icons.description_outlined,
+                            message: AppStrings.noCourseData,
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: controller.courses.length,
+                            itemBuilder: (context, index) {
+                              final course = controller.courses[index];
+                              return Card(
+                                margin: EdgeInsets.symmetric(vertical: 8),
+                                child: ListTile(
+                                  title: Text(course.title),
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(course.description),
+                                      SizedBox(height: 4),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            fit: FlexFit.loose,
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.calendar_today,
+                                                  size: 16,
+                                                ),
+                                                SizedBox(width: 4),
+                                                Text(
+                                                  "${course.date.day}/${course.date.month}/${course.date.year}",
+                                                ),
+                                                SizedBox(width: 8),
+                                                SizedBox(width: 4),
+                                                Text(
+                                                  course.time.format(context),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(Icons.edit),
+                                        onPressed: () {
+                                          DialogHelper.showAddCourseDialog(
+                                            initialCourse: course,
+                                            onSubmit: (updatedCourse) {
+                                              controller.editCourse(
+                                                index,
+                                                updatedCourse,
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: Colors.black,
+                                        ),
+                                        onPressed: () =>
+                                            controller.deleteCourse(index),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                  ),
+                ],
               ),
 
-              ...List.generate(
-                titleDescriptionPairs.length,
-                (index) => TitleDescriptionFieldPair(
-                  pair: titleDescriptionPairs[index],
-                  onAdd: () {
-                    setState(() {
-                      titleDescriptionPairs.add(TitleDescriptionPair());
-                    });
-                  },
-                  onRemove: index != titleDescriptionPairs.length - 1
-                      ? () {
-                          setState(() {
-                            titleDescriptionPairs.removeAt(index);
-                          });
-                        }
-                      : null,
-                  isLast: index == titleDescriptionPairs.length - 1,
-                  screenWidth: screenWidth,
-                  screenHeight: screenHeight,
-                  textTheme: textTheme,
-                  fontSize: fontSize,
-                ),
-              ),
-
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: screenHeight * 0.01),
               Text(
                 AppStrings.coursematerial,
                 style: textTheme.bodyMedium?.copyWith(
@@ -290,21 +292,25 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
                 ),
               ),
               SizedBox(height: screenHeight * 0.015),
-              ...List.generate(
-                socialMediaControllers.length,
-                (index) => UrlField(
-                  controller: socialMediaControllers[index],
-                  hint: AppStrings.coursematerialHint,
-                  onAdd: addSocialMediaField,
-                  onRemove: () => removeSocialMediaField(index),
-                  isLast: index == socialMediaControllers.length - 1,
-                  screenWidth: screenWidth,
-                  screenHeight: screenHeight,
-                  textTheme: textTheme,
-                ),
+              EmptyFileState(
+                icon: Icons.description_outlined,
+                message: AppStrings.noMaterial,
               ),
 
-              SizedBox(height: screenHeight * 0.03),
+              SizedBox(height: screenHeight * 0.01),
+              Text(
+                AppStrings.coursematerial,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.015),
+              EmptyFileState(
+                icon: Icons.description_outlined,
+                message: AppStrings.noMaterial,
+              ),
+
+              SizedBox(height: screenHeight * 0.01),
               Text(
                 AppStrings.introduceyourselfOpt,
                 style: textTheme.bodyMedium?.copyWith(
@@ -315,11 +321,12 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
               ),
               SizedBox(height: screenHeight * 0.015),
               MultiLineTextField(
-                controller: workshopController,
+                controller: controller.introduceYourselfController,
                 hint: AppStrings.introduceyourselfOptHint,
                 screenWidth: screenWidth,
                 screenHeight: screenHeight,
                 textTheme: textTheme,
+                textInputAction: TextInputAction.done,
               ),
 
               SizedBox(height: screenHeight * 0.05),
@@ -327,7 +334,7 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
                 width: double.infinity,
                 height: screenHeight * 0.055,
                 child: ElevatedButton(
-                  onPressed: submitForm,
+                  onPressed: controller.submitForm,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
@@ -352,15 +359,4 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
       ),
     );
   }
-}
-
-class TitleDescriptionPair {
-  final TextEditingController titleController;
-  final TextEditingController descriptionController;
-
-  TitleDescriptionPair({
-    TextEditingController? titleController,
-    TextEditingController? descriptionController,
-  }) : titleController = titleController ?? TextEditingController(),
-       descriptionController = descriptionController ?? TextEditingController();
 }

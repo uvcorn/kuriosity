@@ -139,7 +139,7 @@ class AppStrings {
   static const String followers = "Followers";
   static const String following = "Following";
   static const String userBio =
-      "Imperfect environmentalism, data-forward slow fashion, & upcycling \n📍 London \n♻️ @remadebymen \npartnerships - dianablog@gmail.com";
+      "Imperfect environmentalism, data-forward slow fashion, & up cycling \n📍 London \n♻️ @remadebymen \npartnerships - dianablog@gmail.com";
   static const String goal = "Goal";
   static const String userGoal = "Seriously making sustainability fun ";
   static const String interest = "Interest";
@@ -151,7 +151,7 @@ class AppStrings {
   static const String viewall = "View all";
   static const String open = "Open";
   static const String demotime = "FRI, 23 May, 19:30 BST";
-  static const String timeduration = "6 May - 27 May";
+  static const String timeDuration = "6 May - 27 May";
   static const String workshopTime = "4 week workshops";
   static const String workshopTitle =
       "Switch to a climate-healthy diet with a professional nutritionist";

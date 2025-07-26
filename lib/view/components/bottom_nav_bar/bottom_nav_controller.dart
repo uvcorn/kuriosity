@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:kuriosity/core/app_routes/app_routes.dart';
+
+import '../../../core/app_routes/app_routes.dart';
 
 class BottomNavController extends GetxController {
   int _currentIndex = 0;

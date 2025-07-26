@@ -44,7 +44,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["4 week workshops"],
       participants: 7,
       spacesLeft: 3,
@@ -58,7 +58,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["Single workshop"],
       participants: 7,
       spacesLeft: 3,
@@ -72,7 +72,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["Single workshop"],
       participants: 4,
       spacesLeft: 0,
@@ -87,7 +87,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["Online workshop"],
       participants: 12,
       spacesLeft: 8,
@@ -100,7 +100,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["Online workshop"],
       participants: 12,
       spacesLeft: 8,
@@ -113,7 +113,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["Online workshop"],
       participants: 12,
       spacesLeft: 8,
@@ -126,7 +126,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["Practical workshop"],
       participants: 8,
       spacesLeft: 2,
@@ -138,7 +138,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["Advanced workshop"],
       participants: 5,
       spacesLeft: 0,
@@ -151,7 +151,7 @@ class GroupController extends GetxController {
     WorkshopModel(
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
-      date: AppStrings.time,
+      date: AppStrings.demotime,
       tags: ["Online seminar"],
       participants: 20,
       spacesLeft: 10,

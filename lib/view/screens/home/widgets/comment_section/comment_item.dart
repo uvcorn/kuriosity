@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kuriosity/utils/app_colors/app_colors.dart';
-import 'package:kuriosity/utils/app_icons/app_icons.dart';
-import 'package:kuriosity/view/components/custom_image/custom_image.dart';
-import 'package:kuriosity/view/components/custom_netwrok_image/custom_network_image.dart';
-import 'package:kuriosity/view/components/reaction_button/reaction_button.dart';
-
+import '../../../../../utils/app_colors/app_colors.dart';
+import '../../../../../utils/app_icons/app_icons.dart';
 import '../../../../../utils/app_strings/app_strings.dart';
+import '../../../../components/custom_image/custom_image.dart';
+import '../../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../components/reaction_button/reaction_button.dart';
 
 class CommentItem extends StatefulWidget {
   final String userImage;

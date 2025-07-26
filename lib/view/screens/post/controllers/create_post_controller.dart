@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:linkify/linkify.dart';
 
-import '../../../../utils/app_colors/app_colors.dart';
+import '../../../components/snackbar_helper/snackbar_helper.dart';
 
 class CreatePostController extends GetxController {
   final textController = TextEditingController();
@@ -80,22 +80,17 @@ class CreatePostController extends GetxController {
       );
       if (image != null) {
         if (pickedImages.length >= 3) {
-          Get.snackbar(
-            'Limit Reached',
-            'You can only select up to 3 images.',
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: AppColors.lightBlueBackground,
+          SnackbarHelper.show(
+            message: 'You can only select up to 3 images.',
+            isSuccess: true,
           );
+
           return;
         }
         pickedImages.add(image);
       }
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to pick image: $e',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      SnackbarHelper.show(message: 'Failed to pick image: $e', isSuccess: true);
     }
   }
 

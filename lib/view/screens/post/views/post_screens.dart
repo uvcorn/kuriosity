@@ -5,6 +5,7 @@ import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../components/snackbar_helper/snackbar_helper.dart';
 import '../controllers/create_post_controller.dart';
 import '../widgets/image_preview_grid.dart';
 import '../widgets/workshop_selector.dart';
@@ -88,30 +89,9 @@ class PostScreen extends StatelessWidget {
                   Get.find<BottomNavController>();
               navcontroller.changeIndex(0);
               Get.back();
-
-              Get.rawSnackbar(
-                animationDuration: Duration(seconds: 1),
-                messageText: Center(
-                  child: Row(
-                    children: [
-                      Icon(Icons.check_circle_outline_rounded),
-                      SizedBox(width: 8),
-                      Text(
-                        AppStrings.finishPosting,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                backgroundColor: AppColors.lightBlueBackground,
-                duration: const Duration(seconds: 2),
-                snackPosition: SnackPosition.BOTTOM,
-                margin: const EdgeInsets.all(12),
-                borderRadius: 10,
+              SnackbarHelper.show(
+                message: AppStrings.finishPosting,
+                isSuccess: true,
               );
             },
             child: const Text(AppStrings.post),

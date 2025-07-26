@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuriosity/view/screens/settings/models/account_item.dart';
 
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
@@ -9,6 +8,7 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
+import '../models/account_item.dart';
 import '../widgets/account_section_card.dart';
 import '../widgets/faq_expansion.dart';
 
@@ -47,7 +47,10 @@ class _SettingsScreensState extends State<SettingsScreens> {
                   Get.find<BottomNavController>();
               navcontroller.changeIndex(0);
               Get.offAll(() => const BottomNavBar());
-              SnackbarHelper.show(message: "Premium subscription cancelled.");
+              SnackbarHelper.show(
+                message: "Premium subscription cancelled.",
+                isSuccess: false,
+              );
             },
             child: Text("Yes, Cancel", style: TextStyle(color: Colors.black)),
           ),

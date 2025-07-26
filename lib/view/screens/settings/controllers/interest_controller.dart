@@ -1,7 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
+
+import '../../../components/snackbar_helper/snackbar_helper.dart';
 
 class InterestController extends GetxController {
   final int maxSelection = 5;
@@ -43,12 +44,9 @@ class InterestController extends GetxController {
       if (selectedInterests.length < maxSelection) {
         selectedInterests.add(interest);
       } else {
-        Get.snackbar(
-          "Selection Limit",
-          "You can select a maximum of $maxSelection interests.",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.orange.withOpacity(0.7),
-          colorText: Colors.white,
+        SnackbarHelper.show(
+          message: "You can select a maximum of $maxSelection interests.",
+          isSuccess: false,
         );
       }
     }

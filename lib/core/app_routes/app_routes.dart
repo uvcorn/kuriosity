@@ -9,7 +9,6 @@ import '../../view/screens/auth/screens/reset_password_screen.dart';
 import '../../view/screens/auth/screens/sign_in_screen.dart';
 import '../../view/screens/auth/screens/sign_up_screen.dart';
 import '../../view/screens/chat/screens/chats_list_screen.dart';
-import '../../view/screens/group/models/workshop_model.dart';
 import '../../view/screens/group/screens/group_screen.dart';
 import '../../view/screens/group/screens/review_screen.dart';
 import '../../view/screens/group/screens/submit_review_screen.dart';
@@ -86,7 +85,7 @@ class AppRoutes {
   static const String reviewScreen = "/ReviewScreen";
   static const String workshopFinishScreen = "/WorkshopFinishScreen";
   static const String submitReviewScreen = "/SubmitReviewScreen";
-  static const String wrkshopListScreen = "/WorkshopListScreen";
+  static const String workshopListScreen = "/WorkshopListScreen";
   static const String workshopVideoConference = "/WorkshopVideoConference";
   static const String openNewWorkshopScreen = "/OpenNewWorkshopScreen";
 
@@ -158,14 +157,14 @@ class AppRoutes {
     GetPage(
       name: workshopDetailScreen,
       page: () {
-        final workshop = Get.arguments as WorkshopModel;
+        final workshop = Get.arguments;
         return WorkshopDetailScreen(workshop: workshop);
       },
     ),
     GetPage(name: reviewScreen, page: () => ReviewScreen()),
     GetPage(name: workshopFinishScreen, page: () => WorkshopFinishScreen()),
     GetPage(name: submitReviewScreen, page: () => SubmitReviewScreen()),
-    GetPage(name: wrkshopListScreen, page: () => WorkshopListScreen()),
+    GetPage(name: workshopListScreen, page: () => WorkshopListScreen()),
     GetPage(
       name: workshopVideoConference,
       page: () => WorkshopVideoConference(),

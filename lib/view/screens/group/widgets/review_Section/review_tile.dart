@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kuriosity/utils/app_colors/app_colors.dart';
+import '../../../../../utils/app_colors/app_colors.dart';
 import 'star_display.dart';
 
 class ReviewTile extends StatelessWidget {

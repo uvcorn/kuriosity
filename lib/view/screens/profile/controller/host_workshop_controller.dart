@@ -12,7 +12,7 @@ class HostWorkshopController extends GetxController {
     hostWorkshops.assignAll([
       ProfileWorkshopModel(
         title: AppStrings.workshopTitle,
-        time: AppStrings.time,
+        time: AppStrings.demotime,
         workshopsTime: AppStrings.workshopTime,
       ),
     ]);

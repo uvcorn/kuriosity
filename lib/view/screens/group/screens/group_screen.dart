@@ -84,7 +84,7 @@ class GroupScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Get.toNamed(
-            AppRoutes.wrkshopListScreen,
+            AppRoutes.workshopListScreen,
             arguments: {'initialTab': 0},
           );
         },

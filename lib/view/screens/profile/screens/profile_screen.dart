@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../group/controller/group_controller.dart';
+import '../../group/models/workshop_model.dart';
+import '../../group/screens/workshop_details_screen.dart';
 import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../../../../utils/app_icons/app_icons.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
-import '../../../components/custom_image/custom_image.dart';
 import '../controller/history_workshop_controller.dart';
 import '../controller/host_workshop_controller.dart';
 import '../controller/joined_workshop_controller.dart';
 import '../controller/profile_controller.dart';
+import '../widgets/card_bar.dart';
 import '../widgets/history_workshop_card.dart';
 import '../widgets/host_workshop_card.dart';
 import '../widgets/profile_header.dart';
@@ -36,10 +38,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   );
   final BottomNavController navController = Get.find<BottomNavController>();
   final ProfileController profileController = Get.put(ProfileController());
+  final GroupController groupController = Get.find<GroupController>();
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
+
+    final ProfileWorkshopModel? hostedProfileWorkshop =
+        hostWorkshopController.hostWorkshops.isNotEmpty
+        ? hostWorkshopController.hostWorkshops.first
+        : null;
+    final WorkshopModel? hostedFullWorkshop =
+        groupController.hostedWorkshops.isNotEmpty
+        ? groupController.hostedWorkshops.first
+        : null;
 
     return PopScope(
       canPop: false,
@@ -63,7 +76,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildHostSection(textTheme, size),
+                    HostWorkshopSection(
+                      hostedProfileWorkshop: hostedProfileWorkshop,
+                      hostedFullWorkshop: hostedFullWorkshop,
+                    ),
 
                     SizedBox(height: size.height * 0.02),
 
@@ -89,9 +105,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               separatorBuilder: (context, index) =>
                                   SizedBox(width: size.width * 0.03),
                               itemBuilder: (context, index) {
-                                final workshop = joinedWorkshopController
+                                final joinedWorkshop = joinedWorkshopController
                                     .joinedWorkshops[index];
-                                return JoinWorkshopCard(workshop: workshop);
+
+                                WorkshopModel? matchedWorkshop;
+                                try {
+                                  matchedWorkshop = groupController
+                                      .currentlyProgressingWorkshops
+                                      .firstWhere(
+                                        (w) =>
+                                            w.title == joinedWorkshop.title &&
+                                            w.date == joinedWorkshop.time,
+                                      );
+                                } catch (_) {
+                                  matchedWorkshop = null;
+                                }
+
+                                return JoinWorkshopCard(
+                                  workshop: joinedWorkshop,
+                                  onTap: () {
+                                    if (matchedWorkshop != null) {
+                                      Get.to(
+                                        () => WorkshopDetailScreen(
+                                          workshop: matchedWorkshop!,
+                                        ),
+                                      );
+                                    }
+                                    // else {
+                                    //   // Fallback: Create minimal WorkshopModel if not found
+                                    //   final fallbackWorkshop = WorkshopModel(
+                                    //     title: joinedWorkshop.title,
+                                    //     instructorName: 'Instructor',
+                                    //     date: joinedWorkshop.time,
+                                    //     tags: ['Workshop'],
+                                    //     participants: 0,
+                                    //     spacesLeft: 0,
+                                    //     profileImageUrl: '',
+                                    //     profileImage2Url: '',
+                                    //     fullImageUrls: [],
+                                    //     category: WorkshopCategory.all,
+                                    //   );
+                                    //   Get.to(
+                                    //     () => WorkshopDetailScreen(
+                                    //       workshop: fallbackWorkshop,
+                                    //     ),
+                                    //   );
+                                    // }
+                                  },
+                                );
                               },
                             ),
                           ),
@@ -102,9 +163,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(height: size.height * 0.02),
 
                     Obx(
-                      () => buildSubscriptionPannel(
-                        textTheme,
-                        profileController.isPremium.value,
+                      () => SubscriptionPanel(
+                        textTheme: Theme.of(context).textTheme,
+                        isPremium: profileController.isPremium.value,
+                        // profileController.isPremium.value,
                       ),
                     ),
 
@@ -148,94 +210,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildHostSection(TextTheme textTheme, Size size) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              AppStrings.hostingTitle,
-              style: textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.openNewWorkshopScreen);
-              },
-              child: Container(
-                height: size.height * 0.04,
-                width: size.width * 0.26,
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomImage(
-                      imageSrc: AppIcons.health,
-                      size: size.width * 0.06,
-                    ),
-                    SizedBox(width: 6),
-                    Text(
-                      AppStrings.open,
-                      style: textTheme.bodyMedium?.copyWith(
-                        color: AppColors.white,
-                        fontSize: size.width * 0.04,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: size.height * 0.02),
-        HostCard(
-          workshop: ProfileWorkshopModel(
-            title: AppStrings.workshopTitle,
-            time: AppStrings.time,
-            workshopsTime: AppStrings.workshopTime,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class CardBar extends StatelessWidget {
-  final TextTheme textTheme;
-  final String title;
-  final String? subtitle;
-  final VoidCallback? vieallTap;
-  const CardBar({
-    super.key,
-    required this.textTheme,
-    required this.title,
-    this.subtitle,
-    this.vieallTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w900),
-        ),
-        if (subtitle != null && subtitle!.isNotEmpty)
-          GestureDetector(
-            onTap: vieallTap,
-            child: Text(subtitle!, style: textTheme.bodySmall),
-          ),
-      ],
     );
   }
 }

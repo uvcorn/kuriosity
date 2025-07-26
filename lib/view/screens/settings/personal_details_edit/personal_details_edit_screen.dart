@@ -3,13 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kuriosity/view/screens/settings/screen/interest_screen.dart'; // Make sure this path is correct
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/custom_image/custom_image.dart';
 import '../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../components/snackbar_helper/snackbar_helper.dart';
+import '../screen/interest_screen.dart';
 import 'widgets/editing_info_row.dart';
 import 'widgets/image_select_menu.dart';
 import 'widgets/interestchip.dart'; // Assuming this widget can handle File as well
@@ -70,12 +71,9 @@ class _PersonalDetailsEditScreenState extends State<PersonalDetailsEditScreen> {
         });
       }
     } catch (e) {
-      Get.snackbar(
-        "Error",
-        "Failed to pick image: $e",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.7),
-        colorText: Colors.white,
+      SnackbarHelper.show(
+        message: "Failed to pick image: $e",
+        isSuccess: false,
       );
     }
   }

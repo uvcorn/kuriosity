@@ -134,6 +134,7 @@ class _AddCardDetailsScreenState extends State<AddCardDetailsScreen> {
                               // if (_formKey.currentState!.validate()) {}
                               SnackbarHelper.show(
                                 message: AppStrings.fromsubmitsnakcbar,
+                                isSuccess: true,
                               );
                             },
                             child: Text(

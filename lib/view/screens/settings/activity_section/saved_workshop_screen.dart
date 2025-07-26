@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuriosity/view/screens/group/widgets/workshop/workshop_card.dart';
-
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../group/controller/group_controller.dart';
+import '../../group/widgets/workshop/workshop_card.dart';
 
 class SavedWorkshopScreen extends StatefulWidget {
   const SavedWorkshopScreen({super.key});

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors/app_colors.dart';
@@ -5,10 +8,13 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../components/snackbar_helper/snackbar_helper.dart';
 import 'controller/image_picker_grid_controller.dart';
 import 'controller/open_new_workshop_controller.dart';
+import 'course_model/material_item.dart';
 import 'widgets/dialog_helper.dart';
 import 'widgets/empty_file_state.dart';
 import 'widgets/group_capacity_design.dart';
 import 'widgets/multi_line_text_field.dart';
+import 'widgets/url_field.dart';
+import 'widgets/video_picker_section.dart';
 
 class OpenNewWorkshopScreen extends StatefulWidget {
   const OpenNewWorkshopScreen({super.key});
@@ -18,6 +24,41 @@ class OpenNewWorkshopScreen extends StatefulWidget {
 }
 
 class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
+  final List<MaterialItem> materialItems = [
+    MaterialItem(controller: TextEditingController()),
+  ];
+
+  void addMaterialWithFile(int index) async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.any,
+      // allowedExtensions: ['pdf', 'doc', 'docx'],
+    );
+
+    if (result != null && result.files.single.path != null) {
+      setState(() {
+        materialItems[index].attachedFile = File(result.files.single.path!);
+        materialItems.add(MaterialItem(controller: TextEditingController()));
+      });
+    }
+  }
+
+  void removeMaterial(int index) {
+    setState(() {
+      if (materialItems.length > 1) {
+        materialItems.removeAt(index);
+      } else {
+        materialItems[0].controller.clear();
+        materialItems[0].attachedFile = null;
+      }
+    });
+  }
+
+  void removeOnlyFile(int index) {
+    setState(() {
+      materialItems[index].attachedFile = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final OpenWorkshopController controller =
@@ -244,6 +285,7 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
                               final course = controller.courses[index];
                               return Card(
                                 margin: EdgeInsets.symmetric(vertical: 8),
+                                color: AppColors.backgroundWhite,
                                 child: ListTile(
                                   title: Text(course.title),
                                   subtitle: Column(
@@ -315,6 +357,17 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
               ),
 
               SizedBox(height: screenHeight * 0.01),
+              // Text(
+              //   AppStrings.coursematerial,
+              //   style: textTheme.bodyMedium?.copyWith(
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
+              // SizedBox(height: screenHeight * 0.015),
+              // EmptyFileState(
+              //   icon: Icons.description_outlined,
+              //   message: AppStrings.noMaterial,
+              // ),
               Text(
                 AppStrings.coursematerial,
                 style: textTheme.bodyMedium?.copyWith(
@@ -322,23 +375,57 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
                 ),
               ),
               SizedBox(height: screenHeight * 0.015),
-              EmptyFileState(
-                icon: Icons.description_outlined,
-                message: AppStrings.noMaterial,
-              ),
+              ...List.generate(materialItems.length, (index) {
+                final item = materialItems[index];
+                return Column(
+                  children: [
+                    UrlField(
+                      controller: item.controller,
+                      hint: AppStrings.coursematerialHint,
+                      onAdd: () => addMaterialWithFile(index),
+                      onRemove: () => removeMaterial(index),
+                      isLast: index == materialItems.length - 1,
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                    ),
+                    if (item.attachedFile != null)
+                      Padding(
+                        padding: EdgeInsets.only(bottom: screenHeight * 0.012),
+                        child: Row(
+                          children: [
+                            Icon(Icons.insert_drive_file_outlined),
+                            SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                item.attachedFile!.path.split('/').last,
+                                style: textTheme.bodySmall,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.close, color: AppColors.black),
+                              onPressed: () => removeOnlyFile(index),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                );
+              }),
 
               SizedBox(height: screenHeight * 0.01),
-              Text(
-                AppStrings.coursematerial,
-                style: textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: screenHeight * 0.015),
-              EmptyFileState(
-                icon: Icons.description_outlined,
-                message: AppStrings.noMaterial,
-              ),
+              // Text(
+              //   AppStrings.addVideo,
+              //   style: textTheme.bodyMedium?.copyWith(
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
+              // SizedBox(height: screenHeight * 0.015),
+              // EmptyFileState(
+              //   icon: Icons.description_outlined,
+              //   message: AppStrings.noMaterial,
+              // ),
+              VideoPickerSection(),
 
               SizedBox(height: screenHeight * 0.01),
               Text(
@@ -370,6 +457,7 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
                     Get.back();
                     SnackbarHelper.show(
                       message: AppStrings.workshopOpenSuccessfully,
+                      isSuccess: true,
                     );
                   },
                   style: ElevatedButton.styleFrom(

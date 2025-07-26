@@ -222,7 +222,10 @@ class DialogHelper {
                 if (titleController.text.trim().isEmpty ||
                     selectedDate == null ||
                     selectedTime == null) {
-                  SnackbarHelper.show(message: "Please fill all fields");
+                  SnackbarHelper.show(
+                    message: "Please fill all fields",
+                    isSuccess: true,
+                  );
                   return;
                 }
 

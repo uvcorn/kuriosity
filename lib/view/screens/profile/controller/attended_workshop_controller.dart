@@ -12,17 +12,17 @@ class AttendedWorkshopController extends GetxController {
     attendedWorkshops.assignAll([
       ProfileWorkshopModel(
         title: AppStrings.attendTitle,
-        time: AppStrings.timeduration,
+        time: AppStrings.timeDuration,
       ),
 
       ProfileWorkshopModel(
         title: AppStrings.attendTitle,
-        time: AppStrings.timeduration,
+        time: AppStrings.timeDuration,
       ),
 
       ProfileWorkshopModel(
         title: AppStrings.attendTitle,
-        time: AppStrings.timeduration,
+        time: AppStrings.timeDuration,
       ),
     ]);
   }

@@ -166,6 +166,7 @@ class PriceAndPaymentMethodScreen extends StatelessWidget {
                         // if (_formKey.currentState!.validate()) {}
                         SnackbarHelper.show(
                           message: AppStrings.paymentReciveSnackbar,
+                          isSuccess: true,
                         );
                       },
                       child: Text(

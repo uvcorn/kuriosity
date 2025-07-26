@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:kuriosity/utils/app_icons/app_icons.dart';
+
+import '../../../../utils/app_icons/app_icons.dart';
 
 class PostCardController extends GetxController {
   var showReactionOptions = false.obs;

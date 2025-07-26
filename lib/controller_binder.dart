@@ -13,11 +13,13 @@ import 'view/screens/post/controllers/create_post_controller.dart';
 class ControllerBinder extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<AuthController>(() => AuthController());
+    // Get.lazyPut<AuthController>(() => AuthController());
+    Get.put(AuthController());
     Get.put(BottomNavController());
     Get.lazyPut<CreatePostController>(() => CreatePostController());
     // Get.lazyPut<PostController>(() => PostController());
-    Get.lazyPut<GroupController>(() => GroupController());
+    // Get.lazyPut<GroupController>(() => GroupController());
+    Get.put(GroupController());
     Get.put(HomeController());
     Get.put(PostController());
     Get.put(OpenWorkshopController());

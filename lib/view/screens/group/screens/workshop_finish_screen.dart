@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kuriosity/core/app_routes/app_routes.dart';
-import 'package:kuriosity/view/components/custom_image/custom_image.dart';
 
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/custom_image/custom_image.dart';
 
 class WorkshopFinishScreen extends StatelessWidget {
   const WorkshopFinishScreen({super.key});

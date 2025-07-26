@@ -42,7 +42,10 @@ class _BlockedListScreenState extends State<BlockedListScreen> {
           TextButton(
             onPressed: () {
               Get.back(result: true);
-              SnackbarHelper.show(message: AppStrings.unblockSuccessfully);
+              SnackbarHelper.show(
+                message: AppStrings.unblockSuccessfully,
+                isSuccess: true,
+              );
             },
             child: Text(
               AppStrings.unblock,

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_strings/app_strings.dart';
+import '../../../../components/snackbar_helper/snackbar_helper.dart';
 import '../../controller/auth_controller.dart';
 import '../../models/workshop_model.dart';
 import '../common/register_button.dart';
@@ -76,23 +77,9 @@ class PremiumBottomBar extends StatelessWidget {
                           buttonhight: 50,
                           onPressed: () {
                             authController.register();
-                            Get.rawSnackbar(
-                              animationDuration: Duration(seconds: 1),
-                              messageText: Center(
-                                child: Text(
-                                  AppStrings.successfulljoin,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: AppColors.black,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              backgroundColor: AppColors.lightBlueBackground,
-                              duration: const Duration(seconds: 2),
-                              snackPosition: SnackPosition.BOTTOM,
-                              margin: const EdgeInsets.all(12),
-                              borderRadius: 10,
+                            SnackbarHelper.show(
+                              message: AppStrings.successfulljoin,
+                              isSuccess: true,
                             );
                           },
                         );

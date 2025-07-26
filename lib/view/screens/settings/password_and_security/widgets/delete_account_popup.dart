@@ -68,7 +68,10 @@ class DeleteAccountPopup extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Get.back();
-                    SnackbarHelper.show(message: AppStrings.deleteSuccessfully);
+                    SnackbarHelper.show(
+                      message: AppStrings.deleteSuccessfully,
+                      isSuccess: true,
+                    );
                   },
                   child: Text(
                     AppStrings.yesConfirm,
@@ -85,7 +88,10 @@ class DeleteAccountPopup extends StatelessWidget {
                 child: OutlinedButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    SnackbarHelper.show(message: AppStrings.deleteCancel);
+                    SnackbarHelper.show(
+                      message: AppStrings.deleteCancel,
+                      isSuccess: true,
+                    );
                   },
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: AppColors.primary),

@@ -59,7 +59,10 @@ class RegistrationPowerUserController extends GetxController {
   }
 
   void submitForm() {
-    SnackbarHelper.show(message: AppStrings.formSubmittedSnackbar);
+    SnackbarHelper.show(
+      message: AppStrings.formSubmittedSnackbar,
+      isSuccess: true,
+    );
     Get.toNamed(AppRoutes.successfullSubmitPowerUserScreen);
   }
 

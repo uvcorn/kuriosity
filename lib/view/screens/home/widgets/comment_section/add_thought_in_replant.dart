@@ -4,7 +4,7 @@ import '../../../../../utils/app_const/app_const.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
 import '../../../../../utils/app_strings/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
-import '../../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../components/custom_network_image/custom_network_image.dart';
 import '../../../../components/common_bottom_shit/common_bottom_sheet.dart';
 
 class AddThoughtInReplant extends StatelessWidget {

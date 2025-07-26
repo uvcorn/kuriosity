@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
               () => SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
                   final post = _postController.posts[index];
-                  return PostCard(item: post, followButtom: post.followButton);
+                  return PostCard(item: post, followButton: post.followButton);
                 }, childCount: _postController.posts.length),
               ),
             ),

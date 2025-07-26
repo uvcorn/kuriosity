@@ -13,7 +13,8 @@ class Post {
   final bool? followButton;
   final bool? isClipedpost;
   final bool? isClimatehistory;
-
+  final bool? isWorkshop;
+  final String? workshopTitle;
   Post({
     required this.username,
     required this.userImage,
@@ -29,5 +30,7 @@ class Post {
     this.followButton = false,
     this.isClipedpost = false,
     this.isClimatehistory = false,
+    this.isWorkshop = false,
+    this.workshopTitle,
   });
 }

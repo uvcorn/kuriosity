@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../components/custom_network_image/custom_network_image.dart';
 
 class UserAvatarInfoTile extends StatelessWidget {
   final String imageUrl;

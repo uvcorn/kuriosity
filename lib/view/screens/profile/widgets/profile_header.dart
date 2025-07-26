@@ -7,7 +7,7 @@ import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_images/app_images.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/custom_image/custom_image.dart';
-import '../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../components/custom_network_image/custom_network_image.dart';
 import 'profile_card.dart';
 
 class ProfileHeader extends StatelessWidget {

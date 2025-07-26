@@ -4,7 +4,7 @@ import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
-import '../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../components/custom_network_image/custom_network_image.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
 import '../controllers/create_post_controller.dart';
 import '../widgets/image_preview_grid.dart';

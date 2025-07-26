@@ -3,7 +3,7 @@ import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
 import '../../../../../utils/app_strings/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
-import '../../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../components/custom_network_image/custom_network_image.dart';
 import '../../../../components/reaction_button/reaction_button.dart';
 
 class CommentItem extends StatefulWidget {

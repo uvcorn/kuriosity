@@ -17,9 +17,9 @@ import 'user_info_section.dart';
 
 class PostCard extends StatefulWidget {
   final Post item;
-  final bool? followButtom;
+  final bool? followButton;
 
-  const PostCard({super.key, required this.item, required this.followButtom});
+  const PostCard({super.key, required this.item, required this.followButton});
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -37,7 +37,7 @@ class _PostCardState extends State<PostCard> {
     _postCardController = Get.put(
       PostCardController(),
       tag: widget.item.username + widget.item.caption.hashCode.toString(),
-    ); // Use a unique tag
+    );
 
     if (widget.item.videoUrl != null && widget.item.videoUrl!.isNotEmpty) {
       _videoController =
@@ -63,14 +63,14 @@ class _PostCardState extends State<PostCard> {
     _videoController?.dispose();
     Get.delete<PostCardController>(
       tag: widget.item.username + widget.item.caption.hashCode.toString(),
-    ); // Dispose of the controller
+    );
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
-    final followButton = widget.followButtom ?? false;
+    final followButton = widget.followButton ?? false;
 
     return Card(
       color: AppColors.white,

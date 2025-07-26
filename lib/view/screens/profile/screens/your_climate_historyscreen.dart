@@ -69,7 +69,7 @@ class _YourClimateHistoryscreenState extends State<YourClimateHistoryscreen> {
                       final post = clippedPosts[index];
                       return PostCard(
                         item: post,
-                        followButtom: post.followButton,
+                        followButton: post.followButton,
                       );
                     },
                   );

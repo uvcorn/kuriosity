@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/profile_workshop_model.dart';
 import '../../../../utils/app_colors/app_colors.dart';
-import '../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../components/custom_network_image/custom_network_image.dart';
 
 class HistoryWorkshopCard extends StatelessWidget {
   final ProfileWorkshopModel workshop;

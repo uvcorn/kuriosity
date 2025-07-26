@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../../utils/app_strings/app_strings.dart';
-import '../../../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../../components/custom_network_image/custom_network_image.dart';
 
 class UserInfoSection extends StatelessWidget {
   final String username;

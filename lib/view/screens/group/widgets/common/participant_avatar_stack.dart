@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../components/custom_netwrok_image/custom_network_image.dart';
+import '../../../../components/custom_network_image/custom_network_image.dart';
 
 class ParticipantAvatarStack extends StatelessWidget {
   final int participants;

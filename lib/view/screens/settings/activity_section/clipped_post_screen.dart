@@ -68,7 +68,7 @@ class _ClippedPostScreenState extends State<ClippedPostScreen> {
                       final post = clippedPosts[index];
                       return PostCard(
                         item: post,
-                        followButtom: post.followButton,
+                        followButton: post.followButton,
                       );
                     },
                   );

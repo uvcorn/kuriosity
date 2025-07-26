@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:linkify/linkify.dart';
 
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
 
 class CreatePostController extends GetxController {
@@ -17,8 +18,8 @@ class CreatePostController extends GetxController {
   String? _lastDetectedLink;
 
   final List<String> workshopOptions = [
-    'Hosting \'How to shop your clothes ethically\'',
-    'Joining \'Grow veg and herbs at home\'',
+    AppStrings.hostWorkshopPost,
+    AppStrings.joinWorkshopPost,
   ];
 
   @override
@@ -81,7 +82,7 @@ class CreatePostController extends GetxController {
       if (image != null) {
         if (pickedImages.length >= 3) {
           SnackbarHelper.show(
-            message: 'You can only select up to 3 images.',
+            message: AppStrings.youCanAdd3Image,
             isSuccess: true,
           );
 
@@ -90,7 +91,10 @@ class CreatePostController extends GetxController {
         pickedImages.add(image);
       }
     } catch (e) {
-      SnackbarHelper.show(message: 'Failed to pick image: $e', isSuccess: true);
+      SnackbarHelper.show(
+        message: '$AppStrings.failedToPickImage $e',
+        isSuccess: true,
+      );
     }
   }
 

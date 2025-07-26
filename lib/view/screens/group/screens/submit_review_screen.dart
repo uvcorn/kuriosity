@@ -62,7 +62,7 @@ class _SubmitReviewScreenState extends State<SubmitReviewScreen> {
                   controller: _controller,
                   maxLines: 5,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Share your experience on workshops',
+                    hintText: AppStrings.shareYourExperienceOnWorkshops,
                     hintStyle: textTheme.bodyMedium?.copyWith(
                       color: AppColors.gray,
                     ),

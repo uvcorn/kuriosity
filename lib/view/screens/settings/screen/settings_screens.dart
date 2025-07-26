@@ -28,13 +28,11 @@ class _SettingsScreensState extends State<SettingsScreens> {
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.backgroundWhite,
         title: Text(AppStrings.cancelPremiumUser),
-        content: Text(
-          "Are you sure you want to cancel your premium subscription?",
-        ),
+        content: Text(AppStrings.sureBeforeCancelPremium),
         actions: [
           TextButton(
             onPressed: () {
-              Get.back(); // Close dialog
+              Get.back();
             },
             child: Text(
               AppStrings.cancel,
@@ -48,11 +46,14 @@ class _SettingsScreensState extends State<SettingsScreens> {
               navcontroller.changeIndex(0);
               Get.offAll(() => const BottomNavBar());
               SnackbarHelper.show(
-                message: "Premium subscription cancelled.",
+                message: AppStrings.premiumSubscriptionCancelled,
                 isSuccess: false,
               );
             },
-            child: Text("Yes, Cancel", style: TextStyle(color: Colors.black)),
+            child: Text(
+              AppStrings.yesCancel,
+              style: TextStyle(color: Colors.black),
+            ),
           ),
         ],
       ),

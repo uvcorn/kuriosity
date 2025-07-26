@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
 
 class AuthController extends GetxController {
@@ -20,7 +21,7 @@ class AuthController extends GetxController {
   void upgradeToPremium() {
     _isPremiumUser.value = true;
     SnackbarHelper.show(
-      message: 'You are now a premium user!',
+      message: AppStrings.youAreAPremiumUser,
       isSuccess: true,
     );
   }

@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
 
 class InterestController extends GetxController {
@@ -45,7 +46,8 @@ class InterestController extends GetxController {
         selectedInterests.add(interest);
       } else {
         SnackbarHelper.show(
-          message: "You can select a maximum of $maxSelection interests.",
+          message:
+              "$AppStrings.youCanSelectMaximum $maxSelection $AppStrings.interests.",
           isSuccess: false,
         );
       }

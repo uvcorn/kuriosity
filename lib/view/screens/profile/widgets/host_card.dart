@@ -3,26 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
 import '../../group/models/workshop_model.dart';
 import '../models/profile_workshop_model.dart';
 
 class HostCard extends StatelessWidget {
   final ProfileWorkshopModel workshop;
-  final WorkshopModel?
-  fullWorkshopData; // Optional: Pass the full data if available
+  final WorkshopModel? fullWorkshopData;
 
-  const HostCard({
-    super.key,
-    required this.workshop,
-    this.fullWorkshopData, // Constructor now accepts full data
-  });
+  const HostCard({super.key, required this.workshop, this.fullWorkshopData});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
-      // Wrap with GestureDetector for tap
       onTap: () {
         if (fullWorkshopData != null) {
           Get.toNamed(
@@ -31,7 +26,7 @@ class HostCard extends StatelessWidget {
           );
         } else {
           SnackbarHelper.show(
-            message: 'Full workshop details not available for navigation.',
+            message: AppStrings.fullWorkshopDetailsNotAvailable,
             isSuccess: true,
           );
         }

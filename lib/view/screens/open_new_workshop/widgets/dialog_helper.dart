@@ -10,7 +10,7 @@ class DialogHelper {
     OpenWorkshopModel? initialCourse,
     required void Function(OpenWorkshopModel course) onSubmit,
   }) async {
-    final textTheme = Theme.of(Get.context!).textTheme; // Use Get.context!
+    final textTheme = Theme.of(Get.context!).textTheme;
     final titleController = TextEditingController(text: initialCourse?.title);
     final descriptionController = TextEditingController(
       text: initialCourse?.description,
@@ -117,7 +117,7 @@ class DialogHelper {
                                   child: Text(
                                     selectedDate != null
                                         ? "${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}"
-                                        : 'dd-mm-yyyy',
+                                        : AppStrings.dayMonthYearFormate,
                                     style: textTheme.bodyMedium?.copyWith(
                                       color: AppColors.black,
                                     ),
@@ -223,7 +223,7 @@ class DialogHelper {
                     selectedDate == null ||
                     selectedTime == null) {
                   SnackbarHelper.show(
-                    message: "Please fill all fields",
+                    message: AppStrings.pleaseFIllsAllFields,
                     isSuccess: true,
                   );
                   return;

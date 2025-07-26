@@ -21,16 +21,16 @@ class WorkshopFinishScreen extends StatelessWidget {
           children: [
             SizedBox(height: 80),
             Text(
-              'Congratulation!',
+              AppStrings.congratulation,
               style: textTheme.bodyLarge?.copyWith(fontSize: 20),
             ),
             CustomImage(imageSrc: AppIcons.rocket, size: 70),
             Text(
-              'You finish the workshop',
+              AppStrings.youFinishTheWorkshop,
               style: textTheme.bodyMedium?.copyWith(),
             ),
             Text(
-              'Switch to a climate-healthy diet \nwith a professional nutritionist',
+              AppStrings.workshopFInishImprove,
               style: textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),

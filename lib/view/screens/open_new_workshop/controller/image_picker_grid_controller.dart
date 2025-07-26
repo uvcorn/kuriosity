@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
 
 class ImagePickerGridController extends GetxController {
@@ -22,7 +23,7 @@ class ImagePickerGridController extends GetxController {
       }
     } catch (e) {
       SnackbarHelper.show(
-        message: "Failed to pick image: $e",
+        message: "$AppStrings.failedToPickImage $e",
         isSuccess: false,
       );
     }
@@ -33,7 +34,7 @@ class ImagePickerGridController extends GetxController {
     images[index] = null;
   }
 
-  /// ✅ Clear all selected images
+  ///   Clear all selected images
   void reset() {
     images.value = List<File?>.filled(4, null);
   }

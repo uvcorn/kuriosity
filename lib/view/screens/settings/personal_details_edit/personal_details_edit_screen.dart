@@ -72,7 +72,7 @@ class _PersonalDetailsEditScreenState extends State<PersonalDetailsEditScreen> {
       }
     } catch (e) {
       SnackbarHelper.show(
-        message: "Failed to pick image: $e",
+        message: "$AppStrings.youCanAdd3Image $e",
         isSuccess: false,
       );
     }

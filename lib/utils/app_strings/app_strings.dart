@@ -155,7 +155,7 @@ class AppStrings {
   static const String workshopTime = "4 week workshops";
   static const String workshopTitle =
       "Switch to a climate-healthy diet with a professional nutritionist";
-  static const String attendTitle = "Cut food waste with an environmentalist";
+  static const String attendTitle = "Buy groceries sustainably";
   //followers / following screen
   static const String followings72 = '72 Following';
   static const String followers64 = '64 Followers';
@@ -483,7 +483,7 @@ Thanks for helping us build a greener community!
   static const String youFinishTheWorkshop = 'You finish the workshop';
   static const String workshopFInishImprove =
       'Switch to a climate-healthy diet \nwith a professional nutritionist';
-  // static const String profile = 'Profile';
+  static const String workshopFinished = 'Workshop Finished';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

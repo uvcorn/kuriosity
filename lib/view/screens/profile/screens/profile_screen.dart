@@ -131,26 +131,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       );
                                     }
-                                    // else {
-                                    //   // Fallback: Create minimal WorkshopModel if not found
-                                    //   final fallbackWorkshop = WorkshopModel(
-                                    //     title: joinedWorkshop.title,
-                                    //     instructorName: 'Instructor',
-                                    //     date: joinedWorkshop.time,
-                                    //     tags: ['Workshop'],
-                                    //     participants: 0,
-                                    //     spacesLeft: 0,
-                                    //     profileImageUrl: '',
-                                    //     profileImage2Url: '',
-                                    //     fullImageUrls: [],
-                                    //     category: WorkshopCategory.all,
-                                    //   );
-                                    //   Get.to(
-                                    //     () => WorkshopDetailScreen(
-                                    //       workshop: fallbackWorkshop,
-                                    //     ),
-                                    //   );
-                                    // }
                                   },
                                 );
                               },

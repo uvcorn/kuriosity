@@ -59,17 +59,17 @@ class _WorkshopCardState extends State<WorkshopCard> {
 
   @override
   Widget build(BuildContext context) {
-    final double cardHeight = Get.height * 0.3;
+    final double cardHeight = Get.height * 0.33;
     final List<String> imageSlides = widget.fullImageUrls ?? [];
     final int totalPages = 1 + imageSlides.length;
 
     return Card(
       color: AppColors.backgroundWhite,
       margin: EdgeInsets.symmetric(
-        vertical: Get.height * 0.01,
+        // vertical: Get.height * 0.002,
         horizontal: Get.width * 0.02,
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 3,
       clipBehavior: Clip.antiAlias,
       child: SizedBox(
@@ -115,6 +115,7 @@ class _WorkshopCardState extends State<WorkshopCard> {
                 );
               },
             ),
+            // SizedBox(height: 8),
             if (totalPages > 1)
               WorkshopPageIndicator(
                 totalPages: totalPages,

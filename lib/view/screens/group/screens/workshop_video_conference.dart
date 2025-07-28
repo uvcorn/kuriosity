@@ -47,7 +47,9 @@ class _WorkshopVideoConferenceState extends State<WorkshopVideoConference> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back();
+                    },
                     icon: Icon(Icons.keyboard_arrow_left),
                   ),
                   Column(

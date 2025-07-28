@@ -14,7 +14,7 @@ class WorkshopPageIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 10,
+      bottom: 15,
       left: 0,
       right: 0,
       child: Row(

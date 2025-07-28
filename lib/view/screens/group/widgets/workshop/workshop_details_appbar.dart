@@ -20,14 +20,14 @@ class WorkshopDetailAppBar extends StatelessWidget {
             onPressed: () {
               Get.back();
             },
-            icon: Icon(Icons.keyboard_arrow_left),
+            icon: Icon(Icons.keyboard_arrow_left, color: AppColors.black),
           ),
-          Spacer(),
+          SizedBox(width: 110),
           Text(
             'Workshop',
             style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
-          Spacer(),
+          SizedBox(width: 60),
           IconButton(
             onPressed: () {
               showModalBottomSheet(
@@ -39,7 +39,7 @@ class WorkshopDetailAppBar extends StatelessWidget {
             },
             icon: CustomImage(imageSrc: AppIcons.extarnalshare),
           ),
-          SizedBox(width: 15),
+          // SizedBox(width: 8),
           IconButton(onPressed: () {}, icon: Icon(Icons.bookmark_outline)),
         ],
       ),

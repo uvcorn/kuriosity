@@ -15,6 +15,9 @@ class Post {
   final bool? isClimatehistory;
   final bool? isWorkshop;
   final String? workshopTitle;
+  final bool isSharedPost;
+  final Post? originalPost;
+  final String? sharedThought;
   Post({
     required this.username,
     required this.userImage,
@@ -32,5 +35,8 @@ class Post {
     this.isClimatehistory = false,
     this.isWorkshop = false,
     this.workshopTitle,
+    this.isSharedPost = false,
+    this.originalPost,
+    this.sharedThought,
   });
 }

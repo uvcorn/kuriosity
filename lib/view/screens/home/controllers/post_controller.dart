@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../../../utils/app_strings/app_strings.dart';
 import '../models/post_model.dart';
 import '../../../../utils/app_const/app_const.dart';
 
@@ -26,6 +27,8 @@ class PostController extends GetxController {
         seeds: '4',
         shares: '23',
         isClipedpost: false,
+        isWorkshop: true,
+        workshopTitle: AppStrings.workshopTitle,
       ),
       Post(
         username: 'Daniel Maier',

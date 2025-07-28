@@ -26,12 +26,12 @@ class WorkshopImageContent extends StatelessWidget {
       children: [
         CustomNetworkImage(
           imageUrl: imageUrl,
-          height: Get.height * 0.3,
+          height: Get.height * 0.33,
           width: double.infinity,
           fit: BoxFit.cover,
         ),
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

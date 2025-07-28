@@ -42,6 +42,7 @@ class GroupController extends GetxController {
 
   final RxList<WorkshopModel> _allWorkshops = <WorkshopModel>[
     WorkshopModel(
+      id: '1',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -56,6 +57,7 @@ class GroupController extends GetxController {
       isSaved: true,
     ),
     WorkshopModel(
+      id: '2',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -68,8 +70,10 @@ class GroupController extends GetxController {
       category: WorkshopCategory.drivingAndCommuting,
       isUpcoming: true,
       isSaved: true,
+      isTagWorkshop: true,
     ),
     WorkshopModel(
+      id: '3',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -85,6 +89,7 @@ class GroupController extends GetxController {
       isUpcoming: true,
     ),
     WorkshopModel(
+      id: '4',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -98,6 +103,7 @@ class GroupController extends GetxController {
       isCurrentlyProgressing: true,
     ),
     WorkshopModel(
+      id: '5',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -111,6 +117,7 @@ class GroupController extends GetxController {
       isUpcoming: true,
     ),
     WorkshopModel(
+      id: '6',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -124,6 +131,7 @@ class GroupController extends GetxController {
       isUpcoming: true,
     ),
     WorkshopModel(
+      id: '7',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -136,6 +144,7 @@ class GroupController extends GetxController {
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
     ),
     WorkshopModel(
+      id: '8',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -149,6 +158,7 @@ class GroupController extends GetxController {
       fullImageUrls: [AppConstants.flowerbutterfly, AppConstants.vegatable],
     ),
     WorkshopModel(
+      id: '9',
       title: AppStrings.workshopTitle,
       instructorName: AppStrings.userName,
       date: AppStrings.demotime,
@@ -162,7 +172,7 @@ class GroupController extends GetxController {
       fullImageUrls: [AppConstants.flowerbutterfly],
     ),
   ].obs;
-
+  List<WorkshopModel> get allWorkshops => _allWorkshops.toList();
   RxList<WorkshopModel> get filteredWorkshops => _allWorkshops
       .where((workshop) {
         if (selectedTopCategoryIndex == 0) {

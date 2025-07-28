@@ -23,10 +23,10 @@ class GroupScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
               const CSearchbar(hinttext: AppStrings.searchWorkshophint),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 4),
               Obx(
                 () => CategorySelector(
                   topCategories: controller.topCategories,

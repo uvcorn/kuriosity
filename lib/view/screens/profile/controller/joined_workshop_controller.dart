@@ -11,18 +11,21 @@ class JoinedWorkshopController extends GetxController {
     super.onInit();
     joinedWorkshops.assignAll([
       ProfileWorkshopModel(
+        id: '1',
         title: AppStrings.workshopTitle,
         time: AppStrings.demotime,
         workshopsTime: AppStrings.workshopTime,
       ),
 
       ProfileWorkshopModel(
+        id: '2',
         title: AppStrings.workshopTitle,
         time: AppStrings.demotime,
         workshopsTime: AppStrings.workshopTime,
       ),
 
       ProfileWorkshopModel(
+        id: '3',
         title: AppStrings.workshopTitle,
         time: AppStrings.demotime,
         workshopsTime: AppStrings.workshopTime,

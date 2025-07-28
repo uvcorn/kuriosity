@@ -9,7 +9,7 @@ class SnackbarHelper {
     String? title,
     bool showIcon = true,
     required bool isSuccess,
-    IconData? icon, // optional override
+    IconData? icon,
     Color? backgroundColor,
     Color textColor = Colors.black,
     Duration duration = const Duration(seconds: 2),

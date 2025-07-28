@@ -11,6 +11,7 @@ class HostWorkshopController extends GetxController {
     super.onInit();
     hostWorkshops.assignAll([
       ProfileWorkshopModel(
+        id: '1',
         title: AppStrings.workshopTitle,
         time: AppStrings.demotime,
         workshopsTime: AppStrings.workshopTime,

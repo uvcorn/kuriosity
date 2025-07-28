@@ -7,6 +7,7 @@ enum WorkshopCategory {
 }
 
 class WorkshopModel {
+  final String id;
   final String title;
   final String instructorName;
   final String date;
@@ -22,8 +23,10 @@ class WorkshopModel {
   final bool isUpcoming;
   final bool isHostedByUser;
   final bool isSaved;
+  final bool? isTagWorkshop;
 
   const WorkshopModel({
+    required this.id,
     required this.title,
     required this.instructorName,
     required this.date,
@@ -39,5 +42,6 @@ class WorkshopModel {
     this.isUpcoming = false,
     this.isHostedByUser = false,
     this.isSaved = false,
+    this.isTagWorkshop = false,
   });
 }

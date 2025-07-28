@@ -1,8 +1,12 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
+import '../../../../../../core/app_routes/app_routes.dart';
 import '../../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../components/bottom_nav_bar/bottom_nav_controller.dart';
+import '../../../../group/controller/group_controller.dart';
 import '../../../controllers/post_card_controller.dart';
 import '../../comment_section/comment_draggable_sheet.dart';
 import '../replanet_menu.dart';
@@ -14,12 +18,19 @@ import 'media_content.dart';
 import 'reaction_options_popup.dart';
 import 'reaction_row.dart';
 import 'user_info_section.dart';
+import 'workshop_bar.dart';
 
 class PostCard extends StatefulWidget {
   final Post item;
   final bool? followButton;
+  final bool isNested;
 
-  const PostCard({super.key, required this.item, required this.followButton});
+  const PostCard({
+    super.key,
+    required this.item,
+    required this.followButton,
+    this.isNested = false,
+  });
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -71,17 +82,42 @@ class _PostCardState extends State<PostCard> {
   Widget build(BuildContext context) {
     final item = widget.item;
     final followButton = widget.followButton ?? false;
-
+    final cardMargin = widget.isNested
+        ? const EdgeInsets.fromLTRB(8, 4, 8, 8) // Smaller margin for nested
+        : const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
+    final cardPadding = widget.isNested
+        ? const EdgeInsets.all(8)
+        : const EdgeInsets.all(0);
     return Card(
       color: AppColors.white,
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
+      margin: cardMargin,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          widget.isNested ? 8 : 12,
+        ), // Smaller radius for nested
+      ),
+      elevation: widget.isNested ? 1 : 2,
       child: Stack(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (item.isWorkshop == true && item.workshopTitle != null)
+                WorkshopBar(
+                  title: item.workshopTitle!,
+                  onTap: () {
+                    final workshop = Get.find<GroupController>()
+                        .filteredWorkshops
+                        .firstWhere(
+                          (w) => w.id == '1',
+                        ); // Change '1' to desired ID
+
+                    Get.toNamed(
+                      AppRoutes.workshopDetailScreen,
+                      arguments: workshop,
+                    );
+                  },
+                ),
               UserInfoSection(
                 username: item.username,
                 subtitle: item.userSubtitle,

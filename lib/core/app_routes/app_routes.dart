@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:get/get.dart';
 import '../../view/components/bottom_nav_bar/bottom_nav_bar.dart';
+import '../../view/screens/group/models/workshop_model.dart';
 import '../../view/screens/notification/notification_screen.dart';
 import '../../view/screens/auth/screens/forget_password_screen.dart';
 import '../../view/screens/auth/screens/otp_verify_screen.dart';
@@ -29,6 +30,7 @@ import '../../view/screens/power_section/screens/successfull_submit_power_user_s
 import '../../view/screens/premium_section/screens/add_card_details_screen.dart';
 import '../../view/screens/premium_section/screens/premium_user_details_screen.dart';
 import '../../view/screens/premium_section/screens/price_and_payment_method_screen.dart';
+import '../../view/screens/profile/screens/attended_workshop_screen.dart';
 import '../../view/screens/profile/screens/followers_following_screen.dart';
 import '../../view/screens/profile/screens/profile_screen.dart';
 import '../../view/screens/profile/screens/your_climate_historyscreen.dart';
@@ -114,6 +116,7 @@ class AppRoutes {
   static const String ntificationSettingsScreen = "/NotificationSettingsScreen";
   static const String savedWorkshopScreen = "/SavedWorkshopScreen";
   static const String clippedPostScreen = "/ClippedPostScreen";
+  static const String attendedWorkshopScreen = "/AttendedWorkshopScreen";
 
   static List<GetPage> routes = [
     ///===========================Spalash & Onboarding==========================
@@ -155,12 +158,13 @@ class AppRoutes {
 
     ///===========================Workshop==========================
     GetPage(
-      name: workshopDetailScreen,
+      name: AppRoutes.workshopDetailScreen,
       page: () {
-        final workshop = Get.arguments;
+        final WorkshopModel workshop = Get.arguments;
         return WorkshopDetailScreen(workshop: workshop);
       },
     ),
+
     GetPage(name: reviewScreen, page: () => ReviewScreen()),
     GetPage(name: workshopFinishScreen, page: () => WorkshopFinishScreen()),
     GetPage(name: submitReviewScreen, page: () => SubmitReviewScreen()),
@@ -218,5 +222,6 @@ class AppRoutes {
     ),
     GetPage(name: savedWorkshopScreen, page: () => SavedWorkshopScreen()),
     GetPage(name: clippedPostScreen, page: () => ClippedPostScreen()),
+    GetPage(name: attendedWorkshopScreen, page: () => AttendedWorkshopScreen()),
   ];
 }

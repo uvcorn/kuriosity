@@ -42,10 +42,10 @@ class DialogHelper {
                       controller: titleController,
                       decoration: InputDecoration(
                         hintText: AppStrings.workshoptitlehint,
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       AppStrings.courseDescription,
                       style: textTheme.bodyMedium,
@@ -54,11 +54,11 @@ class DialogHelper {
                       controller: descriptionController,
                       decoration: InputDecoration(
                         hintText: AppStrings.courseTitlehint,
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                       ),
                       maxLines: null,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Row(
                       children: [
                         Expanded(
@@ -71,7 +71,7 @@ class DialogHelper {
                                   color: AppColors.black,
                                 ),
                               ),
-                              SizedBox(height: 6),
+                              const SizedBox(height: 6),
                               InkWell(
                                 onTap: () async {
                                   final picked = await showDatePicker(
@@ -93,6 +93,20 @@ class DialogHelper {
                                                   AppColors.primary,
                                             ),
                                           ),
+                                          // **Crucial for DatePicker header text size:**
+                                          textTheme: TextTheme(
+                                            headlineLarge: textTheme
+                                                .bodyLarge, // Adjust this as needed
+                                            headlineMedium: textTheme.bodyLarge,
+                                            headlineSmall: textTheme
+                                                .bodyLarge, //  selected date header
+                                            titleLarge: textTheme
+                                                .bodyMedium, // month/year header
+                                            bodyLarge: textTheme
+                                                .bodyMedium, // Day numbers
+                                            bodyMedium: textTheme
+                                                .bodySmall, // Weekday labels
+                                          ),
                                         ),
                                         child: child!,
                                       );
@@ -109,7 +123,7 @@ class DialogHelper {
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 12,
                                       vertical: 14,
                                     ),
@@ -127,7 +141,7 @@ class DialogHelper {
                             ],
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,7 +152,7 @@ class DialogHelper {
                                   color: AppColors.black,
                                 ),
                               ),
-                              SizedBox(height: 6),
+                              const SizedBox(height: 6),
                               InkWell(
                                 onTap: () async {
                                   final picked = await showTimePicker(
@@ -146,6 +160,7 @@ class DialogHelper {
                                     initialTime:
                                         selectedTime ?? TimeOfDay.now(),
                                     builder: (context, child) {
+                                      // Override the theme for the time picker dialog
                                       return Theme(
                                         data: Theme.of(context).copyWith(
                                           timePickerTheme: TimePickerThemeData(
@@ -157,6 +172,16 @@ class DialogHelper {
                                               borderRadius:
                                                   BorderRadius.circular(16),
                                             ),
+                                            // **Crucial for TimePicker text sizes:**
+                                            hourMinuteTextStyle: textTheme
+                                                .displayLarge
+                                                ?.copyWith(
+                                                  fontSize: 48,
+                                                ), // Large hour/minute display
+                                            dayPeriodTextStyle: textTheme
+                                                .titleLarge, // AM/PM text
+                                            // entryModeButtonTextStyle: textTheme.bodyLarge, // OK/Cancel text
+                                            // headerTextStyle: textTheme.headlineSmall, // Top header text (e.g., "Select time")
                                           ),
                                           colorScheme: ColorScheme.light(
                                             primary: AppColors.primary,
@@ -184,7 +209,7 @@ class DialogHelper {
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 12,
                                       vertical: 14,
                                     ),
@@ -214,7 +239,7 @@ class DialogHelper {
               onPressed: () => Get.back(), // Use Get.back()
               child: Text(
                 AppStrings.cancel,
-                style: TextStyle(color: AppColors.black),
+                style: const TextStyle(color: AppColors.black),
               ),
             ),
             ElevatedButton(
@@ -240,7 +265,11 @@ class DialogHelper {
 
                 Get.back(); // Use Get.back()
               },
-              child: Text(AppStrings.addNewCourse),
+              child: Text(
+                initialCourse == null
+                    ? AppStrings.addNewCourse
+                    : AppStrings.editCourse,
+              ),
             ),
           ],
         );

@@ -45,7 +45,7 @@ class _WorkshopListScreenState extends State<WorkshopListScreen>
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(110),
+        preferredSize: const Size.fromHeight(110),
         child: AppBar(
           backgroundColor: AppColors.backgroundWhite,
           elevation: 0,
@@ -56,12 +56,12 @@ class _WorkshopListScreenState extends State<WorkshopListScreen>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Workshop list',
-                  style: textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                // Text(
+                //   'Workshop list',
+                //   style: textTheme.bodyMedium?.copyWith(
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                // ),
                 Text(
                   'Your workshops',
                   style: textTheme.bodyMedium?.copyWith(
@@ -154,23 +154,29 @@ class _WorkshopListScreenState extends State<WorkshopListScreen>
               itemBuilder: (context, index) {
                 final workshop =
                     groupController.currentlyProgressingWorkshops[index];
-                return GestureDetector(
-                  onTap: () {
-                    Get.toNamed(
-                      AppRoutes.workshopDetailScreen,
-                      arguments: workshop,
-                    );
-                  },
-                  child: WorkshopCard(
-                    title: workshop.title,
-                    instructorName: workshop.instructorName,
-                    date: workshop.date,
-                    tags: workshop.tags,
-                    participants: workshop.participants,
-                    spacesLeft: workshop.spacesLeft,
-                    profileImageUrl: workshop.profileImageUrl,
-                    profileImage2Url: workshop.profileImage2Url,
-                    fullImageUrls: workshop.fullImageUrls,
+                return Padding(
+                  // Added Padding here
+                  padding: const EdgeInsets.only(
+                    bottom: 20,
+                  ), // 8px bottom padding
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(
+                        AppRoutes.workshopDetailScreen,
+                        arguments: workshop,
+                      );
+                    },
+                    child: WorkshopCard(
+                      title: workshop.title,
+                      instructorName: workshop.instructorName,
+                      date: workshop.date,
+                      tags: workshop.tags,
+                      participants: workshop.participants,
+                      spacesLeft: workshop.spacesLeft,
+                      profileImageUrl: workshop.profileImageUrl,
+                      profileImage2Url: workshop.profileImage2Url,
+                      fullImageUrls: workshop.fullImageUrls,
+                    ),
                   ),
                 );
               },
@@ -188,7 +194,6 @@ class _WorkshopListScreenState extends State<WorkshopListScreen>
                   child: Text(
                     textAlign: TextAlign.center,
                     'There are no registered \nworkshops',
-
                     style: textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
@@ -200,23 +205,29 @@ class _WorkshopListScreenState extends State<WorkshopListScreen>
               itemCount: groupController.upcomingWorkshops.length,
               itemBuilder: (context, index) {
                 final workshop = groupController.upcomingWorkshops[index];
-                return GestureDetector(
-                  onTap: () {
-                    Get.toNamed(
-                      AppRoutes.workshopDetailScreen,
-                      arguments: workshop,
-                    );
-                  },
-                  child: WorkshopCard(
-                    title: workshop.title,
-                    instructorName: workshop.instructorName,
-                    date: workshop.date,
-                    tags: workshop.tags,
-                    participants: workshop.participants,
-                    spacesLeft: workshop.spacesLeft,
-                    profileImageUrl: workshop.profileImageUrl,
-                    profileImage2Url: workshop.profileImage2Url,
-                    fullImageUrls: workshop.fullImageUrls,
+                return Padding(
+                  // Added Padding here
+                  padding: const EdgeInsets.only(
+                    bottom: 20,
+                  ), // 8px bottom padding
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(
+                        AppRoutes.workshopDetailScreen,
+                        arguments: workshop,
+                      );
+                    },
+                    child: WorkshopCard(
+                      title: workshop.title,
+                      instructorName: workshop.instructorName,
+                      date: workshop.date,
+                      tags: workshop.tags,
+                      participants: workshop.participants,
+                      spacesLeft: workshop.spacesLeft,
+                      profileImageUrl: workshop.profileImageUrl,
+                      profileImage2Url: workshop.profileImage2Url,
+                      fullImageUrls: workshop.fullImageUrls,
+                    ),
                   ),
                 );
               },
@@ -233,15 +244,13 @@ class _WorkshopListScreenState extends State<WorkshopListScreen>
                 Text(
                   textAlign: TextAlign.center,
                   'Only a power user \ncan host workshops',
-
                   style: textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 Text(
                   'Become a power user',
-
                   style: textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w500,
                     color: AppColors.primary,
@@ -261,24 +270,30 @@ class _WorkshopListScreenState extends State<WorkshopListScreen>
               itemCount: groupController.hostedWorkshops.length,
               itemBuilder: (context, index) {
                 final workshop = groupController.hostedWorkshops[index];
-                return GestureDetector(
-                  onTap: () {
-                    Get.toNamed(
-                      AppRoutes.workshopDetailScreen,
-                      arguments: workshop,
-                    );
-                  },
-                  child: WorkshopCard(
-                    title: workshop.title,
-                    instructorName: workshop.instructorName,
-                    date: workshop.date,
-                    tags: workshop.tags,
-                    participants: workshop.participants,
-                    spacesLeft: workshop.spacesLeft,
-                    profileImageUrl: workshop.profileImageUrl,
-                    profileImage2Url: workshop.profileImage2Url,
-                    fullImageUrls: workshop.fullImageUrls,
-                    isFinished: workshop.isFinished,
+                return Padding(
+                  // Added Padding here
+                  padding: const EdgeInsets.only(
+                    bottom: 20,
+                  ), // 8px bottom padding
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(
+                        AppRoutes.workshopDetailScreen,
+                        arguments: workshop,
+                      );
+                    },
+                    child: WorkshopCard(
+                      title: workshop.title,
+                      instructorName: workshop.instructorName,
+                      date: workshop.date,
+                      tags: workshop.tags,
+                      participants: workshop.participants,
+                      spacesLeft: workshop.spacesLeft,
+                      profileImageUrl: workshop.profileImageUrl,
+                      profileImage2Url: workshop.profileImage2Url,
+                      fullImageUrls: workshop.fullImageUrls,
+                      isFinished: workshop.isFinished,
+                    ),
                   ),
                 );
               },

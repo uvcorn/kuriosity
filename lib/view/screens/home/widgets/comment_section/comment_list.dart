@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../utils/app_colors/app_colors.dart';
 import 'comment_item.dart';
 import '../../controllers/comment_controller.dart';
 import '../../models/comment_model.dart';
@@ -16,7 +15,6 @@ class CommentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CommentController commentController = Get.put(CommentController());
-    final textTheme = Theme.of(context).textTheme;
 
     final List<Comment> comments = dummyComments;
 

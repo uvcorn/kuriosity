@@ -6,12 +6,16 @@ class ReactionButton extends StatelessWidget {
   final String iconPath;
   final String count;
   final Color? color;
+  final VoidCallback? onIconTap;
+  final VoidCallback? onCountTap;
 
   const ReactionButton({
     super.key,
     required this.iconPath,
     required this.count,
     this.color,
+    this.onIconTap,
+    this.onCountTap,
   });
 
   @override
@@ -19,13 +23,19 @@ class ReactionButton extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return Row(
       children: [
-        CustomImage(
-          imageSrc: iconPath,
-          size: 24,
-          imageColor: color ?? AppColors.mediumGray,
+        GestureDetector(
+          onTap: onIconTap,
+          child: CustomImage(
+            imageSrc: iconPath,
+            size: 24,
+            imageColor: color ?? AppColors.mediumGray,
+          ),
         ),
-        const SizedBox(width: 4),
-        Text(count, style: textTheme.labelSmall),
+        const SizedBox(width: 8),
+        GestureDetector(
+          onTap: onCountTap,
+          child: Text(count, style: textTheme.labelSmall),
+        ),
       ],
     );
   }

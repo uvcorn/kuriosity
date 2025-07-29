@@ -225,7 +225,7 @@ class AppStrings {
   static const String clippedPost = 'Clipped Post';
   static const String yourClimateHistory = 'Your Climate History';
   static const String savedWorkshop = 'Saved Workshop';
-  static const String blockedList = 'Blocked List';
+  static const String blockedList = 'Blocked Users';
   static const String company = 'Company';
   static const String introduction = 'Introduction';
   static const String termandPolicy = 'Term and Policy';
@@ -465,7 +465,7 @@ Thanks for helping us build a greener community!
       'Joining \'Grow veg and herbs at home\'';
   static const String youCanAdd3Image = 'You can only select up to 3 images.';
   static const String failedToPickImage = 'Failed to pick image: ';
-  static const String youCanSelectMaximum = 'You can select a maximum of';
+  static const String youCanSelectMaximum = 'You can select a maximum of 5';
   static const String interests = 'interests';
   static const String youAreAPremiumUser = 'You are now a premium user!';
   static const String pleaseFIllsAllFields = 'Please fill all fields';
@@ -484,7 +484,63 @@ Thanks for helping us build a greener community!
   static const String workshopFInishImprove =
       'Switch to a climate-healthy diet \nwith a professional nutritionist';
   static const String workshopFinished = 'Workshop Finished';
-  // static const String profile = 'Profile';
+  static const String engagement = 'Engagement';
+  static const String investInYourself =
+      'Invest in yourself—and the planet—with tools, experiences, and community to support your sustainable journey.';
+  static const String asAPremiumUserUnlock =
+      'As a Premium User, you unlock the full Wild Curiosity experience. Go beyond inspiration: track your progress, join exclusive workshops, and connect with others deeply committed to creating change—at home, in their habits, and in their communities.';
+  static const String thisIsForThoseReady =
+      'This is for those ready to turn small, intentional steps into a lifestyle that feels joyful and impactful.';
+  static const String whatYoullGet = 'What You’ll Get';
+  static const String exclusiveWorkshopsChallenges =
+      'Exclusive Workshops & Challenges: Join premium events led by sustainability creators, from mindful cooking to building a conscious closet.';
+  static const String personalizedHabitTracker =
+      'Personalized Habit Tracker: Set eco-goals and track your progress with our guilt-free system.';
+  static const String curatedToolkitResources =
+      'Curated Toolkit & Resources: Access practical guides and creative ideas for sustainable living.';
+  static const String priorityAccessPerks =
+      'Priority Access & Perks: Be the first to test new features and receive member-only benefits.';
+  static const String whyGoPremium = 'Why Go Premium?';
+  static const String youWantToAlignValues =
+      'You want to align your values with your everyday choices';
+  static const String youAreCravingSupportiveCommunity =
+      'You’re craving a supportive, inspiring community to stay motivated';
+  static const String youAreReadyToMoveFromThinking =
+      'You’re ready to move from thinking about sustainability to living it';
+  static const String yourJourneyStartsHere = 'Your Journey Starts Here';
+  static const String joinAsAPremiumUser =
+      'Join as a Premium User and get the tools, community, and inspiration to design a life in balance with nature.';
+  static const String upgradeToPremium = '[Upgrade to Premium]';
+  static const String seeOurUserStories = '[See Our User Stories]';
+  static const String leadInspireShapeCulture =
+      'Lead, inspire, and shape the culture of sustainable living.';
+  static const String asAPowerUser =
+      'As a Power User, you’re at the heart of our platform.';
+  static const String powerUsersAreTrustedCommunity =
+      'Power Users are trusted community leaders who go beyond sharing their journey. You host workshops, guide meaningful conversations, and help others take their first step toward sustainable living—without judgment, pressure, or perfection. If you’re passionate about climate action, community connection, and creative storytelling, this is your place to lead with impact.';
+  static const String whatYoullGetPowerUser =
+      'What You’ll Get'; // Renamed to differentiate from Premium version
+  static const String hostYourOwnWorkshops =
+      'Host Your Own Workshops: Run sessions around topics you care about—like slow fashion, plant-based cooking, mindful consumption, and more.';
+  static const String buildAFollowing =
+      'Build a Following: Share your experiences, insights, and imperfect wins with a like-minded audience.';
+  static const String growYourInfluence =
+      'Grow Your Influence: Become known as a go-to voice for sustainability that feels real and relatable.';
+  static const String earnAndElevate =
+      'Earn & Elevate: Access premium features, early platform tools, and revenue-sharing options for events.';
+  static const String whatWeLookFor = 'What We Look For';
+  static const String aGenuinePassion =
+      'A genuine passion for climate-conscious living';
+  static const String strongStorytellingSkills =
+      'Strong storytelling or teaching skills (no need to be perfect—just authentic)';
+  static const String aCommitmentToCreatingSpaces =
+      'A commitment to creating inclusive, non-preachy spaces';
+  static const String willingnessToShowUpConsistently =
+      'Willingness to show up consistently and support others';
+  static const String readyToInspireNextWave =
+      'Ready to inspire the next wave of eco-influencer?';
+  static const String applyToBecomePowerUser =
+      'Apply to become a Power User and help us turn everyday choices into meaningful climate action—together.';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';
   // static const String profile = 'Profile';

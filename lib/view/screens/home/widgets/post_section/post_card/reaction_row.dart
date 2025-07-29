@@ -11,7 +11,8 @@ class ReactionRow extends StatelessWidget {
   final String seeds;
   final String shares;
 
-  final VoidCallback onReactionTap;
+  final VoidCallback onReactionIconTap;
+  final VoidCallback onReactionCountTap;
   final VoidCallback onCommentTap;
   final VoidCallback onReplanetTap;
   final VoidCallback onShareTap;
@@ -23,7 +24,8 @@ class ReactionRow extends StatelessWidget {
     required this.comments,
     required this.seeds,
     required this.shares,
-    required this.onReactionTap,
+    required this.onReactionIconTap,
+    required this.onReactionCountTap,
     required this.onCommentTap,
     required this.onReplanetTap,
     required this.onShareTap,
@@ -34,13 +36,12 @@ class ReactionRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        GestureDetector(
-          onTap: onReactionTap,
-          child: ReactionButton(
-            iconPath: selectedReactionIconPath,
-            count: likes,
-            color: AppColors.primary,
-          ),
+        ReactionButton(
+          iconPath: selectedReactionIconPath,
+          count: likes,
+          color: AppColors.primary,
+          onIconTap: onReactionIconTap,
+          onCountTap: onReactionCountTap,
         ),
         GestureDetector(
           onTap: onCommentTap,

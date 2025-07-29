@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/c_search_bar/c_search_bar.dart';
 import '../../../components/custom_network_image/custom_network_image.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class BlockedListScreen extends StatefulWidget {
   const BlockedListScreen({super.key});
@@ -112,32 +113,23 @@ class _BlockedListScreenState extends State<BlockedListScreen> {
     // final height = size.height;
     final width = size.width;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.backgroundLightGray,
 
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.03),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const Icon(Icons.arrow_back_ios),
-                  ),
-                  Expanded(
-                    child: Text(
-                      AppStrings.blockedList,
-                      style: textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+              TopAppBar(),
+              SizedBox(height: 8),
+              CSearchbar(hinttext: AppStrings.searchHint, hasBackground: false),
+              Text(
+                AppStrings.blockedList,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
               Expanded(
                 child: Padding(

@@ -6,7 +6,7 @@ import '../../../utils/app_strings/app_strings.dart';
 import '../../screens/notification/notification_screen.dart';
 import '../../screens/group/screens/group_screen.dart';
 import '../../screens/home/screens/home_screen.dart';
-import '../../screens/post/views/post_screens.dart';
+import '../../screens/post/views/post_create_screens.dart';
 import '../../screens/profile/screens/profile_screen.dart';
 import '../custom_image/custom_image.dart';
 import 'bottom_nav_controller.dart';
@@ -22,7 +22,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> _screens = [
     HomeScreen(),
     GroupScreen(),
-    PostScreen(),
+    PostCreateScreens(),
     NotificationScreen(),
     ProfileScreen(),
   ];

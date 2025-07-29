@@ -6,6 +6,7 @@ import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/c_search_bar/c_search_bar.dart';
 import '../../../components/custom_network_image/custom_network_image.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 import '../controller/followers_following_controller.dart';
 
 class FollowersFollowingScreen extends StatefulWidget {
@@ -27,7 +28,6 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
   @override
   void initState() {
     super.initState();
-
     int initialTab = Get.arguments?['initialTab'] ?? 0;
     _tabController = TabController(
       length: 2,
@@ -48,62 +48,74 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundWhite,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(110),
-        child: AppBar(
-          backgroundColor: AppColors.backgroundWhite,
-          elevation: 0,
-          centerTitle: false,
-          titleSpacing: 0,
-          title: Padding(
-            padding: EdgeInsets.zero,
-            child: CSearchbar(hinttext: AppStrings.searchHint),
-          ),
-          bottom: TabBar(
-            controller: _tabController,
-            tabs: const [
-              Tab(text: AppStrings.followers64),
-              Tab(text: AppStrings.followings72),
-            ],
-            indicatorColor: Colors.black,
-            labelStyle: textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.bold,
+      backgroundColor: AppColors.backgroundLightGray,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// ✅ First App Bar (TopAppBar)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: TopAppBar(),
             ),
-            unselectedLabelStyle: textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.gray,
-            ),
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey,
-          ),
-        ),
-      ),
+            SizedBox(height: 8),
 
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          Obx(
-            () => followController.isLoading.value
-                ? Center(child: CircularProgressIndicator())
-                : _buildUserList(
-                    textTheme,
-                    size,
-                    followController.followers,
-                    true,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CSearchbar(
+                hinttext: AppStrings.searchHint,
+                background: Colors.transparent,
+              ),
+            ),
+            const SizedBox(height: 8),
+            TabBar(
+              controller: _tabController,
+              tabs: const [
+                Tab(text: AppStrings.followers64),
+                Tab(text: AppStrings.followings72),
+              ],
+              indicatorColor: Colors.black,
+              labelStyle: textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              unselectedLabelStyle: textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: AppColors.gray,
+              ),
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.grey,
+            ),
+
+            /// ✅ Tab content
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  Obx(
+                    () => followController.isLoading.value
+                        ? const Center(child: CircularProgressIndicator())
+                        : _buildUserList(
+                            textTheme,
+                            size,
+                            followController.followers,
+                            true,
+                          ),
                   ),
-          ),
-          Obx(
-            () => followController.isLoading.value
-                ? Center(child: CircularProgressIndicator())
-                : _buildUserList(
-                    textTheme,
-                    size,
-                    followController.following,
-                    false,
+                  Obx(
+                    () => followController.isLoading.value
+                        ? const Center(child: CircularProgressIndicator())
+                        : _buildUserList(
+                            textTheme,
+                            size,
+                            followController.following,
+                            false,
+                          ),
                   ),
-          ),
-        ],
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -125,7 +137,7 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
           ),
           padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
           decoration: BoxDecoration(
-            color: AppColors.white,
+            // color: AppColors.white,
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
@@ -174,13 +186,14 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
                                 followController.toggleFollow(user);
                               },
                               style: OutlinedButton.styleFrom(
-                                side: BorderSide(color: AppColors.black),
+                                // side: const BorderSide(color: AppColors.black),
+                                backgroundColor: AppColors.gray,
                               ),
                               child: Text(
                                 AppStrings.following,
                                 style: textTheme.bodySmall?.copyWith(
-                                  color: AppColors.black,
-                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             )
@@ -189,7 +202,7 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
                                 followController.toggleFollow(user);
                               },
                               style: ElevatedButton.styleFrom(
-                                fixedSize: Size(95, 32),
+                                fixedSize: const Size(95, 32),
                               ),
                               child: Text(
                                 AppStrings.followButton,

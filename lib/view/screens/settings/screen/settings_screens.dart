@@ -8,6 +8,7 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 import '../models/account_item.dart';
 import '../widgets/account_section_card.dart';
 import '../widgets/faq_expansion.dart';
@@ -75,183 +76,180 @@ class _SettingsScreensState extends State<SettingsScreens> {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: height * 0.04),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const Icon(Icons.arrow_back_ios),
-                  ),
-                  Expanded(
-                    child: Text(
-                      AppStrings.settingandActivity,
-                      style: textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.035),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TopAppBar(),
+                SizedBox(height: height * 0.02),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        AppStrings.settingandActivity,
+                        style: textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: height * 0.01),
-              AccountSectionCard(
-                title: AppStrings.account,
-                menuItems: [
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.personalDetailsEditScreen);
-                    },
-                    title: AppStrings.personaldetails,
-                    iconPath: AppIcons.user,
-                  ),
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.passwordAndSecurityScreen);
-                    },
-                    title: AppStrings.passwordandsecurity,
-                    iconPath: AppIcons.padlock,
-                  ),
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.premiumUserDetailsScreen);
-                    },
-                    title: AppStrings.becomepremimum,
-                    iconPath: AppIcons.premium,
-                  ),
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.powerUserDetailsScreen);
-                    },
-                    title: AppStrings.becomepower,
-                    iconPath: AppIcons.power,
-                  ),
-                ],
-              ),
-              SizedBox(height: height * 0.01),
-              AccountSectionCard(
-                title: AppStrings.activity,
-                menuItems: [
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.clippedPostScreen);
-                    },
-                    title: AppStrings.clippedPost,
-                    iconPath: AppIcons.clips,
-                  ),
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.savedWorkshopScreen);
-                    },
-                    title: AppStrings.savedWorkshop,
-                    iconPath: AppIcons.save,
-                  ),
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.ntificationSettingsScreen);
-                    },
-                    title: AppStrings.notifications,
-                    iconPath: AppIcons.blackBell,
-                  ),
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.blockedListScreen);
-                    },
-                    title: AppStrings.blockedList,
-                    iconPath: AppIcons.lock,
-                  ),
-                ],
-              ),
-              SizedBox(height: height * 0.01),
-              AccountSectionCard(
-                title: AppStrings.company,
-                menuItems: [
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.introductionScreen);
-                    },
-                    title: AppStrings.introduction,
-                    iconPath: AppIcons.user,
-                  ),
-                  AccountItem(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.termsAndPolicyScreen);
-                    },
-                    title: AppStrings.termandPolicy,
-                    iconPath: AppIcons.padlock,
-                  ),
-                ],
-              ),
-              SizedBox(height: height * 0.01),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  AppStrings.fAQ,
-                  style: textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
+                  ],
                 ),
-              ),
-              SizedBox(height: height * 0.01),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.backgroundWhite,
-                  borderRadius: BorderRadius.circular(10),
+                SizedBox(height: height * 0.01),
+                AccountSectionCard(
+                  title: AppStrings.account,
+                  menuItems: [
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.personalDetailsEditScreen);
+                      },
+                      title: AppStrings.personaldetails,
+                      iconPath: AppIcons.user,
+                    ),
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.passwordAndSecurityScreen);
+                      },
+                      title: AppStrings.passwordandsecurity,
+                      iconPath: AppIcons.padlock,
+                    ),
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.premiumUserDetailsScreen);
+                      },
+                      title: AppStrings.becomepremimum,
+                      iconPath: AppIcons.premium,
+                    ),
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.powerUserDetailsScreen);
+                      },
+                      title: AppStrings.becomepower,
+                      iconPath: AppIcons.power,
+                    ),
+                  ],
                 ),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    width * 0.03,
-                    height * 0.015,
-                    width * 0.03,
-                    0,
-                  ),
-                  child: Column(
-                    children: [
-                      FaqExpansion(
-                        title: AppStrings.personaldetails,
-                        description: AppStrings.personaldetailsDescription,
-                      ),
-                      FaqExpansion(
-                        title: AppStrings.passwordandsecurity,
-                        description: AppStrings.personaldetailsDescription,
-                      ),
-                      FaqExpansion(
-                        title: AppStrings.becomepremimum,
-                        description: AppStrings.personaldetailsDescription,
-                      ),
-                      FaqExpansion(
-                        title: AppStrings.becomepower,
-                        description: AppStrings.personaldetailsDescription,
-                      ),
-                    ],
-                  ),
+                SizedBox(height: height * 0.01),
+                AccountSectionCard(
+                  title: AppStrings.activity,
+                  menuItems: [
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.clippedPostScreen);
+                      },
+                      title: AppStrings.clippedPost,
+                      iconPath: AppIcons.clips,
+                    ),
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.savedWorkshopScreen);
+                      },
+                      title: AppStrings.savedWorkshop,
+                      iconPath: AppIcons.save,
+                    ),
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.ntificationSettingsScreen);
+                      },
+                      title: AppStrings.notifications,
+                      iconPath: AppIcons.blackBell,
+                    ),
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.blockedListScreen);
+                      },
+                      title: AppStrings.blockedList,
+                      iconPath: AppIcons.lock,
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: height * 0.04),
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    _confirmCancelPremium();
-                  },
+                SizedBox(height: height * 0.01),
+                AccountSectionCard(
+                  title: AppStrings.company,
+                  menuItems: [
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.introductionScreen);
+                      },
+                      title: AppStrings.introduction,
+                      iconPath: AppIcons.user,
+                    ),
+                    AccountItem(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.termsAndPolicyScreen);
+                      },
+                      title: AppStrings.termandPolicy,
+                      iconPath: AppIcons.padlock,
+                    ),
+                  ],
+                ),
+                SizedBox(height: height * 0.01),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
-                    AppStrings.cancelPremiumUser,
-                    textAlign: TextAlign.center,
+                    AppStrings.fAQ,
                     style: textTheme.bodyMedium?.copyWith(
-                      decoration: TextDecoration.underline,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: height * 0.04),
-            ],
+                SizedBox(height: height * 0.01),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: AppColors.backgroundWhite,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      width * 0.03,
+                      height * 0.015,
+                      width * 0.03,
+                      0,
+                    ),
+                    child: Column(
+                      children: [
+                        FaqExpansion(
+                          title: AppStrings.personaldetails,
+                          description: AppStrings.personaldetailsDescription,
+                        ),
+                        FaqExpansion(
+                          title: AppStrings.passwordandsecurity,
+                          description: AppStrings.personaldetailsDescription,
+                        ),
+                        FaqExpansion(
+                          title: AppStrings.becomepremimum,
+                          description: AppStrings.personaldetailsDescription,
+                        ),
+                        FaqExpansion(
+                          title: AppStrings.becomepower,
+                          description: AppStrings.personaldetailsDescription,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: height * 0.04),
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      _confirmCancelPremium();
+                    },
+                    child: Text(
+                      AppStrings.cancelPremiumUser,
+                      textAlign: TextAlign.center,
+                      style: textTheme.bodyMedium?.copyWith(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: height * 0.04),
+              ],
+            ),
           ),
         ),
       ),

@@ -46,8 +46,7 @@ class InterestController extends GetxController {
         selectedInterests.add(interest);
       } else {
         SnackbarHelper.show(
-          message:
-              "$AppStrings.youCanSelectMaximum $maxSelection $AppStrings.interests.",
+          message: AppStrings.youCanSelectMaximum,
           isSuccess: false,
         );
       }

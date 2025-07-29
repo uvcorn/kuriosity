@@ -8,6 +8,7 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../components/custom_image/custom_image.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class SuccessfullSubmitPowerUserScreen extends StatelessWidget {
   const SuccessfullSubmitPowerUserScreen({super.key});
@@ -26,7 +27,8 @@ class SuccessfullSubmitPowerUserScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: screenHeight * 0.035),
+              TopAppBar(),
+              SizedBox(height: screenHeight * 0.02),
               Row(
                 children: [
                   Flexible(
@@ -42,7 +44,7 @@ class SuccessfullSubmitPowerUserScreen extends StatelessWidget {
                   CustomImage(imageSrc: AppIcons.power),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.035),
+              SizedBox(height: screenHeight * 0.01),
               Expanded(
                 child: Center(
                   child: Column(
@@ -73,15 +75,7 @@ class SuccessfullSubmitPowerUserScreen extends StatelessWidget {
                             navcontroller.changeIndex(0);
                             Get.offAll(() => const BottomNavBar());
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                screenWidth * 0.02,
-                              ),
-                            ),
-                            elevation: 0,
-                          ),
+
                           child: Text(
                             AppStrings.backtoHome,
                             style: textTheme.bodyMedium?.copyWith(

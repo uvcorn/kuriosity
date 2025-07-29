@@ -17,14 +17,18 @@ class GroupScreen extends StatelessWidget {
     final GroupController controller = Get.put(GroupController());
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundWhite,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               const SizedBox(height: 8),
-              const CSearchbar(hinttext: AppStrings.searchWorkshophint),
+              const CSearchbar(
+                hinttext: AppStrings.searchWorkshophint,
+                background: Colors.transparent,
+                fillcolor: AppColors.backgroundLightGray,
+              ),
 
               const SizedBox(height: 4),
               Obx(

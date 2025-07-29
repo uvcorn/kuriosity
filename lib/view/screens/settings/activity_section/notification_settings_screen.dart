@@ -1,8 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
   const NotificationSettingsScreen({super.key});
@@ -23,12 +26,14 @@ class _NotificationSettingsScreenState
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: AppColors.backgroundWhite,
+      backgroundColor: AppColors.backgroundLightGray,
       body: SafeArea(
         child: Column(
           children: [
-            // Top AppBar Row
-            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: TopAppBar(),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
@@ -39,7 +44,6 @@ class _NotificationSettingsScreenState
                       Get.back();
                     },
                   ),
-                  // const SizedBox(width: 8),
                   Text(
                     AppStrings.notifications,
                     style: textTheme.bodyLarge?.copyWith(
@@ -49,7 +53,6 @@ class _NotificationSettingsScreenState
                 ],
               ),
             ),
-
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
@@ -68,6 +71,10 @@ class _NotificationSettingsScreenState
                       });
                     },
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Divider(height: 1),
+                  ),
                   _buildSwitchTile(
                     title: AppStrings.workshopNotifications,
                     subtitle: AppStrings.workshopNotificationsSub,
@@ -78,6 +85,10 @@ class _NotificationSettingsScreenState
                       });
                     },
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Divider(height: 1),
+                  ),
                   _buildSwitchTile(
                     title: AppStrings.followNotifications,
                     subtitle: AppStrings.followNotificationsSub,
@@ -87,6 +98,10 @@ class _NotificationSettingsScreenState
                         followNotifications = val;
                       });
                     },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Divider(height: 1),
                   ),
                   _buildSwitchTile(
                     title: AppStrings.messageNotifications,
@@ -114,25 +129,71 @@ class _NotificationSettingsScreenState
     required Function(bool) onChanged,
   }) {
     final textTheme = Theme.of(context).textTheme;
-    return SwitchListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      title: Text(
-        title,
-        style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              CustomSwitch(value: value, onChanged: onChanged),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Text(
+            subtitle,
+            style: textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: AppColors.black,
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
       ),
-      subtitle: Text(
-        subtitle,
-        style: textTheme.bodySmall?.copyWith(
-          fontWeight: FontWeight.w500,
-          color: AppColors.black,
+    );
+  }
+}
+
+class CustomSwitch extends StatelessWidget {
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  const CustomSwitch({super.key, required this.value, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => onChanged(!value),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 40,
+        height: 24,
+        padding: const EdgeInsets.all(3),
+        decoration: BoxDecoration(
+          color: value ? AppColors.primary : AppColors.lightGray,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: AnimatedAlign(
+          duration: const Duration(milliseconds: 200),
+          alignment: value ? Alignment.centerRight : Alignment.centerLeft,
+          child: Container(
+            width: 16,
+            height: 16,
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              shape: BoxShape.circle,
+            ),
+          ),
         ),
       ),
-      value: value,
-      activeColor: AppColors.white,
-      activeTrackColor: AppColors.primary,
-      inactiveThumbColor: AppColors.black,
-      inactiveTrackColor: AppColors.lightBlueBackground,
-      onChanged: onChanged,
     );
   }
 }

@@ -6,6 +6,7 @@ import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/custom_image/custom_image.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class PremiumUserDetailsScreen extends StatelessWidget {
   const PremiumUserDetailsScreen({super.key});
@@ -24,14 +25,14 @@ class PremiumUserDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: screenHeight * 0.03),
+              TopAppBar(),
+              SizedBox(height: screenHeight * 0.01),
               Row(
                 children: [
                   Flexible(
                     child: Text(
                       AppStrings.becomeprem,
                       style: textTheme.bodyLarge?.copyWith(
-                        fontSize: screenWidth * 0.05,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -40,50 +41,146 @@ class PremiumUserDetailsScreen extends StatelessWidget {
                   CustomImage(imageSrc: AppIcons.premium),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.03),
-              Text(AppStrings.premiumuserdec1, style: textTheme.bodyMedium),
               SizedBox(height: screenHeight * 0.02),
-              Text(AppStrings.premiumuserdec2, style: textTheme.bodyMedium),
-              SizedBox(height: screenHeight * 0.06),
+
               Text(
-                AppStrings.premiumFeatureTitle1,
-                style: textTheme.bodyMedium,
+                AppStrings.investInYourself,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  height: 1.5,
+                ),
               ),
-              SizedBox(height: screenHeight * 0.03),
+              SizedBox(height: screenHeight * 0.02),
+              Text(
+                AppStrings.asAPremiumUserUnlock,
+                style: textTheme.bodyMedium?.copyWith(height: 1.5),
+              ),
+              SizedBox(height: screenHeight * 0.02),
+              Text(
+                AppStrings.thisIsForThoseReady,
+                style: textTheme.bodyMedium?.copyWith(height: 1.5),
+              ),
+              SizedBox(height: screenHeight * 0.01),
+
               Row(
                 children: [
-                  Icon(Icons.check, size: screenWidth * 0.05),
-                  SizedBox(width: screenWidth * 0.025),
-                  Expanded(
-                    child: Text(
-                      AppStrings.premiumFeature1,
-                      style: textTheme.bodyMedium,
+                  Text('🛠️ ', style: textTheme.bodyMedium),
+                  Text(
+                    AppStrings.whatYoullGet,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.05),
-              Text(
-                AppStrings.premiumFeatureTitle2,
-                style: textTheme.bodyMedium,
+              SizedBox(height: screenHeight * 0.01),
+              _buildBulletPoint(
+                textTheme,
+                screenWidth,
+                AppStrings.exclusiveWorkshopsChallenges,
               ),
-              SizedBox(height: screenHeight * 0.03),
+              _buildBulletPoint(
+                textTheme,
+                screenWidth,
+                AppStrings.personalizedHabitTracker,
+              ),
+              _buildBulletPoint(
+                textTheme,
+                screenWidth,
+                AppStrings.curatedToolkitResources,
+              ),
+              _buildBulletPoint(
+                textTheme,
+                screenWidth,
+                AppStrings.priorityAccessPerks,
+              ),
+              SizedBox(height: screenHeight * 0.01),
+
               Row(
                 children: [
-                  Icon(Icons.check, size: screenWidth * 0.05),
-                  SizedBox(width: screenWidth * 0.025),
-                  Expanded(
-                    child: Text(
-                      AppStrings.premiumFeature2,
-                      style: textTheme.bodyMedium,
+                  Text('✅ ', style: textTheme.bodyMedium),
+                  Text(
+                    AppStrings.whyGoPremium,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.15),
+              SizedBox(height: screenHeight * 0.01),
+              _buildBulletPoint(
+                textTheme,
+                screenWidth,
+                AppStrings.youWantToAlignValues,
+              ),
+              _buildBulletPoint(
+                textTheme,
+                screenWidth,
+                AppStrings.youAreCravingSupportiveCommunity,
+              ),
+              _buildBulletPoint(
+                textTheme,
+                screenWidth,
+                AppStrings.youAreReadyToMoveFromThinking,
+              ),
+              SizedBox(height: screenHeight * 0.01),
+
+              Row(
+                children: [
+                  Text('🌱 ', style: textTheme.bodyMedium),
+                  Text(
+                    AppStrings.yourJourneyStartsHere,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: screenHeight * 0.01),
+              Text(
+                AppStrings.joinAsAPremiumUser,
+                style: textTheme.bodyMedium?.copyWith(height: 1.5),
+              ),
+              SizedBox(height: screenHeight * 0.02),
+
+              // Links
+              // GestureDetector(
+              //   onTap: () {
+              //     Get.toNamed(
+              //       AppRoutes.priceAndPaymentMethodScreen,
+              //     ); // Example navigation
+              //   },
+              //   child: Text(
+              //     AppStrings.upgradeToPremium,
+              //     style: textTheme.bodyMedium?.copyWith(
+              //       color:
+              //           AppColors.primary, // Assuming primary color for links
+              //       decoration: TextDecoration.underline,
+              //       fontSize: screenWidth * 0.04,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(height: screenHeight * 0.01),
+              // GestureDetector(
+              //   onTap: () {
+              //     Get.snackbar(
+              //       'Coming Soon',
+              //       'User Stories page is not yet implemented.',
+              //     );
+              //   },
+              //   child: Text(
+              //     AppStrings.seeOurUserStories,
+              //     style: textTheme.bodyMedium?.copyWith(
+              //       color: AppColors.primary,
+              //       decoration: TextDecoration.underline,
+              //       fontSize: screenWidth * 0.04,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(height: screenHeight * 0.03),
               SizedBox(
                 width: double.infinity,
-                height: screenHeight * 0.06,
+                height: screenHeight * 0.055,
                 child: ElevatedButton(
                   onPressed: () {
                     Get.toNamed(AppRoutes.priceAndPaymentMethodScreen);
@@ -93,14 +190,51 @@ class PremiumUserDetailsScreen extends StatelessWidget {
                     style: textTheme.bodyMedium?.copyWith(
                       color: AppColors.white,
                       fontWeight: FontWeight.w700,
-                      fontSize: screenWidth * 0.04,
                     ),
                   ),
                 ),
               ),
+              SizedBox(height: screenHeight * 0.02),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // Helper widget for consistent bullet point styling
+  Widget _buildBulletPoint(
+    TextTheme textTheme,
+    double screenWidth,
+    String text,
+  ) {
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: 10,
+      ), // Adjust spacing between bullet points
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: screenWidth * 0.02, // Indent for bullet point
+            child: Text(
+              '•',
+              style: textTheme.bodyMedium?.copyWith(
+                fontSize: screenWidth * 0.04,
+              ),
+            ),
+          ),
+          SizedBox(width: screenWidth * 0.02),
+          Expanded(
+            child: Text(
+              text,
+              style: textTheme.bodyMedium?.copyWith(
+                fontSize: screenWidth * 0.04,
+                height: 1.5,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

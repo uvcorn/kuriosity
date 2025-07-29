@@ -11,8 +11,8 @@ import '../widgets/image_preview_grid.dart';
 import '../widgets/workshop_selector.dart';
 import '../widgets/post_input_field.dart';
 
-class PostScreen extends StatelessWidget {
-  const PostScreen({super.key});
+class PostCreateScreens extends StatelessWidget {
+  const PostCreateScreens({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -49,11 +49,19 @@ class UserInfoSection extends StatelessWidget {
                 InkWell(
                   onTap: onProfileTap,
 
-                  child: Text(username, style: textTheme.bodyMedium),
+                  child: Text(
+                    username,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
                 Text(
                   subtitle,
-                  style: textTheme.labelSmall?.copyWith(color: AppColors.black),
+                  style: textTheme.labelSmall?.copyWith(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),

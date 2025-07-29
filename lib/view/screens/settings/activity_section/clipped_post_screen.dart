@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 import '../../home/controllers/post_controller.dart';
 import '../../home/widgets/post_section/post_card/post_card.dart';
 
@@ -24,7 +25,10 @@ class _ClippedPostScreenState extends State<ClippedPostScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: TopAppBar(),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(

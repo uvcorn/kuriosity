@@ -4,6 +4,7 @@ import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_icons/app_icons.dart';
 import '../../../../../utils/app_strings/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
+import '../../../../components/top_app_bar/top_app_bar.dart';
 import '../widgets/delete_account_popup.dart';
 
 class LinkedAccountsScreen extends StatefulWidget {
@@ -101,88 +102,95 @@ class _LinkedAccountsScreenState extends State<LinkedAccountsScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: height * 0.04),
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-                Expanded(
-                  child: Text(
-                    AppStrings.linkedAccounts,
-                    style: textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: height * 0.01),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.01),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TopAppBar(),
+              SizedBox(height: height * 0.01),
+              Row(
                 children: [
-                  _buildAccountRow(AppIcons.google, AppStrings.google, width),
-                  _buildAccountRow(
-                    AppIcons.facebook,
-                    AppStrings.facebook,
-                    width,
+                  IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: const Icon(Icons.arrow_back_ios),
                   ),
-                  _buildAccountRow(AppIcons.apple, AppStrings.apple, width),
-                  SizedBox(height: height * 0.03),
-                  Text(
-                    AppStrings.accountDeletion,
-                    style: textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                  SizedBox(height: height * 0.01),
-                  Text(
-                    AppStrings.accountDeletiondescep,
-                    style: textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.black,
-                    ),
-                  ),
-                  SizedBox(height: height * 0.02),
-                  Center(
-                    child: SizedBox(
-                      height: height * 0.06,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            context: context,
-                            backgroundColor: Colors.transparent,
-                            builder: (BuildContext context) =>
-                                const DeleteAccountPopup(),
-                          );
-                        },
-                        child: Text(
-                          AppStrings.deleteAccount,
-                          style: textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.white,
-                          ),
-                        ),
+                  Expanded(
+                    child: Text(
+                      AppStrings.linkedAccounts,
+                      style: textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+              SizedBox(height: height * 0.01),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.01),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildAccountRow(
+                      AppIcons.googleColor,
+                      AppStrings.google,
+                      width,
+                    ),
+                    _buildAccountRow(
+                      AppIcons.facebookColor,
+                      AppStrings.facebook,
+                      width,
+                    ),
+                    _buildAccountRow(AppIcons.apple, AppStrings.apple, width),
+                    SizedBox(height: height * 0.03),
+                    Text(
+                      AppStrings.accountDeletion,
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    SizedBox(height: height * 0.01),
+                    Text(
+                      AppStrings.accountDeletiondescep,
+                      style: textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.black,
+                      ),
+                    ),
+                    SizedBox(height: height * 0.02),
+                    Center(
+                      child: SizedBox(
+                        height: height * 0.06,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: context,
+                              backgroundColor: Colors.transparent,
+                              builder: (BuildContext context) =>
+                                  const DeleteAccountPopup(),
+                            );
+                          },
+                          child: Text(
+                            AppStrings.deleteAccount,
+                            style: textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

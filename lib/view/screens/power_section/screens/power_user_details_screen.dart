@@ -6,6 +6,7 @@ import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/custom_image/custom_image.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class PowerUserDetailsScreen extends StatelessWidget {
   const PowerUserDetailsScreen({super.key});
@@ -16,111 +17,147 @@ class PowerUserDetailsScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Function to scale font size relative to screen width (base 375)
-    double fontSize(double size) => size * screenWidth / 375;
-
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
       body: SafeArea(
         child: SingleChildScrollView(
-          // Added scroll to handle small screens
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: screenWidth * 0.064,
-            ), // ~24px on 375 width
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.064),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: screenHeight * 0.04), // ~30px on 750 height
+                TopAppBar(),
+                SizedBox(height: screenHeight * 0.02),
                 Row(
                   children: [
                     Flexible(
                       child: Text(
                         AppStrings.becomepower,
                         style: textTheme.bodyLarge?.copyWith(
-                          fontSize: fontSize(20),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    SizedBox(width: screenWidth * 0.021), // ~8px
+                    SizedBox(width: screenWidth * 0.021),
                     const CustomImage(imageSrc: AppIcons.power),
                   ],
                 ),
-                SizedBox(height: screenHeight * 0.04), // 30px
+                SizedBox(height: screenHeight * 0.03),
                 Text(
-                  AppStrings.poweruserdec1,
+                  AppStrings.leadInspireShapeCulture,
                   style: textTheme.bodyMedium?.copyWith(
-                    fontSize: fontSize(14),
-                    height: 1.4,
+                    fontWeight: FontWeight.bold,
+                    height: 1.5,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.027), // 20px
+                SizedBox(height: screenHeight * 0.01),
                 Text(
-                  AppStrings.poweruserdec2,
+                  AppStrings.asAPowerUser,
                   style: textTheme.bodyMedium?.copyWith(
-                    fontSize: fontSize(14),
-                    height: 1.4,
+                    fontSize: screenWidth * 0.04,
+                    height: 1.5,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.067), // 50px
+                SizedBox(height: screenHeight * 0.01),
                 Text(
-                  AppStrings.premiumFeatureTitle1,
-                  style: textTheme.bodyMedium?.copyWith(
-                    fontSize: fontSize(14),
-                    fontWeight: FontWeight.w600,
-                  ),
+                  AppStrings.powerUsersAreTrustedCommunity,
+                  style: textTheme.bodyMedium?.copyWith(height: 1.5),
                 ),
-                SizedBox(height: screenHeight * 0.04), // 30px
-                IntrinsicHeight(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(Icons.check, size: fontSize(20)),
-                      SizedBox(width: screenWidth * 0.027), // 10px
-                      Expanded(
-                        child: Text(
-                          AppStrings.premiumFeature1,
-                          style: textTheme.bodyMedium?.copyWith(
-                            fontSize: fontSize(14),
-                            height: 1.4,
-                          ),
+                SizedBox(height: screenHeight * 0.03),
+
+                Row(
+                  children: [
+                    Text('🛠️ ', style: textTheme.bodyMedium),
+                    SizedBox(width: 8),
+                    Text(
+                      AppStrings.whatYoullGetPowerUser,
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: screenHeight * 0.01),
+                _buildBulletPoint(
+                  textTheme,
+                  screenWidth,
+                  AppStrings.hostYourOwnWorkshops,
+                ),
+                _buildBulletPoint(
+                  textTheme,
+                  screenWidth,
+                  AppStrings.buildAFollowing,
+                ),
+                _buildBulletPoint(
+                  textTheme,
+                  screenWidth,
+                  AppStrings.growYourInfluence,
+                ),
+                _buildBulletPoint(
+                  textTheme,
+                  screenWidth,
+                  AppStrings.earnAndElevate,
+                ),
+                SizedBox(height: screenHeight * 0.01),
+
+                Row(
+                  children: [
+                    Text('✅ ', style: textTheme.bodySmall),
+                    SizedBox(width: 8),
+                    Text(
+                      AppStrings.whatWeLookFor,
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: screenHeight * 0.01),
+                _buildBulletPoint(
+                  textTheme,
+                  screenWidth,
+                  AppStrings.aGenuinePassion,
+                ),
+                _buildBulletPoint(
+                  textTheme,
+                  screenWidth,
+                  AppStrings.strongStorytellingSkills,
+                ),
+                _buildBulletPoint(
+                  textTheme,
+                  screenWidth,
+                  AppStrings.aCommitmentToCreatingSpaces,
+                ),
+                _buildBulletPoint(
+                  textTheme,
+                  screenWidth,
+                  AppStrings.willingnessToShowUpConsistently,
+                ),
+                SizedBox(height: screenHeight * 0.01),
+
+                Row(
+                  children: [
+                    Text('💬 ', style: textTheme.bodySmall),
+                    SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        AppStrings.readyToInspireNextWave,
+                        style: textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: screenHeight * 0.053), // 40px
+                SizedBox(height: screenHeight * 0.01),
                 Text(
-                  AppStrings.premiumFeatureTitle2,
-                  style: textTheme.bodyMedium?.copyWith(
-                    fontSize: fontSize(14),
-                    fontWeight: FontWeight.w600,
-                  ),
+                  AppStrings.applyToBecomePowerUser,
+                  style: textTheme.bodyMedium?.copyWith(height: 1.5),
                 ),
-                SizedBox(height: screenHeight * 0.04), // 30px
-                IntrinsicHeight(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(Icons.check, size: fontSize(20)),
-                      SizedBox(width: screenWidth * 0.027), // 10px
-                      Expanded(
-                        child: Text(
-                          AppStrings.poweruserFeature2,
-                          style: textTheme.bodyMedium?.copyWith(
-                            fontSize: fontSize(14),
-                            height: 1.4,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: screenHeight * 0.2), // 150px
+                SizedBox(height: screenHeight * 0.03),
                 SizedBox(
                   width: double.infinity,
-                  height: screenHeight * 0.058, // ~44px
+                  height: screenHeight * 0.058,
                   child: ElevatedButton(
                     onPressed: () {
                       Get.toNamed(AppRoutes.registrationPowerUserScreen);
@@ -135,7 +172,6 @@ class PowerUserDetailsScreen extends StatelessWidget {
                       style: textTheme.bodyMedium?.copyWith(
                         color: AppColors.white,
                         fontWeight: FontWeight.w700,
-                        fontSize: fontSize(16),
                       ),
                     ),
                   ),
@@ -145,6 +181,43 @@ class PowerUserDetailsScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  // Helper widget for consistent bullet point styling
+  Widget _buildBulletPoint(
+    TextTheme textTheme,
+    double screenWidth,
+    String text,
+  ) {
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: 10,
+      ), // Adjust spacing between bullet points
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: screenWidth * 0.02, // Indent for bullet point
+            child: Text(
+              '•',
+              style: textTheme.bodyMedium?.copyWith(
+                fontSize: screenWidth * 0.04,
+              ),
+            ),
+          ),
+          SizedBox(width: screenWidth * 0.02),
+          Expanded(
+            child: Text(
+              text,
+              style: textTheme.bodyMedium?.copyWith(
+                fontSize: screenWidth * 0.04,
+                height: 1.5,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

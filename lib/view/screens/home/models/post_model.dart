@@ -1,4 +1,5 @@
 class Post {
+  final String id;
   final String username;
   final String userImage;
   final String? postImage;
@@ -19,6 +20,7 @@ class Post {
   final Post? originalPost;
   final String? sharedThought;
   Post({
+    required this.id,
     required this.username,
     required this.userImage,
     this.postImage,

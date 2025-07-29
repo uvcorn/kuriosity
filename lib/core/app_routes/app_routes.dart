@@ -2,6 +2,8 @@
 import 'package:get/get.dart';
 import '../../view/components/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../view/screens/group/models/workshop_model.dart';
+import '../../view/screens/home/models/post_model.dart';
+import '../../view/screens/home/screens/post_screen.dart';
 import '../../view/screens/notification/notification_screen.dart';
 import '../../view/screens/auth/screens/forget_password_screen.dart';
 import '../../view/screens/auth/screens/otp_verify_screen.dart';
@@ -15,7 +17,7 @@ import '../../view/screens/group/screens/review_screen.dart';
 import '../../view/screens/group/screens/submit_review_screen.dart';
 import '../../view/screens/group/screens/workshop_details_screen.dart';
 import '../../view/screens/group/screens/workshop_finish_screen.dart';
-import '../../view/screens/group/screens/workshop_list_screen.dart';
+import '../../view/screens/group/screens/youre_workshop_list_screen.dart';
 import '../../view/screens/group/screens/workshop_video_conference.dart';
 import '../../view/screens/home/screens/home_screen.dart';
 import '../../view/screens/chat/screens/chats_screen.dart';
@@ -23,7 +25,7 @@ import '../../view/screens/onboarding/first_onbording_screen.dart';
 import '../../view/screens/onboarding/secend_onbording_screen.dart';
 import '../../view/screens/onboarding/third_onbording_screen.dart';
 import '../../view/screens/open_new_workshop/open_new_workshop_screen.dart';
-import '../../view/screens/post/views/post_screens.dart';
+import '../../view/screens/post/views/post_create_screens.dart';
 import '../../view/screens/power_section/screens/power_user_details_screen.dart';
 import '../../view/screens/power_section/screens/registration_power_user_screen.dart';
 import '../../view/screens/power_section/screens/successfull_submit_power_user_screen.dart';
@@ -70,8 +72,10 @@ class AppRoutes {
   static const String bottomNavBar = "/BottomNavBar";
   static const String homeScreen = "/HomeScreen";
   static const String groupScreen = "/GroupScreen";
-  static const String postScreens = "/PostScreens";
+  static const String postCreateScreens = "/PostCreateScreens";
   static const String notificationScreen = "/NotificationScreen";
+
+  static const String postScreen = "/PostScreen";
 
   ///===========================Chats==========================
   static const String chatsListScreen = "/ChatsListScreen";
@@ -87,7 +91,7 @@ class AppRoutes {
   static const String reviewScreen = "/ReviewScreen";
   static const String workshopFinishScreen = "/WorkshopFinishScreen";
   static const String submitReviewScreen = "/SubmitReviewScreen";
-  static const String workshopListScreen = "/WorkshopListScreen";
+  static const String workshopListScreen = "/YoureWorkshopListScreen";
   static const String workshopVideoConference = "/WorkshopVideoConference";
   static const String openNewWorkshopScreen = "/OpenNewWorkshopScreen";
 
@@ -137,8 +141,16 @@ class AppRoutes {
     GetPage(name: bottomNavBar, page: () => BottomNavBar()),
     GetPage(name: homeScreen, page: () => HomeScreen()),
     GetPage(name: groupScreen, page: () => GroupScreen()),
-    GetPage(name: postScreens, page: () => PostScreen()),
+    GetPage(name: postCreateScreens, page: () => PostCreateScreens()),
     GetPage(name: notificationScreen, page: () => NotificationScreen()),
+
+    GetPage(
+      name: AppRoutes.postScreen,
+      page: () {
+        final post = Get.arguments as Post; // cast it to your Post model
+        return PostScreen(post: post);
+      },
+    ),
 
     ///===========================Chats==========================
     GetPage(name: chatsListScreen, page: () => ChatsListScreen()),
@@ -168,7 +180,7 @@ class AppRoutes {
     GetPage(name: reviewScreen, page: () => ReviewScreen()),
     GetPage(name: workshopFinishScreen, page: () => WorkshopFinishScreen()),
     GetPage(name: submitReviewScreen, page: () => SubmitReviewScreen()),
-    GetPage(name: workshopListScreen, page: () => WorkshopListScreen()),
+    GetPage(name: workshopListScreen, page: () => YoureWorkshopListScreen()),
     GetPage(
       name: workshopVideoConference,
       page: () => WorkshopVideoConference(),

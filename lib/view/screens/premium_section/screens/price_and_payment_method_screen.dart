@@ -10,6 +10,7 @@ import '../../../components/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../../components/bottom_nav_bar/bottom_nav_controller.dart';
 import '../../../components/custom_image/custom_image.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class PriceAndPaymentMethodScreen extends StatelessWidget {
   const PriceAndPaymentMethodScreen({super.key});
@@ -30,7 +31,8 @@ class PriceAndPaymentMethodScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
-              SizedBox(height: screenHeight * 0.03),
+              TopAppBar(),
+              SizedBox(height: screenHeight * 0.01),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

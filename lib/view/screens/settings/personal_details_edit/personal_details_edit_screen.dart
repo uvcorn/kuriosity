@@ -10,6 +10,7 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/custom_image/custom_image.dart';
 import '../../../components/custom_network_image/custom_network_image.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 import '../screen/interest_screen.dart';
 import 'widgets/editing_info_row.dart';
 import 'widgets/image_select_menu.dart';
@@ -123,273 +124,284 @@ class _PersonalDetailsEditScreenState extends State<PersonalDetailsEditScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
 
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-          child: Column(
-            children: [
-              SizedBox(height: verticalSpacing + 30),
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  // Background Image
-                  _buildImageWidget(
-                    networkImageUrl: AppConstants.vegatable,
-                    file: _backgroundImageFile,
-                    height: coverImageHeight,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(24),
-                      topRight: Radius.circular(24),
-                    ),
-                  ),
-                  Positioned(
-                    top: coverImageHeight * 0.1,
-                    right: horizontalPadding,
-                    child: GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: context,
-                          backgroundColor: Colors.transparent,
-                          builder: (_) => ImageSelectMenu(
-                            isProfileImage: false,
-                            onImagePicked: _pickImage,
-                          ),
-                        );
-                      },
-
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: AppColors.lightBlueBackground.withOpacity(0.8),
-                          shape: BoxShape.circle,
-                        ),
-                        child: CustomImage(imageSrc: AppIcons.pencil, size: 20),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+            child: Column(
+              children: [
+                TopAppBar(),
+                SizedBox(height: verticalSpacing),
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    // Background Image
+                    _buildImageWidget(
+                      networkImageUrl: AppConstants.vegatable,
+                      file: _backgroundImageFile,
+                      height: coverImageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(24),
+                        topRight: Radius.circular(24),
                       ),
                     ),
-                  ),
-                  // Profile Image and Info Container
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: coverImageHeight - profileImageRadius,
-                    ),
-                    child: Column(
-                      children: [
-                        Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 0),
-                              padding: EdgeInsets.only(
-                                top: profileImageRadius + 20,
-                                left: horizontalPadding,
-                                right: horizontalPadding,
-                                bottom: verticalSpacing,
-                              ),
-                              decoration: const BoxDecoration(
-                                color: AppColors.white,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(12),
-                                  bottomRight: Radius.circular(12),
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Name
-                                  EditingInfoRow(
-                                    isMultiLine: false,
-                                    textTheme: textTheme,
-                                    label: AppStrings.nameString,
-                                    controller: _nameController,
-                                  ),
-                                  Divider(
-                                    color: AppColors.lightBorder,
-                                    height: verticalSpacing,
-                                    thickness: 2,
-                                  ),
-                                  // Title
-                                  EditingInfoRow(
-                                    textTheme: textTheme,
-                                    label: AppStrings.titleString,
-                                    controller: _titleController,
-                                    isMultiLine: false,
-                                  ),
-                                  Divider(
-                                    color: AppColors.lightBorder,
-                                    height: verticalSpacing,
-                                    thickness: 2,
-                                  ),
-                                  // Bio
-                                  EditingInfoRow(
-                                    textTheme: textTheme,
-                                    label: AppStrings.bioLabel,
-                                    controller: _bioController,
-                                    isMultiLine: true,
-                                  ),
-                                  Divider(
-                                    color: AppColors.lightBorder,
-                                    height: verticalSpacing,
-                                    thickness: 2,
-                                  ),
-                                  // Goal
-                                  EditingInfoRow(
-                                    textTheme: textTheme,
-                                    label: AppStrings.goalLabel,
-                                    controller: _goalController,
-                                    isMultiLine: true,
-                                  ),
-                                  Divider(
-                                    color: AppColors.lightBorder,
-                                    height: verticalSpacing,
-                                    thickness: 2,
-                                  ),
-                                  SizedBox(height: verticalSpacing),
-                                  // Interests Section
-                                  GestureDetector(
-                                    behavior: HitTestBehavior.opaque,
-                                    onTap: () async {
-                                      final result = await Get.to(
-                                        () => InterestScreen(
-                                          initialSelectedInterests: List.from(
-                                            userInterests,
-                                          ),
-                                        ),
-                                      );
+                    Positioned(
+                      top: coverImageHeight * 0.1,
+                      right: horizontalPadding,
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) => ImageSelectMenu(
+                              isProfileImage: false,
+                              onImagePicked: _pickImage,
+                            ),
+                          );
+                        },
 
-                                      if (result != null &&
-                                          result is List<String>) {
-                                        setState(() {
-                                          userInterests = result;
-                                        });
-                                      }
-                                    },
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: screenWidth * 0.15,
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: AppColors.lightBlueBackground.withOpacity(
+                              0.8,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                          child: CustomImage(
+                            imageSrc: AppIcons.pencil,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                    // Profile Image and Info Container
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: coverImageHeight - profileImageRadius,
+                      ),
+                      child: Column(
+                        children: [
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 0,
+                                ),
+                                padding: EdgeInsets.only(
+                                  top: profileImageRadius + 20,
+                                  left: horizontalPadding,
+                                  right: horizontalPadding,
+                                  bottom: verticalSpacing,
+                                ),
+                                decoration: const BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(12),
+                                    bottomRight: Radius.circular(12),
+                                  ),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Name
+                                    EditingInfoRow(
+                                      isMultiLine: false,
+                                      textTheme: textTheme,
+                                      label: AppStrings.nameString,
+                                      controller: _nameController,
+                                    ),
+                                    Divider(
+                                      color: AppColors.lightBorder,
+                                      height: verticalSpacing,
+                                      thickness: 2,
+                                    ),
+                                    // Title
+                                    EditingInfoRow(
+                                      textTheme: textTheme,
+                                      label: AppStrings.titleString,
+                                      controller: _titleController,
+                                      isMultiLine: false,
+                                    ),
+                                    Divider(
+                                      color: AppColors.lightBorder,
+                                      height: verticalSpacing,
+                                      thickness: 2,
+                                    ),
+                                    // Bio
+                                    EditingInfoRow(
+                                      textTheme: textTheme,
+                                      label: AppStrings.bioLabel,
+                                      controller: _bioController,
+                                      isMultiLine: true,
+                                    ),
+                                    Divider(
+                                      color: AppColors.lightBorder,
+                                      height: verticalSpacing,
+                                      thickness: 2,
+                                    ),
+                                    // Goal
+                                    EditingInfoRow(
+                                      textTheme: textTheme,
+                                      label: AppStrings.goalLabel,
+                                      controller: _goalController,
+                                      isMultiLine: true,
+                                    ),
+                                    Divider(
+                                      color: AppColors.lightBorder,
+                                      height: verticalSpacing,
+                                      thickness: 2,
+                                    ),
+                                    SizedBox(height: verticalSpacing),
+                                    // Interests Section
+                                    GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () async {
+                                        final result = await Get.to(
+                                          () => InterestScreen(
+                                            initialSelectedInterests: List.from(
+                                              userInterests,
+                                            ),
+                                          ),
+                                        );
+
+                                        if (result != null &&
+                                            result is List<String>) {
+                                          setState(() {
+                                            userInterests = result;
+                                          });
+                                        }
+                                      },
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            width: screenWidth * 0.15,
+                                            child: Text(
+                                              AppStrings.interest,
+                                              style: textTheme.bodyMedium
+                                                  ?.copyWith(
+                                                    fontWeight: FontWeight.w500,
+                                                    color: AppColors.black,
+                                                  ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Wrap(
+                                              spacing: 8.0,
+                                              runSpacing: 8.0,
+                                              children: userInterests
+                                                  .map(
+                                                    (interest) => InterestChip(
+                                                      interest: interest,
+                                                    ),
+                                                  )
+                                                  .toList(),
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.only(left: 8.0),
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: AppColors.black,
+                                              size: 16,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: verticalSpacing),
+                                    // Done Button
+                                    Center(
+                                      child: SizedBox(
+                                        height: 45,
+                                        width: screenWidth * 0.3,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
                                           child: Text(
-                                            AppStrings.interest,
+                                            AppStrings.done,
                                             style: textTheme.bodyMedium
                                                 ?.copyWith(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: AppColors.black,
+                                                  color: AppColors.white,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: Wrap(
-                                            spacing: 8.0,
-                                            runSpacing: 8.0,
-                                            children: userInterests
-                                                .map(
-                                                  (interest) => Interestchip(
-                                                    interest: interest,
-                                                  ),
-                                                )
-                                                .toList(),
-                                          ),
-                                        ),
-                                        const Padding(
-                                          padding: EdgeInsets.only(left: 8.0),
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: AppColors.black,
-                                            size: 16,
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: verticalSpacing),
-                                  // Done Button
-                                  Center(
-                                    child: SizedBox(
-                                      height: 45,
-                                      width: screenWidth * 0.3,
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          Get.back();
+                                  ],
+                                ),
+                              ),
+                              // Profile Avatar
+                              Positioned(
+                                top: -profileImageRadius,
+                                left: screenWidth / 2 - profileImageRadius,
+                                child: Stack(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: profileImageRadius,
+                                      backgroundColor: AppColors.white,
+                                      child: _buildImageWidget(
+                                        networkImageUrl:
+                                            AppConstants.profileImage,
+                                        file: _profileImageFile,
+                                        height: profileImageRadius * 2,
+                                        width: profileImageRadius * 2,
+                                        fit: BoxFit.cover,
+                                        borderRadius: BorderRadius.circular(
+                                          profileImageRadius,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      bottom: 0,
+                                      right: 0,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            context: context,
+                                            backgroundColor: Colors.transparent,
+                                            builder: (_) => ImageSelectMenu(
+                                              isProfileImage: true,
+                                              onImagePicked: _pickImage,
+                                            ),
+                                          );
                                         },
-                                        child: Text(
-                                          AppStrings.done,
-                                          style: textTheme.bodyMedium?.copyWith(
-                                            color: AppColors.white,
-                                            fontWeight: FontWeight.bold,
+                                        child: Container(
+                                          padding: const EdgeInsets.all(6),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.lightBlueBackground
+                                                .withOpacity(0.8),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: CustomImage(
+                                            imageSrc: AppIcons.pencil,
+                                            size: 20,
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            // Profile Avatar
-                            Positioned(
-                              top: -profileImageRadius,
-                              left: screenWidth / 2 - profileImageRadius,
-                              child: Stack(
-                                children: [
-                                  CircleAvatar(
-                                    radius: profileImageRadius,
-                                    backgroundColor: AppColors.white,
-                                    child: _buildImageWidget(
-                                      networkImageUrl:
-                                          AppConstants.profileImage,
-                                      file: _profileImageFile,
-                                      height: profileImageRadius * 2,
-                                      width: profileImageRadius * 2,
-                                      fit: BoxFit.cover,
-                                      borderRadius: BorderRadius.circular(
-                                        profileImageRadius,
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 0,
-                                    right: 0,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          context: context,
-                                          backgroundColor: Colors.transparent,
-                                          builder: (_) => ImageSelectMenu(
-                                            isProfileImage: true,
-                                            onImagePicked: _pickImage,
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.all(6),
-                                        decoration: BoxDecoration(
-                                          color: AppColors.lightBlueBackground
-                                              .withOpacity(0.8),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: CustomImage(
-                                          imageSrc: AppIcons.pencil,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: verticalSpacing),
-            ],
+                  ],
+                ),
+                SizedBox(height: verticalSpacing),
+              ],
+            ),
           ),
         ),
       ),

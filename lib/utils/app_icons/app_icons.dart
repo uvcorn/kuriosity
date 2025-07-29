@@ -6,6 +6,8 @@ class AppIcons {
   static const String apple = "$basePath/apple.svg";
   static const String facebook = "$basePath/facebook.svg";
   static const String google = "$basePath/google.svg";
+  static const String facebookColor = "$basePath/facebook_color.svg";
+  static const String googleColor = "$basePath/google_color.png";
 
   ///====================== Inner =========================
   static const String chat = "$basePath/chat.svg";
@@ -29,6 +31,8 @@ class AppIcons {
   static const String lock = "$basePath/lock.svg";
   static const String emptychat = "$basePath/emptychat.svg";
   static const String bar = "$basePath/bar.svg";
+
+  static const String bars = "$basePath/bars.svg";
   static const String health = "$basePath/health.svg";
   static const String adddocument = "$basePath/add_document.svg";
   static const String image = "$basePath/image.svg";

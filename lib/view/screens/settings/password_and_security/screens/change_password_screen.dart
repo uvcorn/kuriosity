@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../utils/app_colors/app_colors.dart';
 import '../../../../../utils/app_strings/app_strings.dart';
+import '../../../../components/top_app_bar/top_app_bar.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -42,7 +43,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: height * 0.03),
+              TopAppBar(),
+              SizedBox(height: height * 0.01),
               Row(
                 children: [
                   IconButton(
@@ -60,7 +62,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.01), //
 
               _buildPasswordField(
                 label: AppStrings.currentPassword,

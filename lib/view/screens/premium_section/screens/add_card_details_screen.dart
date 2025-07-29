@@ -7,6 +7,7 @@ import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/custom_image/custom_image.dart';
 import '../../../components/snackbar_helper/snackbar_helper.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class AddCardDetailsScreen extends StatefulWidget {
   const AddCardDetailsScreen({super.key});
@@ -39,7 +40,8 @@ class _AddCardDetailsScreenState extends State<AddCardDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: screenHeight * 0.035),
+              TopAppBar(),
+              SizedBox(height: screenHeight * 0.01),
               Row(
                 children: [
                   Flexible(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/custom_image/custom_image.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 import '../controllers/registration_Power_use_controller.dart';
+import '../widgets/custom_checkbox_chip.dart';
 
 class RegistrationPowerUserScreen
     extends GetView<RegistrationPowerUserController> {
@@ -21,27 +22,25 @@ class RegistrationPowerUserScreen
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Helper for font sizes
-    double fontSize(double size) => size * screenWidth / 375; // Base width: 375
-
     return Scaffold(
-      backgroundColor: AppColors.backgroundWhite,
+      backgroundColor: AppColors.backgroundLightGray,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.06, // ~24px on 400 width
-            vertical: screenHeight * 0.02, // ~16px on 800 height
+            horizontal: screenWidth * 0.06,
+            vertical: screenHeight * 0.02,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              TopAppBar(),
+              SizedBox(height: screenHeight * 0.02),
               Row(
                 children: [
                   Flexible(
                     child: Text(
                       AppStrings.becomepower,
                       style: textTheme.bodyLarge?.copyWith(
-                        fontSize: fontSize(20),
                         fontWeight: FontWeight.bold,
                         color: AppColors.black,
                       ),
@@ -57,7 +56,6 @@ class RegistrationPowerUserScreen
                 style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.black,
-                  fontSize: fontSize(16),
                 ),
               ),
               SizedBox(height: screenHeight * 0.012),
@@ -66,7 +64,6 @@ class RegistrationPowerUserScreen
                 AppStrings.expertiseArea,
                 style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w400,
-                  fontSize: fontSize(14),
                 ),
               ),
               SizedBox(height: screenHeight * 0.015),
@@ -75,34 +72,17 @@ class RegistrationPowerUserScreen
                   spacing: screenWidth * 0.02,
                   runSpacing: screenHeight * 0.015,
                   children: controller.expertiseOptions.map((expertise) {
-                    return ChoiceChip(
-                      label: Text(
-                        expertise,
-                        style: textTheme.bodySmall?.copyWith(
-                          fontSize: fontSize(13),
-                          color:
-                              controller.selectedExpertise.contains(expertise)
-                              ? AppColors.white
-                              : AppColors.black,
-                        ),
-                      ),
-                      selected: controller.selectedExpertise.contains(
-                        expertise,
-                      ),
-                      selectedColor: AppColors.primary,
-                      backgroundColor: AppColors.white,
+                    final isSelected = controller.selectedExpertise.contains(
+                      expertise,
+                    );
+                    return CustomCheckboxChip(
+                      label: expertise,
+                      isSelected: isSelected,
                       onSelected: (bool selected) {
                         controller.toggleExpertise(expertise);
                       },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(screenWidth * 0.02),
-                        side: BorderSide(
-                          color:
-                              controller.selectedExpertise.contains(expertise)
-                              ? AppColors.primary
-                              : AppColors.black,
-                        ),
-                      ),
+                      textTheme: textTheme,
+                      screenWidth: screenWidth,
                     );
                   }).toList(),
                 ),
@@ -114,7 +94,6 @@ class RegistrationPowerUserScreen
                   Text(
                     AppStrings.others,
                     style: textTheme.bodySmall?.copyWith(
-                      fontSize: fontSize(13),
                       color: AppColors.black,
                     ),
                   ),
@@ -132,7 +111,6 @@ class RegistrationPowerUserScreen
                         decoration: InputDecoration(
                           hintText: AppStrings.pleaseSpecify,
                           hintStyle: textTheme.bodySmall?.copyWith(
-                            fontSize: fontSize(13),
                             color: AppColors.gray,
                           ),
                           border: InputBorder.none,
@@ -142,7 +120,6 @@ class RegistrationPowerUserScreen
                           ),
                         ),
                         style: textTheme.bodySmall?.copyWith(
-                          fontSize: fontSize(13),
                           color: AppColors.black,
                         ),
                       ),
@@ -157,7 +134,6 @@ class RegistrationPowerUserScreen
                 style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.black,
-                  fontSize: fontSize(16),
                 ),
               ),
               SizedBox(height: screenHeight * 0.015),
@@ -176,16 +152,12 @@ class RegistrationPowerUserScreen
                   decoration: InputDecoration(
                     hintText: AppStrings.writeaboutyourself,
                     hintStyle: textTheme.bodySmall?.copyWith(
-                      fontSize: fontSize(13),
                       color: AppColors.gray,
                     ),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.all(screenWidth * 0.03),
                   ),
-                  style: textTheme.bodySmall?.copyWith(
-                    fontSize: fontSize(13),
-                    color: AppColors.black,
-                  ),
+                  style: textTheme.bodySmall?.copyWith(color: AppColors.black),
                 ),
               ),
               SizedBox(height: screenHeight * 0.03),
@@ -195,7 +167,6 @@ class RegistrationPowerUserScreen
                 style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.black,
-                  fontSize: fontSize(16),
                 ),
               ),
               SizedBox(height: screenHeight * 0.015),
@@ -223,7 +194,6 @@ class RegistrationPowerUserScreen
                                 decoration: InputDecoration(
                                   hintText: AppStrings.enterwebsiteURL,
                                   hintStyle: textTheme.bodySmall?.copyWith(
-                                    fontSize: fontSize(13),
                                     color: Colors.grey[400],
                                   ),
                                   border: InputBorder.none,
@@ -233,7 +203,6 @@ class RegistrationPowerUserScreen
                                   ),
                                 ),
                                 style: textTheme.bodySmall?.copyWith(
-                                  fontSize: fontSize(13),
                                   color: AppColors.black,
                                 ),
                               ),
@@ -271,7 +240,6 @@ class RegistrationPowerUserScreen
                 style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.black,
-                  fontSize: fontSize(16),
                 ),
               ),
               SizedBox(height: screenHeight * 0.015),
@@ -299,7 +267,6 @@ class RegistrationPowerUserScreen
                                 decoration: InputDecoration(
                                   hintText: AppStrings.entersocialmediaURL,
                                   hintStyle: textTheme.bodySmall?.copyWith(
-                                    fontSize: fontSize(13),
                                     color: AppColors.gray,
                                   ),
                                   border: InputBorder.none,
@@ -309,7 +276,6 @@ class RegistrationPowerUserScreen
                                   ),
                                 ),
                                 style: textTheme.bodySmall?.copyWith(
-                                  fontSize: fontSize(13),
                                   color: AppColors.black,
                                 ),
                               ),
@@ -349,14 +315,13 @@ class RegistrationPowerUserScreen
                 style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.black,
-                  fontSize: fontSize(16),
                 ),
               ),
               SizedBox(height: screenHeight * 0.015),
               Container(
                 height: screenHeight * 0.12,
                 decoration: BoxDecoration(
-                  color: AppColors.white,
+                  color: AppColors.white, // Explicitly set to white
                   borderRadius: BorderRadius.circular(screenWidth * 0.02),
                   border: Border.all(color: AppColors.black),
                 ),
@@ -368,16 +333,12 @@ class RegistrationPowerUserScreen
                   decoration: InputDecoration(
                     hintText: AppStrings.describeyourworkshop,
                     hintStyle: textTheme.bodySmall?.copyWith(
-                      fontSize: fontSize(13),
                       color: AppColors.gray,
                     ),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.all(screenWidth * 0.03),
                   ),
-                  style: textTheme.bodySmall?.copyWith(
-                    fontSize: fontSize(13),
-                    color: AppColors.black,
-                  ),
+                  style: textTheme.bodySmall?.copyWith(color: AppColors.black),
                 ),
               ),
               SizedBox(height: screenHeight * 0.05),
@@ -399,7 +360,6 @@ class RegistrationPowerUserScreen
                     style: textTheme.bodyMedium?.copyWith(
                       color: AppColors.white,
                       fontWeight: FontWeight.w700,
-                      fontSize: fontSize(16),
                     ),
                   ),
                 ),

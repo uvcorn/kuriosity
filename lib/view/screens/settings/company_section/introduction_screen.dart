@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class IntroductionScreen extends StatelessWidget {
   const IntroductionScreen({super.key});
@@ -20,12 +21,13 @@ class IntroductionScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: screenWidth * 0.03,
-              vertical: screenHeight * 0.025,
+              // vertical: screenHeight * 0.025,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // SizedBox(height: screenHeight * 0.03),
+                TopAppBar(),
+                SizedBox(height: screenHeight * 0.02),
                 Row(
                   children: [
                     IconButton(

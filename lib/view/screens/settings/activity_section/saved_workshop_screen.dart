@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 import '../../group/controller/group_controller.dart';
 import '../../group/widgets/workshop/workshop_card.dart';
 
@@ -24,7 +25,10 @@ class _SavedWorkshopScreenState extends State<SavedWorkshopScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Top AppBar Row
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: TopAppBar(),
+            ),
             SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
@@ -61,8 +65,10 @@ class _SavedWorkshopScreenState extends State<SavedWorkshopScreen> {
                       ),
                     );
                   }
-                  return ListView.builder(
+                  return ListView.separated(
                     itemCount: saved.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 16),
                     itemBuilder: (context, index) {
                       final workshop = saved[index];
                       return GestureDetector(

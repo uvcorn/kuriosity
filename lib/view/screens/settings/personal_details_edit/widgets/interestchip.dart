@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../../utils/app_colors/app_colors.dart';
 
-class Interestchip extends StatelessWidget {
+class InterestChip extends StatelessWidget {
   final String interest;
-  const Interestchip({super.key, required this.interest});
+  const InterestChip({super.key, required this.interest});
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/top_app_bar/top_app_bar.dart';
 
 class TermsAndConditionScreen extends StatelessWidget {
   const TermsAndConditionScreen({super.key});
@@ -25,6 +26,8 @@ class TermsAndConditionScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TopAppBar(),
+                SizedBox(height: 16),
                 Row(
                   children: [
                     IconButton(

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../components/snackbar_helper/snackbar_helper.dart';
+import '../../components/top_app_bar/top_app_bar.dart';
 import 'controller/image_picker_grid_controller.dart';
 import 'controller/open_new_workshop_controller.dart';
 import 'course_model/material_item.dart';
@@ -79,15 +80,11 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              TopAppBar(),
               // Header
+              SizedBox(height: screenHeight * 0.02),
               Row(
                 children: [
-                  // IconButton(
-                  //   onPressed: () {
-                  //     Get.back();
-                  //   },
-                  //   icon: const Icon(Icons.arrow_back_ios),
-                  // ),
                   Flexible(
                     child: Text(
                       AppStrings.openaNewWorkshop,
@@ -100,7 +97,7 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.01),
+              SizedBox(height: screenHeight * 0.02),
 
               Text(
                 AppStrings.title,
@@ -357,17 +354,6 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
               ),
 
               SizedBox(height: screenHeight * 0.01),
-              // Text(
-              //   AppStrings.coursematerial,
-              //   style: textTheme.bodyMedium?.copyWith(
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
-              // SizedBox(height: screenHeight * 0.015),
-              // EmptyFileState(
-              //   icon: Icons.description_outlined,
-              //   message: AppStrings.noMaterial,
-              // ),
               Text(
                 AppStrings.coursematerial,
                 style: textTheme.bodyMedium?.copyWith(
@@ -414,17 +400,6 @@ class _OpenNewWorkshopScreenState extends State<OpenNewWorkshopScreen> {
               }),
 
               SizedBox(height: screenHeight * 0.01),
-              // Text(
-              //   AppStrings.addVideo,
-              //   style: textTheme.bodyMedium?.copyWith(
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
-              // SizedBox(height: screenHeight * 0.015),
-              // EmptyFileState(
-              //   icon: Icons.description_outlined,
-              //   message: AppStrings.noMaterial,
-              // ),
               VideoPickerSection(),
 
               SizedBox(height: screenHeight * 0.01),

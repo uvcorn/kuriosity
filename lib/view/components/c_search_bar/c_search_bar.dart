@@ -10,29 +10,31 @@ class CSearchbar extends StatelessWidget {
     required this.hinttext,
     this.hasBackground = false,
     this.background = AppColors.backgroundLightGray,
+    this.fillcolor = AppColors.white,
   });
   final String hinttext;
   final Color background;
   final bool hasBackground;
+  final Color fillcolor;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Container(
-      color: hasBackground ? AppColors.white : null,
+      color: hasBackground ? AppColors.white : background,
       height: 50,
       padding: const EdgeInsets.fromLTRB(8, 0, 16, 12),
       child: Container(
+        // Keep the decoration for the overall container's shadow and border radius
         decoration: BoxDecoration(
-          color: AppColors.white,
           borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.black.withOpacity(0.08),
-              spreadRadius: 0,
-              blurRadius: 10,
-              offset: Offset(0, 2),
-            ),
-          ],
+          // boxShadow: [
+          //   // BoxShadow(
+          //   //   color: AppColors.black.withOpacity(0.08),
+          //   //   spreadRadius: 0,
+          //   //   blurRadius: 10,
+          //   //   offset: Offset(0, 2),
+          //   // ),
+          // ],
         ),
         child: TextField(
           decoration: InputDecoration(
@@ -43,6 +45,8 @@ class CSearchbar extends StatelessWidget {
               color: AppColors.black,
               size: 16,
             ),
+            filled: true,
+            fillColor: fillcolor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,

@@ -9,7 +9,7 @@ import '../../../../../components/reusable_video_player/reusable_video_player.da
 class MediaContent extends StatelessWidget {
   final VideoPlayerController? videoController;
   final String? imageUrl;
-  final bool isImageLoading;
+  final bool isImageLoading; // This state is for the image only.
 
   const MediaContent({
     super.key,
@@ -24,7 +24,26 @@ class MediaContent extends StatelessWidget {
     final double mediaWidth = MediaQuery.of(context).size.width - (12 * 2);
     final double calculatedHeight = mediaWidth / aspectRatio;
 
-    if (videoController != null && videoController!.value.isInitialized) {
+    // Check if video is provided and is either initializing or buffering
+    final bool isVideoLoading =
+        videoController != null &&
+        (!videoController!.value.isInitialized ||
+            videoController!.value.isBuffering);
+
+    if (isVideoLoading) {
+      // Show shimmer for video loading
+      return Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        child: Container(
+          width: double.infinity,
+          height: calculatedHeight,
+          color: AppColors.white,
+        ),
+      );
+    } else if (videoController != null &&
+        videoController!.value.isInitialized) {
+      // Show initialized video
       return ClipRRect(
         child: ReusableVideoPlayer(
           controller: videoController,
@@ -47,6 +66,7 @@ class MediaContent extends StatelessWidget {
           ),
         );
       } else {
+        // Show loaded image
         return ClipRRect(
           child: CustomNetworkImage(
             imageUrl: imageUrl!,
@@ -57,6 +77,7 @@ class MediaContent extends StatelessWidget {
         );
       }
     } else {
+      // Fallback for no media
       return const SizedBox.shrink();
     }
   }

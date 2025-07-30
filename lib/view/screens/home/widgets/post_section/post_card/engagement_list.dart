@@ -37,6 +37,32 @@ class EngagementList {
         {'name': 'Daniel Clark', 'profilePic': AppConstants.profile2Image},
         {'name': 'Mia Lewis', 'profilePic': AppConstants.profileImage},
       ],
+      // Adding new reactions (Facebook-like)
+      'like': [
+        // Using 'like' key for generic thumbs up
+        {'name': 'Ethan Harris', 'profilePic': AppConstants.profileImage},
+        {'name': 'Chloe Adams', 'profilePic': AppConstants.profile2Image},
+      ],
+      'heart': [
+        {'name': 'Grace Taylor', 'profilePic': AppConstants.profileImage},
+        {'name': 'Noah Wilson', 'profilePic': AppConstants.profile2Image},
+        {'name': 'Aria Clark', 'profilePic': AppConstants.profileImage},
+      ],
+      'laugh': [
+        {'name': 'Liam King', 'profilePic': AppConstants.profile2Image},
+        {'name': 'Zoe Wright', 'profilePic': AppConstants.profileImage},
+      ],
+      'wow': [
+        // 'Wow' reaction
+        {'name': 'Owen Moore', 'profilePic': AppConstants.profileImage},
+        {'name': 'Ava Scott', 'profilePic': AppConstants.profile2Image},
+      ],
+      'sad': [
+        {'name': 'Samuel Green', 'profilePic': AppConstants.profileImage},
+      ],
+      'angry': [
+        {'name': 'Hannah Baker', 'profilePic': AppConstants.profile2Image},
+      ],
     };
 
     Set<String> uniqueUserIdentifiers = {};
@@ -55,6 +81,7 @@ class EngagementList {
       },
       {'key': 'clap', 'icon': AppIcons.clap, 'color': AppColors.primary},
       {'key': 'eco', 'icon': AppIcons.globe, 'color': AppColors.primary},
+      // Adding new reaction icons - replace with actual paths in AppIcons
     ];
 
     RxInt selectedReactionIndex = 0.obs;
@@ -77,7 +104,6 @@ class EngagementList {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.6,
             child: Obx(() {
-              // Get the list of users for the currently selected reaction
               final String selectedReactionKey =
                   reactions[selectedReactionIndex.value]['key'];
               final List<Map<String, String>> currentUsers =
@@ -93,7 +119,6 @@ class EngagementList {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          // Use the totalUniqueUsersCount here
                           "${AppStrings.engagement} ($totalUniqueUsersCount)",
                           style: textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.bold,
@@ -123,27 +148,30 @@ class EngagementList {
                         ),
                       ),
                     ),
-                    child: Row(
-                      children: reactions.asMap().entries.map((entry) {
-                        int index = entry.key;
-                        Map<String, dynamic> reaction = entry.value;
-                        // Get the count for this specific reaction type
-                        final String reactionKey = reaction['key'];
-                        final String count =
-                            (reactionUsers[reactionKey]?.length ?? 0)
-                                .toString();
+                    child: SingleChildScrollView(
+                      // Added SingleChildScrollView for horizontal scroll if many reactions
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: reactions.asMap().entries.map((entry) {
+                          int index = entry.key;
+                          Map<String, dynamic> reaction = entry.value;
+                          final String reactionKey = reaction['key'];
+                          final String count =
+                              (reactionUsers[reactionKey]?.length ?? 0)
+                                  .toString();
 
-                        return Expanded(
-                          child: GestureDetector(
+                          return GestureDetector(
                             onTap: () {
                               selectedReactionIndex.value = index;
                             },
                             child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 16,
+                              ), // Adjusted padding
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                    // Highlight the border if this tab is selected
                                     color: selectedReactionIndex.value == index
                                         ? AppColors.primary
                                         : Colors.transparent,
@@ -161,10 +189,9 @@ class EngagementList {
                                   ),
                                   const SizedBox(width: 6),
                                   Text(
-                                    count, // Display the count specific to this tab
+                                    count,
                                     style: textTheme.bodySmall?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      // Change text color if this tab is selected
                                       color:
                                           selectedReactionIndex.value == index
                                           ? AppColors.primary
@@ -174,19 +201,19 @@ class EngagementList {
                                 ],
                               ),
                             ),
-                          ),
-                        );
-                      }).toList(),
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ),
-                  // User list - Now dynamic based on selected tab
+                  // User list -
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      itemCount: currentUsers.length, // Use currentUsers.length
+                      itemCount: currentUsers.length,
                       itemBuilder: (context, index) {
-                        final user = currentUsers[index]; // Use currentUsers
+                        final user = currentUsers[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 20,

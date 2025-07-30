@@ -8,7 +8,9 @@ import '../../../../components/custom_image/custom_image.dart';
 import '../../controllers/comment_controller.dart';
 
 class CommentInputBar extends StatelessWidget {
-  const CommentInputBar({super.key});
+  final FocusNode? focusNode;
+
+  const CommentInputBar({super.key, this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,8 @@ class CommentInputBar extends StatelessWidget {
                 Expanded(
                   child: TextField(
                     controller: commentController.commentController,
-                    focusNode: commentController.focusNode,
+                    focusNode: focusNode ?? commentController.focusNode,
+
                     decoration: InputDecoration(
                       hintText: commentController.replyingTo != null
                           ? "Reply to ${commentController.replyingTo}..."

@@ -40,7 +40,7 @@ class CommonBottomSheet extends StatelessWidget {
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(
               decoration: BoxDecoration(
-                color: AppColors.backgroundLightGray,
+                color: AppColors.white,
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(24),
                 ),

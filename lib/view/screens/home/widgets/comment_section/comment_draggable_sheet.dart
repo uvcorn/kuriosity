@@ -29,7 +29,7 @@ class CommentDraggableSheet extends StatelessWidget {
               Expanded(
                 child: ListView(
                   controller: scrollController,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   children: const [CommentList(scrollable: false)],
                 ),
               ),

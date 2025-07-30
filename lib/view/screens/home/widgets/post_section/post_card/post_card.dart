@@ -24,7 +24,8 @@ class PostCard extends StatefulWidget {
   final Post item;
   final bool? followButton;
   final bool isNested;
-  final bool hideReactions; // NEW
+  final bool hideReactions;
+  final bool showAsCard; // NEW
 
   const PostCard({
     super.key,
@@ -32,6 +33,7 @@ class PostCard extends StatefulWidget {
     this.followButton,
     this.isNested = false,
     this.hideReactions = false,
+    this.showAsCard = true,
   });
 
   @override
@@ -85,168 +87,165 @@ class _PostCardState extends State<PostCard> {
     final item = widget.item;
     final followButton = widget.followButton ?? false;
 
-    final cardMargin = widget.isNested
-        ? const EdgeInsets.fromLTRB(8, 4, 8, 8)
-        : const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
+    final content = Stack(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (item.isWorkshop == true && item.workshopTitle != null)
+              WorkshopBar(
+                title: item.workshopTitle!,
+                onTap: () {
+                  final workshop = Get.find<GroupController>().filteredWorkshops
+                      .firstWhere((w) => w.id == '1');
+                  Get.toNamed(
+                    AppRoutes.workshopDetailScreen,
+                    arguments: workshop,
+                  );
+                },
+              ),
 
-    final cardPadding = widget.isNested
-        ? const EdgeInsets.symmetric(horizontal: 0, vertical: 8)
-        : const EdgeInsets.all(0);
+            // User Info Row
+            UserInfoSection(
+              username: item.username,
+              subtitle: item.userSubtitle,
+              profileUrl: item.userImage,
+              showFollowButton: followButton,
+              onProfileTap: () {
+                Get.find<BottomNavController>().changeIndex(4);
+              },
+              onTap: () {
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  builder: (_) => const UserMenu(),
+                );
+              },
+            ),
 
-    return GestureDetector(
-      onTap: () {
-        Get.toNamed(AppRoutes.postScreen, arguments: item);
-      },
-      child: Card(
-        color: AppColors.white,
-        margin: cardMargin,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(widget.isNested ? 8 : 12),
-          side: widget.isNested
-              ? const BorderSide(color: AppColors.lightBorder)
-              : BorderSide.none,
-        ),
-        elevation: widget.isNested ? 0 : 2,
-        child: Padding(
-          padding: cardPadding,
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (item.isWorkshop == true && item.workshopTitle != null)
-                    WorkshopBar(
-                      title: item.workshopTitle!,
-                      onTap: () {
-                        final workshop = Get.find<GroupController>()
-                            .filteredWorkshops
-                            .firstWhere((w) => w.id == '1');
-                        Get.toNamed(
-                          AppRoutes.workshopDetailScreen,
-                          arguments: workshop,
-                        );
-                      },
-                    ),
+            // Shared post logic
+            if (item.isSharedPost && item.originalPost != null) ...[
+              if (item.sharedThought != null && item.sharedThought!.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+                  child: Text(
+                    item.sharedThought!,
+                    style: const TextStyle(fontSize: 14),
+                  ),
+                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 8.0,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: PostCard(
+                    item: item.originalPost!,
+                    followButton: false,
+                    isNested: true,
+                    hideReactions: true,
+                  ),
+                ),
+              ),
+            ] else ...[
+              MediaContent(
+                videoController: _videoController,
+                imageUrl: item.postImage,
+                isImageLoading: _isImageLoading,
+              ),
+              if (item.caption.isNotEmpty)
+                CaptionWithLinkPreview(caption: item.caption),
+            ],
 
-                  // User Info Row
-                  UserInfoSection(
-                    username: item.username,
-                    subtitle: item.userSubtitle,
-                    profileUrl: item.userImage,
-                    showFollowButton: followButton,
-                    onProfileTap: () {
-                      Get.find<BottomNavController>().changeIndex(4);
+            if (!widget.hideReactions)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                child: Obx(
+                  () => ReactionRow(
+                    selectedReactionIconPath:
+                        _postCardController.selectedReactionIconPath.value,
+                    likes: item.likes,
+                    comments: item.comments,
+                    seeds: item.seeds,
+                    shares: item.shares,
+                    onReactionIconTap:
+                        _postCardController.toggleReactionOptions,
+                    onReactionCountTap: () {
+                      EngagementList.showEngagementListDialog();
                     },
-                    onTap: () {
+                    onCommentTap: () {
                       showModalBottomSheet(
                         isScrollControlled: true,
                         context: context,
                         backgroundColor: Colors.transparent,
-                        builder: (_) => const UserMenu(),
+                        builder: (_) =>
+                            const CommentDraggableSheet(comments: []),
+                      );
+                    },
+                    onReplanetTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (_) => const ReplanetMenu(),
+                      );
+                    },
+                    onShareTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (_) => const ShareMenu(),
                       );
                     },
                   ),
-
-                  // If this is a shared post with original post
-                  if (item.isSharedPost && item.originalPost != null) ...[
-                    if (item.sharedThought != null &&
-                        item.sharedThought!.isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
-                        child: Text(
-                          item.sharedThought!,
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ),
-
-                    //   Shared Post Container
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 8.0,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: PostCard(
-                          item: item.originalPost!,
-                          followButton: false,
-                          isNested: true,
-                          hideReactions: true, // hide inner reactions
-                        ),
-                      ),
-                    ),
-                  ] else ...[
-                    // Regular post content
-                    MediaContent(
-                      videoController: _videoController,
-                      imageUrl: item.postImage,
-                      isImageLoading: _isImageLoading,
-                    ),
-                    if (item.caption.isNotEmpty)
-                      CaptionWithLinkPreview(caption: item.caption),
-                  ],
-
-                  // Reactions (Only if not hidden)
-                  if (!widget.hideReactions)
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                      child: Obx(
-                        () => ReactionRow(
-                          selectedReactionIconPath: _postCardController
-                              .selectedReactionIconPath
-                              .value,
-                          likes: item.likes,
-                          comments: item.comments,
-                          seeds: item.seeds,
-                          shares: item.shares,
-                          onReactionIconTap:
-                              _postCardController.toggleReactionOptions,
-                          onReactionCountTap: () {
-                            EngagementList.showEngagementListDialog();
-                          },
-                          onCommentTap: () {
-                            showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              backgroundColor: Colors.transparent,
-                              builder: (_) =>
-                                  const CommentDraggableSheet(comments: []),
-                            );
-                          },
-                          onReplanetTap: () {
-                            showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              backgroundColor: Colors.transparent,
-                              builder: (_) => const ReplanetMenu(),
-                            );
-                          },
-                          onShareTap: () {
-                            showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              backgroundColor: Colors.transparent,
-                              builder: (_) => const ShareMenu(),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                ],
+                ),
               ),
-
-              // Reaction Popup
-              Obx(
-                () => _postCardController.showReactionOptions.value
-                    ? ReactionOptionsPopup(
-                        onSelectReaction: _postCardController.selectReaction,
-                      )
-                    : const SizedBox.shrink(),
-              ),
-            ],
-          ),
+          ],
         ),
-      ),
+        Obx(
+          () => _postCardController.showReactionOptions.value
+              ? ReactionOptionsPopup(
+                  onSelectReaction: _postCardController.selectReaction,
+                )
+              : const SizedBox.shrink(),
+        ),
+      ],
+    );
+
+    return GestureDetector(
+      onTap: () {
+        if (!widget.isNested &&
+            !Get.currentRoute.contains(AppRoutes.postScreen)) {
+          Get.toNamed(AppRoutes.postScreen, arguments: item);
+        }
+      },
+      child: widget.showAsCard
+          ? Card(
+              color: AppColors.white,
+              margin: widget.isNested
+                  ? const EdgeInsets.fromLTRB(8, 4, 8, 8)
+                  : const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(widget.isNested ? 8 : 12),
+                side: widget.isNested
+                    ? const BorderSide(color: AppColors.lightBorder)
+                    : BorderSide.none,
+              ),
+              elevation: widget.isNested ? 0 : 2,
+              child: Padding(
+                padding: widget.isNested
+                    ? const EdgeInsets.symmetric(horizontal: 0, vertical: 8)
+                    : const EdgeInsets.all(0),
+                child: content,
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0),
+              child: content,
+            ),
     );
   }
 }

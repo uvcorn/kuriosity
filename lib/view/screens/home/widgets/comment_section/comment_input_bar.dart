@@ -87,8 +87,9 @@ class CommentInputBar extends StatelessWidget {
                   onPressed: () {},
                 ),
                 Obx(() {
-                  if (!commentController.hasText)
+                  if (!commentController.hasText) {
                     return const SizedBox.shrink();
+                  }
                   return IconButton(
                     onPressed: commentController.sendReply,
                     icon: Icon(Icons.send, color: AppColors.primary),

@@ -39,15 +39,12 @@ class EngagementList {
       ],
     };
 
-    // Calculate the total unique users across all reactions
-    // We'll use a Set to store unique user identifiers (e.g., name + profilePic)
-    // to avoid counting the same user multiple times if they reacted with different types.
     Set<String> uniqueUserIdentifiers = {};
-    reactionUsers.values.forEach((list) {
+    for (var list in reactionUsers.values) {
       for (var user in list) {
         uniqueUserIdentifiers.add("${user['name']}-${user['profilePic']}");
       }
-    });
+    }
     final int totalUniqueUsersCount = uniqueUserIdentifiers.length;
 
     final List<Map<String, dynamic>> reactions = [
@@ -60,8 +57,6 @@ class EngagementList {
       {'key': 'eco', 'icon': AppIcons.globe, 'color': AppColors.primary},
     ];
 
-    // This reactive variable tracks which tab is currently selected.
-    // We initialize it to the first tab (index 0).
     RxInt selectedReactionIndex = 0.obs;
 
     await showDialog(

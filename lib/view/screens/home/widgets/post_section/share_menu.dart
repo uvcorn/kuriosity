@@ -13,9 +13,9 @@ class ShareMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return CommonBottomSheet(
-      initialChildSize: 0.25,
-      minChildSize: 0.25,
-      maxChildSize: 0.25,
+      initialChildSize: 0.20,
+      minChildSize: 0.20,
+      maxChildSize: 0.20,
       // Now using contentBuilder
       contentBuilder: (context, scrollController) {
         return Padding(

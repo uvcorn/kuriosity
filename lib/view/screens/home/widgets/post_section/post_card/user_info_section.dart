@@ -1,82 +1,96 @@
 import 'package:flutter/material.dart';
 import '../../../../../../utils/app_colors/app_colors.dart';
-import '../../../../../../utils/app_strings/app_strings.dart';
 import '../../../../../components/custom_network_image/custom_network_image.dart';
 
 class UserInfoSection extends StatelessWidget {
   final String username;
-  final String subtitle;
-  final String profileUrl;
-  final bool? showFollowButton;
+  final String? subtitle;
+  final String? profileUrl;
+  final bool showFollowButton;
+  final VoidCallback onProfileTap;
   final VoidCallback onTap;
-  final VoidCallback? onProfileTap;
-
+  final bool isFollowing;
+  final VoidCallback onFollowTap;
   const UserInfoSection({
     super.key,
     required this.username,
-    required this.subtitle,
-    required this.profileUrl,
-    this.showFollowButton = false,
+    this.subtitle,
+    this.profileUrl,
+    required this.showFollowButton,
+    required this.onProfileTap,
     required this.onTap,
-    this.onProfileTap,
+    this.isFollowing = false,
+    required this.onFollowTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Row(
         children: [
-          InkWell(
+          GestureDetector(
             onTap: onProfileTap,
-            child: CircleAvatar(
-              radius: 30,
-              child: ClipOval(
-                child: CustomNetworkImage(
-                  imageUrl: profileUrl,
-                  height: 60,
-                  width: 60,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                InkWell(
-                  onTap: onProfileTap,
-
-                  child: Text(
-                    username,
-                    style: textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: CustomNetworkImage(
+                    imageUrl: profileUrl ?? '',
+                    size: 40,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Text(
-                  subtitle,
-                  style: textTheme.labelSmall?.copyWith(
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w400,
-                  ),
+                const SizedBox(width: 8),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      username,
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: AppColors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    if (subtitle != null && subtitle!.isNotEmpty)
+                      Text(
+                        subtitle!,
+                        style: textTheme.labelSmall?.copyWith(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ),
           ),
-          if (showFollowButton!)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: AppColors.backgroundLightGray,
-                borderRadius: BorderRadius.circular(20),
+          const Spacer(),
+          if (showFollowButton)
+            GestureDetector(
+              onTap: onFollowTap,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+
+                child: Text(
+                  isFollowing ? 'Following' : 'Follow',
+                  style: TextStyle(
+                    color: isFollowing ? AppColors.gray : AppColors.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
               ),
-              child: Text(AppStrings.followButton, style: textTheme.bodyMedium),
             ),
           const SizedBox(width: 8),
-          GestureDetector(onTap: onTap, child: const Icon(Icons.more_horiz)),
+          GestureDetector(
+            onTap: onTap,
+            child: const Icon(Icons.more_horiz, color: AppColors.black),
+          ),
         ],
       ),
     );

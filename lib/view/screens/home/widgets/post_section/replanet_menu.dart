@@ -14,9 +14,9 @@ class ReplanetMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return CommonBottomSheet(
-      initialChildSize: 0.2,
-      minChildSize: 0.2,
-      maxChildSize: 0.2,
+      initialChildSize: 0.15,
+      minChildSize: 0.15,
+      maxChildSize: 0.15,
       // Now using contentBuilder
       contentBuilder: (context, scrollController) {
         return Padding(

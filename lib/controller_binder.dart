@@ -25,7 +25,7 @@ class ControllerBinder extends Bindings {
     Get.put(PostController());
     Get.put(OpenWorkshopController());
     Get.put(ImagePickerGridController());
-    Get.lazyPut(() => CommentController());
+    Get.put(CommentController());
 
     // Get.Put<HomeController>(() => HomeController());
     // Get.lazyPut<RegistrationPowerUserController>(

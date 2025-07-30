@@ -128,18 +128,19 @@ class _CommentItemState extends State<CommentItem> {
                     // Meta Row
                     Row(
                       children: [
-                        Text(
-                          '2h ago',
-                          style: textTheme.labelSmall?.copyWith(
-                            color: AppColors.mediumGray,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
+                        // Text(
+                        //   '2h ago',
+                        //   style: textTheme.labelSmall?.copyWith(
+                        //     color: AppColors.black,
+                        //   ),
+                        // ),
+                        // const SizedBox(width: 12),
                         GestureDetector(
                           onTap: _toggleReactionOptions,
                           child: ReactionButton(
                             iconPath: _selectedReactionIconPath,
                             count: widget.likes.toString(),
+                            color: AppColors.gray,
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -148,7 +149,7 @@ class _CommentItemState extends State<CommentItem> {
                           child: Text(
                             AppStrings.replybutton,
                             style: textTheme.labelSmall?.copyWith(
-                              color: AppColors.mediumGray,
+                              color: AppColors.black,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

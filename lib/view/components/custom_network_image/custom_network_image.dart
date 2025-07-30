@@ -1,3 +1,5 @@
+// lib/view/components/custom_network_image/custom_network_image.dart
+
 // ignore_for_file: deprecated_member_use
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -15,13 +17,13 @@ class CustomNetworkImage extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? child;
   final ColorFilter? colorFilter;
-  final BoxFit? fit; // Added fit property
+  final BoxFit? fit;
 
   const CustomNetworkImage({
     super.key,
     this.child,
     this.colorFilter,
-    required this.imageUrl,
+    required this.imageUrl, // imageUrl must be required
     this.backgroundColor,
     this.height,
     this.width,
@@ -29,13 +31,33 @@ class CustomNetworkImage extends StatelessWidget {
     this.borderRadius,
     this.boxShape = BoxShape.rectangle,
     this.fit,
-    this.size, // Initialize fit
+    this.size,
   });
 
   @override
   Widget build(BuildContext context) {
     final double resolvedHeight = height ?? size ?? 100;
     final double resolvedWidth = width ?? size ?? 100;
+
+    // *** THIS IS THE CRUCIAL CHANGE ***
+    if (imageUrl.isEmpty) {
+      // Return a fallback widget if imageUrl is empty
+      return Container(
+        height: resolvedHeight,
+        width: resolvedWidth,
+        decoration: BoxDecoration(
+          border: border,
+          borderRadius: borderRadius,
+          shape: boxShape,
+          color: Colors.grey[200], // Default background for empty image
+        ),
+        child: const Icon(
+          Icons.person,
+          color: Colors.grey,
+        ), // Default avatar icon
+      );
+    }
+
     return CachedNetworkImage(
       imageUrl: imageUrl,
       imageBuilder: (context, imageProvider) => Container(
@@ -48,7 +70,7 @@ class CustomNetworkImage extends StatelessWidget {
           color: backgroundColor,
           image: DecorationImage(
             image: imageProvider,
-            fit: fit, // Use the fit property here
+            fit: fit,
             colorFilter: colorFilter,
           ),
         ),
@@ -58,8 +80,8 @@ class CustomNetworkImage extends StatelessWidget {
         baseColor: Colors.grey.withOpacity(0.6),
         highlightColor: Colors.grey.withOpacity(0.3),
         child: Container(
-          height: height,
-          width: width,
+          height: resolvedHeight, // Use resolved dimensions for shimmer
+          width: resolvedWidth, // Use resolved dimensions for shimmer
           decoration: BoxDecoration(
             border: border,
             color: Colors.grey.withOpacity(0.6),
@@ -70,15 +92,17 @@ class CustomNetworkImage extends StatelessWidget {
         ),
       ),
       errorWidget: (context, url, error) => Container(
-        height: height,
-        width: width,
+        height: resolvedHeight, // Use resolved dimensions for error widget
+        width: resolvedWidth, // Use resolved dimensions for error widget
         decoration: BoxDecoration(
           border: border,
           color: Colors.grey.withOpacity(0.6),
           borderRadius: borderRadius,
           shape: boxShape,
         ),
-        child: const Icon(Icons.error),
+        child: const Icon(
+          Icons.broken_image,
+        ), // Changed to a more generic error icon
       ),
     );
   }

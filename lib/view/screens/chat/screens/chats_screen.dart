@@ -153,6 +153,9 @@ class _ChatsScreenState extends State<ChatsScreen> {
                 builder: (_) => const UserChatMenu(),
               );
             },
+            showFollowButton: false,
+            onProfileTap: () {},
+            onFollowTap: () {},
           ),
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(2),

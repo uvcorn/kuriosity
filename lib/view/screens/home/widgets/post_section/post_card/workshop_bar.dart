@@ -13,14 +13,13 @@ class WorkshopBar extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        // margin: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        height: 42,
+        padding: EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
           color: AppColors.lightBlueBackground,
           borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
         ),
         child: Row(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(

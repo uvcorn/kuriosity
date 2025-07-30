@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart'; // Ensure video_player is imported
 
 import '../../../../../../core/app_routes/app_routes.dart';
 import '../../../../../../utils/app_colors/app_colors.dart';
@@ -18,14 +19,13 @@ import 'reaction_options_popup.dart';
 import 'reaction_row.dart';
 import 'user_info_section.dart';
 import 'workshop_bar.dart';
-import 'package:video_player/video_player.dart';
 
 class PostCard extends StatefulWidget {
   final Post item;
   final bool? followButton;
   final bool isNested;
   final bool hideReactions;
-  final bool showAsCard; // NEW
+  final bool showAsCard;
 
   const PostCard({
     super.key,
@@ -49,8 +49,9 @@ class _PostCardState extends State<PostCard> {
   @override
   void initState() {
     super.initState();
+    // Initialize PostCardController with the post data
     _postCardController = Get.put(
-      PostCardController(),
+      PostCardController(post: widget.item), // Pass the post to the controller
       tag: widget.item.username + widget.item.caption.hashCode.toString(),
     );
 
@@ -76,6 +77,7 @@ class _PostCardState extends State<PostCard> {
   @override
   void dispose() {
     _videoController?.dispose();
+    // It's crucial to dispose of the controller when the widget is removed
     Get.delete<PostCardController>(
       tag: widget.item.username + widget.item.caption.hashCode.toString(),
     );
@@ -97,7 +99,7 @@ class _PostCardState extends State<PostCard> {
                 title: item.workshopTitle!,
                 onTap: () {
                   final workshop = Get.find<GroupController>().filteredWorkshops
-                      .firstWhere((w) => w.id == '1');
+                      .firstWhere((w) => w.id == '1'); // Example ID
                   Get.toNamed(
                     AppRoutes.workshopDetailScreen,
                     arguments: workshop,
@@ -106,22 +108,27 @@ class _PostCardState extends State<PostCard> {
               ),
 
             // User Info Row
-            UserInfoSection(
-              username: item.username,
-              subtitle: item.userSubtitle,
-              profileUrl: item.userImage,
-              showFollowButton: followButton,
-              onProfileTap: () {
-                Get.find<BottomNavController>().changeIndex(4);
-              },
-              onTap: () {
-                showModalBottomSheet(
-                  isScrollControlled: true,
-                  context: context,
-                  backgroundColor: Colors.transparent,
-                  builder: (_) => const UserMenu(),
-                );
-              },
+            Obx(
+              () => UserInfoSection(
+                username: item.username,
+                subtitle: item.userSubtitle,
+                profileUrl: item.userImage,
+                showFollowButton: followButton,
+                onProfileTap: () {
+                  Get.find<BottomNavController>().changeIndex(4);
+                },
+                onTap: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    backgroundColor: Colors.transparent,
+                    builder: (_) => const UserMenu(),
+                  );
+                },
+                // NEW: Pass the isFollowing state and the toggleFollow callback
+                isFollowing: _postCardController.isFollowing.value,
+                onFollowTap: _postCardController.toggleFollow,
+              ),
             ),
 
             // Shared post logic

@@ -34,7 +34,10 @@ class ReactionButton extends StatelessWidget {
         const SizedBox(width: 8),
         GestureDetector(
           onTap: onCountTap,
-          child: Text(count, style: textTheme.labelSmall),
+          child: Text(
+            count,
+            style: textTheme.labelSmall?.copyWith(color: AppColors.black),
+          ),
         ),
       ],
     );

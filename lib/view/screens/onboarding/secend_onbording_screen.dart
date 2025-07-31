@@ -20,6 +20,7 @@ class _SecendOnbordingScreenState extends State<SecendOnbordingScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: AppColors.backgroundWhite,
       body: SafeArea(
         child: ConstrainedBox(
           constraints: BoxConstraints(
@@ -36,10 +37,13 @@ class _SecendOnbordingScreenState extends State<SecendOnbordingScreen> {
                     AppStrings.ecoInfluencerIntro,
                     style: textTheme.titleLarge,
                   ),
-                  SizedBox(height: size.height * 0.03),
-                  Text(AppStrings.step1Title, style: textTheme.bodyMedium),
-                  SizedBox(height: size.height * 0.02),
-                  Text(AppStrings.step1Description, style: textTheme.bodySmall),
+                  SizedBox(height: size.height * 0.06),
+                  stepTitleDescription(
+                    textTheme,
+                    size,
+                    AppStrings.step1Title,
+                    AppStrings.step1Description,
+                  ),
                   SizedBox(height: size.height * 0.03),
                   Divider(
                     color: AppColors.lightGray,
@@ -47,9 +51,12 @@ class _SecendOnbordingScreenState extends State<SecendOnbordingScreen> {
                     endIndent: size.width * 0.012,
                   ),
                   SizedBox(height: size.height * 0.03),
-                  Text(AppStrings.step2Title, style: textTheme.bodyMedium),
-                  SizedBox(height: size.height * 0.02),
-                  Text(AppStrings.step2Description, style: textTheme.bodySmall),
+                  stepTitleDescription(
+                    textTheme,
+                    size,
+                    AppStrings.step2Title,
+                    AppStrings.step2Description,
+                  ),
                   SizedBox(height: size.height * 0.03),
                   Divider(
                     color: AppColors.lightGray,
@@ -57,15 +64,18 @@ class _SecendOnbordingScreenState extends State<SecendOnbordingScreen> {
                     endIndent: size.width * 0.012,
                   ),
                   SizedBox(height: size.height * 0.03),
-                  Text(AppStrings.step3Title, style: textTheme.bodyMedium),
-                  SizedBox(height: size.height * 0.02),
-                  Text(AppStrings.step3Description, style: textTheme.bodySmall),
+                  stepTitleDescription(
+                    textTheme,
+                    size,
+                    AppStrings.step3Title,
+                    AppStrings.step3Description,
+                  ),
 
                   const Spacer(),
                   ActionButton(
                     title: AppStrings.nextButton,
                     onPressed: () =>
-                        Get.offAllNamed(AppRoutes.thirdOnbordingScreen),
+                        Get.toNamed(AppRoutes.thirdOnbordingScreen),
                   ),
                   SizedBox(height: size.height * 0.04),
                 ],
@@ -74,6 +84,25 @@ class _SecendOnbordingScreenState extends State<SecendOnbordingScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget stepTitleDescription(
+    TextTheme textTheme,
+    Size size,
+    String title,
+    String description,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title, style: textTheme.bodyMedium),
+        SizedBox(height: size.height * 0.02),
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Text(description, style: textTheme.bodySmall),
+        ),
+      ],
     );
   }
 }

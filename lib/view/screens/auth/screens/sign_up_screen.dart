@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../components/action_button/action_button.dart';
@@ -115,7 +116,7 @@ class SignUpScreen extends StatelessWidget {
                     onPressed: controller.signUp,
                   ),
 
-                  SizedBox(height: size.height * 0.25),
+                  SizedBox(height: size.height * 0.08),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +125,9 @@ class SignUpScreen extends StatelessWidget {
                         showCheckbox: false,
                         leadingText: AppStrings.alreadyHaveAccount,
                         clickableText: AppStrings.signInButton,
-                        onLinkTap: () {},
+                        onLinkTap: () {
+                          Get.toNamed(AppRoutes.signInScreen);
+                        },
                         clickableTextStyle: textTheme.bodySmall?.copyWith(
                           color: AppColors.primary,
                         ),

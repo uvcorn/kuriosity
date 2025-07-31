@@ -32,7 +32,7 @@ class ActionButton extends StatelessWidget {
     this.textColor,
     this.borderColor,
     this.elevation = 0,
-    this.iconTextSpacing = 0, //
+    this.iconTextSpacing = 0,
   });
 
   @override
@@ -64,7 +64,7 @@ class ActionButton extends StatelessWidget {
               colorFilter: ColorFilter.mode(txtColor, BlendMode.srcIn),
             ),
           )
-        : const SizedBox(width: 16); // keeps layout alignment consistent
+        : const SizedBox(width: 16);
 
     final child = Row(
       children: [
@@ -72,19 +72,14 @@ class ActionButton extends StatelessWidget {
         Expanded(
           child: Center(
             child: Text(
+              textAlign: TextAlign.center,
               title,
               style: textTheme.bodyMedium!.copyWith(color: txtColor),
-              overflow: TextOverflow.ellipsis,
+              // overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
-        // Add a right-side placeholder for symmetry
-        if (hasIcon)
-          SizedBox(
-            width: 16 + 24 + iconTextSpacing,
-          ) // left padding + icon + spacing
-        else
-          const SizedBox(width: 16),
+        if (hasIcon) SizedBox(width: 16 + 24 + iconTextSpacing),
       ],
     );
 
@@ -115,11 +110,7 @@ class ActionButton extends StatelessWidget {
       ),
       ActionButtonType.text => TextButton(
         onPressed: onPressed,
-        style: TextButton.styleFrom(
-          backgroundColor: bg,
-          padding: EdgeInsets.zero,
-          shape: shape,
-        ),
+        style: TextButton.styleFrom(backgroundColor: bg, shape: shape),
         child: child,
       ),
     };

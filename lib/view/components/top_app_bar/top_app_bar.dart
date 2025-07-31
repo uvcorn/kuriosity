@@ -10,11 +10,15 @@ import '../bottom_nav_bar/bottom_nav_controller.dart';
 import '../custom_image/custom_image.dart';
 
 class TopAppBar extends StatelessWidget {
-  const TopAppBar({super.key});
+  final String? trailingIcon; // path to custom icon image
+  final VoidCallback? onTrailingTap;
+
+  const TopAppBar({super.key, this.trailingIcon, this.onTrailingTap});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Row(
@@ -39,10 +43,12 @@ class TopAppBar extends StatelessWidget {
           ),
           const Spacer(),
           GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoutes.settingsScreens);
-            },
-            child: CustomImage(imageSrc: AppIcons.bars),
+            onTap:
+                onTrailingTap ??
+                () {
+                  Get.toNamed(AppRoutes.settingsScreens);
+                },
+            child: CustomImage(imageSrc: trailingIcon ?? AppIcons.bars),
           ),
         ],
       ),

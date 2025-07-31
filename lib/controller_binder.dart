@@ -17,7 +17,7 @@ class ControllerBinder extends Bindings {
     // Get.lazyPut<AuthController>(() => AuthController());
     Get.put(AuthController());
     Get.put(BottomNavController());
-    Get.lazyPut<CreatePostController>(() => CreatePostController());
+    Get.put(CreatePostController());
     // Get.lazyPut<PostController>(() => PostController());
     // Get.lazyPut<GroupController>(() => GroupController());
     Get.put(GroupController());

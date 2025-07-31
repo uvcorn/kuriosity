@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
@@ -116,7 +117,9 @@ class PhoneInputScreen extends StatelessWidget {
                 SizedBox(height: size.height * 0.04),
                 ActionButton(
                   title: AppStrings.continueButton,
-                  onPressed: controller.continueToSignUp,
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.signUpScreen);
+                  },
                 ),
 
                 SizedBox(height: size.height * 0.05),

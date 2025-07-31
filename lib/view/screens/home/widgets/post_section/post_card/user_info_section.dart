@@ -50,7 +50,7 @@ class UserInfoSection extends StatelessWidget {
                       username,
                       style: textTheme.bodyMedium?.copyWith(
                         color: AppColors.black,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     if (subtitle != null && subtitle!.isNotEmpty)

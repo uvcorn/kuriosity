@@ -5,6 +5,7 @@ import '../../../../../utils/app_strings/app_strings.dart';
 import '../../../../components/custom_image/custom_image.dart';
 import '../../../../components/custom_network_image/custom_network_image.dart';
 import '../../../../components/reaction_button/reaction_button.dart';
+import '../post_section/post_card/engagement_list.dart';
 
 class CommentItem extends StatefulWidget {
   final String userImage;
@@ -109,14 +110,15 @@ class _CommentItemState extends State<CommentItem> {
                           Text(
                             widget.username,
                             style: textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w500,
                               color: AppColors.black,
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             widget.commentText,
-                            style: textTheme.bodySmall?.copyWith(
+                            style: textTheme.labelSmall?.copyWith(
+                              fontWeight: FontWeight.w400,
                               color: AppColors.black,
                             ),
                           ),
@@ -135,13 +137,14 @@ class _CommentItemState extends State<CommentItem> {
                         //   ),
                         // ),
                         // const SizedBox(width: 12),
-                        GestureDetector(
-                          onTap: _toggleReactionOptions,
-                          child: ReactionButton(
-                            iconPath: _selectedReactionIconPath,
-                            count: widget.likes.toString(),
-                            color: AppColors.gray,
-                          ),
+                        ReactionButton(
+                          iconPath: _selectedReactionIconPath,
+                          count: widget.likes.toString(),
+                          onIconTap: _toggleReactionOptions,
+                          onCountTap: () {
+                            EngagementList.showEngagementListDialog();
+                          },
+                          color: AppColors.primary,
                         ),
                         const SizedBox(width: 12),
                         GestureDetector(

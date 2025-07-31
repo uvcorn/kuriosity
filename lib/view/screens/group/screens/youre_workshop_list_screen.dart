@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
+import '../../../../utils/app_icons/app_icons.dart';
 import '../../../components/top_app_bar/top_app_bar.dart';
 import '../controller/group_controller.dart';
 import '../widgets/workshop/workshop_card.dart';
@@ -48,9 +49,14 @@ class _YoureWorkshopListScreenState extends State<YoureWorkshopListScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: TopAppBar(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: TopAppBar(
+                trailingIcon: AppIcons.chat,
+                onTrailingTap: () {
+                  Get.toNamed(AppRoutes.chatsListScreen);
+                },
+              ),
             ),
             const SizedBox(height: 12),
             Padding(

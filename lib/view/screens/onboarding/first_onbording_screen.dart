@@ -32,12 +32,13 @@ class _FirstOnbordingScreenState extends State<FirstOnbordingScreen> {
             SizedBox(height: size.height * 0.1),
             Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     AppStrings.ecoInfluencerMessage,
                     style: textTheme.titleLarge?.copyWith(
-                      fontSize: size.width * 0.06,
+                      fontSize: size.width * 0.09,
                     ),
                   ),
                   Text(
@@ -52,7 +53,7 @@ class _FirstOnbordingScreenState extends State<FirstOnbordingScreen> {
             SizedBox(height: size.height * 0.0875),
             ActionButton(
               title: AppStrings.startButton,
-              onPressed: () => Get.offAllNamed(AppRoutes.secendOnbordingScreen),
+              onPressed: () => Get.toNamed(AppRoutes.secendOnbordingScreen),
             ),
             SizedBox(height: size.height * 0.04),
           ],

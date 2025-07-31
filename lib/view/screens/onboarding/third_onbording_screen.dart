@@ -20,9 +20,10 @@ class ThirdOnbordingScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: AppColors.backgroundWhite,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * 0.06),
-        child: CustomAppbar(),
+        child: CustomAppbar(backgroundColor: AppColors.backgroundWhite),
       ),
       body: Column(
         children: [
@@ -74,7 +75,7 @@ class ThirdOnbordingScreen extends StatelessWidget {
                                       color: AppColors.white,
                                     ),
                                   ),
-                                  SizedBox(height: size.width * 0.04),
+                                  SizedBox(height: size.width * 0.18),
                                 ],
                               ),
                             ),
@@ -137,9 +138,7 @@ class ThirdOnbordingScreen extends StatelessWidget {
                             onPressed:
                                 controller.currentPage ==
                                     controller.pages.length - 1
-                                ? () => Get.offAllNamed(
-                                    AppRoutes.phoneInputScreen,
-                                  )
+                                ? () => Get.toNamed(AppRoutes.phoneInputScreen)
                                 : controller.nextPage,
                             type: ActionButtonType.filled,
                           ),

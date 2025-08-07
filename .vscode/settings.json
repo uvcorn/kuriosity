@@ -1,5 +1,6 @@
 {
-    "cSpell.words": [
-        "navcontroller"
-    ]
+  "cSpell.words": [
+    "navcontroller"
+  ],
+  "dart.flutterSdkPath": ".fvm/versions/stable"
 }

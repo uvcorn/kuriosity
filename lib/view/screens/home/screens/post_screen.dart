@@ -50,7 +50,7 @@ class PostScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     const Divider(height: 1),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                      padding: EdgeInsets.all(20),
                       child: Obx(
                         () => ReactionRow(
                           selectedReactionIconPath: _postCardController

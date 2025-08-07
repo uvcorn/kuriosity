@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveTONextScreen() async {
     await Future.delayed(Duration(seconds: 2));
-    Get.offAllNamed(AppRoutes.firstOnbordingScreen);
+    Get.offAllNamed(AppRoutes.bottomNavBar);
   }
 
   @override
@@ -35,6 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomImage(imageSrc: AppImages.logo),
+            SizedBox(height: 12),
             Text(AppStrings.appTitle, style: textTheme),
           ],
         ),

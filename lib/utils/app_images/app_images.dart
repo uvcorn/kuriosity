@@ -7,6 +7,9 @@ class AppImages {
   static const String whitelogo = "$basePath/white_logo.svg";
 
   ///====================== Inner =========================
-
   static const String carditcard = "$basePath/carditcard.png";
+
+  static const String o1 = "$basePath/o1.png";
+  static const String o2 = "$basePath/o2.png";
+  static const String o3 = "$basePath/o3.png";
 }

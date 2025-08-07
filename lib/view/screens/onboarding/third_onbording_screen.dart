@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 
 import '../../../core/app_routes/app_routes.dart';
 import '../../../utils/app_colors/app_colors.dart';
+import '../../../utils/app_images/app_images.dart';
 import '../../../utils/app_strings/app_strings.dart';
 import '../../components/action_button/action_button.dart';
-import '../../components/custom_appbar/coustom_appbar.dart';
+import '../../components/custom_image/custom_image.dart';
 import 'controller/third_onboarding_controller.dart';
 
 class ThirdOnbordingScreen extends StatelessWidget {
@@ -21,12 +22,23 @@ class ThirdOnbordingScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(size.height * 0.06),
-        child: CustomAppbar(backgroundColor: AppColors.backgroundWhite),
-      ),
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(size.height * 0.06),
+      //   child: CustomAppbar(backgroundColor: AppColors.backgroundWhite),
+      // ),
       body: Column(
         children: [
+          SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.only(left: 36),
+            child: Row(
+              children: [
+                CustomImage(imageSrc: AppImages.logo, size: 24),
+                const SizedBox(width: 5),
+                Text('Wild Curiosity', style: textTheme.headlineMedium),
+              ],
+            ),
+          ),
           SizedBox(height: size.height * 0.03),
           Expanded(
             child: Padding(
@@ -138,7 +150,7 @@ class ThirdOnbordingScreen extends StatelessWidget {
                             onPressed:
                                 controller.currentPage ==
                                     controller.pages.length - 1
-                                ? () => Get.toNamed(AppRoutes.phoneInputScreen)
+                                ? () => Get.toNamed(AppRoutes.signUpScreen)
                                 : controller.nextPage,
                             type: ActionButtonType.filled,
                           ),

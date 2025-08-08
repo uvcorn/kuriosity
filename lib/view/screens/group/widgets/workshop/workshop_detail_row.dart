@@ -45,19 +45,25 @@ class WorkshopDetailsRow extends StatelessWidget {
                         (tag) => SizedBox(
                           height: 30,
                           width: 150,
-                          child: Chip(
-                            label: Text(tag),
-                            backgroundColor: AppColors.lightBlueBackground,
-                            labelStyle: textTheme.bodySmall?.copyWith(
-                              color: AppColors.black,
-                              fontWeight: FontWeight.w400,
+                          child: Container(
+                            height: 24,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                            decoration: BoxDecoration(
+                              color: AppColors.lightBlueBackground,
+                              borderRadius: BorderRadius.circular(6),
                             ),
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Center(
+                              child: Text(
+                                '4 week workshop',
+                                style: textTheme.bodySmall?.copyWith(
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       )

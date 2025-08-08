@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../utils/app_images/app_images.dart';
 import '../custom_image/custom_image.dart';
 
-class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String? iconPath; // SVG icon asset path
   final double iconSize;
   final VoidCallback? onIconTap;
   final Color? backgroundColor;
 
-  const CustomAppbar({
+  const CustomAppBar({
     super.key,
     this.title = 'Wild Curiosity',
     this.iconPath,
@@ -22,11 +22,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return AppBar(
-      elevation: 0,
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
-      title: Row(
+    return Container(
+      color: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+      child: Row(
         children: [
           CustomImage(imageSrc: AppImages.logo, size: 23),
           const SizedBox(width: 5),

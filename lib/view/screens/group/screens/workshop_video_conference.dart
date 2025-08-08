@@ -24,72 +24,74 @@ class _WorkshopVideoConferenceState extends State<WorkshopVideoConference> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
-      body: Column(
-        children: [
-          SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Container(
-              height: 60,
-              decoration: BoxDecoration(
-                color: AppColors.backgroundLightGray,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 6,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(Icons.keyboard_arrow_left),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 8),
-                      Text(
-                        AppStrings.conferencetitle,
-                        style: textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
+      body: SafeArea(
+        child: Column(
+          children: [
+            SizedBox(height: 40),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  color: AppColors.backgroundLightGray,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 2,
+                      blurRadius: 6,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(Icons.keyboard_arrow_left),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 8),
+                        Text(
+                          AppStrings.conferencetitle,
+                          style: textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      ),
-                      Text(
-                        AppStrings.conferencelength,
-                        style: textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
+                        Text(
+                          AppStrings.conferencelength,
+                          style: textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Get.toNamed(AppRoutes.chatsScreen);
-                    },
-                    icon: CustomImage(imageSrc: AppIcons.chat),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => ParticipantsDialog(),
-                      );
-                    },
-                    icon: CustomImage(imageSrc: AppIcons.users),
-                  ),
-                ],
+                      ],
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.chatsScreen);
+                      },
+                      icon: CustomImage(imageSrc: AppIcons.chat),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => ParticipantsDialog(),
+                        );
+                      },
+                      icon: CustomImage(imageSrc: AppIcons.users),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: SizedBox(
         height: 70,

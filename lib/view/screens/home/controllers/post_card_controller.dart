@@ -4,10 +4,12 @@ import '../models/post_model.dart';
 
 class PostCardController extends GetxController {
   final Post post;
+  PostCardController({required this.post}) {
+    selectedReactionIconPath.value =
+        post.selectedReactionIcon ?? AppIcons.handshake;
+  }
 
-  PostCardController({required this.post});
-
-  final selectedReactionIconPath = AppIcons.handshake.obs;
+  final selectedReactionIconPath = ''.obs;
   final showReactionOptions = false.obs;
 
   void toggleReactionOptions() {

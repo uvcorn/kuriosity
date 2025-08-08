@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,10 +24,7 @@ class ThirdOnbordingScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(size.height * 0.06),
-      //   child: CustomAppbar(backgroundColor: AppColors.backgroundWhite),
-      // ),
+
       body: Column(
         children: [
           SizedBox(height: 40),
@@ -35,7 +34,7 @@ class ThirdOnbordingScreen extends StatelessWidget {
               children: [
                 CustomImage(imageSrc: AppImages.logo, size: 24),
                 const SizedBox(width: 5),
-                Text('Wild Curiosity', style: textTheme.headlineMedium),
+                Text(AppStrings.appTitle, style: textTheme.headlineMedium),
               ],
             ),
           ),
@@ -64,30 +63,47 @@ class ThirdOnbordingScreen extends StatelessWidget {
                               color: AppColors.lightGray,
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.05,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Stack(
+                                fit: StackFit.expand,
                                 children: [
-                                  Spacer(),
-                                  Text(
-                                    page.title,
-                                    textAlign: TextAlign.start,
-                                    style: textTheme.titleLarge?.copyWith(
-                                      color: AppColors.white,
+                                  CustomImage(
+                                    imageSrc: page.imagePath,
+                                    fit: BoxFit.cover,
+                                  ),
+
+                                  Container(
+                                    color: Colors.black.withOpacity(0.3),
+                                  ),
+
+                                  // Text on top
+                                  Padding(
+                                    padding: EdgeInsets.all(size.width * 0.05),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Spacer(),
+                                        Text(
+                                          page.title,
+                                          style: textTheme.titleLarge?.copyWith(
+                                            color: AppColors.white,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: containerHeight * 0.06,
+                                        ),
+                                        Text(
+                                          page.body,
+                                          style: textTheme.bodyMedium?.copyWith(
+                                            color: AppColors.white,
+                                          ),
+                                        ),
+                                        SizedBox(height: size.width * 0.18),
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(height: containerHeight * 0.06),
-                                  Text(
-                                    page.body,
-                                    textAlign: TextAlign.start,
-                                    style: textTheme.bodyMedium?.copyWith(
-                                      color: AppColors.white,
-                                    ),
-                                  ),
-                                  SizedBox(height: size.width * 0.18),
                                 ],
                               ),
                             ),
@@ -150,7 +166,7 @@ class ThirdOnbordingScreen extends StatelessWidget {
                             onPressed:
                                 controller.currentPage ==
                                     controller.pages.length - 1
-                                ? () => Get.toNamed(AppRoutes.signUpScreen)
+                                ? () => Get.toNamed(AppRoutes.signInScreen)
                                 : controller.nextPage,
                             type: ActionButtonType.filled,
                           ),

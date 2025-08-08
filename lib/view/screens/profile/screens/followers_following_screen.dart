@@ -63,7 +63,7 @@ class _FollowersFollowingScreenState extends State<FollowersFollowingScreen>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: CSearchbar(
-                hinttext: AppStrings.searchHint,
+                hintText: AppStrings.searchHint,
                 background: Colors.transparent,
               ),
             ),

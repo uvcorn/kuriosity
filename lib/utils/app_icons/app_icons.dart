@@ -11,6 +11,7 @@ class AppIcons {
 
   ///====================== Inner =========================
   static const String chat = "$basePath/chat.svg";
+  static const String check = "$basePath/check.svg";
   static const String addchat = "$basePath/add_chat.svg";
   static const String chats = "$basePath/chats.svg";
   static const String handshake = "$basePath/handshake.svg";

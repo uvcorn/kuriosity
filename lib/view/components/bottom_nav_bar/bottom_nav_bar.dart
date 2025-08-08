@@ -45,6 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   color: states.contains(WidgetState.selected)
                       ? AppColors.primary
                       : Colors.grey,
+                  fontSize: 0,
                 );
               }),
             ),
@@ -61,44 +62,114 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   onDestinationSelected: navcontroller.changeIndex,
                   destinations: [
                     NavigationDestination(
-                      icon: CustomImage(
-                        imageSrc: navcontroller.selectedIndex == 0
-                            ? AppIcons.selectedhome
-                            : AppIcons.unselectedhome,
+                      icon: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomImage(
+                            imageSrc: navcontroller.selectedIndex == 0
+                                ? AppIcons.selectedhome
+                                : AppIcons.unselectedhome,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            AppStrings.home,
+                            style: textTheme.labelMedium!.copyWith(
+                              color: navcontroller.selectedIndex == 0
+                                  ? AppColors.primary
+                                  : Colors.grey,
+                            ),
+                          ),
+                        ],
                       ),
-                      label: AppStrings.home,
+                      label: '',
                     ),
                     NavigationDestination(
-                      icon: CustomImage(
-                        imageSrc: navcontroller.selectedIndex == 1
-                            ? AppIcons.selectedsmile
-                            : AppIcons.unselectedsmile,
+                      icon: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomImage(
+                            imageSrc: navcontroller.selectedIndex == 1
+                                ? AppIcons.selectedsmile
+                                : AppIcons.unselectedsmile,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            AppStrings.group,
+                            style: textTheme.labelMedium!.copyWith(
+                              color: navcontroller.selectedIndex == 1
+                                  ? AppColors.primary
+                                  : Colors.grey,
+                            ),
+                          ),
+                        ],
                       ),
-                      label: AppStrings.group,
+                      label: '',
                     ),
                     NavigationDestination(
-                      icon: CustomImage(
-                        imageSrc: navcontroller.selectedIndex == 2
-                            ? AppIcons.selectededit
-                            : AppIcons.unselectededit,
+                      icon: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomImage(
+                            imageSrc: navcontroller.selectedIndex == 2
+                                ? AppIcons.selectededit
+                                : AppIcons.unselectededit,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            AppStrings.post,
+                            style: textTheme.labelMedium!.copyWith(
+                              color: navcontroller.selectedIndex == 2
+                                  ? AppColors.primary
+                                  : Colors.grey,
+                            ),
+                          ),
+                        ],
                       ),
-                      label: AppStrings.post,
+                      label: '',
                     ),
                     NavigationDestination(
-                      icon: CustomImage(
-                        imageSrc: navcontroller.selectedIndex == 3
-                            ? AppIcons.selectedbell
-                            : AppIcons.unselectedbell,
+                      icon: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomImage(
+                            imageSrc: navcontroller.selectedIndex == 3
+                                ? AppIcons.selectedbell
+                                : AppIcons.unselectedbell,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            AppStrings.notific,
+                            style: textTheme.labelMedium!.copyWith(
+                              color: navcontroller.selectedIndex == 3
+                                  ? AppColors.primary
+                                  : Colors.grey,
+                            ),
+                          ),
+                        ],
                       ),
-                      label: AppStrings.notific,
+                      label: '',
                     ),
                     NavigationDestination(
-                      icon: CustomImage(
-                        imageSrc: navcontroller.selectedIndex == 4
-                            ? AppIcons.selectedaccount
-                            : AppIcons.unselectedaccount,
+                      icon: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomImage(
+                            imageSrc: navcontroller.selectedIndex == 4
+                                ? AppIcons.selectedaccount
+                                : AppIcons.unselectedaccount,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            AppStrings.profile,
+                            style: textTheme.labelMedium!.copyWith(
+                              color: navcontroller.selectedIndex == 4
+                                  ? AppColors.primary
+                                  : Colors.grey,
+                            ),
+                          ),
+                        ],
                       ),
-                      label: AppStrings.profile,
+                      label: '',
                     ),
                   ],
                 ),

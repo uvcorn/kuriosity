@@ -26,7 +26,7 @@ class PostCard extends StatefulWidget {
   final bool isNested;
   final bool hideReactions;
   final bool showAsCard;
-
+  final bool isFromPostScreen;
   const PostCard({
     super.key,
     required this.item,
@@ -34,6 +34,7 @@ class PostCard extends StatefulWidget {
     this.isNested = false,
     this.hideReactions = false,
     this.showAsCard = true,
+    this.isFromPostScreen = false,
   });
 
   @override
@@ -170,43 +171,53 @@ class _PostCardState extends State<PostCard> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
                 child: Obx(
-                  () => ReactionRow(
-                    selectedReactionIconPath:
-                        _postCardController.selectedReactionIconPath.value,
-                    likes: item.likes,
-                    comments: item.comments,
-                    seeds: item.seeds,
-                    shares: item.shares,
-                    onReactionIconTap:
-                        _postCardController.toggleReactionOptions,
-                    onReactionCountTap: () {
-                      EngagementList.showEngagementListDialog();
-                    },
-                    onCommentTap: () {
-                      showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (_) =>
-                            const CommentDraggableSheet(comments: []),
-                      );
-                    },
-                    onReplanetTap: () {
-                      showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (_) => const ReplanetMenu(),
-                      );
-                    },
-                    onShareTap: () {
-                      showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (_) => const ShareMenu(),
-                      );
-                    },
+                  () => Column(
+                    children: [
+                      Divider(
+                        color: AppColors.lightBorder,
+                        height: 1,
+                        thickness: 1,
+                      ),
+                      SizedBox(height: 10),
+                      ReactionRow(
+                        selectedReactionIconPath:
+                            _postCardController.selectedReactionIconPath.value,
+                        likes: item.likes,
+                        comments: item.comments,
+                        seeds: item.seeds,
+                        shares: item.shares,
+                        onReactionIconTap:
+                            _postCardController.toggleReactionOptions,
+                        onReactionCountTap: () {
+                          EngagementList.showEngagementListDialog();
+                        },
+                        onCommentTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) =>
+                                const CommentDraggableSheet(comments: []),
+                          );
+                        },
+                        onReplanetTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) => const ReplanetMenu(),
+                          );
+                        },
+                        onShareTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) => const ShareMenu(),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -216,6 +227,8 @@ class _PostCardState extends State<PostCard> {
           () => _postCardController.showReactionOptions.value
               ? ReactionOptionsPopup(
                   onSelectReaction: _postCardController.selectReaction,
+                  isFromPostScreen:
+                      !widget.showAsCard, // true if you're in PostScreen
                 )
               : const SizedBox.shrink(),
         ),

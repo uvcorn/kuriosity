@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
@@ -10,8 +11,22 @@ import '../../../components/custom_text_field/custom_text_field.dart';
 import '../../../components/input_card_container/input_card_container.dart';
 import '../controllers/sign_in_controller.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
+
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final SignInController controller = Get.put(SignInController());
+
+  @override
+  void dispose() {
+    Get.delete<SignInController>();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,26 +48,29 @@ class SignInScreen extends StatelessWidget {
                 Text(AppStrings.welcomeMessage, style: textTheme.titleLarge),
                 SizedBox(height: size.height * 0.03),
 
-                InputCardContainer(
-                  minHeight: 116,
-                  children: [
-                    CustomTextField(
-                      controller: controller.emailTEController,
-                      labelText: AppStrings.email,
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    Obx(
-                      () => CustomTextField(
-                        controller: controller.passwordTEController,
-                        labelText: AppStrings.password,
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: controller.isPasswordObscure.value,
-                        enableValidation: true,
-                        onToggleObscureText:
-                            controller.togglePasswordVisibility,
+                Form(
+                  key: _formKey,
+                  child: InputCardContainer(
+                    minHeight: 116,
+                    children: [
+                      CustomTextField(
+                        controller: controller.emailTEController,
+                        labelText: AppStrings.email,
+                        keyboardType: TextInputType.emailAddress,
                       ),
-                    ),
-                  ],
+                      Obx(
+                        () => CustomTextField(
+                          controller: controller.passwordTEController,
+                          labelText: AppStrings.password,
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: controller.isPasswordObscure.value,
+                          enableValidation: true,
+                          onToggleObscureText:
+                              controller.togglePasswordVisibility,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
 
                 SizedBox(height: size.height * 0.015),
@@ -67,19 +85,37 @@ class SignInScreen extends StatelessWidget {
                       color: AppColors.black,
                     ),
                     clickableText: AppStrings.forgotPassword,
-                    clickableTextStyle: textTheme.bodyMedium,
+                    clickableTextStyle: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                     useSpaceBetweenAlignment: true,
                     onLinkTap: controller.goToForgotPassword,
                   ),
                 ),
 
-                SizedBox(height: size.height * 0.06),
-
+                SizedBox(height: size.height * 0.03),
                 ActionButton(
                   title: AppStrings.continueButton,
                   onPressed: controller.signIn,
                 ),
+                SizedBox(height: size.height * 0.03),
 
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomCheckbox(
+                      showCheckbox: false,
+                      leadingText: AppStrings.createAnAccount,
+                      clickableText: AppStrings.signUpButton,
+                      onLinkTap: () {
+                        Get.toNamed(AppRoutes.signUpScreen);
+                      },
+                      clickableTextStyle: textTheme.bodySmall?.copyWith(
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ],
+                ),
                 SizedBox(height: size.height * 0.06),
                 Row(
                   children: [

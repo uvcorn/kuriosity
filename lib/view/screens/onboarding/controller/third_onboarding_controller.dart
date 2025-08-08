@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kuriosity/utils/app_images/app_images.dart';
 
 import '../../../../utils/app_strings/app_strings.dart';
 
 class OnboardPageData {
   final String title;
   final String body;
+  final String imagePath;
 
-  OnboardPageData({required this.title, required this.body});
+  OnboardPageData({
+    required this.title,
+    required this.body,
+    required this.imagePath,
+  });
 }
 
 class ThirdOnboardingController extends GetxController {
@@ -18,14 +24,17 @@ class ThirdOnboardingController extends GetxController {
 
   final List<OnboardPageData> pages = [
     OnboardPageData(
+      imagePath: AppImages.o1,
       title: AppStrings.onboardingStep1Title,
       body: AppStrings.onboardingStep1Body,
     ),
     OnboardPageData(
+      imagePath: AppImages.o2,
       title: AppStrings.onboardingStep2Title,
       body: AppStrings.onboardingStep2Body,
     ),
     OnboardPageData(
+      imagePath: AppImages.o3,
       title: AppStrings.onboardingStep3Title,
       body: AppStrings.onboardingStep3Body,
     ),

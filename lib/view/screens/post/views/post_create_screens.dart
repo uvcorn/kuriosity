@@ -20,26 +20,28 @@ class PostCreateScreens extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      body: Column(
-        children: [
-          SafeArea(child: _buildAppBar(context, controller)),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  PostInputField(controller: controller),
-                  const SizedBox(height: 12),
-                  ImagePreviewGrid(controller: controller),
-                  const SizedBox(height: 12),
-                  WorkshopSelector(controller: controller),
-                  const SizedBox(height: 20),
-                  _buildMediaButtons(controller),
-                ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            SafeArea(child: _buildAppBar(context, controller)),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    PostInputField(controller: controller),
+                    const SizedBox(height: 12),
+                    ImagePreviewGrid(controller: controller),
+                    const SizedBox(height: 12),
+                    WorkshopSelector(controller: controller),
+                    const SizedBox(height: 20),
+                    _buildMediaButtons(controller),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

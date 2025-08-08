@@ -1,3 +1,5 @@
+import '../../../../utils/app_icons/app_icons.dart';
+
 class Post {
   final String id;
   final String username;
@@ -19,6 +21,8 @@ class Post {
   final bool isSharedPost;
   final Post? originalPost;
   final String? sharedThought;
+  final List<String> reactedReactions;
+  final String? selectedReactionIcon;
   Post({
     required this.id,
     required this.username,
@@ -40,5 +44,7 @@ class Post {
     this.isSharedPost = false,
     this.originalPost,
     this.sharedThought,
+    this.reactedReactions = const [AppIcons.handshake],
+    this.selectedReactionIcon,
   });
 }

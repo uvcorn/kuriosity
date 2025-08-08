@@ -1,41 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../components/custom_appbar/coustom_appbar.dart';
-
 import '../controllers/home_controller.dart';
 import '../controllers/post_controller.dart';
 import '../delegates/search_bar_delegater.dart';
 import '../widgets/post_section/post_card/post_card.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+  final _homeController = Get.find<HomeController>();
+  final _postController = Get.find<PostController>();
   final ScrollController _scrollController = ScrollController();
-
-  final HomeController _homeController = Get.find<HomeController>();
-  final PostController _postController = Get.find<PostController>();
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_scrollListener);
-  }
-
-  void _scrollListener() {
-    _homeController.toggleSearchBar(_scrollController.offset);
-  }
 
   @override
   Widget build(BuildContext context) {
+    _scrollController.addListener(() {
+      _homeController.toggleSearchBar(_scrollController.offset);
+    });
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
       body: SafeArea(
@@ -47,10 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
               floating: false,
               expandedHeight: 50,
               flexibleSpace: FlexibleSpaceBar(
-                background: CustomAppbar(
-                  iconPath: AppIcons.chat,
-                  onIconTap: () => Get.toNamed(AppRoutes.chatsListScreen),
-                  backgroundColor: AppColors.backgroundLightGray,
+                background: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: CustomAppBar(
+                    iconPath: AppIcons.chat,
+                    onIconTap: () => Get.toNamed(AppRoutes.chatsListScreen),
+                    backgroundColor: AppColors.backgroundLightGray,
+                  ),
                 ),
               ),
             ),
@@ -68,7 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
               () => SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
                   final post = _postController.posts[index];
-                  return PostCard(item: post, followButton: post.followButton);
+                  return PostCard(
+                    item: post,
+                    followButton: post.followButton,
+                    isFromPostScreen: true,
+                  );
                 }, childCount: _postController.posts.length),
               ),
             ),

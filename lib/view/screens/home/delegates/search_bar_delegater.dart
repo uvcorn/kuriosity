@@ -13,7 +13,7 @@ class SearchBarDelegate extends SliverPersistentHeaderDelegate {
       color: AppColors.backgroundLightGray,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       alignment: Alignment.bottomCenter,
-      child: CSearchbar(hinttext: 'Search', hasBackground: true, height: 50),
+      child: CSearchbar(hintText: 'Search', hasBackground: true, height: 50),
     );
   }
 

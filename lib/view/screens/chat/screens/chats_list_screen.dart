@@ -5,6 +5,7 @@ import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/custom_appbar/coustom_appbar.dart';
 import '../../../components/custom_image/custom_image.dart';
 import '../../../components/c_search_bar/c_search_bar.dart';
 import '../widgets/chat_list_item.dart';
@@ -24,52 +25,64 @@ class _ChatsListScreenState extends State<ChatsListScreen> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       backgroundColor: AppColors.backgroundLightGray,
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(
-                  child: CSearchbar(hinttext: AppStrings.searchforMessage),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 24),
+              CustomAppBar(
+                iconPath: AppIcons.chat,
+                onIconTap: () => Get.toNamed(AppRoutes.chatsListScreen),
+                backgroundColor: AppColors.backgroundLightGray,
+              ),
+              SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: CSearchbar(hintText: AppStrings.searchforMessage),
+                  ),
+
+                  SizedBox(width: 24),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const NewMessageDialog();
+                        },
+                      );
+                    },
+                    child: CustomImage(imageSrc: AppIcons.addchat),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30),
+              Text(
+                AppStrings.message,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w900,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const NewMessageDialog();
-                      },
+              ),
+              SizedBox(height: 10),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 15, // widget.comments.length
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () => Get.toNamed(AppRoutes.chatsScreen),
+                      child: ChatListItem(
+                        userImage: AppConstants.profileImage,
+                        username: AppStrings.userName,
+                        commentText: AppStrings.chatMessage,
+                      ),
                     );
                   },
-                  child: CustomImage(imageSrc: AppIcons.addchat),
                 ),
-              ],
-            ),
-            Text(
-              AppStrings.message,
-              style: textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w900,
               ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 15, // widget.comments.length
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => Get.toNamed(AppRoutes.chatsScreen),
-                    child: ChatListItem(
-                      userImage: AppConstants.profileImage,
-                      username: AppStrings.userName,
-                      commentText: AppStrings.commentTex,
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

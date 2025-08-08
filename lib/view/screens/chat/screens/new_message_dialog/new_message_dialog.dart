@@ -89,28 +89,32 @@ class _NewMessageDialogState extends State<NewMessageDialog> {
       backgroundColor: Colors.white,
       child: Container(
         height: screenHeight * 0.6,
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                SizedBox(width: 60),
                 Text(
                   AppStrings.newMessage,
-                  style: textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w900,
+                  style: textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => Navigator.of(context).pop(),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(Icons.close),
                 ),
               ],
             ),
 
+            const SizedBox(height: 20),
             Divider(color: AppColors.lightBorder, height: 0),
 
             // Chips + Search Input

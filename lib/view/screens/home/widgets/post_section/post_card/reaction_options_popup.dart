@@ -6,8 +6,13 @@ import '../../../../../components/custom_image/custom_image.dart';
 
 class ReactionOptionsPopup extends StatelessWidget {
   final void Function(String iconPath) onSelectReaction;
+  final bool isFromPostScreen;
 
-  const ReactionOptionsPopup({super.key, required this.onSelectReaction});
+  const ReactionOptionsPopup({
+    super.key,
+    required this.onSelectReaction,
+    this.isFromPostScreen = false,
+  });
 
   Widget _reactionIcon(String iconPath) {
     return GestureDetector(
@@ -26,8 +31,8 @@ class ReactionOptionsPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 60,
-      left: 0,
+      bottom: isFromPostScreen ? 0 : 50,
+      left: 8,
       right: 0,
       child: Align(
         alignment: Alignment.centerLeft,

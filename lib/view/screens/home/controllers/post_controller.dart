@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../models/post_model.dart';
 import '../../../../utils/app_const/app_const.dart';
@@ -29,6 +30,7 @@ class PostController extends GetxController {
       shares: '15',
       isClimatehistory: true,
       followButton: true,
+      reactedReactions: [AppIcons.handshake, AppIcons.clap, AppIcons.globe],
     );
     posts.addAll([
       Post(
@@ -47,6 +49,8 @@ class PostController extends GetxController {
         followButton: true,
         shares: '15',
         isClimatehistory: true,
+        reactedReactions: [AppIcons.handshake, AppIcons.clap, AppIcons.globe],
+        selectedReactionIcon: AppIcons.clap,
       ),
       Post(
         id: '3',
@@ -55,7 +59,8 @@ class PostController extends GetxController {
         postImage: AppConstants.vegatable,
         userSubtitle: 'Food prep & workout',
         postOverlayText: 'Joining "Grow veg and herbs at home"',
-        caption: 'So proud of our little garden this year! ...',
+        caption:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conseq',
         likes: '10',
         comments: '20',
         seeds: '3',

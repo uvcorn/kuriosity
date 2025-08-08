@@ -68,14 +68,24 @@ class WorkshopDetailedContent extends StatelessWidget {
               runSpacing: Get.height * 0.005,
               children: tags
                   .map(
-                    (tag) => Chip(
-                      label: Text(tag),
-                      backgroundColor: AppColors.lightBlueBackground,
-                      labelStyle: textTheme.bodySmall?.copyWith(
-                        color: AppColors.black,
+                    (tag) => Container(
+                      width: 140,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                      decoration: BoxDecoration(
+                        color: AppColors.lightBlueBackground,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Center(
+                        child: Text(
+                          tag,
+                          style: textTheme.bodySmall?.copyWith(
+                            color: AppColors.black,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
                     ),
                   )

@@ -37,6 +37,7 @@ class ReactionRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        SizedBox(width: 24),
         Flexible(
           child: ReactionButton(
             iconPath: selectedReactionIconPath,

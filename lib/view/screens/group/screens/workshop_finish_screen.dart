@@ -14,51 +14,55 @@ class WorkshopFinishScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 80),
-            Text(
-              AppStrings.congratulation,
-              style: textTheme.bodyLarge?.copyWith(fontSize: 20),
-            ),
-            CustomImage(imageSrc: AppIcons.rocket, size: 70),
-            Text(
-              AppStrings.youFinishTheWorkshop,
-              style: textTheme.bodyMedium?.copyWith(),
-            ),
-            Text(
-              AppStrings.workshopFInishImprove,
-              style: textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w500,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 80),
+              Text(
+                AppStrings.congratulation,
+                style: textTheme.bodyLarge?.copyWith(fontSize: 20),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.submitReviewScreen);
-              },
-              child: Container(
-                height: 45,
-                width: 300,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  textAlign: TextAlign.center,
-                  AppStrings.nextButton,
-                  style: textTheme.bodySmall?.copyWith(color: AppColors.white),
+              CustomImage(imageSrc: AppIcons.rocket, size: 70),
+              Text(
+                AppStrings.youFinishTheWorkshop,
+                style: textTheme.bodyMedium?.copyWith(),
+              ),
+              Text(
+                AppStrings.workshopFInishImprove,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ),
-            SizedBox(height: 80),
-          ],
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.submitReviewScreen);
+                },
+                child: Container(
+                  height: 45,
+                  width: 300,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    AppStrings.nextButton,
+                    style: textTheme.bodySmall?.copyWith(
+                      color: AppColors.white,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 80),
+            ],
+          ),
         ),
       ),
     );

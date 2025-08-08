@@ -5,14 +5,14 @@ import '../../../utils/app_colors/app_colors.dart';
 class CSearchbar extends StatelessWidget {
   const CSearchbar({
     super.key,
-    required this.hinttext,
+    required this.hintText,
     this.hasBackground = false,
     this.background = AppColors.backgroundLightGray,
     this.fillcolor = AppColors.white,
     this.height = 50,
   });
 
-  final String hinttext;
+  final String hintText;
   final Color background;
   final bool hasBackground;
   final Color fillcolor;
@@ -26,10 +26,9 @@ class CSearchbar extends StatelessWidget {
       decoration: BoxDecoration(
         color: hasBackground ? background : Colors.transparent,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: TextField(
         decoration: InputDecoration(
-          hintText: hinttext,
+          hintText: hintText,
           hintStyle: textTheme.bodySmall?.copyWith(color: AppColors.mediumGray),
           prefixIcon: const Icon(
             Icons.search,

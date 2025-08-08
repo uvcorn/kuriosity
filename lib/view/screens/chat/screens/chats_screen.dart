@@ -2,11 +2,15 @@
 
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_const/app_const.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
+import '../../../components/c_search_bar/c_search_bar.dart';
+import '../../../components/custom_appbar/coustom_appbar.dart';
 import '../../../components/custom_image/custom_image.dart';
 import '../../../components/input_bar/input_bar.dart';
 import '../../home/widgets/post_section/post_card/user_info_section.dart';
@@ -14,6 +18,8 @@ import '../widgets/message_bubble.dart';
 import '../models/message_model.dart';
 import '../widgets/user_chat_menu.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+
+import 'new_message_dialog/new_message_dialog.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -122,112 +128,144 @@ class _ChatsScreenState extends State<ChatsScreen> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    final inputDecoration = InputDecoration(
-      hintText: AppStrings.typeYourMessage,
-      hintStyle: textTheme.bodySmall,
-      filled: true,
-      fillColor: AppColors.backgroundLightGray,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(25),
-        borderSide: BorderSide.none,
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-    );
+    return Scaffold(
+      backgroundColor: AppColors.backgroundLightGray,
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.backgroundWhite,
-        appBar: AppBar(
-          backgroundColor: AppColors.backgroundWhite,
-          toolbarHeight: 80,
-          titleSpacing: 0,
-          title: UserInfoSection(
-            username: AppStrings.userName,
-            subtitle: AppStrings.userTitle,
-            profileUrl: AppConstants.profileImage,
-            onTap: () {
-              showModalBottomSheet(
-                isScrollControlled: true,
-                context: context,
-                backgroundColor: Colors.transparent,
-                builder: (_) => const UserChatMenu(),
-              );
-            },
-            showFollowButton: false,
-            onProfileTap: () {},
-            onFollowTap: () {},
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(2),
-            child: Container(color: AppColors.lightBorder, height: 2),
-          ),
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: _messages.isEmpty
-                  ? Center(child: CustomImage(imageSrc: AppIcons.emptychat))
-                  : ListView.builder(
-                      reverse: true,
-                      padding: const EdgeInsets.all(8.0),
-                      itemCount: _messages.length,
-                      itemBuilder: (context, index) {
-                        final message = _messages[_messages.length - 1 - index];
-                        return MessageBubble(
-                          message: message,
-                          textTheme: textTheme,
-                        );
-                      },
-                    ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.black.withOpacity(0.05),
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: const Offset(0, -3),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              SizedBox(height: 24),
+              CustomAppBar(
+                iconPath: AppIcons.chat,
+                onIconTap: () => Get.toNamed(AppRoutes.chatsListScreen),
+                backgroundColor: AppColors.backgroundLightGray,
+              ),
+              SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: CSearchbar(hintText: AppStrings.searchforMessage),
+                  ),
+                  SizedBox(width: 24),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const NewMessageDialog();
+                        },
+                      );
+                    },
+                    child: CustomImage(imageSrc: AppIcons.addchat),
                   ),
                 ],
               ),
-              child: InputBar(
-                textController: _messageController,
-                focusNode: _focusNode,
-                hasText: _hasText,
-                onEmojiPressed: () {
-                  setState(() {
-                    _isEmojiVisible = !_isEmojiVisible;
-                    if (_isEmojiVisible) {
-                      _focusNode.unfocus();
-                    } else {
-                      _focusNode.requestFocus();
-                    }
-                  });
-                },
+              SizedBox(height: 16),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
 
-                onAttachPressed: () {},
-                onImagePressed: _onTapPhotopicker,
-                onSendPressed: _sendMessage,
-                decoration: inputDecoration,
-              ),
-            ),
-            const SizedBox(height: 8),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
 
-            // Conditionally display the EmojiPicker
-            if (!foundation.kIsWeb) ...[
-              Offstage(
-                offstage: !_isEmojiVisible,
-                child: EmojiPicker(
-                  textEditingController: _messageController,
-                  scrollController: _scrollController,
-                  config: Config(height: 250),
+                  child: Column(
+                    children: [
+                      UserInfoSection(
+                        username: AppStrings.userName,
+                        subtitle: AppStrings.userTitle,
+                        profileUrl: AppConstants.profileImage,
+                        onTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) => const UserChatMenu(),
+                          );
+                        },
+                        showFollowButton: false,
+                        onProfileTap: () {},
+                        onFollowTap: () {},
+                      ),
+                      Container(color: AppColors.lightBorder, height: 2),
+                      Expanded(
+                        child: _messages.isEmpty
+                            ? Center(
+                                child: CustomImage(
+                                  imageSrc: AppIcons.emptychat,
+                                ),
+                              )
+                            : ListView.builder(
+                                reverse: true,
+                                padding: const EdgeInsets.all(8.0),
+                                itemCount: _messages.length,
+                                itemBuilder: (context, index) {
+                                  final message =
+                                      _messages[_messages.length - 1 - index];
+                                  return MessageBubble(
+                                    message: message,
+                                    textTheme: textTheme,
+                                  );
+                                },
+                              ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          boxShadow: [
+                            // BoxShadow(
+                            //   color: AppColors.black.withOpacity(0.05),
+                            //   spreadRadius: 1,
+                            //   blurRadius: 5,
+                            //   offset: const Offset(0, -3),
+                            // ),
+                          ],
+                        ),
+                        child: ChatInputBar(
+                          hasText: _hasText,
+                          controller: _messageController,
+                          onSend: _sendMessage,
+                          onEmojiTap: () {
+                            setState(() {
+                              _isEmojiVisible = !_isEmojiVisible;
+                              if (_isEmojiVisible) {
+                                _focusNode.unfocus();
+                              } else {
+                                _focusNode.requestFocus();
+                              }
+                            });
+                          },
+                          onAttachTap: () {},
+                          onImageTap: _onTapPhotopicker,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Conditionally display the EmojiPicker
+                      if (!foundation.kIsWeb) ...[
+                        Offstage(
+                          offstage: !_isEmojiVisible,
+                          child: EmojiPicker(
+                            textEditingController: _messageController,
+                            scrollController: _scrollController,
+                            config: Config(height: 250),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
                 ),
               ),
+
+              SizedBox(height: 16),
             ],
-          ],
+          ),
         ),
       ),
     );

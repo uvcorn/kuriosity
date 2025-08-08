@@ -61,132 +61,135 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
       child: Scaffold(
         backgroundColor: AppColors.backgroundLightGray,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Obx(
-                () => ProfileHeader(
-                  interests: profileController.interests.toList(),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Obx(
+                  () => ProfileHeader(
+                    interests: profileController.interests.toList(),
+                  ),
                 ),
-              ),
-              SizedBox(height: size.height * 0.22),
+                SizedBox(height: size.height * 0.22),
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    HostWorkshopSection(
-                      hostedProfileWorkshop: hostedProfileWorkshop,
-                      hostedFullWorkshop: hostedFullWorkshop,
-                    ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      HostWorkshopSection(
+                        hostedProfileWorkshop: hostedProfileWorkshop,
+                        hostedFullWorkshop: hostedFullWorkshop,
+                      ),
 
-                    SizedBox(height: size.height * 0.02),
+                      SizedBox(height: size.height * 0.02),
 
-                    Column(
-                      children: [
-                        CardBar(
-                          textTheme: textTheme,
-                          title: AppStrings.joiningTitle,
-                        ),
-                        SizedBox(height: size.height * 0.01),
-                        Container(
-                          height: size.height * 0.2,
-                          decoration: BoxDecoration(
-                            color: AppColors.backgroundLightGray,
-                            borderRadius: BorderRadius.circular(12),
+                      Column(
+                        children: [
+                          CardBar(
+                            textTheme: textTheme,
+                            title: AppStrings.joiningTitle,
                           ),
-                          child: Obx(
+                          SizedBox(height: size.height * 0.01),
+                          Container(
+                            height: size.height * 0.2,
+                            decoration: BoxDecoration(
+                              color: AppColors.backgroundLightGray,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Obx(
+                              () => ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: joinedWorkshopController
+                                    .joinedWorkshops
+                                    .length,
+                                separatorBuilder: (context, index) =>
+                                    SizedBox(width: size.width * 0.03),
+                                itemBuilder: (context, index) {
+                                  final joinedWorkshop =
+                                      joinedWorkshopController
+                                          .joinedWorkshops[index];
+
+                                  WorkshopModel? matchedWorkshop;
+                                  try {
+                                    matchedWorkshop = groupController
+                                        .currentlyProgressingWorkshops
+                                        .firstWhere(
+                                          (w) =>
+                                              w.title == joinedWorkshop.title &&
+                                              w.date == joinedWorkshop.time,
+                                        );
+                                  } catch (_) {
+                                    matchedWorkshop = null;
+                                  }
+
+                                  return JoinWorkshopCard(
+                                    workshop: joinedWorkshop,
+                                    onTap: () {
+                                      if (matchedWorkshop != null) {
+                                        Get.to(
+                                          () => WorkshopDetailScreen(
+                                            workshop: matchedWorkshop!,
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: size.height * 0.02),
+
+                      Obx(
+                        () => SubscriptionPanel(
+                          textTheme: Theme.of(context).textTheme,
+                          isPremium: profileController.isPremium.value,
+                          // profileController.isPremium.value,
+                        ),
+                      ),
+
+                      SizedBox(height: size.height * 0.02),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CardBar(
+                            textTheme: textTheme,
+                            title: AppStrings.historyBarTitle,
+                            subtitle: AppStrings.viewall,
+                            vieallTap: () {
+                              Get.toNamed(AppRoutes.yourClimateHistoryscreen);
+                            },
+                          ),
+                          SizedBox(height: size.height * 0.01),
+                          Obx(
                             () => ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: joinedWorkshopController
-                                  .joinedWorkshops
+                              shrinkWrap: true,
+                              padding: EdgeInsets.zero,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: historyWorkshopController
+                                  .historyWorkshops
                                   .length,
-                              separatorBuilder: (context, index) =>
-                                  SizedBox(width: size.width * 0.03),
+                              separatorBuilder: (_, __) =>
+                                  SizedBox(height: size.height * 0.01),
                               itemBuilder: (context, index) {
-                                final joinedWorkshop = joinedWorkshopController
-                                    .joinedWorkshops[index];
-
-                                WorkshopModel? matchedWorkshop;
-                                try {
-                                  matchedWorkshop = groupController
-                                      .currentlyProgressingWorkshops
-                                      .firstWhere(
-                                        (w) =>
-                                            w.title == joinedWorkshop.title &&
-                                            w.date == joinedWorkshop.time,
-                                      );
-                                } catch (_) {
-                                  matchedWorkshop = null;
-                                }
-
-                                return JoinWorkshopCard(
-                                  workshop: joinedWorkshop,
-                                  onTap: () {
-                                    if (matchedWorkshop != null) {
-                                      Get.to(
-                                        () => WorkshopDetailScreen(
-                                          workshop: matchedWorkshop!,
-                                        ),
-                                      );
-                                    }
-                                  },
-                                );
+                                final workshop = historyWorkshopController
+                                    .historyWorkshops[index];
+                                return HistoryWorkshopCard(workshop: workshop);
                               },
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: size.height * 0.02),
-
-                    Obx(
-                      () => SubscriptionPanel(
-                        textTheme: Theme.of(context).textTheme,
-                        isPremium: profileController.isPremium.value,
-                        // profileController.isPremium.value,
+                        ],
                       ),
-                    ),
-
-                    SizedBox(height: size.height * 0.02),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CardBar(
-                          textTheme: textTheme,
-                          title: AppStrings.historyBarTitle,
-                          subtitle: AppStrings.viewall,
-                          vieallTap: () {
-                            Get.toNamed(AppRoutes.yourClimateHistoryscreen);
-                          },
-                        ),
-                        SizedBox(height: size.height * 0.01),
-                        Obx(
-                          () => ListView.separated(
-                            shrinkWrap: true,
-                            padding: EdgeInsets.zero,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: historyWorkshopController
-                                .historyWorkshops
-                                .length,
-                            separatorBuilder: (_, __) =>
-                                SizedBox(height: size.height * 0.01),
-                            itemBuilder: (context, index) {
-                              final workshop = historyWorkshopController
-                                  .historyWorkshops[index];
-                              return HistoryWorkshopCard(workshop: workshop);
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

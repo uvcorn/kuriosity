@@ -69,7 +69,7 @@ class _WorkshopCardState extends State<WorkshopCard> {
         // vertical: Get.height * 0.002,
         horizontal: Get.width * 0.02,
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       elevation: 3,
       clipBehavior: Clip.antiAlias,
       child: SizedBox(

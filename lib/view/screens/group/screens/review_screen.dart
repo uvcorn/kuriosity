@@ -43,54 +43,56 @@ class ReviewScreen extends StatelessWidget {
         ),
         leading: const BackButton(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Text(
-                    AppStrings.reviewbardesc,
-                    style: textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    StarDisplay(
-                      rating: 4.8,
-                      iconSize: 20,
-                      color: AppColors.primary,
-                      showValue: true,
-                      useRoundedIcons: true,
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      "12 reviews",
-                      style: textTheme.bodySmall?.copyWith(
-                        color: AppColors.black,
-                        fontWeight: FontWeight.bold,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ListView(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      AppStrings.reviewbardesc,
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            for (var review in reviews)
-              ReviewTile(
-                name: review['name'] as String,
-                date: review['date'] as String,
-                rating: review['rating'] as double,
-                avatarUrl: AppConstants.profile2Image,
-                review: review['text'] as String,
+                  ),
+                  const SizedBox(width: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      StarDisplay(
+                        rating: 4.8,
+                        iconSize: 20,
+                        color: AppColors.primary,
+                        showValue: true,
+                        useRoundedIcons: true,
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        "12 reviews",
+                        style: textTheme.bodySmall?.copyWith(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-          ],
+              const SizedBox(height: 16),
+              for (var review in reviews)
+                ReviewTile(
+                  name: review['name'] as String,
+                  date: review['date'] as String,
+                  rating: review['rating'] as double,
+                  avatarUrl: AppConstants.profile2Image,
+                  review: review['text'] as String,
+                ),
+            ],
+          ),
         ),
       ),
     );

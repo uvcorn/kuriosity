@@ -27,6 +27,7 @@ class CategorySelector extends StatelessWidget {
           child: SizedBox(
             width: Get.width * 0.18,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 CustomImage(
                   imageSrc: isSelected
@@ -43,13 +44,29 @@ class CategorySelector extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: Get.height * 0.01),
-                if (isSelected)
-                  Container(
-                    height: 2,
-                    width: Get.width * 0.2,
-                    color: AppColors.black,
+                SizedBox(height: Get.height * 0.015),
+                SizedBox(height: 4), // a tiny gap if needed (optional)
+                SizedBox(
+                  width: Get.width * 0.2,
+                  height: 3, // total height combining underline + divider
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (isSelected)
+                        Container(
+                          height: 1,
+                          color: AppColors.black,
+                          width: double.infinity,
+                        )
+                      else
+                        Container(
+                          height: 1,
+                          color: AppColors.lightBorder,
+                          width: double.infinity,
+                        ),
+                    ],
                   ),
+                ),
               ],
             ),
           ),

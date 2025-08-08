@@ -11,7 +11,6 @@ class SignUpController extends GetxController {
   final TextEditingController emailTEController = TextEditingController();
   final TextEditingController passwordTEController = TextEditingController();
   final TextEditingController confirmPassTEController = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final RxBool isPasswordObscure = true.obs;
   final RxBool agreedToTerms = false.obs;

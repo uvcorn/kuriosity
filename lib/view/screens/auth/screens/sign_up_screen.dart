@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
@@ -7,16 +8,27 @@ import '../../../components/action_button/action_button.dart';
 import '../../../components/custom_checkbox/custom_checkbox.dart';
 import '../../../components/custom_text_field/custom_text_field.dart';
 import '../../../components/input_card_container/input_card_container.dart';
-
 import '../controllers/sign_up_controller.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final SignUpController controller = Get.put(SignUpController());
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
 
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final SignUpController controller = Get.put(SignUpController());
+
+  @override
+  void dispose() {
+    Get.delete<SignUpController>();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
@@ -27,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
           child: SingleChildScrollView(
             child: Form(
-              key: controller.formKey,
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -82,8 +94,8 @@ class SignUpScreen extends StatelessWidget {
                           controller: controller.confirmPassTEController,
                           labelText: AppStrings.confirmPassword,
                           keyboardType: TextInputType.visiblePassword,
-                          confirmPasswordController: controller
-                              .passwordTEController, // Reference the password field
+                          confirmPasswordController:
+                              controller.passwordTEController,
                           obscureText: controller.isPasswordObscure.value,
                           enableValidation: true,
                           onToggleObscureText:
@@ -113,7 +125,11 @@ class SignUpScreen extends StatelessWidget {
 
                   ActionButton(
                     title: AppStrings.signUpButton,
-                    onPressed: controller.signUp,
+                    onPressed: () {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        controller.signUp();
+                      }
+                    },
                   ),
 
                   SizedBox(height: size.height * 0.08),
@@ -125,9 +141,7 @@ class SignUpScreen extends StatelessWidget {
                         showCheckbox: false,
                         leadingText: AppStrings.alreadyHaveAccount,
                         clickableText: AppStrings.signInButton,
-                        onLinkTap: () {
-                          Get.toNamed(AppRoutes.signInScreen);
-                        },
+                        onLinkTap: () => Get.toNamed(AppRoutes.signInScreen),
                         clickableTextStyle: textTheme.bodySmall?.copyWith(
                           color: AppColors.primary,
                         ),

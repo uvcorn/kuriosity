@@ -4,6 +4,8 @@ class AppStrings {
   //Authintication Strings
   static const String welcomeHere = 'Welcome here!';
   static const String createAccount = 'Create an account.';
+
+  static const String createAnAccount = 'Create an new account.';
   static const String fillInformation = 'Fill in your information.';
 
   static const String firstName = 'First Name';
@@ -107,6 +109,9 @@ class AppStrings {
   static const String replybutton = 'Reply';
   static const String userName = 'Tony Lens';
   static const String userTitle = 'Meal prep & workouts';
+
+  static const String chatMessage =
+      'Hai, whats’up bro. hayu atuh hangout dei jang Sabrina';
   static const String commentTex =
       'I\'ve got some left red wine in my fridge, does anyone know how to recycle it?';
   static const String addComment = 'Add Comment.....';

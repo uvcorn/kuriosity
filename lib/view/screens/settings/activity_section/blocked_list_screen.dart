@@ -117,13 +117,15 @@ class _BlockedListScreenState extends State<BlockedListScreen> {
 
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 30),
               TopAppBar(),
-              SizedBox(height: 8),
-              CSearchbar(hinttext: AppStrings.searchHint, hasBackground: false),
+              SizedBox(height: 30),
+              CSearchbar(hintText: AppStrings.searchHint, hasBackground: false),
+              SizedBox(height: 30),
               Text(
                 AppStrings.blockedList,
                 style: textTheme.bodyMedium?.copyWith(
@@ -131,17 +133,17 @@ class _BlockedListScreenState extends State<BlockedListScreen> {
                   fontSize: 20,
                 ),
               ),
+              SizedBox(height: 8),
+              Container(height: 2, width: 150, color: AppColors.black),
+              SizedBox(height: 20),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-                  child: blockedUsers.isEmpty
-                      ? const Center(child: Text(AppStrings.noblockedusers))
-                      : ListView.builder(
-                          itemCount: blockedUsers.length,
-                          itemBuilder: (context, index) =>
-                              _buildBlockedUserTile(index, width),
-                        ),
-                ),
+                child: blockedUsers.isEmpty
+                    ? const Center(child: Text(AppStrings.noblockedusers))
+                    : ListView.builder(
+                        itemCount: blockedUsers.length,
+                        itemBuilder: (context, index) =>
+                            _buildBlockedUserTile(index, width),
+                      ),
               ),
             ],
           ),

@@ -13,6 +13,7 @@ class CommentItem extends StatefulWidget {
   final String commentText;
   final int likes;
   final Function(String username) onReplyTapped;
+  final List<String> allowedReactions;
 
   const CommentItem({
     super.key,
@@ -21,6 +22,11 @@ class CommentItem extends StatefulWidget {
     required this.commentText,
     this.likes = 0,
     required this.onReplyTapped,
+    this.allowedReactions = const [
+      AppIcons.handshake,
+      AppIcons.clap,
+      AppIcons.globe,
+    ],
   });
 
   @override

@@ -170,55 +170,56 @@ class _PostCardState extends State<PostCard> {
             if (!widget.hideReactions)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                child: Obx(
-                  () => Column(
-                    children: [
-                      Divider(
-                        color: AppColors.lightBorder,
-                        height: 1,
-                        thickness: 1,
-                      ),
-                      SizedBox(height: 10),
-                      ReactionRow(
-                        selectedReactionIconPath:
-                            _postCardController.selectedReactionIconPath.value,
-                        likes: item.likes,
-                        comments: item.comments,
-                        seeds: item.seeds,
-                        shares: item.shares,
-                        onReactionIconTap:
-                            _postCardController.toggleReactionOptions,
-                        onReactionCountTap: () {
-                          EngagementList.showEngagementListDialog();
-                        },
-                        onCommentTap: () {
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            context: context,
-                            backgroundColor: Colors.transparent,
-                            builder: (_) =>
-                                const CommentDraggableSheet(comments: []),
-                          );
-                        },
-                        onReplanetTap: () {
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            context: context,
-                            backgroundColor: Colors.transparent,
-                            builder: (_) => const ReplanetMenu(),
-                          );
-                        },
-                        onShareTap: () {
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            context: context,
-                            backgroundColor: Colors.transparent,
-                            builder: (_) => const ShareMenu(),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  children: [
+                    Divider(
+                      color: AppColors.lightBorder,
+                      height: 1,
+                      thickness: 1,
+                    ),
+                    SizedBox(height: 10),
+
+                    ReactionRow(
+                      reactionIconPaths:
+                          widget.item.reactedReactions, // Use from model!
+                      likes: item.likes,
+                      comments: item.comments,
+                      seeds: item.seeds,
+                      shares: item.shares,
+                      onReactionIconTap:
+                          _postCardController.toggleReactionOptions,
+                      onReactionCountTap: () {
+                        EngagementList.showEngagementListDialog();
+                      },
+                      onCommentTap: () {
+                        showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          builder: (_) =>
+                              const CommentDraggableSheet(comments: []),
+                        );
+                      },
+                      onReplanetTap: () {
+                        showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          builder: (_) => const ReplanetMenu(),
+                        );
+                      },
+                      onShareTap: () {
+                        showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          builder: (_) => const ShareMenu(),
+                        );
+                      },
+                      selectedReactionIconPath:
+                          _postCardController.selectedReactionIconPath,
+                    ),
+                  ],
                 ),
               ),
           ],

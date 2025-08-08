@@ -51,42 +51,41 @@ class PostScreen extends StatelessWidget {
                     const Divider(height: 1),
                     Padding(
                       padding: EdgeInsets.all(20),
-                      child: Obx(
-                        () => ReactionRow(
-                          selectedReactionIconPath: _postCardController
-                              .selectedReactionIconPath
-                              .value,
-                          likes: post.likes,
-                          comments: post.comments,
-                          seeds: post.seeds,
-                          shares: post.shares,
-                          onReactionIconTap:
-                              _postCardController.toggleReactionOptions,
-                          onReactionCountTap: () {
-                            EngagementList.showEngagementListDialog();
-                          },
-                          onCommentTap: () {
-                            _commentFocusNode.requestFocus();
-                          },
-                          onReplanetTap: () {
-                            showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              backgroundColor: Colors.transparent,
-                              builder: (_) => const ReplanetMenu(),
-                            );
-                          },
-                          onShareTap: () {
-                            showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              backgroundColor: Colors.transparent,
-                              builder: (_) => const ShareMenu(),
-                            );
-                          },
-                        ),
+                      child: ReactionRow(
+                        reactionIconPaths: post.reactedReactions,
+                        likes: post.likes,
+                        comments: post.comments,
+                        seeds: post.seeds,
+                        shares: post.shares,
+                        onReactionIconTap:
+                            _postCardController.toggleReactionOptions,
+                        onReactionCountTap: () {
+                          EngagementList.showEngagementListDialog();
+                        },
+                        onCommentTap: () {
+                          _commentFocusNode.requestFocus();
+                        },
+                        onReplanetTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) => const ReplanetMenu(),
+                          );
+                        },
+                        onShareTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) => const ShareMenu(),
+                          );
+                        },
+                        selectedReactionIconPath:
+                            _postCardController.selectedReactionIconPath,
                       ),
                     ),
+
                     const Divider(height: 1),
                     const SizedBox(height: 8),
                     const CommentList(scrollable: false),

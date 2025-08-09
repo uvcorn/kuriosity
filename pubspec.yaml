@@ -20,8 +20,7 @@ dependencies:
   video_player: ^2.10.0
   visibility_detector: ^0.4.0+2
   linkify: ^5.0.0
-  flutter_linkify: ^6.0.0
-  any_link_preview: ^3.0.3
+  flutter_linkify: ^6.0.0 
   shimmer: ^3.0.0
   cached_network_image: ^3.4.1
   url_launcher: ^6.3.1

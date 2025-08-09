@@ -14,17 +14,23 @@ class SuggestedUserTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children: [
-          Radio<String>(
-            value: user,
-            groupValue: selected ? user : null,
-            onChanged: (_) => onTap(),
-          ),
-          Text(user),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Radio<String>(
+              value: user,
+              groupValue: selected ? user : null,
+              onChanged: (_) => onTap(),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            const SizedBox(width: 8),
+            Text(user, style: Theme.of(context).textTheme.bodyMedium),
+          ],
+        ),
       ),
     );
   }

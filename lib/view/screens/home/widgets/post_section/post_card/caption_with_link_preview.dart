@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:any_link_preview/any_link_preview.dart';
 import 'package:linkify/linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../utils/app_colors/app_colors.dart';
-import '../../../../../../utils/app_strings/app_strings.dart';
+import '../../../../../components/custom_link_preview/custom_link_preview.dart';
 
 class CaptionWithLinkPreview extends StatefulWidget {
   final String caption;
@@ -58,6 +57,7 @@ class _CaptionWithLinkPreviewState extends State<CaptionWithLinkPreview> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
@@ -66,7 +66,7 @@ class _CaptionWithLinkPreviewState extends State<CaptionWithLinkPreview> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Caption
+          // Caption with clickable links
           LayoutBuilder(
             builder: (context, constraints) {
               return Linkify(
@@ -89,7 +89,7 @@ class _CaptionWithLinkPreviewState extends State<CaptionWithLinkPreview> {
             },
           ),
 
-          // "See more" or "See less"
+          // "See more" / "See less"
           if (_showSeeMore)
             GestureDetector(
               onTap: () {
@@ -110,37 +110,13 @@ class _CaptionWithLinkPreviewState extends State<CaptionWithLinkPreview> {
               ),
             ),
 
-          // Link Preview (only show when expanded)
-          if (_isExpanded && _firstUrl != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 12.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.lightBorder),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: AnyLinkPreview(
-                    backgroundColor: AppColors.backgroundWhite,
-                    link: _firstUrl!,
-                    cache: const Duration(hours: 1),
-                    displayDirection: UIDirection.uiDirectionHorizontal,
-                    showMultimedia: true,
-                    bodyMaxLines: 3,
-                    bodyTextOverflow: TextOverflow.ellipsis,
-                    errorBody: AppStrings.notLoad,
-                    errorTitle: AppStrings.notLoad,
-                    errorWidget: Container(
-                      color: AppColors.white,
-                      padding: const EdgeInsets.all(8),
-                      child: const Text(AppStrings.notLoad),
-                    ),
-                    borderRadius: 12,
-                    removeElevation: true,
-                  ),
-                ),
-              ),
+          // ✅ Always show link preview if URL found
+          if (_firstUrl != null)
+            CustomLinkPreview(
+              url: _firstUrl!,
+              onPreviewLoad: (success) {
+                // optional: handle preview state
+              },
             ),
         ],
       ),

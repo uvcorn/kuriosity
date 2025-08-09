@@ -10,7 +10,7 @@ import '../delegates/search_bar_delegater.dart';
 import '../widgets/post_section/post_card/post_card.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({super.key});
 
   final _homeController = Get.find<HomeController>();
   final _postController = Get.find<PostController>();

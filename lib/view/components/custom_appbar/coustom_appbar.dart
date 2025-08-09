@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../core/app_routes/app_routes.dart';
 import '../../../utils/app_images/app_images.dart';
 import '../custom_image/custom_image.dart';
 
@@ -26,9 +28,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       color: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       child: Row(
         children: [
-          CustomImage(imageSrc: AppImages.logo, size: 23),
-          const SizedBox(width: 5),
-          Text(title, style: textTheme.headlineMedium),
+          GestureDetector(
+            onTap: () {
+              Get.offAllNamed(AppRoutes.bottomNavBar);
+            },
+            child: Row(
+              children: [
+                CustomImage(imageSrc: AppImages.logo, size: 23),
+                const SizedBox(width: 5),
+                Text(title, style: textTheme.headlineMedium),
+              ],
+            ),
+          ),
           const Spacer(),
           // Optional icon button if iconPath is provided
           if (iconPath != null)

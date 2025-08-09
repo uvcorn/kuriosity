@@ -89,59 +89,67 @@ class _NewMessageDialogState extends State<NewMessageDialog> {
       backgroundColor: Colors.white,
       child: Container(
         height: screenHeight * 0.6,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            Row(
-              children: [
-                SizedBox(width: 60),
-                Text(
-                  AppStrings.newMessage,
-                  style: textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(width: 60),
+                      Text(
+                        AppStrings.newMessage,
+                        style: textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(Icons.close),
+                      ),
+                    ],
                   ),
-                ),
-                Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Icon(Icons.close),
-                ),
-              ],
-            ),
 
-            const SizedBox(height: 20),
-            Divider(color: AppColors.lightBorder, height: 0),
+                  const SizedBox(height: 20),
+                  Divider(color: AppColors.lightBorder, height: 0),
 
-            // Chips + Search Input
-            SelectedUsersRow(
-              selectedUsers: _selectedUsers,
-              searchController: _searchController,
-              scrollController: _scrollController,
-              onUserRemoved: _toggleUserSelection,
-            ),
+                  // Chips + Search Input
+                  SelectedUsersRow(
+                    selectedUsers: _selectedUsers,
+                    searchController: _searchController,
+                    scrollController: _scrollController,
+                    onUserRemoved: _toggleUserSelection,
+                  ),
 
-            Divider(color: AppColors.lightBorder, height: 0),
+                  Divider(color: AppColors.lightBorder, height: 0),
 
-            const SizedBox(height: 8),
+                  const SizedBox(height: 12),
 
-            // Suggested Users Title
-            Text(
-              AppStrings.suggested,
-              style: textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.bold,
+                  // Suggested Users Title
+                  Text(
+                    AppStrings.suggested,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                ],
               ),
             ),
-
-            const SizedBox(height: 8),
 
             // Suggested Users List
             Expanded(
               child: ListView.builder(
+                padding: EdgeInsets.zero,
                 itemCount: _filteredSuggestedUsers.length,
                 itemBuilder: (context, index) {
                   final user = _filteredSuggestedUsers[index];
@@ -154,32 +162,33 @@ class _NewMessageDialogState extends State<NewMessageDialog> {
               ),
             ),
 
-            const SizedBox(height: 24),
-
             // Action Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _selectedUsers.isEmpty
-                    ? null
-                    : () {
-                        Get.toNamed(AppRoutes.chatsScreen);
-                      },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+              child: SizedBox(
+                height: 44,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _selectedUsers.isEmpty
+                      ? null
+                      : () {
+                          Get.toNamed(AppRoutes.chatsScreen);
+                        },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                ),
-                child: GestureDetector(
-                  onTap: () => Get.toNamed(AppRoutes.chatsScreen),
-                  child: Text(
-                    _selectedUsers.length <= 1
-                        ? AppStrings.chatButton
-                        : '${AppStrings.groupChatButton} (${_selectedUsers.length})',
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: AppColors.white,
+                  child: GestureDetector(
+                    onTap: () => Get.toNamed(AppRoutes.chatsScreen),
+                    child: Text(
+                      _selectedUsers.length <= 1
+                          ? AppStrings.chatButton
+                          : '${AppStrings.groupChatButton} (${_selectedUsers.length})',
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: AppColors.white,
+                      ),
                     ),
                   ),
                 ),

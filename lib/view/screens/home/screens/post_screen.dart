@@ -18,7 +18,8 @@ class PostScreen extends StatelessWidget {
 
   PostScreen({super.key, required this.post});
   final FocusNode _commentFocusNode = FocusNode();
-  PostCardController get _postCardController => Get.find<PostCardController>(
+  PostCardController get _postCardController => Get.put<PostCardController>(
+    PostCardController(post: post),
     tag: post.username + post.caption.hashCode.toString(),
   );
 
@@ -52,7 +53,8 @@ class PostScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(20),
                       child: ReactionRow(
-                        reactionIconPaths: post.reactedReactions,
+                        reactionIconPaths:
+                            _postCardController.reactionIconPaths,
                         likes: post.likes,
                         comments: post.comments,
                         seeds: post.seeds,

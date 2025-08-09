@@ -180,8 +180,7 @@ class _PostCardState extends State<PostCard> {
                     SizedBox(height: 10),
 
                     ReactionRow(
-                      reactionIconPaths:
-                          widget.item.reactedReactions, // Use from model!
+                      reactionIconPaths: _postCardController.reactionIconPaths,
                       likes: item.likes,
                       comments: item.comments,
                       seeds: item.seeds,

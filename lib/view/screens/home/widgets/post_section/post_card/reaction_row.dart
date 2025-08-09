@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../components/custom_image/custom_image.dart';
@@ -6,7 +8,8 @@ import '../../../../../../utils/app_icons/app_icons.dart';
 import '../../../../../components/reaction_button/reaction_button.dart';
 
 class ReactionRow extends StatelessWidget {
-  final List<String> reactionIconPaths;
+  final RxList<String> reactionIconPaths;
+
   final String likes;
   final String comments;
   final String seeds;
@@ -38,66 +41,71 @@ class ReactionRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const SizedBox(width: 0),
         GestureDetector(
           onTap: onReactionIconTap,
           child: Obx(() {
-            // Make sure selected reaction is first, followed by others (no repeats)
-            final List<String> displayedReactions = [
-              selectedReactionIconPath.value,
-              ...reactionIconPaths.where(
-                (icon) => icon != selectedReactionIconPath.value,
-              ),
-            ].take(3).toList();
+            final List<String> displayedReactions =
+                [
+                      selectedReactionIconPath.value,
+                      ...reactionIconPaths.where(
+                        (icon) => icon != selectedReactionIconPath.value,
+                      ),
+                    ]
+                    .where(
+                      (icon) => icon.isNotEmpty,
+                    ) // <-- add this to remove empty strings
+                    .take(3)
+                    .toList()
+                    .reversed
+                    .toList();
 
             return Row(
               children: [
                 SizedBox(
-                  width:
-                      28.0 +
-                      ((displayedReactions.length - 1).clamp(0, 2)) * 20.0,
-                  height: 28.0,
+                  width: (displayedReactions.length - 1) * 16.0 + 28,
+                  height: 28,
                   child: Stack(
-                    alignment: Alignment.centerLeft,
-                    children: [
-                      for (
-                        int i = 0;
-                        i < displayedReactions.length && i < 3;
-                        i++
-                      )
-                        Positioned(
-                          left: i * 20.0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.15),
-                                  blurRadius: 2,
-                                  offset: Offset(1, 1),
-                                ),
-                              ],
-                            ),
+                    clipBehavior: Clip.none,
+                    children: List.generate(
+                      displayedReactions.length,
+                      (i) => Positioned(
+                        left: (displayedReactions.length - 1 - i) * 16.0,
+                        child: Container(
+                          width: 28,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            color: AppColors.lightBlueBackground,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.15),
+                                blurRadius: 2,
+                                offset: Offset(1, 1),
+                              ),
+                            ],
+                          ),
+                          child: Center(
                             child: CustomImage(
                               imageSrc: displayedReactions[i],
-                              size: 24,
+                              size: 20,
                               imageColor: AppColors.primary,
                             ),
                           ),
                         ),
-                    ],
+                      ),
+                    ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
+
                 GestureDetector(
                   onTap: onReactionCountTap,
                   child: Text(
                     likes,
                     style: TextStyle(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
+                      color: AppColors.mediumGray,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
                     ),
                   ),
                 ),

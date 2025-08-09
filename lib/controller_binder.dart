@@ -5,6 +5,7 @@ import 'view/screens/group/controller/auth_controller.dart';
 import 'view/screens/group/controller/group_controller.dart';
 import 'view/screens/home/controllers/comment_controller.dart';
 import 'view/screens/home/controllers/home_controller.dart';
+// import 'view/screens/home/controllers/post_card_controller.dart';
 import 'view/screens/home/controllers/post_controller.dart';
 import 'view/screens/open_new_workshop/controller/image_picker_grid_controller.dart';
 import 'view/screens/open_new_workshop/controller/open_new_workshop_controller.dart';
@@ -26,6 +27,7 @@ class ControllerBinder extends Bindings {
     Get.put(OpenWorkshopController());
     Get.put(ImagePickerGridController());
     Get.put(CommentController());
+    // Get.put(PostCardController(post: widget.));
 
     // Get.Put<HomeController>(() => HomeController());
     // Get.lazyPut<RegistrationPowerUserController>(

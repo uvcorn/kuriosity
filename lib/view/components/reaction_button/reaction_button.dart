@@ -36,7 +36,7 @@ class ReactionButton extends StatelessWidget {
           onTap: onCountTap,
           child: Text(
             count,
-            style: textTheme.labelSmall?.copyWith(color: AppColors.black),
+            style: textTheme.labelSmall?.copyWith(color: AppColors.mediumGray),
           ),
         ),
       ],

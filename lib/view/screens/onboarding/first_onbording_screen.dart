@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/app_routes/app_routes.dart';
+import '../../../utils/app_colors/app_colors.dart';
 import '../../../utils/app_images/app_images.dart';
 import '../../../utils/app_strings/app_strings.dart';
 import '../../components/action_button/action_button.dart';
@@ -21,6 +22,7 @@ class _FirstOnbordingScreenState extends State<FirstOnbordingScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: AppColors.backgroundLightGray,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
         child: Column(

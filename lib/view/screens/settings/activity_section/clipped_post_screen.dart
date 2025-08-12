@@ -25,6 +25,7 @@ class _ClippedPostScreenState extends State<ClippedPostScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: TopAppBar(),

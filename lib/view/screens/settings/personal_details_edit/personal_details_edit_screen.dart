@@ -130,6 +130,7 @@ class _PersonalDetailsEditScreenState extends State<PersonalDetailsEditScreen> {
             padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             child: Column(
               children: [
+                SizedBox(height: screenHeight * 0.015),
                 TopAppBar(),
                 SizedBox(height: verticalSpacing),
                 Stack(

@@ -121,7 +121,7 @@ class _BlockedListScreenState extends State<BlockedListScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 30),
+              SizedBox(height: 16),
               TopAppBar(),
               SizedBox(height: 30),
               CSearchbar(hintText: AppStrings.searchHint, hasBackground: false),

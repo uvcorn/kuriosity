@@ -36,13 +36,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     final width = size.width;
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundWhite,
+      backgroundColor: AppColors.backgroundLightGray,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.04),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: height * 0.01),
               TopAppBar(),
               SizedBox(height: height * 0.01),
               Row(
@@ -64,40 +65,49 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
               SizedBox(height: height * 0.01), //
 
-              _buildPasswordField(
-                label: AppStrings.currentPassword,
-                controller: _currentPasswordController,
-                isObscure: !_showCurrentPassword,
-                toggleVisibility: () {
-                  setState(() {
-                    _showCurrentPassword = !_showCurrentPassword;
-                  });
-                },
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  children: [
+                    _buildGroupedPasswordField(
+                      label: AppStrings.currentPassword,
+                      controller: _currentPasswordController,
+                      isObscure: !_showCurrentPassword,
+                      toggleVisibility: () {
+                        setState(() {
+                          _showCurrentPassword = !_showCurrentPassword;
+                        });
+                      },
+                    ),
+                    Divider(height: 1, color: AppColors.lightBorder),
+                    _buildGroupedPasswordField(
+                      label: AppStrings.newPassword,
+                      controller: _newPasswordController,
+                      isObscure: !_showNewPassword,
+                      toggleVisibility: () {
+                        setState(() {
+                          _showNewPassword = !_showNewPassword;
+                        });
+                      },
+                    ),
+                    Divider(height: 1, color: AppColors.lightBorder),
+                    _buildGroupedPasswordField(
+                      label: AppStrings.confirmNewPassword,
+                      controller: _confirmPasswordController,
+                      isObscure: !_showConfirmPassword,
+                      toggleVisibility: () {
+                        setState(() {
+                          _showConfirmPassword = !_showConfirmPassword;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: height * 0.015),
 
-              _buildPasswordField(
-                label: AppStrings.newPassword,
-                controller: _newPasswordController,
-                isObscure: !_showNewPassword,
-                toggleVisibility: () {
-                  setState(() {
-                    _showNewPassword = !_showNewPassword;
-                  });
-                },
-              ),
-              SizedBox(height: height * 0.015),
-
-              _buildPasswordField(
-                label: AppStrings.confirmNewPassword,
-                controller: _confirmPasswordController,
-                isObscure: !_showConfirmPassword,
-                toggleVisibility: () {
-                  setState(() {
-                    _showConfirmPassword = !_showConfirmPassword;
-                  });
-                },
-              ),
               SizedBox(height: height * 0.03),
 
               SizedBox(
@@ -124,34 +134,42 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     );
   }
 
-  Widget _buildPasswordField({
+  Widget _buildGroupedPasswordField({
     required String label,
     required TextEditingController controller,
     required bool isObscure,
     required VoidCallback toggleVisibility,
   }) {
     final textTheme = Theme.of(context).textTheme;
-    return TextFormField(
-      controller: controller,
-      obscureText: isObscure,
-      decoration: InputDecoration(
-        hintText: label,
-        hintStyle: textTheme.labelSmall,
-        suffixIcon: IconButton(
-          icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
-          onPressed: toggleVisibility,
-        ),
-        filled: true,
-        fillColor: AppColors.white,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 14,
-        ),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: AppColors.lightGray, width: 2),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: AppColors.mediumGray, width: 2.0),
+
+    return SizedBox(
+      height: 65, // consistent height
+      child: Padding(
+        padding: EdgeInsets.only(top: 12),
+        child: TextFormField(
+          controller: controller,
+          obscureText: isObscure,
+          style: textTheme.bodyMedium?.copyWith(
+            fontSize: 14,
+            color: AppColors.black,
+          ),
+          decoration: InputDecoration(
+            hintText: label,
+            hintStyle: textTheme.bodySmall?.copyWith(
+              fontSize: 14,
+              color: AppColors.mediumGray,
+            ),
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+            suffixIcon: GestureDetector(
+              onTap: toggleVisibility,
+              child: Icon(
+                isObscure ? Icons.visibility_off : Icons.visibility,
+                color: AppColors.mediumGray,
+                size: 20,
+              ),
+            ),
+          ),
         ),
       ),
     );

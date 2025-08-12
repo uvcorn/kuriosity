@@ -83,6 +83,7 @@ class _SettingsScreensState extends State<SettingsScreens> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: height * 0.015),
                 TopAppBar(),
                 SizedBox(height: height * 0.02),
                 Row(

@@ -19,10 +19,11 @@ class PostCreateScreens extends StatelessWidget {
     final controller = Get.find<CreatePostController>();
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: AppColors.backgroundLightGray,
       body: SafeArea(
         child: Column(
           children: [
+            const SizedBox(height: 20),
             SafeArea(child: _buildAppBar(context, controller)),
             Expanded(
               child: SingleChildScrollView(

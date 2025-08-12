@@ -19,13 +19,14 @@ class PasswordAndSecurityScreen extends StatelessWidget {
     final height = size.height;
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundWhite,
+      backgroundColor: AppColors.backgroundLightGray,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.03),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: height * 0.01),
               TopAppBar(),
               SizedBox(height: height * 0.01),
               Row(
@@ -48,52 +49,67 @@ class PasswordAndSecurityScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: height * 0.01),
-              Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.linkedAccountsScreen);
-                    },
-                    child: Row(
-                      children: [
-                        SizedBox(width: width * 0.02),
-                        CustomImage(imageSrc: AppIcons.linkAccount),
-                        SizedBox(width: width * 0.04),
-                        Expanded(
-                          child: Text(
-                            AppStrings.linkedAccounts,
-                            style: textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        const Icon(Icons.arrow_forward_ios),
-                      ],
-                    ),
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 12,
                   ),
-                  SizedBox(height: height * 0.025),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.changePasswordScreen);
-                    },
-                    child: Row(
-                      children: [
-                        SizedBox(width: width * 0.02),
-                        CustomImage(imageSrc: AppIcons.padlock),
-                        SizedBox(width: width * 0.04),
-                        Expanded(
-                          child: Text(
-                            AppStrings.changePassword,
-                            style: textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRoutes.linkedAccountsScreen);
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(width: width * 0.02),
+                            CustomImage(imageSrc: AppIcons.linkAccount),
+                            SizedBox(width: width * 0.04),
+                            Expanded(
+                              child: Text(
+                                AppStrings.linkedAccounts,
+                                style: textTheme.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
-                          ),
+                            const Icon(Icons.arrow_forward_ios),
+                          ],
                         ),
-                        const Icon(Icons.arrow_forward_ios),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: height * 0.01),
+                      Divider(height: 1, color: AppColors.lightBorder),
+
+                      SizedBox(height: height * 0.01),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRoutes.changePasswordScreen);
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(width: width * 0.02),
+                            CustomImage(imageSrc: AppIcons.padlock),
+                            SizedBox(width: width * 0.04),
+                            Expanded(
+                              child: Text(
+                                AppStrings.changePassword,
+                                style: textTheme.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const Icon(Icons.arrow_forward_ios),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
               SizedBox(height: height * 0.04),
               Column(

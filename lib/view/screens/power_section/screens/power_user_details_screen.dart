@@ -22,7 +22,10 @@ class PowerUserDetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.064),
+            padding: EdgeInsets.symmetric(
+              horizontal: screenWidth * 0.064,
+              vertical: screenHeight * 0.01,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

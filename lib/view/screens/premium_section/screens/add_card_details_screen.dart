@@ -36,7 +36,10 @@ class _AddCardDetailsScreenState extends State<AddCardDetailsScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+          padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.06,
+            vertical: screenHeight * 0.01,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

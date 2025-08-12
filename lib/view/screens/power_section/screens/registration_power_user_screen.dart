@@ -28,7 +28,7 @@ class RegistrationPowerUserScreen
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
             horizontal: screenWidth * 0.06,
-            vertical: screenHeight * 0.02,
+            vertical: screenHeight * 0.01,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -21,7 +21,10 @@ class PremiumUserDetailsScreen extends StatelessWidget {
       backgroundColor: AppColors.backgroundWhite,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+          padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.06,
+            vertical: screenHeight * 0.01,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
